@@ -1,0 +1,228 @@
+#base robot_standard.pop
+#base robot_giant.pop
+#base robot_gatebot_improved_yiresa.pop
+
+WaveSchedule
+{	
+    StartingCurrency 500
+	RespawnWaveTime	4
+	CanBotsAttackWhileInSpawnRoom	no
+	
+	PointTemplates
+	{
+		SentryMan
+		{
+			OnSpawnOutput
+			{
+				Target "sentry"
+				Action "setbuilder"
+				Delay 0
+			}
+			obj_sentrygun
+			{
+				"targetname" "sentry"
+				"origin" "0 0 -10"
+				"teamnum" 3
+				"SolidToPlayer" 0
+			}
+		}
+		SentryManLv3
+		{
+			OnSpawnOutput
+			{
+				Target "sentrylv3"
+				Action "setbuilder"
+				Delay 0
+			}
+			obj_sentrygun
+			{
+				"targetname" "sentrylv3"
+				"origin" "0 0 -10"
+				"teamnum" 3
+				"defaultupgrade" 2
+				"SolidToPlayer" 0
+			}
+		}
+	}
+	
+	Templates
+	{	
+	    Yiresa_Red_Path
+		{
+		    TotalCount 1
+			MaxActive 0
+			SpawnCount 3
+			
+			Support 1
+			
+			TFBot
+			{
+			    Class Scout
+				ClassIcon pathred
+			}
+		}
+	    Yiresa_Blu_Path
+		{
+		    TotalCount 1
+			MaxActive 0
+			SpawnCount 3
+			
+			Support 1
+			
+			TFBot
+			{
+			    Class Scout
+				ClassIcon pathblu
+			}
+		}
+		T_TFBot_Scout_Sandman_Leaper
+		{
+			Class Scout
+			Name "Leapin' League Scout"
+			Skill Hard
+			ClassIcon scout_stun
+			WeaponRestrictions MeleeOnly
+			Item "The Sandman"
+			Item "Batter's Helmet"
+
+			ItemAttributes
+			{
+				ItemName "The Sandman"
+				"damage penalty" 0.01
+				"effect bar recharge rate increased" 0.25
+				"hit self on miss" 1
+				"apply z velocity on damage" 50
+				"apply look velocity on damage" 1000
+			}
+			FireWeapon
+			{
+				Delay 5
+				Cooldown 0
+				Repeats 0
+				IfSeeTarget 1
+				Duration 0
+				Type "Primary"
+			}
+			FireWeapon
+			{
+				Delay 5
+				Cooldown 0.25
+				Repeats 0
+				IfSeeTarget 1
+				Duration 0
+				Type "Jump"
+			}
+		}
+		T_TFBot_Medic_Ubersaw // chases players, then deploys uber when landing a hit
+		{
+			Class Medic
+			ClassIcon medic_jug_ubersaw
+			Name "Ubersaw Medic"
+			Skill Expert
+			EventChangeAttributes
+			{
+				Default
+				{
+					Item "The Ubersaw"
+					WeaponRestrictions MeleeOnly
+					ActionOverride Mobber
+					ItemAttributes
+					{
+						ItemName "The Ubersaw"
+						"add uber charge on hit" 2
+						"fire input on hit" "!activator^$ChangeAttributes^Uber"
+					}
+				}
+				Uber
+				{
+					WeaponRestrictions SecondaryOnly
+					ActionOverride Medic
+					CharacterAttributes
+					{
+						"bot medic uber health threshold" 666
+					}
+				}
+			}
+		}
+		T_TFBot_Engineer_SentryMan
+		{
+			Class Engineer
+			ClassIcon sentry_gun
+			Name "Sentry-Mann"
+			Skill Hard
+			Health 650
+			Scale 1.3
+			Action FetchFlag
+			Item "The Frontier Justice"
+			SpawnTemplate
+			{
+				Name "SentryMan"
+				Bone "bip_neck"
+			}
+		}
+		T_TFBot_Giant_Engineer_SentryMan
+		{
+			Class Engineer
+			ClassIcon sentry_gun_lvl3_lite
+			Name "Giant Sentry-Mann"
+			Health 3300
+			Skill Expert
+			Attributes MiniBoss
+			Tag bot_giant
+			Action FetchFlag
+			Item "The Frontier Justice"
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.6
+				"voice pitch scale" 0
+				"airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
+			}
+			SpawnTemplate
+			{
+				Name "SentryManLv3"
+				Bone "bip_neck"
+			}
+		}
+	}
+	
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target	wave_start_relay
+			Action	Trigger
+		}
+		InitWaveOutput
+        {
+            Target wave_finished_nextwave_right
+            Action Trigger
+        }
+		DoneOutput					
+		{
+			Target	wave_finished_relay
+			Action	Trigger
+		}
+		WaveSpawn
+		{
+		    Template Yiresa_Blu_Path
+		}
+		
+		WaveSpawn
+		{
+		    Name "wave01"
+		    TotalCount 100
+			MaxActive 10
+			SpawnCount 10
+			Where spawnbot_front_left
+			Where spawnbot_left
+			WaitBetweenSpawns 2
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Medic_Ubersaw
+			}
+		}
+	}
+}
