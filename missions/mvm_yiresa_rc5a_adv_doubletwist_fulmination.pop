@@ -1,3 +1,4 @@
+// Yiresa Advanced - Doubletwist Fulmination made by Wooper (https://steamcommunity.com/id/woopwoopwoopwoopgang) Sergeant Table (https://steamcommunity.com/id/FinalBossConnoisseur/)
 #base robot_standard.pop
 #base robot_giant.pop
 #base robot_gatebot_improved_yiresa.pop
@@ -411,4 +412,5 @@ WaveSchedule
 			}
 		}
 	}
+
 }
