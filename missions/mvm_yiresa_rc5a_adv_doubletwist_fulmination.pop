@@ -1,11 +1,11 @@
-// Yiresa Advanced - Doubletwist Fulmination made by Wooper (https://steamcommunity.com/id/woopwoopwoopwoopgang) Sergeant Table (https://steamcommunity.com/id/FinalBossConnoisseur/)
 #base robot_standard.pop
 #base robot_giant.pop
 #base robot_gatebot_improved_yiresa.pop
+#base wooper_weapons.pop // for testing purposes :3
 
 WaveSchedule
 {	
-    StartingCurrency 500
+    StartingCurrency 500 // might increase a bit
 	RespawnWaveTime	4
 	CanBotsAttackWhileInSpawnRoom	no
 	
@@ -22,7 +22,7 @@ WaveSchedule
 			obj_sentrygun
 			{
 				"targetname" "sentry"
-				"origin" "0 0 -10"
+				"origin" "0 0 0"
 				"teamnum" 3
 				"SolidToPlayer" 0
 			}
@@ -38,7 +38,7 @@ WaveSchedule
 			obj_sentrygun
 			{
 				"targetname" "sentrylv3"
-				"origin" "0 0 -10"
+				"origin" "0 0 0"
 				"teamnum" 3
 				"defaultupgrade" 2
 				"SolidToPlayer" 0
@@ -48,7 +48,7 @@ WaveSchedule
 	
 	Templates
 	{	
-	    Yiresa_Red_Path
+	    Yiresa_Red_Path // taken from pda's popfile
 		{
 		    TotalCount 1
 			MaxActive 0
@@ -76,7 +76,15 @@ WaveSchedule
 				ClassIcon pathblu
 			}
 		}
-		T_TFBot_Scout_Sandman_Leaper
+		T_TFBot_Soldier_BlackBox_Single
+		{
+			Class Soldier
+            ClassIcon soldier_heal2
+			Name "Black Box Soldier"
+			Skill Hard
+			Item "The Black Box"
+		}
+		T_TFBot_Scout_Sandman_Leaper // was testing this lol
 		{
 			Class Scout
 			Name "Leapin' League Scout"
@@ -145,7 +153,7 @@ WaveSchedule
 				}
 			}
 		}
-		T_TFBot_Engineer_SentryMan
+		T_TFBot_Engineer_SentryMan // engi minigiant with sentry hat
 		{
 			Class Engineer
 			ClassIcon sentry_gun
@@ -154,6 +162,7 @@ WaveSchedule
 			Health 650
 			Scale 1.3
 			Action FetchFlag
+			WeaponRestrictions PrimaryOnly
 			Item "The Frontier Justice"
 			SpawnTemplate
 			{
@@ -161,7 +170,7 @@ WaveSchedule
 				Bone "bip_neck"
 			}
 		}
-		T_TFBot_Giant_Engineer_SentryMan
+		T_TFBot_Giant_Engineer_SentryMan // engi giant with lv3 sentry hat
 		{
 			Class Engineer
 			ClassIcon sentry_gun_lvl3_lite
@@ -172,6 +181,7 @@ WaveSchedule
 			Tag bot_giant
 			Action FetchFlag
 			Item "The Frontier Justice"
+			WeaponRestrictions PrimaryOnly
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
@@ -188,7 +198,37 @@ WaveSchedule
 		}
 	}
 	
-	Wave
+	Mission // sentry buster!
+	{
+		Objective DestroySentries
+		InitialCooldown 20
+		Where spawnbot
+		BeginAtWave 1
+		RunForThisManyWaves 9
+		CooldownTime 35
+        TFBot
+		{
+			Template T_TFBot_SentryBuster
+        }
+	}
+	
+	Mission // Sniper wave 1
+	{
+		Objective Sniper
+		InitialCooldown 35
+		CooldownTime 40
+		Where spawnbot_right
+		BeginAtWave 1
+		RunForThisManyWaves 1
+		DesiredCount 2
+		TFBot
+		{
+			Template T_TFBot_Sniper
+			MaxVisionRange 2000
+		}
+	}
+	
+	Wave // WAVE 01
 	{
 		StartWaveOutput
 		{
@@ -210,21 +250,165 @@ WaveSchedule
 		    Template Yiresa_Blu_Path
 		}
 		
-		WaveSpawn
+		WaveSpawn // 24 easy pyros
 		{
-		    Name "wave01"
-		    TotalCount 100
-			MaxActive 10
-			SpawnCount 10
+		    Name "1-1a"
+		    TotalCount 24
+			MaxActive 6
+			SpawnCount 3
 			Where spawnbot_front_left
-			Where spawnbot_left
+			Where spawnbot_right
+			WaitBetweenSpawns 1.5
+			TotalCurrency 100
+			TFBot
+			{
+				Class Pyro
+				Skill Easy
+			}
+		}
+		WaveSpawn // 10 gauntlets
+		{
+		    Name "1-1a"
+		    TotalCount 10
+			MaxActive 4
+			SpawnCount 2
+			Where spawnbot_front_left
+			Where spawnbot_right
 			WaitBetweenSpawns 2
 			TotalCurrency 100
 			TFBot
 			{
-				Template T_TFBot_Medic_Ubersaw
+				Template T_TFBot_Heavyweapons_Fist
+			}
+		}
+		WaveSpawn // 3 G giant demos
+		{
+		    Name "1-1b"
+		    TotalCount 3
+			MaxActive 2
+			SpawnCount 1
+			Where spawnbot_front_right
+			Where spawnbot_right
+			WaitBeforeStarting 8
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template GateBot_Giant_Demoman
+			}
+		}
+		WaveSpawn // 40 G bowmen
+		{
+		    Name "1-1c"
+		    TotalCount 40
+			MaxActive 7
+			SpawnCount 1
+			Where spawnbot_front_right
+			Where spawnbot_right
+			WaitBetweenSpawns 2.5
+			TotalCurrency 100
+			TFBot
+			{
+				Template GateBot_Sniper_Huntsman
+			}
+		}
+		
+		WaveSpawn // 30 G scouts
+		{
+		    Name "1-2a"
+		    TotalCount 30
+			MaxActive 9
+			SpawnCount 1
+			Where spawnbot_front_left
+			Where spawnbot_right
+			WaitForAllSpawned "1-1a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 1
+			TotalCurrency 100
+			RandomChoice
+			{
+				TFBot
+				{
+					Template GateBot_Scout_Melee
+				}
+				TFBot
+				{
+					Template GateBot_Scout_Easy
+				}
+			}
+		}
+		WaveSpawn // 2 giant burst soldiers
+		{
+		    Name "1-2b"
+		    TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			Where spawnbot_front_right
+			Where spawnbot_right
+			WaitForAllSpawned "1-1b"
+			WaitBeforeStarting 18
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier_Spammer_Reload
+			}
+		}
+		
+		WaveSpawn // 20 single black box soldiers
+		{
+		    Name "1-3a"
+		    TotalCount 20
+			MaxActive 8
+			SpawnCount 4
+			Where spawnbot_front_left
+			Where spawnbot_right
+			WaitForAllSpawned "1-2a"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Soldier_BlackBox_Single
+			}
+		}
+		WaveSpawn // 3 super scouts at the end
+		{
+		    Name "1-3b"
+		    TotalCount 3
+			MaxActive 3
+			SpawnCount 1
+			Where spawnbot_front_right
+			Where spawnbot_right
+			WaitForAllSpawned "1-2b"
+			WaitBeforeStarting 25
+			WaitBetweenSpawns 9
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Scout_Fast
+			}
+		}
+		
+		WaveSpawn // fast punchie support
+		{
+		    Name "1-sup"
+		    TotalCount 10
+			MaxActive 5
+			SpawnCount 1
+			Support 1
+			Where spawnbot_front_left
+			Where spawnbot_front_right
+			Where spawnbot_right
+			WaitForAllSpawned "1-1c"
+			WaitBeforeStarting 8
+			WaitBetweenSpawns 1.5
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				Name "Keep Running Little Punchie"
 			}
 		}
 	}
-
 }
