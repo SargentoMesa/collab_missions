@@ -533,6 +533,9 @@ WaveSchedule
                     EntFire(`wave_finish_relay`, `Trigger`)        
                   "
         }
+        
+        // Subwave 1
+        greg
     }
     Wave
     {
