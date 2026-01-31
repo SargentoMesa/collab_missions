@@ -9,11 +9,55 @@ WaveSchedule
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
 
+    //// PRECACHES ////
+
+    // Model Precaches //
+
+    PrecacheModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]
+
     //// ROBOT TEMPLATES ////
 
     Templates
     {
+        T_TFBot_Giant_Sniper_Huntsman_Combo
+        {
+            Name "Giant Combo Bowman"
+            Class Sniper
+            ClassIcon sniper_bow_kukri
+            Skill Expert
+            Health 3300
+            Scale 1.75
+            Attributes MiniBoss
 
+            Tag bot_switcher_attack
+
+            UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]
+
+            Item "The Huntsman"
+            Item "The Cleaner's Carbine"
+            Item "The Bushwacka"
+
+            CharacterAttributes
+            {
+                "move speed bonus" 0.4
+                "damage force reduction" 0.7
+				"airblast vulnerability multiplier" 0.7
+                "override footstep sound set" 5
+                "voice pitch scale"	0 
+                "head scale" 0.7
+            }
+            ItemAttributes
+            {
+                ItemName "The Huntsman"
+                "fire rate bonus" 0.5
+                "arrow mastery" 2
+            }
+            ItemAttributes
+            {
+                ItemName "The Cleaner's Carbine"
+                "damage bonus" 1.5
+            }
+        }
     }
 
     //// MISSION BOTS ////
@@ -533,8 +577,64 @@ WaveSchedule
                     EntFire(`wave_finish_relay`, `Trigger`)        
                   "
         }
-        
+
         // Subwave 1
+        WaveSpawn // 4 Giant Combo Bowmen
+        {
+            Name "Wave2_Subwave1_GBowmen"
+            Where spawnbot_giant
+            TotalCount 4
+            MaxActive 2
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+        
+            TFBot
+            {
+                Template T_TFBot_Giant_Sniper_Huntsman_Combo
+            }
+        }
+        WaveSpawn // 54 Shotgun Heavies
+        {
+            Name "Wave2_Subwave1_ShotgunHeavies"
+            Where spawnbot
+            TotalCount 54
+            MaxActive 14
+            SpawnCount 9
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 9
+        
+            TotalCurrency 50
+        
+            TFBot
+            {
+                Name "Shotgun Heavy"
+                Template T_TFBot_Heavyweapons_Shotgun
+            }
+        }
+        WaveSpawn // Battle Engineers and Quick-Uber Medics
+        {
+            WaitForAllDead "Wave2_Subwave1_ShotgunHeavies"
+            Where spawnbot
+            TotalCount 4
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            Support Limited
+            Squad
+            {
+                TFBot
+                {
+                    Template T_TFBot_Engineer_Sentry_Battle
+                }
+                TFBot
+                {
+                    Template T_TFBot_Medic_QuickUber
+                }
+            }
+        }
     }
     Wave
     {
