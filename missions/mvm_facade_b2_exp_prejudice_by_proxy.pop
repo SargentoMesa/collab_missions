@@ -19,43 +19,49 @@ WaveSchedule
 
     Templates
     {
-        T_TFBot_Giant_Sniper_Huntsman_Combo
+        T_TFBot_Giant_Soldier_Particle
         {
-            Name "Giant Combo Bowman"
-            Class Sniper
-            ClassIcon sniper_bow_kukri
+            Name "Giant Particle Smasher"
+            Class Soldier
+            ClassIcon soldier_burstfire_mangler_v2
             Skill Expert
-            Health 3300
-            Scale 1.75
+            Health 4200
             Attributes MiniBoss
+            WeaponRestrictions PrimaryOnly
 
-            Tag bot_switcher_attack
-
-            UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]
-
-            Item "The Huntsman"
-            Item "The Cleaner's Carbine"
-            Item "The Bushwacka"
+            Item "The Cow Mangler 5000"
+            Item "TF_WEAPON_SHOTGUN_SOLDIER"
 
             CharacterAttributes
             {
-                "move speed bonus" 0.4
-                "damage force reduction" 0.7
-				"airblast vulnerability multiplier" 0.7
-                "override footstep sound set" 5
-                "voice pitch scale"	0 
-                "head scale" 0.7
+                "move speed bonus"	0.5
+                "damage force reduction" 0.4
+                "airblast vulnerability multiplier" 0.4
+                "override footstep sound set" 3
             }
             ItemAttributes
             {
-                ItemName "The Huntsman"
-                "fire rate bonus" 0.5
-                "arrow mastery" 2
+                ItemName "The Cow Mangler 5000"
+                "damage bonus" 0.6
+                "fire rate bonus" 0.2
+                "faster reload rate" -0.8
+                "dmg bonus vs buildings" 3
+                "projectile spread angle penalty" 5
+                "dmg bonus vs buildings" 2
             }
             ItemAttributes
             {
-                ItemName "The Cleaner's Carbine"
-                "damage bonus" 1.5
+                ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                "damage bonus" 0.6
+                "faster reload rate" 0.65
+                "fire rate bonus" 0.1
+                "is_passive_weapon" 1
+                "auto fires full clip"  1
+                "auto fires when full"  1
+                "override projectile type" 13
+                "clip size bonus" 1.5
+                "projectile spread angle penalty" 5
+                "Projectile speed increased" 0.4
             }
         }
         T_TFBot_Giant_Soldier_RocketShotgun_New
@@ -177,6 +183,30 @@ WaveSchedule
                 IfSeeTarget 1
                 Duration 0.1
                 Cooldown 4 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
+            }
+        }
+        T_TFBot_Giant_Soldier_Combo
+        {
+            Name "Giant Combo Soldier"
+            Template T_TFBot_Giant_Soldier_Spammer
+            ClassIcon soldier_shotgun_yoovy_giant
+            Attributes HoldFireUntilFullReload
+
+            Tag bot_switcher_attack
+
+            Item "Panic Attack Shotgun"
+
+            ItemAttributes
+            {
+                ItemName "Panic Attack Shotgun"
+                "faster reload rate" 0.5
+                "fire rate bonus" 0.7
+            }
+            ItemAttributes
+            {
+                ItemName "TF_WEAPON_SHOVEL"
+                "damage bonus" 1.5
+                "damage causes airblast" 3
             }
         }
         T_TFBot_Heavy_Shotgun_Ambusher
@@ -753,14 +783,6 @@ WaveSchedule
                     EntFire(`wave_start_relay`, `Trigger`)
                   "
         }
-        InitWaveOutput
-        {
-            Target gamerules // gamerules or tf_gamerules, depending on the map
-            Action RunScriptCode
-            Param "
-                IncludeScript(`distance_based_weaponswitch_v2`)
-            "
-        }
         DoneOutput
         {
             Target BigNet
@@ -771,9 +793,9 @@ WaveSchedule
         }
 
         // Subwave 1
-        WaveSpawn // 4 Giant Combo Bowmen
+        WaveSpawn // 4 Giant Particle Smashers
         {
-            Name "Wave2_Subwave1_GBowmen"
+            Name "Wave2_Subwave1_HadronCollider"
             Where spawnbot_giant
             TotalCount 4
             MaxActive 2
@@ -784,7 +806,7 @@ WaveSchedule
         
             TFBot
             {
-                Template T_TFBot_Giant_Sniper_Huntsman_Combo
+                Template T_TFBot_Giant_Soldier_Particle
             }
         }
         WaveSpawn // 54 Shotgun Heavies
@@ -794,7 +816,7 @@ WaveSchedule
             TotalCount 54
             MaxActive 15
             SpawnCount 9
-            WaitBeforeStarting 5
+            WaitBeforeStarting 1
             WaitBetweenSpawns 9
         
             TotalCurrency 50
@@ -832,7 +854,7 @@ WaveSchedule
         WaveSpawn // 24 Armored Sandmen
         {
             Name "Wave2_Subwave2_ArmoredSandmen"
-            WaitForAllDead "Wave2_Subwave1_GBowmen"
+            WaitForAllDead "Wave2_Subwave1_HadronCollider"
             Where spawnbot
             TotalCount 24
             MaxActive 8
@@ -854,7 +876,7 @@ WaveSchedule
         WaveSpawn // 6 GRocketShotgun Soldier
         {
             Name "Wave2_Subwave2_GRocketShotgun"
-            WaitForAllDead "Wave2_Subwave1_GBowmen"
+            WaitForAllDead "Wave2_Subwave1_HadronCollider"
             Where spawnbot_giant
             TotalCount 6
             MaxActive 4
@@ -872,7 +894,7 @@ WaveSchedule
         WaveSpawn // 7 Burst Panic Heavies and 14 Quick-Uber Medics
         {
             Name "Wave2_Subwave2_PanicHeavies"
-            WaitForAllDead "Wave2_Subwave1_GBowmen"
+            WaitForAllDead "Wave2_Subwave1_HadronCollider"
             Where spawnbot
             TotalCount 21
             MaxActive 9
@@ -1012,11 +1034,11 @@ WaveSchedule
             Target BigNet
             Action runscriptcode
             Param "
-            IncludeScript(`tankextensions_main_packed`, getroottable())
-            IncludeScript(`tankextensions_packed/teletank`, getroottable())
+                    IncludeScript(`tankextensions_main_packed`, getroottable())
+                    IncludeScript(`tankextensions_packed/teletank`, getroottable())
 
-            TankExt.AddTankIcon(1, `tank_tele`, `teletank`)
-            "
+                    TankExt.AddTankIcon(1, `tank_tele`, `teletank`)
+                  "
         }
         StartWaveOutput
         {
@@ -1458,6 +1480,18 @@ WaveSchedule
     }
     Wave
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action runscriptcode
+            Param "
+                    IncludeScript(`distance_based_weaponswitch_v2`, getroottable())
+                    IncludeScript(`tankextensions_main_packed`, getroottable())
+                    IncludeScript(`tankextensions_packed/ubertank`, getroottable())
+
+                    TankExt.AddTankIcon(1, `tank_uber_lite`, `ubertank|0|-1`)
+                  "
+        }
         StartWaveOutput
         {
             Target BigNet
@@ -1473,6 +1507,92 @@ WaveSchedule
             Param "
                     EntFire(`wave_finish_relay`, `Trigger`)        
                   "
+        }
+        
+        WaveSpawn
+        {
+            Name "w4chief"
+
+            Where spawnbot_giant
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Name "Chief Combo Soldier"
+                Template T_TFBot_Giant_Soldier_Combo
+                Health 15000
+                Attributes UseBossHealthBar
+            }
+        }
+        WaveSpawn
+        {
+            Name "w4chief"
+
+            Where spawnbot_giant
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            FirstSpawnWarningSound "vo\mvm\mght\soldier_mvm_m_battlecry04.mp3"
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Name "Chief Combo Soldier"
+                Template T_TFBot_Giant_Soldier_Combo
+                Health 15000
+                Attributes UseBossHealthBar
+            }
+        }
+        WaveSpawn // Dummy
+        {
+            WaitForAllDead "w4chief"
+            TotalCount 0
+            SpawnCount 0
+            WaitBeforeStarting 0
+            DoneOutput
+            {
+                Target	wave_start_relay
+				Action	RunScriptCode
+				Param	"
+				EntFire(`ubertank*`,`CallScriptFunction`,`ToggleUber`)
+                "
+            }
+        }
+        WaveSpawn // Tank # HP
+        {
+            Name "w4ubertank"
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+
+            FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
+        
+            Tank
+            {
+                Name "ubertank|0|-1"
+                StartingPathTrackNode "boss_path_a_1"
+                ClassIcon tank_uber_lite [$SIGSEGV] // Fix this valve
+                Health 20000
+                Speed 75
+
+                OnBombDroppedOutput
+                {
+                    Target boss_deploy_relay
+                    Action Trigger
+                }
+            }
         }
     }
     Wave
