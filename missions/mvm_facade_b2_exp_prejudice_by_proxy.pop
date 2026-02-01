@@ -58,7 +58,7 @@ WaveSchedule
                 "damage bonus" 1.5
             }
         }
-        T_TFBot_Giant_Soldier_RocketShotgun
+        T_TFBot_Giant_Soldier_RocketShotgun_New
         {
             Name "Giant Rocket Shotgun Soldier"
             Class Soldier
@@ -762,6 +762,14 @@ WaveSchedule
     }
     Wave
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action runscriptcode
+            Param "
+                    IncludeScript(`distance_based_weaponswitch_v2`, getroottable())
+                  "
+        }
         StartWaveOutput
         {
             Target BigNet
@@ -875,7 +883,7 @@ WaveSchedule
         
             TFBot
             { 
-                Template T_TFBot_Giant_Soldier_RocketShotgun
+                Template T_TFBot_Giant_Soldier_RocketShotgun_New
             }
         }
         WaveSpawn // 7 Burst Panic Heavies and 14 Quick-Uber Medics
