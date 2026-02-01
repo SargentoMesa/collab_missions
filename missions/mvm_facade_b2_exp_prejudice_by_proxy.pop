@@ -138,15 +138,6 @@ WaveSchedule
                 "attach particle effect" 1
                 "custom weapon fire sound" "weapons\bat_baseball_hit1.wav"
             }
-            InterruptAction [$SIGSEGV]
-            {
-                Target "cap_a_trigtimer"
-                Delay 0.5
-                Repeats 0
-                Duration 25
-                Cooldown 2
-                Distance 50
-            }
             VoiceCommand [$SIGSEGV]    //Periodacally uses voice commands
             {
                 Delay 0
@@ -715,16 +706,16 @@ WaveSchedule
                 }
             }
         }
-        WaveSpawn // 16 Pyros
+        WaveSpawn // 5 Pyros
         {
             Name "Wave1_Subwave2_Pyros2"
             WaitForAllSpawned "Wave1_Subwave2_GRapidSoldier"
             Where spawnbot
-            TotalCount 16
-            MaxActive 8
-            SpawnCount 4
+            TotalCount 5
+            MaxActive 5
+            SpawnCount 5
             WaitBeforeStarting 0
-            WaitBetweenSpawns 5
+            WaitBetweenSpawns 0
             TotalCurrency 20
 
             TFBot
@@ -733,16 +724,16 @@ WaveSchedule
                 Skill Easy
             }
         }
-        WaveSpawn // 16 Scouts
+        WaveSpawn // 5 Scouts
         {
             Name "Wave1_Subwave2_Scouts"
             WaitForAllSpawned "Wave1_Subwave2_GRapidSoldier"
             Where spawnbot
-            TotalCount 16
-            MaxActive 8
-            SpawnCount 4
+            TotalCount 5
+            MaxActive 5
+            SpawnCount 5
             WaitBeforeStarting 0
-            WaitBetweenSpawns 5
+            WaitBetweenSpawns 0
             TotalCurrency 20
 
             TFBot
@@ -754,14 +745,6 @@ WaveSchedule
     }
     Wave
     {
-        InitWaveOutput
-        {
-            Target BigNet
-            Action runscriptcode
-            Param "
-                    IncludeScript(`distance_based_weaponswitch_v2`, getroottable())
-                  "
-        }
         StartWaveOutput
         {
             Target BigNet
@@ -769,6 +752,14 @@ WaveSchedule
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
                   "
+        }
+        InitWaveOutput
+        {
+            Target gamerules // gamerules or tf_gamerules, depending on the map
+            Action RunScriptCode
+            Param "
+                IncludeScript(`distance_based_weaponswitch_v2`)
+            "
         }
         DoneOutput
         {
@@ -801,7 +792,7 @@ WaveSchedule
             Name "Wave2_Subwave1_ShotgunHeavies"
             Where spawnbot
             TotalCount 54
-            MaxActive 14
+            MaxActive 15
             SpawnCount 9
             WaitBeforeStarting 5
             WaitBetweenSpawns 9
@@ -847,7 +838,7 @@ WaveSchedule
             MaxActive 8
             SpawnCount 3
             WaitBeforeStarting 0
-            WaitBetweenSpawns 7
+            WaitBetweenSpawns 8
         
             TotalCurrency 50
         
@@ -866,10 +857,10 @@ WaveSchedule
             WaitForAllDead "Wave2_Subwave1_GBowmen"
             Where spawnbot_giant
             TotalCount 6
-            MaxActive 3
+            MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 6
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 22
         
             TotalCurrency 100
         
@@ -930,14 +921,14 @@ WaveSchedule
                 }
             }
         }
-        WaveSpawn // 150 Bat Scouts
+        WaveSpawn // 125 Bat Scouts
         {
             Name "Wave2_Subwave3_BatScouts"
             WaitForAllDead "Wave2_Subwave2_GRocketShotgun"
             Where spawnbot
-            TotalCount 150
-            MaxActive 17
-            SpawnCount 8
+            TotalCount 75
+            MaxActive 18
+            SpawnCount 3
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
         
@@ -982,8 +973,8 @@ WaveSchedule
             Name "Wave2_Subwave3_BuffBanners"
             WaitForAllDead "Wave2_Subwave2_GRocketShotgun"
             Where spawnbot
-            TotalCount 9
-            MaxActive 3
+            TotalCount 12
+            MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 12
@@ -998,13 +989,13 @@ WaveSchedule
         WaveSpawn // 2 Baseball Volley Scouts
         {
             Name "Wave2_Subwave3_GBaseball"
-            WaitForAllSpawned "Wave2_Subwave3_BatScouts"
+            WaitForAllDead "Wave2_Subwave2_GRocketShotgun"
             Where spawnbot_giant
-            TotalCount 2
-            MaxActive 2
-            SpawnCount 2
-            WaitBeforeStarting 15
-            WaitBetweenSpawns 0
+            TotalCount 4
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 16
         
             TotalCurrency 100
         
@@ -1061,7 +1052,7 @@ WaveSchedule
             {
                 Name "teletank"
                 ClassIcon tank_tele [$SIGSEGV]
-                Health 30000
+                Health 25000
                 Speed 75
                 StartingPathTrackNode "boss_path_1"
 
@@ -1389,7 +1380,7 @@ WaveSchedule
             TotalCount 10
             MaxActive 8
             SpawnCount 5
-            WaitBeforeStarting 10
+            WaitBeforeStarting 0
             WaitBetweenSpawns 10
             TotalCurrency 20
 
