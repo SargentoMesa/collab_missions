@@ -300,14 +300,6 @@ WaveSchedule
 
     Wave
     {
-        InitWaveOutput
-        {
-            Target BigNet
-            Action RunScriptCode
-            Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Prejudice by Proxy (Exp)`)
-                  "
-        }
         StartWaveOutput
         {
             Target BigNet
