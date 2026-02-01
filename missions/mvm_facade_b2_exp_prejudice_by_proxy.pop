@@ -706,14 +706,14 @@ WaveSchedule
                 }
             }
         }
-        WaveSpawn // 5 Pyros
+        WaveSpawn // 6 Pyros
         {
             Name "Wave1_Subwave2_Pyros2"
             WaitForAllSpawned "Wave1_Subwave2_GRapidSoldier"
             Where spawnbot
-            TotalCount 5
-            MaxActive 5
-            SpawnCount 5
+            TotalCount 6
+            MaxActive 6
+            SpawnCount 6
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             TotalCurrency 20
@@ -724,14 +724,14 @@ WaveSchedule
                 Skill Easy
             }
         }
-        WaveSpawn // 5 Scouts
+        WaveSpawn // 6 Scouts
         {
             Name "Wave1_Subwave2_Scouts"
             WaitForAllSpawned "Wave1_Subwave2_GRapidSoldier"
             Where spawnbot
-            TotalCount 5
-            MaxActive 5
-            SpawnCount 5
+            TotalCount 6
+            MaxActive 6
+            SpawnCount 6
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             TotalCurrency 20
@@ -921,7 +921,7 @@ WaveSchedule
                 }
             }
         }
-        WaveSpawn // 125 Bat Scouts
+        WaveSpawn // 75 Bat Scouts
         {
             Name "Wave2_Subwave3_BatScouts"
             WaitForAllDead "Wave2_Subwave2_GRocketShotgun"
@@ -986,7 +986,7 @@ WaveSchedule
                 Template T_TFBot_Soldier_Extended_Buff_Banner
             }
         }
-        WaveSpawn // 2 Baseball Volley Scouts
+        WaveSpawn // 4 Baseball Volley Scouts
         {
             Name "Wave2_Subwave3_GBaseball"
             WaitForAllDead "Wave2_Subwave2_GRocketShotgun"
