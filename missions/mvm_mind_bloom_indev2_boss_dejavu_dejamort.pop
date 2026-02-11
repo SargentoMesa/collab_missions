@@ -1,5 +1,10 @@
+// Deja Vu, Deja Mort - A Boss Rush Mission
+
+//// STANDARD POPFILE IMPORTS ////
 #base robot_giant.pop
 #base robot_standard.pop
+
+//// BOSS POPFILE IMPORTS ////
 
 WaveSchedule
 {
@@ -29,19 +34,31 @@ WaveSchedule
 
     Mission
     {
-
+        Objective DestroySentries
+        Where spawnbot_support
+        BeginAtWave 1
+		RunForThisManyWaves 7
+		InitialCooldown 30
+		CooldownTime 30
+		DesiredCount 1
+		
+		TFBot
+		{
+			Template T_TFBot_SentryBuster
+		}
     }
 
     //// WAVES ////
 
     Wave
     {
-        InitWaveOutput
+        InitWaveOutput // We can handle changing mission names this way
         {
             Target BigNet
             Action RunScriptCode
             Param "
-
+                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (BOSS RUSH)`)
+                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                   "
         }
         StartWaveOutput
