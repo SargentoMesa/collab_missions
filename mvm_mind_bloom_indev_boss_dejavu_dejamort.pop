@@ -61,4 +61,31 @@ WaveSchedule
                   "
         }
     }
+    Wave
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    
+                  "
+        }
+    }
 }
