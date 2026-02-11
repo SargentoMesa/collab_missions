@@ -1,0 +1,64 @@
+#base robot_giant.pop
+#base robot_standard.pop
+
+WaveSchedule
+{
+    StartingCurrency 0
+    RespawnWaveTime 2
+    FixedRespawnWaveTime Yes
+    AddSentryBusterWhenDamageDealtExceeds 3000
+    AddSentryBusterWhenKillCountExceeds 10
+
+    //// PRECACHES ////
+
+    //// POINT TEMPLATES ////
+
+    PointTemplates [$SIGSEGV]
+    {
+
+    }
+
+    //// ROBOT TEMPLATES ////
+
+    Templates
+    {
+
+    }
+
+    //// MISSION BOTS ////
+
+    Mission
+    {
+
+    }
+
+    //// WAVES ////
+
+    Wave
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    
+                  "
+        }
+    }
+}
