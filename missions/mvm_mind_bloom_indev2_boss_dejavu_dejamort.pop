@@ -8,7 +8,7 @@
 
 WaveSchedule
 {
-    StartingCurrency 0
+    StartingCurrency 1000
     RespawnWaveTime 2
     FixedRespawnWaveTime Yes
     AddSentryBusterWhenDamageDealtExceeds 3000
@@ -16,18 +16,114 @@ WaveSchedule
 
     //// PRECACHES ////
 
+    // Sound Precaches
+    PrecacheSound "minibossrush2.mp3" [$SIGSEGV]
+    PrecacheSound "minibossrush2intro.mp3" [$SIGSEGV]
+
+
     //// POINT TEMPLATES ////
 
     PointTemplates [$SIGSEGV]
     {
-
+        MiniBossRushMusic2
+        {
+            ambient_generic // Intro Music
+            {
+                "targetname" "intromidbossmusic"
+                "message" "#minibossrush2intro.mp3"
+                "health" "10"
+                "pitch" "100"
+                "spawnflags" "17"
+            }
+            ambient_generic // Looping Music
+            {
+                "targetname" "loopingmidbossmusic"
+                "message" "#minibossrush2.mp3"
+                "health" "10"
+                "pitch" "100"
+                "spawnflags" "17"
+            }
+            logic_relay // Looping Music Relay
+            {
+                "targetname" "letsgetthisshowrolling"
+                "OnTrigger"	"intromidbossmusic,PlaySound,,0,-1"
+                "OnTrigger"	"intromidbossmusic,StopSound,,2.3,-1"
+                "OnTrigger" "music_controller,trigger,,2.3,-1"
+                "spawnflags" "2"
+            }
+            logic_relay // Looping Music Relay
+            {
+                "targetname" "music_controller"
+                "OnTrigger"	"loopingmidbossmusic,PlaySound,,0,-1"
+                "OnTrigger"	"loopingmidbossmusic,StopSound,,87.7,-1"
+                "OnTrigger" "music_controller,trigger,,87.705,-1"
+                "spawnflags" "2"
+            }
+        }
     }
 
+    CustomWeapon [$SIGSEGV]
+    {
+        "Crackle Mangler"
+		{
+			OriginalItemName "The Cow Mangler 5000"
+			"faster reload rate" 0.1
+			"fire rate bonus" 0.1
+			"projectile spread angle penalty" 7
+			"add attributes when active" "no clip|0.001"
+		}
+		"Crackle Shotgun"
+		{
+			OriginalItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+			"override projectile type extra" "mechanicalarmorb"
+			"projectile spread angle penalty" 5
+			"burst fire count" 3
+		}
+    }
     //// ROBOT TEMPLATES ////
 
     Templates
     {
-
+        T_TFBot_Giant_Soldier_Crackle
+		{	
+			Class Soldier
+			ClassIcon soldier_barrage_mangler_rain
+			Name "Colonel Crackle"
+			Health 20000
+			Skill Expert
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
+			ExtAttr IgnoreBuildings [$SIGSEGV]
+			Item "Crackle Mangler" [$SIGSEGV]
+			Item "Crackle Shotgun" [$SIGSEGV]
+			CharacterAttributes
+			{
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 6.0
+				"damage force reduction" 0.60
+				"move speed bonus" 0.50
+				"increased jump height" 2.5
+				"cancel falling damage" 1
+			}
+			WeaponSwitch [$SIGSEGV]
+			{
+				Type "Secondary"
+				Delay 0
+				Cooldown 40
+			}
+			FireWeapon [$SIGSEGV] 
+			{
+				Type "Jump"
+				Delay 20
+				Cooldown 40
+			}
+			WeaponSwitch [$SIGSEGV]
+			{
+				Type "Primary"
+				Delay 20.5
+				Cooldown 40
+			}
+		}
     }
 
     //// MISSION BOTS ////
@@ -52,6 +148,8 @@ WaveSchedule
 
     Wave
     {
+        SpawnTemplate MiniBossRushMusic2 [$SIGSEGV]
+
         InitWaveOutput // We can handle changing mission names this way
         {
             Target BigNet
@@ -66,7 +164,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    
+                    EntFire(`portal_enable_relay`, `Trigger`)
                   "
         }
         DoneOutput
@@ -76,6 +174,89 @@ WaveSchedule
             Param "
                     
                   "
+        }
+
+        WaveSpawn
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            TFBot
+            {
+                Name "the bob"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            WaitBeforeStarting 5
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_desert`)
+                        EntFire(`spawn_teleporter`, `Enable`)
+                        EntFire(`arena_desert_bossspawnrelay`, `Trigger`, null, 1.5)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 1)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "1"
+            WaitForAllDead ""
+            Where spawnbot_boss_desert
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 10.5
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 0
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
+        
+            TFBot
+            { 
+                Template T_TFBot_Giant_Soldier_Crackle
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_desert_vortexspawnrelay`, `Trigger`)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name ""
+            WaitForAllSpawned "1"
+            Where spawnbot_support
+            Support Limited
+            TotalCount 99
+            MaxActive 9
+            SpawnCount 1
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 4
+        
+            TotalCurrency 0
+        
+            TFBot
+            { 
+                Class Scout
+                WeaponRestrictions MeleeOnly 
+            }
         }
     }
     Wave
