@@ -22,13 +22,13 @@ WaveSchedule
     //// PRECACHES ////
 
     // Sound Precaches
-    PrecacheSound "minibossrush2.mp3" [$SIGSEGV]
-    PrecacheSound "minibossrush2intro.mp3" [$SIGSEGV]
-    PrecacheSound "mainbosstheme1.mp3" [$SIGSEGV]
+    PrecacheSound "minibossrush2.mp3" 
+    PrecacheSound "minibossrush2intro.mp3" 
+    PrecacheSound "mainbosstheme1.mp3" 
 
     //// POINT TEMPLATES ////
 
-    PointTemplates [$SIGSEGV]
+    PointTemplates 
     {
         MiniBossRushMusic
         {
@@ -86,7 +86,7 @@ WaveSchedule
         }
     }
 
-    CustomWeapon [$SIGSEGV]
+    CustomWeapon 
     {
         "Crackle Mangler"
 		{
@@ -117,7 +117,7 @@ WaveSchedule
 			Skill Expert
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
-			ExtAttr IgnoreBuildings [$SIGSEGV]
+			ExtAttr IgnoreBuildings 
 			Item "Crackle Mangler" [$SIGSEGV]
 			Item "Crackle Shotgun" [$SIGSEGV]
 			CharacterAttributes
@@ -129,19 +129,19 @@ WaveSchedule
 				"increased jump height" 2.5
 				"cancel falling damage" 1
 			}
-			WeaponSwitch [$SIGSEGV]
+			WeaponSwitch 
 			{
 				Type "Secondary"
 				Delay 0
 				Cooldown 40
 			}
-			FireWeapon [$SIGSEGV] 
+			FireWeapon  
 			{
 				Type "Jump"
 				Delay 20
 				Cooldown 40
 			}
-			WeaponSwitch [$SIGSEGV]
+			WeaponSwitch 
 			{
 				Type "Primary"
 				Delay 20.5
@@ -172,7 +172,7 @@ WaveSchedule
 
     Wave
     {
-        SpawnTemplate MiniBossRushMusic [$SIGSEGV]
+        SpawnTemplate MiniBossRushMusic 
 
         InitWaveOutput
         {
@@ -287,7 +287,7 @@ WaveSchedule
     }
     Wave
     {
-        SpawnTemplate MainBossRushMusic [$SIGSEGV]
+        SpawnTemplate MainBossRushMusic 
         InitWaveOutput
         {
             Target BigNet
