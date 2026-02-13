@@ -244,7 +244,7 @@ WaveSchedule
             WaitBeforeStarting 10.5
             WaitBetweenSpawns 0
         
-            TotalCurrency 100
+            TotalCurrency 1000
             
             FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
             LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
@@ -275,7 +275,7 @@ WaveSchedule
             WaitBeforeStarting 5
             WaitBetweenSpawns 4
         
-            TotalCurrency 100
+            TotalCurrency 500
         
             TFBot
             { 
@@ -391,6 +391,26 @@ WaveSchedule
                         EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`)
 
                       "
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave2_Support"
+            WaitForAllSpawned "Wave2_Boss"
+            Where spawnbot_support
+            Support Limited
+            TotalCount 100
+            MaxActive 10
+            SpawnCount 1
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 4
+        
+            TotalCurrency 500
+        
+            TFBot
+            { 
+                Class Scout
+                WeaponRestrictions MeleeOnly 
             }
         }
     }
