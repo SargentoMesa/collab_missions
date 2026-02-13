@@ -1,15 +1,536 @@
 WaveSchedule
 {
+    CustomWeapon [$SIGSEGV]
+    {
+        "MultiPillLauncher"
+        {
+            OriginalItemName "TF_WEAPON_GRENADELAUNCHER"
+            "spread offset pattern" "0 25 -20|0 -25 -20"
+            "projectile spread angle penalty" 3
+            "faster reload rate" -0.5
+            "mult projectile count" 2
+            "fire rate bonus" 0.25
+            "dmg bonus vs buildings" 0.5
+        }
+        "MultiPillLauncher2"
+        {
+            OriginalItemName "The Iron Bomber"
+            "spread offset pattern" "0 15 -10|0 35 -10|0 15 -30|0 35 -30|0 -15 -10|0 -35 -10|0 -15 -30|0 -35 -30"
+            "faster reload rate" -0.5
+            "mult projectile count" 8
+            "dmg bonus vs buildings" 0.5
+            "fire rate bonus" 2.6
+        }
+        "cannon_1"
+        {
+            OriginalItemName "The Loose Cannon"
+            "damage bonus" 1.2
+            "projectile speed increased" 1.2
+            "projectile spread angle penalty" 10
+            "dmg bonus vs buildings" 0.5
+        }
+        "pillrain"
+        {
+            OriginalItemName "The Loch-N-Load"
+            "spread offset pattern" "0 25 -20|0 -25 -20"
+            "projectile gravity" 310 //5.33 repeating times lower
+            "faster reload rate" -0.2
+            "fire rate bonus" 0.1
+            "projectile spread angle penalty" 20
+            "mult projectile count" 2
+            "Projectile speed increased" 0.55
+            "fuse bonus" 5
+            "damage bonus" 0.64
+            "dmg bonus vs buildings" 0.5
+        }
+        "pillardjohn"
+        {
+            OriginalItemName	"tf_weapon_grenadelauncher"
+            "spread offset pattern" "0 25 -20|0 -25 -20"
+            "faster reload rate"	1.8
+            "fire rate bonus"	3.2
+            "clip size upgrade atomic"	1
+            "projectile spread angle penalty"	60
+            "Projectile speed increased"	0.25
+            "mult projectile count" 6
+            "damage bonus" 2
+            "dmg bonus vs buildings" 0.5
+            "fuse bonus" 5
+            "blast radius increased" 2
+            "mod projectile heat aim time" 3
+            "mod projectile heat aim error" 360
+            "mod projectile heat seek power" 360
+            "mult projectile scale" 1.5
+            "projectile acceleration" 15000
+            "projectile acceleration start time" 2
+            "grenade explode on impact" 1
+            "mod projectile heat aim time" 1.1
+            "mod projectile heat aim start time" 0.7
+            "mod projectile heat no predict target speed" 1
+            "projectile trail particle" eyeboss_projectile
+        }
+    }
     PointTemplates [$SIGSEGV]
     {
+        hereturns
+        {
+            OnSpawnOutput
+			{
+				Target "upper_text"
+				Action "Display"
+				Delay 1.1
+			}
+			OnSpawnOutput
+			{
+				Target "text_lower"
+				Action "Display"
+				Delay 2
+			}
+            OnSpawnOutput
+            {
+                Target "hearrives"
+                Action Trigger
+                Delay 0
+            }
+            game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "upper_text"
+				"message" "REVENGE OF THE TICKING TIME BOMB"
+				"x" "-1"
+				"y" "0.2"
+				"spawnflags" "1"
+				"effect" "2"
+				"channel" "2"
+				"color" "255 255 255"
+				"fxtime" "0.2"
+				"fadeout" "1"
+				//"fadein" "0"
+				"holdtime" "5"
+			}
+            
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "text_lower"
+				"message" "TIMED DISASTER"
+				"x" "-1"
+				"y" "0.25"
+				"channel" "1"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0.2"
+				"fadeout" "1"
+				"holdtime" "3.8"
+			}
+            logic_relay
+            {
+				"targetname" "abouttoblow"
+				"OnTrigger"	"warning,start,0,4.5,-1"
+				"OnTrigger"	"warning,stop,0,9,-1"
+                "OnTrigger"  "!activator,$TauntFromItem,The Ullapool Caber,0,-1"
+                "OnTrigger"  "nukingsomebitches,FireOnce,,8.8,-1"
+                "OnTrigger"  "tf_gamerules,playvo,megabuster_explode.mp3,0,-1"
+                "OnTrigger"  "timetokill,turnon,,1,-1"
+                "OnTrigger"  "timetokill2,turnon,,3.5,-1"
+                "OnTrigger"  "timetokill3,turnon,,6,-1"
+                "OnTrigger"  "timetokill*,turnoff,,9.3,-1"
+                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 3, 3, 8, 50000, 0, true)2-1"
+                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 3, 3, 8, 50000, 0, true)6-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)9-1"
+                "OnTrigger"  "!activator,$RemoveCond,7,9.2,-1"
+                "spawnflags" "2"
+			}
+            logic_relay
+            {
+                "targetname" "getsomerollers"
+                "OnTrigger"  "!activator,$Taunt,,0,-1"
+                "OnTrigger"  "timershit,enable,,0.3,-1"
+                "OnTrigger"  "timershit,disable,,1.7,-1"
+                "OnTrigger"  "spinsomepipes,enable,,0,-1"
+                "OnTrigger"  "spinsomepipes,StartBackward,,0.1,-1"
+                "OnTrigger"  "spinsomepipes,StopAtStartPos,,1.8,-1"
+                "OnTrigger"  "!activator,$RemoveCond,7,2.5,-1"
+                "OnTrigger"  "!activator,$RemoveCond,2,2,-1"
+            }
+            logic_case
+            {
+                "targetname" "bossattacks"
+                "OnCase01" "pop_interface,ChangeBotAttributes,abattablow,0.0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,2multipills,0.0,-1"	
+                "OnCase03" "pop_interface,ChangeBotAttributes,multipills,0.0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,SpinThatShit,0,-1"
+                "OnCase05" "pop_interface,ChangeBotAttributes,homerpills,0,-1"
+                "OnCase06" "pop_interface,ChangeBotAttributes,bombingthatshitifyknowwhatimean,0,-1"
+            }
+            logic_relay
+			{
+				"targetname" "justtodisable"
+				"OnTrigger" "bossattacks,pickrandomshuffle,,0,-1"
+                "spawnflags" "2"
+			}
+            logic_timer
+            {
+                "targetname"    "timershit"
+                "RefireTime"    "0.09"
+                "StartDisabled" 1
+                "OnTimer"       "dodgebitch,FireMultiple,3,0,-1"
+            }
+            logic_relay
+			{
+				"targetname" "abouttoblowfaster"
+				"OnTrigger"	"warning,start,0,1.5,-1"
+				"OnTrigger"	"warning,stop,0,4.4,-1"
+                "OnTrigger"  "!activator,$TauntFromItem,The Ullapool Caber,0,-1"
+                "OnTrigger"  "nukingsomebitches,FireOnce,,4.4,-1"
+                "OnTrigger"  "tf_gamerules,playvo,megabuster_faster.mp3,0,-1"
 
+				
+			}
+            tf_point_weapon_mimic // the most rudest way to die from this shit
+            {
+                "parentname" "spinsomepipes"
+                "targetname" "dodgebitch"
+                "spawnflags" "1"
+                "origin" "0 0 80"
+                "angles" "0 0 0"
+                "teamnum" "3"
+                "$weaponname" "cannon_1"
+            }
+            tf_point_weapon_mimic
+			{
+				"targetname" "nukingsomebitches"
+
+				"spawnflags" "1"
+				"angles" "0 0 0"
+				"origin" "0 0 90"
+				"teamnum" "3"
+				"Crits" "0"
+				"Damage" "99999"
+				"ModelScale" "1"
+				"SpeedMax" "0"
+				"SpeedMin" "0"
+				"SplashRadius" "99999"
+				"SpreadAngle" "0"
+				"WeaponType" "3"
+                "$preventshootparent" "1"
+				"OnUser4" "!self,DetonateStickies,,0.1,-1"
+			}
+            func_rotating
+            {
+                "targetname" "spinsomepipes"
+                "maxspeed"   "500"
+                "origin"     "0 0 250"
+                "spawnflags" "81"
+                "fanfriction" "100"
+                "startdisabled" "1"
+            }
+            info_particle_system
+			{
+				"targetname" "warning"
+				"origin" "0 0 100"
+				"angles" "0 0 0"
+				"scale" "3"
+				"effect_name" "charge_up"
+			}
+            point_tesla
+            {
+                "targetname" "timetokill"
+                "beamcount_max" "3"
+                "beamcount_min" "1"
+                "interval_max" "0.1"
+                "interval_min" "0.1"
+                "lifetime_max" "0.31"
+                "lifetime_min" "0.31"
+                "m_Color" "255 240 170"
+                "m_flRadius" "350"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "0 0 90"
+
+            }
+            point_tesla
+            {
+                "targetname" "timetokill2"
+                "beamcount_max" "6"
+                "beamcount_min" "1"
+                "interval_max" "0.07"
+                "interval_min" "0.07"
+                "lifetime_max" "0.25"
+                "lifetime_min" "0.25"
+                "m_Color" "255 240 170"
+                "m_flRadius" "450"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "0 0 90"
+
+            }
+            point_tesla
+            {
+                "targetname" "timetokill3"
+                "beamcount_max" "9"
+                "beamcount_min" "3"
+                "interval_max" "0.05"
+                "interval_min" "0.05"
+                "lifetime_max" "0.15"
+                "lifetime_min" "0.15"
+                "m_Color" "255 240 170"
+                "m_flRadius" "550"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "0 0 90"
+
+            }
+			
+        }
     }
 
     Templates
     {
         T_TFBot_Mainboss_TimedDisaster_Table
         {
-            
+            Health	70000
+            Name	"Timed Disaster"
+            UseBusterModel 1  [$SIGSEGV]
+            Attributes UseBossHealthBar
+            ClassIcon sentry_buster_king
+            Scale	1.9
+            Class	Demoman
+            Skill	Expert
+            Tag bossflare
+            WeaponRestrictions	PrimaryOnly
+            Attributes	"MiniBoss"
+            Item	"Prince Tavish's Crown"
+            Item	"tf_weapon_grenadelauncher"
+            Item	"tf_weapon_pipebomblauncher"
+            Item	"the ullapool caber"
+            AlwaysGlow 1  [$SIGSEGV]
+            Tag bot_giant
+            SpawnTemplate hereturns  [$SIGSEGV]
+            CharacterAttributes
+            {
+                "cannot pick up intelligence" 1
+                "move speed bonus"	0.65
+                "damage force reduction"	0.4
+                "airblast vulnerability multiplier"	0.4
+                "override footstep sound set"	4
+                "head scale" 3.5
+                "torso scale" 0
+            }
+            ChangeAttributes  [$SIGSEGV]
+            {
+                Name intro
+                Delay -1
+                Repeats 1
+            }
+            EventChangeAttributes
+            {
+                intro
+                {
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+                        "move speed bonus" 0.00001
+                    }
+                    Taunt  [$SIGSEGV]
+                    {
+                        Delay 1.5
+                        Repeats 1
+                    }
+                    ChangeAttributes  [$SIGSEGV]
+                    {
+                        Name abattablow
+                        Delay 5
+                        Repeats 1
+                    }
+                    
+                }
+                abattablow
+                {
+                    Attributes SuppressFire
+                    WeaponRestrictions MeleeOnly
+                    Item	"the ullapool caber"
+                    CharacterAttributes
+                    {
+                        "always allow taunt" 1
+                        "gesture speed increase" 0.24
+                    }
+                    WeaponResist  [$SIGSEGV]
+                    {
+                        "TF_WEAPON_KNIFE" 0.65
+                    }
+                    Taunt  [$SIGSEGV]
+                    {
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown 20
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "abouttoblow"
+                        Action "trigger"
+                        Delay  0.5
+                        Repeats 1
+                        Cooldown 20
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  11
+                        Repeats 1
+                        Cooldown 20
+                    }
+                    
+                }
+                multipills
+                {
+                    WeaponRestrictions PrimaryOnly
+                    Item "MultiPillLauncher"  [$SIGSEGV]
+                    Attributes SuppressFire
+                    FireWeapon   [$SIGSEGV] //makes them not do dumb aiming :>
+                    {
+                        Delay 1
+                        Type "Primary"
+                        IfSeeTarget 0
+                        Duration 2
+                        Cooldown 4 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  9
+                        Repeats 1
+                    }
+                }
+                2multipills
+                {
+                    WeaponRestrictions PrimaryOnly
+                    Item "MultiPillLauncher2"  [$SIGSEGV]
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  6
+                        Repeats 99
+                    }
+                }
+                SpinThatShit
+                {
+                    WeaponRestrictions MeleeOnly
+                    Item	"the ullapool caber"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+                        "move speed bonus" 0.00001
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "getsomerollers"
+                        Action "trigger"
+                        Delay  0.3
+                        Repeats 99
+                        Cooldown 20
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  5
+                        Repeats 99
+                    }
+                }
+                bombingthatshitifyknowwhatimean
+                {
+                    WeaponRestrictions PrimaryOnly
+                    AimOffset "0 0 999"  [$SIGSEGV]
+                    Attributes SuppressFire
+                    Item "pillrain"  [$SIGSEGV]
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "move speed bonus" 0.00001
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "tf_gamerules"
+                        Action "playvo"
+                        Param  "misc\doomsday_cap_spin_start.wav"
+                        Delay  0
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "tf_gamerules"
+                        Action "playvo"
+                        Param  "misc\doomsday_cap_spin_start.wav"
+                        Delay  0
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "tf_gamerules"
+                        Action "playvo"
+                        Param  "weapons\loose_cannon_charge.wav"
+                        Delay  0
+                    }
+                    Addcond  [$SIGSEGV]     
+                    {
+                        Index 2 
+                        Delay 0
+                        Duration 2
+                    }
+                    FireWeapon  [$SIGSEGV]   //makes them not do dumb aiming :>
+                    {
+                        Delay 3
+                        Type "Primary"
+                        IfSeeTarget 0
+                        Duration 4
+                        Cooldown 16 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  9
+                        Repeats 99
+                    }
+                }
+                homerpills
+                {
+                    WeaponRestrictions PrimaryOnly
+                    AimOffset "0 0 999"  [$SIGSEGV]
+                    Attributes SuppressFire
+                    Item "pillardjohn"  [$SIGSEGV]
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "move speed bonus" 0.34
+                    }
+                    FireWeapon  [$SIGSEGV]   //makes them not do dumb aiming :>
+                    {
+                        Delay 1
+                        Type "Primary"
+                        IfSeeTarget 0
+                        Duration 4.9
+                        Cooldown 8 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
+                    }
+                    FireInput  [$SIGSEGV]
+                    {
+                        Target "justtodisable"
+                        Action "trigger"
+                        Delay  6
+                        Repeats 99
+                    }
+                }
+            }
         }
     }
 }

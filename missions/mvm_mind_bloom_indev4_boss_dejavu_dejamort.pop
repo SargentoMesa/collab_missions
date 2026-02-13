@@ -6,6 +6,11 @@
 
 //// BOSS POPFILE IMPORTS ////
 
+// Main Bosses
+#base dejavu_mainboss_timeddisaster_table.pop
+
+// Mini Bosses
+
 WaveSchedule
 {
     StartingCurrency 1000
@@ -19,7 +24,7 @@ WaveSchedule
     // Sound Precaches
     PrecacheSound "minibossrush2.mp3" [$SIGSEGV]
     PrecacheSound "minibossrush2intro.mp3" [$SIGSEGV]
-
+    PrecacheSound "mainbosstheme1.mp3" [$SIGSEGV]
 
     //// POINT TEMPLATES ////
 
@@ -57,6 +62,25 @@ WaveSchedule
                 "OnTrigger"	"loopingmidbossmusic,PlaySound,,0,-1"
                 "OnTrigger"	"loopingmidbossmusic,StopSound,,87.7,-1"
                 "OnTrigger" "music_controller,trigger,,87.705,-1"
+                "spawnflags" "2"
+            }
+        }
+        MainBossRushMusic
+        {
+            ambient_generic // Looping Music
+            {
+                "targetname" "loopingbossmusic"
+                "message" "#mainbosstheme1.mp3"
+                "health" "10"
+                "pitch" "100"
+                "spawnflags" "17"
+            }
+            logic_relay // Intro Music Relay
+            {
+                "targetname" "letsgetthisbossrolling"
+                "OnTrigger"	"loopingbossmusic,PlaySound,,0,-1"
+                "OnTrigger"	"loopingbossmusic,StopSound,,257.3,-1"
+                "OnTrigger" "music_controller,trigger,,257.305,-1"
                 "spawnflags" "2"
             }
         }
@@ -150,7 +174,7 @@ WaveSchedule
     {
         SpawnTemplate MiniBossRushMusic2 [$SIGSEGV]
 
-        InitWaveOutput // We can handle changing mission names this way
+        InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
@@ -176,7 +200,8 @@ WaveSchedule
                   "
         }
 
-        WaveSpawn
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
         {
             Where spawnbot_bomb
             Support Limited
@@ -192,8 +217,7 @@ WaveSchedule
                 Class Scout
             }
         }
-
-        WaveSpawn
+        WaveSpawn // Teleporting Players
         {
             WaitBeforeStarting 5
             FirstSpawnOutput
@@ -208,10 +232,11 @@ WaveSchedule
                       "
             }
         }
-        WaveSpawn
+
+        // Boss
+        WaveSpawn // Boss Spawn
         {
-            Name "1"
-            WaitForAllDead ""
+            Name "Wave1_Boss"
             Where spawnbot_boss_desert
             TotalCount 1
             MaxActive 1
@@ -238,10 +263,10 @@ WaveSchedule
                       "
             }
         }
-        WaveSpawn
+        WaveSpawn // Support Spawn
         {
-            Name ""
-            WaitForAllSpawned "1"
+            Name "Wave1_Support"
+            WaitForAllSpawned "Wave1_Boss"
             Where spawnbot_support
             Support Limited
             TotalCount 100
@@ -261,12 +286,30 @@ WaveSchedule
     }
     Wave
     {
+        SpawnTemplate MainBossRushMusic [$SIGSEGV]
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
-
+                    IncludeScript(`popextensions_main`, getroottable())
+                    PopExt.AddRobotTag(`bossflare`, {
+                    // Called when the robot is spawned
+                    OnSpawn = function(bot, tag) {
+                    
+                        local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                        wearable.SetOwner(bot)
+                        wearable.SetModelScale(2.3, 0)
+                        wearable.SetLocalOrigin(Vector(-15, 0, -6))
+                        wearable.SetAngles(45, -90, 0)
+                        local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                        wearable2.SetOwner(bot)
+                        wearable2.SetLocalOrigin(Vector(12, 0, -0))
+                        wearable2.SetModelScale(2.3, 0)
+                        wearable2.SetAngles(45, -45, 45)
+                        //bot.GetScriptScope().PRESERVED.kill_on_death.append(wearable)
+                    },
+                })
                   "
         }
         StartWaveOutput
@@ -286,7 +329,8 @@ WaveSchedule
                   "
         }
 
-        WaveSpawn
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
         {
             Where spawnbot_bomb
             Support Limited
@@ -302,8 +346,7 @@ WaveSchedule
                 Class Scout
             }
         }
-
-        WaveSpawn
+        WaveSpawn // Teleporting Players
         {
             WaitBeforeStarting 5
             FirstSpawnOutput
@@ -314,7 +357,39 @@ WaveSchedule
                         EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
                         EntFire(`spawn_teleporter`, `Enable`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 1.5)
-                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 1)
+                        EntFire(`letsgetthisbossrolling`, `Trigger`, null, 10)
+                      "
+            }
+        }
+
+        // Boss
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave2_Boss"
+            Where spawnbot_boss_industrial
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 10.5
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
+        
+            TFBot
+            { 
+                Template T_TFBot_Mainboss_TimedDisaster_Table
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`)
+
                       "
             }
         }
