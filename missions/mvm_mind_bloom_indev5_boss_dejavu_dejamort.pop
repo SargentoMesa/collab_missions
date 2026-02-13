@@ -30,7 +30,7 @@ WaveSchedule
 
     PointTemplates [$SIGSEGV]
     {
-        MiniBossRushMusic2
+        MiniBossRushMusic
         {
             ambient_generic // Intro Music
             {
@@ -172,7 +172,7 @@ WaveSchedule
 
     Wave
     {
-        SpawnTemplate MiniBossRushMusic2 [$SIGSEGV]
+        SpawnTemplate MiniBossRushMusic [$SIGSEGV]
 
         InitWaveOutput
         {
@@ -181,6 +181,7 @@ WaveSchedule
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
                   "
         }
         StartWaveOutput
@@ -292,6 +293,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+            EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
                     IncludeScript(`popextensions_main`, getroottable())
                     PopExt.AddRobotTag(`bossflare`, {
                     // Called when the robot is spawned

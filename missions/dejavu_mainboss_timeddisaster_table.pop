@@ -1,6 +1,6 @@
 WaveSchedule
 {
-    CustomWeapon [$SIGSEGV]
+    CustomWeapon 
     {
         "MultiPillLauncher"
         {
@@ -70,7 +70,7 @@ WaveSchedule
             "projectile trail particle" eyeboss_projectile
         }
     }
-    PointTemplates [$SIGSEGV]
+    PointTemplates 
     {
         hereturns
         {
@@ -297,7 +297,7 @@ WaveSchedule
         {
             Health	70000
             Name	"Timed Disaster"
-            UseBusterModel 1  [$SIGSEGV]
+            UseBusterModel 1  
             Attributes UseBossHealthBar
             ClassIcon sentry_buster_king
             Scale	1.9
@@ -310,9 +310,9 @@ WaveSchedule
             Item	"tf_weapon_grenadelauncher"
             Item	"tf_weapon_pipebomblauncher"
             Item	"the ullapool caber"
-            AlwaysGlow 1  [$SIGSEGV]
+            AlwaysGlow 1  
             Tag bot_giant
-            SpawnTemplate hereturns  [$SIGSEGV]
+            SpawnTemplate hereturns  
             CharacterAttributes
             {
                 "cannot pick up intelligence" 1
@@ -323,7 +323,7 @@ WaveSchedule
                 "head scale" 3.5
                 "torso scale" 0
             }
-            ChangeAttributes  [$SIGSEGV]
+            ChangeAttributes  
             {
                 Name intro
                 Delay -1
@@ -339,12 +339,12 @@ WaveSchedule
                         "no_jump" 1
                         "move speed bonus" 0.00001
                     }
-                    Taunt  [$SIGSEGV]
+                    Taunt  
                     {
                         Delay 1.5
                         Repeats 1
                     }
-                    ChangeAttributes  [$SIGSEGV]
+                    ChangeAttributes  
                     {
                         Name abattablow
                         Delay 5
@@ -362,17 +362,17 @@ WaveSchedule
                         "always allow taunt" 1
                         "gesture speed increase" 0.24
                     }
-                    WeaponResist  [$SIGSEGV]
+                    WeaponResist  
                     {
                         "TF_WEAPON_KNIFE" 0.65
                     }
-                    Taunt  [$SIGSEGV]
+                    Taunt  
                     {
                         Delay 0.5
                         Repeats 1
                         Cooldown 20
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "abouttoblow"
                         Action "trigger"
@@ -380,11 +380,11 @@ WaveSchedule
                         Repeats 1
                         Cooldown 20
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "justtodisable"
                         Action "trigger"
-                        Delay  11
+                        Delay  13
                         Repeats 1
                         Cooldown 20
                     }
@@ -393,9 +393,9 @@ WaveSchedule
                 multipills
                 {
                     WeaponRestrictions PrimaryOnly
-                    Item "MultiPillLauncher"  [$SIGSEGV]
+                    Item "MultiPillLauncher" [$SIGSEGV]
                     Attributes SuppressFire
-                    FireWeapon   [$SIGSEGV] //makes them not do dumb aiming :>
+                    FireWeapon    //makes them not do dumb aiming :>
                     {
                         Delay 1
                         Type "Primary"
@@ -403,7 +403,7 @@ WaveSchedule
                         Duration 2
                         Cooldown 4 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "justtodisable"
                         Action "trigger"
@@ -414,8 +414,8 @@ WaveSchedule
                 2multipills
                 {
                     WeaponRestrictions PrimaryOnly
-                    Item "MultiPillLauncher2"  [$SIGSEGV]
-                    FireInput  [$SIGSEGV]
+                    Item "MultiPillLauncher2" [$SIGSEGV]
+                    FireInput  
                     {
                         Target "justtodisable"
                         Action "trigger"
@@ -433,7 +433,7 @@ WaveSchedule
                         "no_jump" 1
                         "move speed bonus" 0.00001
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "getsomerollers"
                         Action "trigger"
@@ -441,7 +441,7 @@ WaveSchedule
                         Repeats 99
                         Cooldown 20
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "justtodisable"
                         Action "trigger"
@@ -452,42 +452,42 @@ WaveSchedule
                 bombingthatshitifyknowwhatimean
                 {
                     WeaponRestrictions PrimaryOnly
-                    AimOffset "0 0 999"  [$SIGSEGV]
+                    AimOffset "0 0 999"  
                     Attributes SuppressFire
-                    Item "pillrain"  [$SIGSEGV]
+                    Item "pillrain" [$SIGSEGV]  
                     CharacterAttributes
                     {
                         "no_jump" 1
                         "move speed bonus" 0.00001
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "tf_gamerules"
                         Action "playvo"
                         Param  "misc\doomsday_cap_spin_start.wav"
                         Delay  0
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "tf_gamerules"
                         Action "playvo"
                         Param  "misc\doomsday_cap_spin_start.wav"
                         Delay  0
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "tf_gamerules"
                         Action "playvo"
                         Param  "weapons\loose_cannon_charge.wav"
                         Delay  0
                     }
-                    Addcond  [$SIGSEGV]     
+                    Addcond       
                     {
                         Index 2 
                         Delay 0
                         Duration 2
                     }
-                    FireWeapon  [$SIGSEGV]   //makes them not do dumb aiming :>
+                    FireWeapon     //makes them not do dumb aiming :>
                     {
                         Delay 3
                         Type "Primary"
@@ -495,26 +495,54 @@ WaveSchedule
                         Duration 4
                         Cooldown 16 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
                     }
-                    FireInput  [$SIGSEGV]
+                    ChangeAttributes 
+                    {
+                        Name "charge1"
+                        Delay 11.5
+                        Cooldown 10
+                        Repeats 1
+                    }
+                }
+                charge1
+                {
+                    WeaponRestrictions MeleeOnly
+                    CharacterAttributes
+                    {
+                        "melee range multiplier" 1.75
+                        "Attack not cancel charge" 1
+                        "charge time increased" 2
+                        "no_duck" 1
+                        "no_jump" 1
+                        "move speed bonus" 1.4
+                    }
+                    Addcond {Index 17 Delay 0.9 Duration 2} 
+                    VoiceCommand 
+                    {
+                        Delay 0
+                        Cooldown 99
+                        Repeats 1
+                        Type "Cheers"
+                    }
+                    FireInput
                     {
                         Target "justtodisable"
                         Action "trigger"
-                        Delay  9
+                        Delay  4
                         Repeats 99
                     }
                 }
                 homerpills
                 {
                     WeaponRestrictions PrimaryOnly
-                    AimOffset "0 0 999"  [$SIGSEGV]
+                    AimOffset "0 0 999"  
                     Attributes SuppressFire
-                    Item "pillardjohn"  [$SIGSEGV]
+                    Item "pillardjohn" [$SIGSEGV]
                     CharacterAttributes
                     {
                         "no_jump" 1
                         "move speed bonus" 0.34
                     }
-                    FireWeapon  [$SIGSEGV]   //makes them not do dumb aiming :>
+                    FireWeapon     //makes them not do dumb aiming :>
                     {
                         Delay 1
                         Type "Primary"
@@ -522,7 +550,7 @@ WaveSchedule
                         Duration 4.9
                         Cooldown 8 //gburst demo reload interval is 4.706, (1.24 + 0.6 * 10) * 0.65
                     }
-                    FireInput  [$SIGSEGV]
+                    FireInput  
                     {
                         Target "justtodisable"
                         Action "trigger"
