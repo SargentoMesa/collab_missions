@@ -1,0 +1,15 @@
+WaveSchedule
+{
+    PointTemplates [$SIGSEGV]
+    {
+
+    }
+
+    Templates
+    {
+        T_TFBot_Mainboss_TimedDisaster_Table
+        {
+            
+        }
+    }
+}

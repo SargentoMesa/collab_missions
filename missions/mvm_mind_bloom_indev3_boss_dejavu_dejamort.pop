@@ -43,7 +43,7 @@ WaveSchedule
                 "pitch" "100"
                 "spawnflags" "17"
             }
-            logic_relay // Looping Music Relay
+            logic_relay // Intro Music Relay
             {
                 "targetname" "letsgetthisshowrolling"
                 "OnTrigger"	"intromidbossmusic,PlaySound,,0,-1"
@@ -203,7 +203,7 @@ WaveSchedule
                 Param "
                         EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_desert`)
                         EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_desert_bossspawnrelay`, `Trigger`, null, 1.5)
+                        EntFire(`arena_desert_boss_spawn_relay`, `Trigger`, null, 1.5)
                         EntFire(`letsgetthisshowrolling`, `Trigger`, null, 1)
                       "
             }
@@ -219,7 +219,7 @@ WaveSchedule
             WaitBeforeStarting 10.5
             WaitBetweenSpawns 0
         
-            TotalCurrency 0
+            TotalCurrency 100
             
             FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
             LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
@@ -234,7 +234,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_desert_vortexspawnrelay`, `Trigger`)
+                        EntFire(`arena_desert_vortex_spawn_relay`, `Trigger`)
                       "
             }
         }
@@ -244,13 +244,13 @@ WaveSchedule
             WaitForAllSpawned "1"
             Where spawnbot_support
             Support Limited
-            TotalCount 99
-            MaxActive 9
+            TotalCount 100
+            MaxActive 10
             SpawnCount 1
             WaitBeforeStarting 5
             WaitBetweenSpawns 4
         
-            TotalCurrency 0
+            TotalCurrency 100
         
             TFBot
             { 
@@ -274,7 +274,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    
+                    EntFire(`portal_enable_relay`, `Trigger`)
                   "
         }
         DoneOutput
@@ -284,6 +284,39 @@ WaveSchedule
             Param "
                     
                   "
+        }
+
+        WaveSpawn
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            TFBot
+            {
+                Name "the ben"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            WaitBeforeStarting 5
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
+                        EntFire(`spawn_teleporter`, `Enable`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 1.5)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 1)
+                      "
+            }
         }
     }
 }
