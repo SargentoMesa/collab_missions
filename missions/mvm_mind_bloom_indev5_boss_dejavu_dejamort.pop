@@ -191,7 +191,7 @@ WaveSchedule
         
             TFBot
             { 
-                Template T_TFBot_Giant_Soldier_Crackle
+                Template T_TFBot_Miniboss_ColonelCrackle_Wooper
             }
 
             FirstSpawnOutput

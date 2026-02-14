@@ -1,0 +1,28 @@
+WaveSchedule
+{
+    Templates
+    {
+        T_TFBot_Miniboss_Decimator_Kai
+        {
+            Name "The Decimator"
+            Class Soldier
+            ClassIcon soldier_giant
+            Skill Expert
+            Health 50000
+            Scale 2
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            WeaponRestrictions PrimaryOnly
+
+            Item "The Buff Banner"
+
+            Item "The Hellmet"
+            Item "The Bunsen Brave" // Need to fix up with the itemmodel trick
+            Item "Soldier's Sparkplug"
+            Item "The Shogun's Shoulder Guard"
+            Item "Delldozer"
+            Item "Hog Heels"
+            Item "The Jupiter Jumpers"
+        }
+    }
+}
