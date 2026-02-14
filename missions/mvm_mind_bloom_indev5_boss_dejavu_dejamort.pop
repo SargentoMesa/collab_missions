@@ -11,6 +11,8 @@
 
 // Mini Bosses
 #base dejavu_miniboss_colonelcrackle_wooper.pop
+#base dejavu_miniboss_immolator_kai.pop
+#base dejavu_miniboss_decimator_kai.pop
 
 WaveSchedule
 {
@@ -353,6 +355,38 @@ WaveSchedule
             { 
                 Class Scout
                 WeaponRestrictions MeleeOnly 
+            }
+        }
+    }
+    Wave
+    {
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave2_Boss"
+            Where spawnbot_boss_industrial
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
+        
+            TFBot
+            { 
+                Template T_TFBot_Miniboss_Decimator_Kai
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`)
+                      "
             }
         }
     }
