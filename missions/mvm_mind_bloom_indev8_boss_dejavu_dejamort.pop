@@ -26,6 +26,11 @@ WaveSchedule
 
     ForceRedMoney 1
 
+    //// DISABLED VOICELINES ////
+
+    DisableSound "Announcer.MVM_Wave_End"
+	DisableSound "Announcer.MVM_Bonus"
+
     //// PRECACHES ////
 
     // Sound Precaches
@@ -46,10 +51,17 @@ WaveSchedule
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
             }
 
-
+            trigger_multiple // Player Death Counter Set
+            {
+                "targetname" "boss_rush_deathcounter_init"
+                "origin" "0 -16032 160"
+                "mins" "-464 -96 -112"
+                "maxs" "464 96 112"
+                "OnStartTouch" "!activator,$SetVar$DeathCounter,1,0,-1"
+            }
         }
 
-        BossRushPlayerLogic
+        BossRushPlayerSpawnInvuln
         {
             OnSpawnOutput
             {
@@ -68,6 +80,16 @@ WaveSchedule
                 Delay -1
                 Repeats 1
                 Cooldown -1
+            }
+        }
+
+        BossRushPlayerLogic
+        {
+            KeepAlive 1
+            OnParentKilledOutput
+            {
+                Target "!self"
+                Action "$SetVar$hasRes,$$=(int(!self.DeathCounter) + 1)"
             }
         }
 
@@ -129,6 +151,8 @@ WaveSchedule
 
     //// SPAWNED POINTTEMPLATES ////
 
+    PlayerSpawnTemplate BossRushPlayerSpawnInvuln
+
     SpawnTemplate BossRushMapLogic
 
     //// ROBOT TEMPLATES ////
@@ -174,6 +198,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`portal_enable_relay`, `Trigger`)
+                    EntFire(`boss_rush_deathcounter_init`, `Disable`)
                   "
         }
         DoneOutput
@@ -181,13 +206,12 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`boss_rush_deathcounter_init`, `Enable`)
                     EntFire(`spawn_teleporter`, `Disable`)
                     EntFire(`portal_disable_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2)
                   "
         }
-
-        PlayerSpawnTemplate BossRushPlayerLogic
 
         SpawnTemplate MiniBossRushMusic
 
@@ -210,6 +234,7 @@ WaveSchedule
         }
         WaveSpawn // Teleporting Players
         {
+            Name "Wave1_PlayerTeleport"
             WaitBeforeStarting 5
             FirstSpawnOutput
             {
@@ -218,8 +243,8 @@ WaveSchedule
                 Param "
                         EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_desert`)
                         EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_desert_boss_spawn_relay`, `Trigger`, null, 1.5)
-                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 1)
+                        EntFire(`arena_desert_boss_spawn_relay`, `Trigger`, null, 2)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
                       "
             }
         }
@@ -228,11 +253,12 @@ WaveSchedule
         WaveSpawn // Boss Spawn
         {
             Name "Wave1_Boss"
+            WaitForAllSpawned "Wave1_PlayerTeleport"
             Where spawnbot_boss_desert
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 10.5
+            WaitBeforeStarting 7
             WaitBetweenSpawns 0
         
             TotalCurrency 500
@@ -250,7 +276,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_desert_vortex_spawn_relay`, `Trigger`)
+                        EntFire(`arena_desert_vortex_spawn_relay`, `Trigger`, null, 3)
                       "
             }
         }
@@ -323,7 +349,6 @@ WaveSchedule
                   "
         }
 
-        PlayerSpawnTemplate BossRushPlayerLogic
         SpawnTemplate MainBossRushMusic
 
         // Wave Setup
@@ -345,6 +370,7 @@ WaveSchedule
         }
         WaveSpawn // Teleporting Players
         {
+            Name "Wave2_PlayerTeleport"
             WaitBeforeStarting 5
             FirstSpawnOutput
             {
@@ -353,7 +379,7 @@ WaveSchedule
                 Param "
                         EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_saxford`)
                         EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_saxford_boss_spawn_relay`, `Trigger`, null, 1.5)
+                        EntFire(`arena_saxford_boss_spawn_relay`, `Trigger`, null, 2)
                         EntFire(`letsgetthisbossrolling`, `Trigger`, null, 10)
                       "
             }
@@ -363,14 +389,15 @@ WaveSchedule
         WaveSpawn // Boss Spawn
         {
             Name "Wave2_Boss"
+            WaitForAllSpawned "Wave2_PlayerTeleport"
             Where spawnbot_boss_saxford
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 10.5
+            WaitBeforeStarting 7
             WaitBetweenSpawns 0
         
-            TotalCurrency 100
+            TotalCurrency 500
             
             FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
             LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
@@ -385,7 +412,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_saxford_vortex_spawn_relay`, `Trigger`)
+                        EntFire(`arena_saxford_vortex_spawn_relay`, `Trigger`, null, 3)
                       "
             }
         }
@@ -412,5 +439,142 @@ WaveSchedule
     }
     Wave
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
+                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`portal_enable_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`spawn_teleporter`, `Disable`)
+                    EntFire(`portal_disable_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
+                  "
+        }
+
+        SpawnTemplate MiniBossRushMusic
+
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            TFBot
+            {
+                Name "the ben"
+                Class Scout
+            }
+        }
+        WaveSpawn // Teleporting Players
+        {
+            Name "Wave3_PlayerTeleport"
+            WaitBeforeStarting 5
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
+                        EntFire(`spawn_teleporter`, `Enable`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
+                      "
+            }
+        }
+
+        // Boss
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave3_Boss"
+            WaitForAllSpawned "Wave3_PlayerTeleport"
+            Where spawnbot_boss_industrial
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 500
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_directhittaunt02.mp3"
+        
+            TFBot
+            { 
+                Template T_TFBot_Miniboss_Decimator_Kai
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 3)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support"
+            WaitForAllSpawned "Wave3_Boss"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 1
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 3
+        
+            TotalCurrency 250
+        
+            TFBot
+            { 
+                Class Scout
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support"
+            WaitForAllSpawned "Wave3_Boss"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 8
+            SpawnCount 3
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 5
+        
+            TotalCurrency 250
+        
+            TFBot
+            { 
+                Class Pyro
+                Skill Easy
+            }
+        }
     }
 }

@@ -45,8 +45,7 @@ WaveSchedule
             {
                 "targetname" "rocketraincirclerotator"
                 "parentname" "rocketrainfaketaxi"
-                "maxspeed" "90"
-                "fanfriction" "20"
+                "maxspeed" "60"
                 "origin" "0 0 0"
                 "spawnflags" "80"
             }
@@ -184,7 +183,6 @@ WaveSchedule
                 ItemName "Potato of Labor"
                 Model "models/workshop/player/items/heavy/robo_heavy_chief/robo_heavy_chief.mdl"
             }
-            Item "Soldier's Sparkplug"
             Item "The Shogun's Shoulder Guard"
             Item "Delldozer"
             Item "Hog Heels"
@@ -226,12 +224,21 @@ WaveSchedule
             {
                 RocketRain
                 {
+                    FireInput // Set Banner to Empty
+                    {
+                        Target "!self"
+                        Action "RunScriptCode"
+                        Param "self.SetRageMeter(0)"
+                        Delay -1
+                        Repeats 1
+                        Cooldown -1
+                    }
                     FireInput // Set Banner to Full
                     {
                         Target "!self"
                         Action "RunScriptCode"
                         Param "self.SetRageMeter(100)"
-                        Delay -1
+                        Delay 0.1
                         Repeats 1
                         Cooldown -1
                     }
@@ -369,7 +376,7 @@ WaveSchedule
                         Param "misc/rd_finale_beep01.wav"
                         Delay 4
                         Repeats 2
-                        Cooldown 0.5
+                        Cooldown 1
                     }
                     FireInput // Set Rocket Rain Skin
                     {
