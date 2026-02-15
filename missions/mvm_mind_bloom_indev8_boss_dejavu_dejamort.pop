@@ -22,6 +22,10 @@ WaveSchedule
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
 
+    WaveStartCountdown 5
+
+    ForceRedMoney 1
+
     //// PRECACHES ////
 
     // Sound Precaches
@@ -33,6 +37,40 @@ WaveSchedule
 
     PointTemplates 
     {
+        BossRushMapLogic
+        {
+            logic_relay // Wave Finish Teleporter
+            {
+                "targetname" "boss_rush_spawn_teleport_relay"
+                "OnTrigger" "@f@filter_red@player,$TeleportToEntity,skybox_sun_target,0,-1"
+                "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
+            }
+
+
+        }
+
+        BossRushPlayerLogic
+        {
+            OnSpawnOutput
+            {
+                Target "!self"
+                Action "$Addcond"
+                Param "51 5"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+            }
+            OnSpawnOutput
+            {
+                Target "!self"
+                Action "$Addcond"
+                Param "32 5"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+            }
+        }
+
         MiniBossRushMusic
         {
             ambient_generic // Intro Music
@@ -89,6 +127,10 @@ WaveSchedule
         }
     }
 
+    //// SPAWNED POINTTEMPLATES ////
+
+    SpawnTemplate BossRushMapLogic
+
     //// ROBOT TEMPLATES ////
 
     //// MISSION BOTS ////
@@ -120,7 +162,10 @@ WaveSchedule
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+
+                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Enable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
                   "
         }
         StartWaveOutput
@@ -136,9 +181,13 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    
+                    EntFire(`spawn_teleporter`, `Disable`)
+                    EntFire(`portal_disable_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2)
                   "
         }
+
+        PlayerSpawnTemplate BossRushPlayerLogic
 
         SpawnTemplate MiniBossRushMusic
 
@@ -186,7 +235,7 @@ WaveSchedule
             WaitBeforeStarting 10.5
             WaitBetweenSpawns 0
         
-            TotalCurrency 1000
+            TotalCurrency 500
             
             FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
             LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
@@ -233,25 +282,26 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-            EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Enable`)
+
                     IncludeScript(`popextensions_main`, getroottable())
                     PopExt.AddRobotTag(`bossflare`, {
-                    // Called when the robot is spawned
-                    OnSpawn = function(bot, tag) {
+                        OnSpawn = function(bot, tag) {
                     
-                        local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
-                        wearable.SetOwner(bot)
-                        wearable.SetModelScale(2.3, 0)
-                        wearable.SetLocalOrigin(Vector(-15, 0, -6))
-                        wearable.SetAngles(45, -90, 0)
-                        local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
-                        wearable2.SetOwner(bot)
-                        wearable2.SetLocalOrigin(Vector(12, 0, -0))
-                        wearable2.SetModelScale(2.3, 0)
-                        wearable2.SetAngles(45, -45, 45)
-                        //bot.GetScriptScope().PRESERVED.kill_on_death.append(wearable)
-                    },
-                })
+                            local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable.SetOwner(bot)
+                            wearable.SetModelScale(2.3, 0)
+                            wearable.SetLocalOrigin(Vector(-15, 0, -6))
+                            wearable.SetAngles(45, -90, 0)
+                            local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable2.SetOwner(bot)
+                            wearable2.SetLocalOrigin(Vector(12, 0, -0))
+                            wearable2.SetModelScale(2.3, 0)
+                            wearable2.SetAngles(45, -45, 45)
+                        },
+                    })
                   "
         }
         StartWaveOutput
@@ -267,10 +317,13 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    
+                    EntFire(`spawn_teleporter`, `Disable`)
+                    EntFire(`portal_disable_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
                   "
         }
 
+        PlayerSpawnTemplate BossRushPlayerLogic
         SpawnTemplate MainBossRushMusic
 
         // Wave Setup
@@ -298,9 +351,9 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_saxford`)
                         EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 1.5)
+                        EntFire(`arena_saxford_boss_spawn_relay`, `Trigger`, null, 1.5)
                         EntFire(`letsgetthisbossrolling`, `Trigger`, null, 10)
                       "
             }
@@ -310,7 +363,7 @@ WaveSchedule
         WaveSpawn // Boss Spawn
         {
             Name "Wave2_Boss"
-            Where spawnbot_boss_industrial
+            Where spawnbot_boss_saxford
             TotalCount 1
             MaxActive 1
             SpawnCount 1
@@ -332,8 +385,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`)
-
+                        EntFire(`arena_saxford_vortex_spawn_relay`, `Trigger`)
                       "
             }
         }
@@ -360,34 +412,5 @@ WaveSchedule
     }
     Wave
     {
-        WaveSpawn // Boss Spawn
-        {
-            Name "Wave2_Boss"
-            Where spawnbot_boss_industrial
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-        
-            TotalCurrency 100
-            
-            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
-            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
-        
-            TFBot
-            { 
-                Template T_TFBot_Miniboss_Decimator_Kai
-            }
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`)
-                      "
-            }
-        }
     }
 }
