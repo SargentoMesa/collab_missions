@@ -184,7 +184,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
+                    //NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
@@ -552,7 +552,7 @@ WaveSchedule
             MaxActive 6
             SpawnCount 1
             WaitBeforeStarting 5
-            WaitBetweenSpawns 3
+            WaitBetweenSpawns 4
         
             TotalCurrency 250
         
@@ -569,10 +569,10 @@ WaveSchedule
             Where spawnbot_support
             Support 1
             TotalCount 100
-            MaxActive 8
-            SpawnCount 3
+            MaxActive 3
+            SpawnCount 1
             WaitBeforeStarting 5
-            WaitBetweenSpawns 5
+            WaitBetweenSpawns 4
         
             TotalCurrency 250
         
