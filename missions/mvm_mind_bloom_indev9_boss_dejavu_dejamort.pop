@@ -192,6 +192,10 @@ WaveSchedule
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Enable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
+
+                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Enable`)
+                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
                   "
         }
         StartWaveOutput
@@ -256,7 +260,7 @@ WaveSchedule
         {
             Name "Wave1_Boss"
             WaitForAllSpawned "Wave1_PlayerTeleport"
-            Where spawnbot_boss_desert
+            Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
@@ -313,6 +317,10 @@ WaveSchedule
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_saxford_teleporter_relay`, `Enable`)
+
+                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Enable`)
 
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
 
@@ -394,7 +402,7 @@ WaveSchedule
         {
             Name "Wave2_Boss"
             WaitForAllSpawned "Wave2_PlayerTeleport"
-            Where spawnbot_boss_saxford
+            Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
@@ -451,6 +459,10 @@ WaveSchedule
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
                     EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
+
+                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Enable`)
+                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
 
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                   "
@@ -515,7 +527,7 @@ WaveSchedule
         {
             Name "Wave3_Boss"
             WaitForAllSpawned "Wave3_PlayerTeleport"
-            Where spawnbot_boss_industrial
+            Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
