@@ -186,6 +186,8 @@ WaveSchedule
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                    
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
 
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Enable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
@@ -287,7 +289,7 @@ WaveSchedule
             Where spawnbot_support
             Support Limited
             TotalCount 100
-            MaxActive 10
+            MaxActive 6
             SpawnCount 1
             WaitBeforeStarting 5
             WaitBetweenSpawns 4
@@ -311,6 +313,8 @@ WaveSchedule
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_saxford_teleporter_relay`, `Enable`)
+
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
 
                     IncludeScript(`popextensions_main`, getroottable())
                     PopExt.AddRobotTag(`bossflare`, {
@@ -447,6 +451,8 @@ WaveSchedule
                     EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
                     EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
                     EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
+
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                   "
         }
         StartWaveOutput
