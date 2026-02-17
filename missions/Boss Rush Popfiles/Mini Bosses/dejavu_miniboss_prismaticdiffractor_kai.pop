@@ -1,0 +1,152 @@
+WaveSchedule
+{
+    Templates
+    {
+        T_TFBot_Miniboss_PrismaticDiffractor_Kai
+        {
+            Name "The Decimator"
+            Class Soldier
+            ClassIcon soldier_bison_prismatic
+            Skill Expert
+            Health 30000
+            Scale 2
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            WeaponRestrictions PrimaryOnly
+
+            Item "The Detective"
+            Item "Graybanns"
+            Item "The Space Bracers"
+            Item "The Jupiter Jumpers"
+
+            CharacterAttributes
+            {
+                "move speed penalty" 0.5
+                "damage force reduction" 0.1
+                "airblast vulnerability multiplier" 0.1
+                "voice pitch scale" 0
+                "override footstep sound set" 3
+                "always allow taunt" 1
+                "no_attack" 1
+            }
+
+            ItemAttributes
+            {
+                ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                "fire rate bonus" 0.2
+                "faster reload rate" 0.2
+                "clip size upgrade atomic" 496
+                "override projectile type" 13
+                "energy weapon penetration" 1
+                "particle color rainbow" 100
+
+                "paintkit_proto_def_index" 257
+            }
+
+            ChangeAttributes
+            {
+                Name "BarrageStage1"
+                Delay 1
+                Repeats 0
+                Cooldown -1
+            }
+
+            EventChangeAttributes
+            {
+                BarrageCooldown
+                {
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageStage1"
+                        Delay 10
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                BarrageStage1
+                {
+                    CharacterAttributes
+                    {
+                        "no_attack" 0
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "projectile spread angle penalty" 10
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageStage2"
+                        Delay 2
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                BarrageStage2
+                {
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "projectile spread angle penalty" 8
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageStage3"
+                        Delay 2
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                BarrageStage3
+                {
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "projectile spread angle penalty" 6
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageStage4"
+                        Delay 2
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                BarrageStage4
+                {
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "projectile spread angle penalty" 3
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageStage4"
+                        Delay 2
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                BarrageStage5
+                {
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "projectile spread angle penalty" 0
+                    }
+                    ChangeAttributes
+                    {
+                        Name "BarrageCooldown"
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@
 
 // Mini Bosses
 #base dejavu_miniboss_colonelcrackle_wooper.pop
+#base dejavu_miniboss_prismaticdiffractor_kai.pop
 #base dejavu_miniboss_immolator_kai.pop
 #base dejavu_miniboss_decimator_kai.pop
 
@@ -722,6 +723,124 @@ WaveSchedule
             TFBot
             { 
                 Template T_TFBot_Demoman_Knight
+            }
+        }
+    }
+    Wave
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
+                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
+
+                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
+                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Enable`)
+                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
+
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`portal_enable_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`spawn_teleporter`, `Disable`)
+                    EntFire(`portal_disable_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
+                  "
+        }
+
+        SpawnTemplate MiniBossRushMusic
+
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            TFBot
+            {
+                Name "the ben"
+                Class Scout
+            }
+        }
+        WaveSpawn // Teleporting Players
+        {
+            Name "Wave4_PlayerTeleport"
+            WaitBeforeStarting 5
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
+                        EntFire(`spawn_teleporter`, `Enable`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
+                      "
+            }
+        }
+
+        // Boss
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave4_Boss"
+            WaitForAllSpawned "Wave4_PlayerTeleport"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 200
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_battlecry06.mp3"
+        
+            TFBot
+            { 
+                Template T_TFBot_Miniboss_PrismaticDiffractor_Kai
+
+                // Intro Sequence
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 3)
+                      "
             }
         }
     }
