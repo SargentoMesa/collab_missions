@@ -35,7 +35,7 @@ WaveSchedule
                 ItemName "TF_WEAPON_ROCKETLAUNCHER"
                 "fire rate bonus" 0.2
                 "faster reload rate" 0.2
-                "clip size upgrade atomic" 496
+                "clip size upgrade atomic" 96
                 "override projectile type" 13
                 "energy weapon penetration" 1
                 "particle color rainbow" 100
