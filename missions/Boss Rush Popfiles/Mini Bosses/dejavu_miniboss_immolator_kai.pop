@@ -37,6 +37,7 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0.75
                 "override footstep sound set" 6
+                "always allow taunt" 1
             }
 
             ItemAttributes // Backburner

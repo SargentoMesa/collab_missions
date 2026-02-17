@@ -320,6 +320,7 @@ WaveSchedule
                 "damage force reduction"	0.4
                 "airblast vulnerability multiplier"	0.4
                 "override footstep sound set"	4
+                "always allow taunt" 1
                 "head scale" 3.5
                 "torso scale" 0
             }

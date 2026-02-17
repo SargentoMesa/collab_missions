@@ -166,13 +166,15 @@ WaveSchedule
         {
             Name "The Decimator"
             Class Soldier
-            ClassIcon soldier_giant
+            ClassIcon soldier_hellmet_lite
             Skill Expert
             Health 50000
             Scale 2
             Attributes MiniBoss
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
+
+            UseHumanAnimations 1
 
             Item "The Buff Banner"
 
@@ -194,30 +196,26 @@ WaveSchedule
                 "move speed penalty" 0.5
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
-                "voice pitch scale" 0.75
+                "voice pitch scale" 0
                 "override footstep sound set" 3
+                "always allow taunt" 1
             }
 
             ItemAttributes
             {
                 ItemName "TF_WEAPON_ROCKETLAUNCHER"
-                "fire rate bonus" 0.3
+                "fire rate bonus" 0.4
                 "faster reload rate" 0.001
                 "projectile speed decreased" 0.65
-            }
-
-            ItemAttributes
-            {
-                ItemName "The Buff Banner"
-                "increase buff duration" 9.0
+                "mod mod rage on hit penalty" -100
             }
 
             ChangeAttributes
             {
                 Name "RocketRainPrelude"
-                Delay 10
-                Repeats 999
-                Cooldown 40
+                Delay 15
+                Repeats 0
+                Cooldown 45
             }
 
             EventChangeAttributes
@@ -248,7 +246,7 @@ WaveSchedule
                         Target "tf_gamerules"
                         Action "playvo"
                         Param "weapons/buff_banner_horn_blue.wav"
-                        Delay 0.5
+                        Delay 1
                         Repeats 1
                         Cooldown -1
                     }

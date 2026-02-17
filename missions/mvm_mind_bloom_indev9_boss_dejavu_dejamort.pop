@@ -177,7 +177,7 @@ WaveSchedule
 
     //// WAVES ////
 
-    Wave
+    Wave // Colonel Crackle
     {
         InitWaveOutput
         {
@@ -270,11 +270,53 @@ WaveSchedule
             TotalCurrency 500
             
             FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
-            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_directhittaunt01.mp3"
         
             TFBot
             { 
                 Template T_TFBot_Miniboss_ColonelCrackle_Wooper
+
+                // Intro Sequence
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Delay 8
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 8
+                    Delay -1
+                }
+                Taunt
+                {
+                    Delay 1
+                    Repeats 1
+                    Cooldown -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "0 2304 592"
+                    Distance 128
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
             }
 
             FirstSpawnOutput
@@ -291,11 +333,11 @@ WaveSchedule
             Name "Wave1_Support"
             WaitForAllSpawned "Wave1_Boss"
             Where spawnbot_support
-            Support Limited
+            Support 1
             TotalCount 100
             MaxActive 6
             SpawnCount 1
-            WaitBeforeStarting 5
+            WaitBeforeStarting 10
             WaitBetweenSpawns 4
         
             TotalCurrency 500
@@ -307,7 +349,7 @@ WaveSchedule
             }
         }
     }
-    Wave
+    Wave // Timed Disaster
     {
         InitWaveOutput
         {
@@ -449,7 +491,7 @@ WaveSchedule
             }
         }
     }
-    Wave
+    Wave // The Decimator
     {
         InitWaveOutput
         {
@@ -542,6 +584,95 @@ WaveSchedule
             TFBot
             { 
                 Template T_TFBot_Miniboss_Decimator_Kai
+
+                // Intro Sequence
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.0001
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.5
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 5
+                    Delay -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "taunt07"
+                    Delay 0.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "run_primary"
+                    Delay 3.3
+                    Repeats 1
+                    Cooldown -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
             }
 
             FirstSpawnOutput
@@ -563,7 +694,7 @@ WaveSchedule
             TotalCount 100
             MaxActive 6
             SpawnCount 1
-            WaitBeforeStarting 5
+            WaitBeforeStarting 10
             WaitBetweenSpawns 4
         
             TotalCurrency 250
@@ -583,15 +714,14 @@ WaveSchedule
             TotalCount 100
             MaxActive 3
             SpawnCount 1
-            WaitBeforeStarting 5
+            WaitBeforeStarting 10
             WaitBetweenSpawns 4
         
             TotalCurrency 250
         
             TFBot
             { 
-                Class Pyro
-                Skill Easy
+                Template T_TFBot_Demoman_Knight
             }
         }
     }

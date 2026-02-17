@@ -23,25 +23,33 @@ WaveSchedule
     {
         T_TFBot_Miniboss_ColonelCrackle_Wooper
         {
+			Name "Colonel Crackle"
             Class Soldier
 			ClassIcon soldier_barrage_mangler_rain
-			Name "Colonel Crackle"
-			Health 20000
 			Skill Expert
+			Health 20000
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
+
+			UseHumanAnimations 1
+
 			ExtAttr IgnoreBuildings 
+
 			Item "Crackle Mangler" [$SIGSEGV]
 			Item "Crackle Shotgun" [$SIGSEGV]
+
 			CharacterAttributes
 			{
 				"airblast vulnerability multiplier" 0.5
 				"override footstep sound set" 6.0
+				"voice pitch scale" 0
+				"always allow taunt" 1
 				"damage force reduction" 0.60
 				"move speed bonus" 0.50
 				"increased jump height" 2.5
 				"cancel falling damage" 1
 			}
+
 			WeaponSwitch 
 			{
 				Type "Secondary"
