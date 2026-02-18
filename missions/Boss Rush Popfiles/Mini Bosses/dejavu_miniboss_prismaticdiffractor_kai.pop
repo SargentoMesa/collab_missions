@@ -4,7 +4,7 @@ WaveSchedule
     {
         T_TFBot_Miniboss_PrismaticDiffractor_Kai
         {
-            Name "The Decimator"
+            Name "Prismatic Diffractor"
             Class Soldier
             ClassIcon soldier_bison_prismatic
             Skill Expert
@@ -14,7 +14,9 @@ WaveSchedule
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
 
-            Item "The Detective"
+            Item "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
+
+            Item "The Federal Casemaker"
             Item "Graybanns"
             Item "The Space Bracers"
             Item "The Jupiter Jumpers"
@@ -27,27 +29,29 @@ WaveSchedule
                 "voice pitch scale" 0
                 "override footstep sound set" 3
                 "always allow taunt" 1
-                "no_attack" 1
             }
 
             ItemAttributes
             {
-                ItemName "TF_WEAPON_ROCKETLAUNCHER"
-                "fire rate bonus" 0.2
-                "faster reload rate" 0.2
-                "clip size upgrade atomic" 96
+                ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
+                "fire rate bonus" 0.1
+                "faster reload rate" 0.0001
+                "reload full clip at once" 1
+                "clip size upgrade atomic" 196
                 "override projectile type" 13
                 "energy weapon penetration" 1
-                "particle color rainbow" 100
+                "particle color rainbow" 1000
+                "projectile lifetime" 1
 
                 "paintkit_proto_def_index" 257
+                "set_item_texture_wear" 0
             }
 
             ChangeAttributes
             {
                 Name "BarrageStage1"
                 Delay 1
-                Repeats 0
+                Repeats 1
                 Cooldown -1
             }
 
@@ -75,7 +79,7 @@ WaveSchedule
                     }
                     ItemAttributes
                     {
-                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
                         "projectile spread angle penalty" 10
                     }
                     ChangeAttributes
@@ -90,7 +94,7 @@ WaveSchedule
                 {
                     ItemAttributes
                     {
-                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
                         "projectile spread angle penalty" 8
                     }
                     ChangeAttributes
@@ -105,7 +109,7 @@ WaveSchedule
                 {
                     ItemAttributes
                     {
-                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
                         "projectile spread angle penalty" 6
                     }
                     ChangeAttributes
@@ -120,12 +124,12 @@ WaveSchedule
                 {
                     ItemAttributes
                     {
-                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
                         "projectile spread angle penalty" 3
                     }
                     ChangeAttributes
                     {
-                        Name "BarrageStage4"
+                        Name "BarrageStage5"
                         Delay 2
                         Repeats 1
                         Cooldown -1
@@ -135,7 +139,7 @@ WaveSchedule
                 {
                     ItemAttributes
                     {
-                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
                         "projectile spread angle penalty" 0
                     }
                     ChangeAttributes
