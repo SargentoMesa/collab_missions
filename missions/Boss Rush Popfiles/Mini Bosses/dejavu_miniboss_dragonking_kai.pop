@@ -1,0 +1,57 @@
+WaveSchedule
+{
+    Templates
+    {
+        T_TFBot_Miniboss_DragonKing_Kai
+        {
+            Name "The Dragon King"
+            Class Pyro
+            ClassIcon pyro_dragon_crown
+            Skill Expert
+            Health 30000
+            Scale 2
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            WeaponRestrictions PrimaryOnly
+
+            Item "The Dragon's Fury"
+            Item "The Flare Gun"
+
+            Item "Prince Tavish's Crown"
+            Item "Hard-Headed Hardware"
+            Item "Forgotten King's Pauldrons"
+            Item "The Scoped Spartan"
+
+            CharacterAttributes
+            {
+                "move speed penalty" 0.5
+				"damage force reduction" 0.1
+				"airblast vulnerability multiplier" 0.1
+                "voice pitch scale" 0
+				"override footstep sound set" 6
+                "always allow taunt" 1
+            }
+
+            ItemAttributes
+            {
+                ItemName "The Flare Gun"
+                "override projectile type extra" "spellmeteorshower" 
+            }
+
+            WeaponSwitch
+            {
+                Type "Secondary"
+                Delay 15
+                Repeats 0
+                Cooldown 15
+            }
+            WeaponSwitch
+            {
+                Type "Primary"
+                Delay 16
+                Repeats 0
+                Cooldown 15
+            }
+        }
+    }
+}
