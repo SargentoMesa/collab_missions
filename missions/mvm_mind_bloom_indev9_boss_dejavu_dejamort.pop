@@ -13,7 +13,7 @@
 #base dejavu_miniboss_colonelcrackle_wooper.pop
 #base dejavu_miniboss_prismaticdiffractor_kai.pop
 #base dejavu_miniboss_dragonking_kai.pop
-#base dejavu_howitzermachination_kai.pop
+#base dejavu_miniboss_howitzermachination_kai.pop
 #base dejavu_miniboss_immolator_kai.pop
 #base dejavu_miniboss_decimator_kai.pop
 
@@ -226,6 +226,8 @@ WaveSchedule
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
 
+            HideIcon 1
+            
             TFBot
             {
                 Name "the bob"
@@ -393,6 +395,8 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
+
+            HideIcon 1
 
             TFBot
             {
@@ -628,9 +632,11 @@ WaveSchedule
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
 
+            HideIcon 1
+
             TFBot
             {
-                Name "the ben"
+                Name "the big"
                 Class Scout
             }
         }
@@ -938,7 +944,7 @@ WaveSchedule
         
             TFBot
             { 
-                Template T_TFBot_Miniboss_HowitzerMachination_Kai
+                Template T_TFBot_MiniBoss_HowitzerMachination_Kai
 
                 // Intro Sequence
                 Taunt
@@ -1070,9 +1076,11 @@ WaveSchedule
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
 
+            HideIcon 1
+
             TFBot
             {
-                Name "the ben"
+                Name "the bum"
                 Class Scout
             }
         }

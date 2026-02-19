@@ -2,7 +2,7 @@ WaveSchedule
 {
     Templates
     {
-        T_tFBot_Miniboss_HowitzerMachination_Kai
+        T_TFBot_MiniBoss_HowitzerMachination_Kai
         {
             Name "Howitzer Machination"
             Class Demoman
