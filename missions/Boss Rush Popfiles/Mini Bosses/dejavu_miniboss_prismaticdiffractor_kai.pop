@@ -8,7 +8,7 @@ WaveSchedule
             Class Soldier
             ClassIcon soldier_bison_prismatic
             Skill Expert
-            Health 30000
+            Health 20000
             Scale 2
             Attributes MiniBoss
             Attributes UseBossHealthBar

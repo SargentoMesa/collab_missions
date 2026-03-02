@@ -178,7 +178,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    //NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
+                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
@@ -213,6 +213,8 @@ WaveSchedule
                   "
         }
 
+        RedTeamWipeCausesWaveLoss 1
+
         SpawnTemplate MiniBossRushMusic
 
         // Wave Setup
@@ -227,7 +229,7 @@ WaveSchedule
             WaitBetweenSpawns 0
 
             HideIcon 1
-            
+
             TFBot
             {
                 Name "the bob"
@@ -382,6 +384,8 @@ WaveSchedule
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
                   "
         }
+
+        RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate MiniBossRushMusic
 
@@ -618,6 +622,8 @@ WaveSchedule
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
                   "
         }
+
+        RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate MiniBossRushMusic
 
@@ -867,9 +873,9 @@ WaveSchedule
                     Target "4576 6448 832"
                     Distance 80
                     Duration 5
-                    Delay 5
+                    Delay 10
                     Repeats 0
-                    Cooldown 5
+                    Cooldown 10
                 }
             }
             DoneOutput
@@ -1062,6 +1068,8 @@ WaveSchedule
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
                   "
         }
+
+        RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate MainBossRushMusic
 
