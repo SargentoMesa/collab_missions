@@ -1,0 +1,265 @@
+WaveSchedule
+{
+    Templates
+    {
+        MiniBoss_SniperWarmachine
+        {
+            Scale 1.7
+            Template T_TFBot_Sniper
+            ClassIcon sniper_armored
+            Health 15000
+            Name "R1-SL War Machine"
+            Attributes UseBossHealthBar
+            Action Sniper
+            Attributes AlwaysCrit
+            Skill Expert
+            UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
+            Attributes MiniBoss
+            AddCond
+            Item "The AWPer Hand"
+            ItemAttributes
+            {
+                ItemName "TF_WEAPON_CLUB"
+                "damage bonus" 1.5
+            }
+
+            CharacterAttributes
+            {
+                "move speed bonus"	0.6
+                "head scale" 0.65
+                "damage force reduction" 0.6
+                "airblast vulnerability multiplier" 0.6
+                "override footstep sound set" 6
+            }
+        }
+        MiniBoss_EngineerWarMachine
+        {
+            Health	25000
+            Name	"RSC-5ST War Machine"
+            UseCustomModel "models/bots/engineer/bot_engineer_gray.mdl" 
+            ClassIcon 	engineer_ranger_electric_hyper_giant
+            Scale	1.7
+            Class	Engineer
+            Skill	Expert
+            Action 	Mobber
+            Attributes UseBossHealthBar
+            MaxVisionRange 1500
+            Attributes	"MiniBoss"
+            Item	"The Rescue Ranger"
+            Item	"Hazard Handler"
+            Item	"Cargo Constructor"
+            Action Mobber
+            ItemAttributes
+            {
+                ItemName "the rescue ranger"
+                "damage bonus" 1.6
+                "faster reload rate" 0.5
+                "fire rate bonus" 0.1
+                "clip size bonus" 2
+                "Projectile speed increased" 0.8
+                "hold fire until full reload" 1
+            }
+            CharacterAttributes
+            {
+                "move speed bonus"	0.5
+                "damage force reduction"	0.5
+                "airblast vulnerability multiplier"	0.5
+                "override footstep sound set"	4
+                "voice pitch scale"	0.2
+                "engy building health bonus" 5
+                "engineer sentry build rate multiplier" 7
+                "engy disposable sentries" 5
+            }
+             WeaponSwitch 
+            {
+                Delay 14.9
+                Repeats 99
+                Cooldown 20
+                Type "PDA" // Weapon slot, possible values:
+            }
+            WeaponSwitch 
+            {
+                Delay 15.9
+                Repeats 99
+                Cooldown 20
+                Type "Primary" // Weapon slot, possible values:
+            }
+            ClientCommand
+            {
+                Name "build 2 0"
+                Delay 15
+                Repeats 99
+                Cooldown 20
+            }
+            FireWeapon
+            {
+                Delay 15.5
+                Repeats 99
+                Cooldown 20
+                Duration 0.4
+                Type "Primary"	
+            }
+        }
+        MiniBoss_HeavyWarMachine // Original by Wooper, expanded by me
+        {
+            Class Heavyweapons
+            Name "GHK-GBII War Machine"
+            ClassIcon heavy_shotgun_champ
+            Skill Expert
+            Health 27000
+            WeaponRestrictions MeleeOnly
+            MaxVisionRange 1200
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Action Mobber
+            Item "The Killing Gloves of Boxing"
+            Item "Pugilist's Protector"
+            UseCustomModel "models/bots/heavy_boss/bot_heavy_gray_boss.mdl"  
+            ItemAttributes
+            {
+                ItemName "the killing gloves of boxing"
+                "fire rate bonus" 0.6
+                "damage bonus" 5
+                "fire input on kill" "!activator^$ChangeAttributes^Gunner"
+            }
+            CharacterAttributes
+            {
+                "move speed bonus"	0.5
+                "damage force reduction" 0.3
+                "airblast vulnerability multiplier" 0.3
+                "override footstep sound set" 2
+            }
+            EventChangeAttributes
+            {
+                GoBackToHerePlsTy
+                {
+                    WeaponRestrictions MeleeOnly
+                    ItemAttributes
+                    {
+                        ItemName "the killing gloves of boxing"
+                        "fire rate bonus" 0.6
+                        "damage bonus" 5
+                        "fire input on kill" "!activator^$ChangeAttributes^Gunner"
+                    }
+                    CharacterAttributes
+                    {
+                        "move speed bonus"	0.5
+                        "damage force reduction" 0.3
+                        "airblast vulnerability multiplier" 0.3
+                        "override footstep sound set" 2
+                    }
+                }
+                Gunner
+                {
+                    WeaponRestrictions SecondaryOnly
+                    FireInput  
+                    {
+                        Target !activator
+                        Action $ChangeAttributes
+                        Param GoBackToHerePlsTy
+                        Delay 5
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_HWG"
+                        "fire rate bonus" 3
+                        "bullets per shot bonus" 25
+                        "damage penalty" 0.5
+                        "dmg bonus vs buildings"      3
+                        "attach particle effect"	704
+                        "override projectile type" 2
+                        "damage bonus" 5.5
+                        "projectile acceleration" 2500
+                        "projectile acceleration start time" 1.25
+                        "projectile speed decreased" 0.15
+                        "projectile spread angle penalty" 8
+                        "fire rate bonus" 0.01
+                        "faster reload rate" 0.3
+                        "clip size bonus" 2.5
+                        "hold fire until full reload" "1"
+                    }
+                    CharacterAttributes
+                    {
+                        "move speed bonus"	0.5
+                        "damage force reduction" 0.3
+                        "airblast vulnerability multiplier" 0.3
+                        "override footstep sound set" 2
+                    }
+                }
+            }
+        }
+        MiniBoss_PyroTrenchBurner
+        {
+            ClassIcon	pyro_degreaser_flare
+            Scale 1.75
+            Health	23000
+            Name	"THR-M4L Trenchburner"
+            Class	Pyro
+            Skill	Expert
+            Action  Mobber
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            UseMeleeThreatPrioritization 1
+            Item	"the flare gun"
+            Item	"the degreaser"
+            Item	"the axtinguisher"
+            UseCustomModel "models/bots/pyro_boss/bot_pyro_gray_boss.mdl" 
+            ItemAttributes 
+            {
+                ItemName "The Flare Gun"
+                "fire rate bonus" 0.4
+                "Reload time decreased" 0.2
+                "Projectile speed increased" 1.5
+            }
+            CharacterAttributes
+            {
+                "move speed bonus"	0.5
+                "damage force reduction" 0.1
+                "airblast vulnerability multiplier" 0.1
+                "override footstep sound set" 6
+                "damage bonus" 1.5
+                "melee range multiplier" 2
+            }
+            ItemAttributes
+            {
+                ItemName "the degreaser"
+                "weapon burn dmg increased"	2
+                "flame_drag" 4
+                "max_flame_reflection_count" 1000
+                "flame_reflect_on_collision"	1000
+                "flame_spread_degree" 5
+                "flame_up_speed" -25
+            }
+            WeaponSwitch
+            {
+                Type "Primary"
+                MaxTargetRange 500
+                MinTargetRange 200
+                Delay 0.1
+                Repeats 0
+                Cooldown 0
+                IfSeeTarget 1
+            }
+            WeaponSwitch
+            {
+                Type "Secondary"
+                MaxTargetRange 9999
+                MinTargetRange 500
+                Delay 0.1
+                Repeats 0
+                Cooldown 0
+                IfSeeTarget 1
+            }
+            WeaponSwitch
+            {
+                Type "Melee"
+                MaxTargetRange 200
+                MinTargetRange 1
+                Delay 0.1
+                Repeats 0
+                Cooldown 0
+                IfSeeTarget 1
+            }
+        }
+    }
+}
