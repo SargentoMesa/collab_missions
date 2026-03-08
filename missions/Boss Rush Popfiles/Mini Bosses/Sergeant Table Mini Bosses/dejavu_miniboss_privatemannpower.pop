@@ -1,0 +1,129 @@
+WaveSchedule
+{
+    PointTemplates
+    {
+        removepowerup // Kill on boss death with a delay of 0.1
+        {
+            RemoveIfKilled mannpower_kill
+            logic_timer
+            {
+                "targetname" "mannpower_kill"
+                "RefireTime" "0.01"
+                "spawnflags" "0"
+                "UseRandomTime" "0"
+                "OnTimer" "item_powerup_rune,kill,,0,-1"
+            }
+        }
+    }
+    Templates
+    {
+        GiantHasteHeavyMiniboss
+		{
+			Template	T_TFBot_Giant_Heavyweapons
+			ClassIcon	heavy_hyper
+			Health	25000
+			Scale	1.8
+			Attributes	UseBossHealthBar
+			Attributes	MiniBoss
+			WeaponRestrictions	MeleeOnly
+			Name	"Private Mannpower"
+			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			{
+				Delay 0 //Time before the first bot attribute change (Default: 10)
+				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
+				Name "FistHaste" // Name of the bot attributes listed in EventChangeAttributes
+			}
+			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			{
+				Delay 0 //Time before the first bot attribute change (Default: 10)
+				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
+				IfHealthBelow 19000 //When set, the task activates only when the bot health is below specified value
+				Name "ShotgunHaste" // Name of the bot attributes listed in EventChangeAttributes
+			}
+			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			{
+				Delay 0 //Time before the first bot attribute change (Default: 10)
+				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
+				IfHealthBelow 11000 //When set, the task activates only when the bot health is below specified value
+				Name "MinigunHaste" // Name of the bot attributes listed in EventChangeAttributes
+			}
+			EventChangeAttributes
+			{
+				FistHaste
+				{
+					Item	"The Killing Gloves of Boxing"
+					WeaponRestrictions	MeleeOnly
+					Addcond
+					{
+						Index 103
+					}
+					FireInput
+					{
+						Target "tf_gamerules"
+						Action "PlayVO"
+						Param  "items\powerup_pickup_knockout.wav"
+						Delay  3
+						Cooldown 9999
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"rage giving scale" 0.2
+					}
+				}
+				ShotgunHaste
+				{
+					Item	"The Family Business"
+					WeaponRestrictions	SecondaryOnly
+					Attributes	HoldFireUntilFullReload
+					Addcond
+					{
+						Index 91
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.325
+						"rage giving scale" 0.2
+					}
+					FireInput
+					{
+						Target "tf_gamerules"
+						Action "PlayVO"
+						Param  "items\powerup_pickup_haste.wav"
+						Delay  0
+						Cooldown 9999
+					}
+				}
+				MinigunHaste
+				{
+					WeaponRestrictions	PrimaryOnly
+					Addcond
+					{
+						Index 94
+					}
+					FireInput
+					{
+						Target "tf_gamerules"
+						Action "PlayVO"
+						Param  "items\powerup_pickup_vampire.wav"
+						Delay  0
+						Cooldown 9999
+					}
+					FireInput
+					{
+						Target "!self"
+						Action "$RemoveCond"
+						Param  "91"
+						Delay  0
+						Cooldown 9999
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.25
+						"rage giving scale" 0.2
+					}
+				}
+			}
+		}
+    }
+}
