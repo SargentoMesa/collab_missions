@@ -25,7 +25,7 @@ WaveSchedule
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
 
-    WaveStartCountdown 5
+    WaveStartCountdown 3
 
     ForceRedMoney 1
 
