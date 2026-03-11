@@ -54,15 +54,6 @@ WaveSchedule
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
             }
-
-            trigger_multiple // Player Death Counter Set
-            {
-                "targetname" "boss_rush_deathcounter_init"
-                "origin" "0 -16032 160"
-                "mins" "-464 -96 -112"
-                "maxs" "464 96 112"
-                "OnStartTouch" "!activator,$SetVar$DeathCounter,1,0,-1"
-            }
         }
 
         BossRushPlayerSpawnInvuln
@@ -182,14 +173,6 @@ WaveSchedule
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-
-                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
-
-                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
                   "
         }
         StartWaveOutput
@@ -197,8 +180,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`portal_enable_relay`, `Trigger`)
-                    EntFire(`boss_rush_deathcounter_init`, `Disable`)
+                    EntFire(`wave_start_relay`, `Trigger`)
                   "
         }
         DoneOutput
@@ -206,10 +188,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`boss_rush_deathcounter_init`, `Enable`)
-                    EntFire(`spawn_teleporter`, `Disable`)
-                    EntFire(`portal_disable_relay`, `Trigger`)
-                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2)
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
                   "
         }
 
@@ -236,33 +216,16 @@ WaveSchedule
                 Class Scout
             }
         }
-        WaveSpawn // Teleporting Players
-        {
-            Name "Wave1_PlayerTeleport"
-            WaitBeforeStarting 5
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_desert`)
-                        EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_desert_boss_spawn_relay`, `Trigger`, null, 2)
-                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
-                      "
-            }
-        }
 
         // Boss
         WaveSpawn // Boss Spawn
         {
             Name "Wave1_Boss"
-            WaitForAllSpawned "Wave1_PlayerTeleport"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 7
+            WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
         
             TotalCurrency 300
@@ -322,7 +285,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_desert_vortex_spawn_relay`, `Trigger`, null, 3)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 2.5)
                       "
             }
         }
@@ -355,14 +318,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
-
-                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
-
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                   "
         }
@@ -371,7 +326,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`portal_enable_relay`, `Trigger`)
+                    EntFire(`wave_start_relay`, `Trigger`)
                   "
         }
         DoneOutput
@@ -379,9 +334,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`spawn_teleporter`, `Disable`)
-                    EntFire(`portal_disable_relay`, `Trigger`)
-                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
                   "
         }
 
@@ -408,33 +362,16 @@ WaveSchedule
                 Class Scout
             }
         }
-        WaveSpawn // Teleporting Players
-        {
-            Name "Wave2_PlayerTeleport"
-            WaitBeforeStarting 5
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
-                        EntFire(`spawn_teleporter`, `Enable`)
-                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
-                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
-                      "
-            }
-        }
 
         // Boss
         WaveSpawn // Boss Spawn
         {
             Name "Wave2_Boss"
-            WaitForAllSpawned "Wave2_PlayerTeleport"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 7
+            WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
         
             TotalCurrency 300
@@ -541,7 +478,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 3)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 2.5)
                       "
             }
         }
@@ -593,14 +530,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
-
-                    EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
-                    EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Enable`)
-                    EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
-
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                   "
         }
@@ -609,7 +538,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`portal_enable_relay`, `Trigger`)
+                    EntFire(`wave_start_relay`, `Trigger`)
                   "
         }
         DoneOutput
@@ -617,9 +546,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`spawn_teleporter`, `Disable`)
-                    EntFire(`portal_disable_relay`, `Trigger`)
-                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2) 
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
                   "
         }
 
@@ -658,7 +586,6 @@ WaveSchedule
                         EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
                         EntFire(`spawn_teleporter`, `Enable`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
-                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
                       "
             }
         }
@@ -715,7 +642,8 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 3)
+                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
             DoneOutput
