@@ -173,6 +173,7 @@ WaveSchedule
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`)
                   "
         }
         StartWaveOutput
