@@ -59,7 +59,7 @@ WaveSchedule
                 "damagecap" "3000000"
                 "damagemodel" "0"
                 "damagetype" "16"
-                "filtername" "filter_is_blue"
+                "filtername" "filter_blueteam"
                 "nodmgforce" "1"
                 "spawnflags" "1"
                 "StartDisabled" "1"
@@ -322,85 +322,6 @@ WaveSchedule
             {
                 "targetname" "client_commander"
             }
-            filter_activator_class
-            {
-                "targetname" "filter_is_not_player"
-                "Negated" "1"
-                "filterclass" "player"
-            }
-            filter_activator_class
-            {
-                "targetname" "filter_is_player"
-                "Negated" "0"
-                "filterclass" "player"
-            }
-            filter_activator_tfteam 
-            {
-                "targetname" "filter_is_blue"
-                "Negated"	"0"
-                "TeamNum"	"3"
-            }	
-            filter_activator_tfteam 
-            {
-                "targetname" "filter_is_red"
-                "Negated"	"0"
-                "TeamNum"	"2"
-            }
-            filter_multi 
-            {
-                "targetname" "filter_is_red_player"
-                "Negated"	"0"
-                "FilterType" "0" //and				
-                "Filter01"   "filter_is_red"
-                "Filter02"   "filter_is_player"
-            }
-            filter_tf_condition
-            {
-                "targetname" "_filter_is_not_ubered"
-                "Negated"	"1"
-                "condition"  "5" //medigun uber
-            }
-            filter_tf_condition
-            {
-                "targetname" "_filter_is_not_ubered2"
-                "Negated"	"1"
-                "condition"  "52" //canteen uber
-            }
-            filter_tf_condition
-            {
-                "targetname" "_filter_is_not_ubered3"
-                "Negated"	"1"
-                "condition"  "51" //hidden uber
-            }
-            filter_tf_condition
-            {
-                "targetname" "_filter_is_not_ubered4"
-                "Negated"	"1"
-                "condition"  "57" //WoF uber
-            }
-            filter_multi 
-            { // is red player, AND is NOT ubered
-                "targetname" "filter_is_red_not_ubered"
-                "Negated"	"0"
-                "FilterType" "0" //and				
-                "Filter01"   "filter_is_red"
-                "Filter02"   "_filter_is_not_ubered"
-                "Filter03"   "_filter_is_not_ubered2"
-                "Filter04"   "_filter_is_not_ubered3"
-                "Filter05"   "_filter_is_not_ubered4"
-                "Filter06"   "filter_is_player"
-            }
-            filter_multi 
-            {
-                "targetname" "filter_not_ubered"
-                "Negated"	"0"
-                "FilterType" "0"
-                "Filter01"   "_filter_is_not_ubered"
-                "Filter02"   "_filter_is_not_ubered2"
-                "Filter03"   "_filter_is_not_ubered3"
-                "Filter04"   "_filter_is_not_ubered4"
-                "Filter05"   "filter_is_player"
-            }
 			logic_relay
 			{
 				"targetname" "justtodisable"
@@ -659,7 +580,7 @@ WaveSchedule
 				"damage" "1250"
 				"StartDisabled" "1"
 				"spawnflags" "64"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 			}
 			trigger_hurt
 			{
@@ -672,7 +593,7 @@ WaveSchedule
 				"damage" "500"
 				"StartDisabled" "1"
 				"spawnflags" "64"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 			}
 			logic_relay
 			{

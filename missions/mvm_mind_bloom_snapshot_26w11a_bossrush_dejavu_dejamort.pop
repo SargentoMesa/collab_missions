@@ -56,12 +56,6 @@ WaveSchedule
             }
 
             // Universal Filters
-            filter_activator_class // Is Not a Player
-            {
-                "targetname" "filter_is_not_player"
-                "Negated" "1"
-                "filterclass" "player"
-            }
             filter_activator_class // Is a Player
             {
                 "targetname" "filter_is_player"

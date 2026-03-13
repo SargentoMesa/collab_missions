@@ -103,13 +103,6 @@ WaveSchedule
 				"oncase01" "special_attack_spook,Trigger,,0,-1"
 				"oncase02" "special_attack_slash,Trigger,,0,-1"
 			}
-			
-			filter_activator_tfteam
-			{
-				"targetname" "filter_red"
-				"Negated" "Allow entities that match criteria"
-				"TeamNum" "2"
-			}
 
 			logic_relay
 			{
@@ -305,7 +298,7 @@ WaveSchedule
 			trigger_stun
 			{
 				"targetname"    "boss_spook_trigger"
-				"filtername"    "filter_red"
+				"filtername"    "filter_redteam"
 				"spawnflags"    "1"
 				"StartDisabled" "1"
 				"stun_duration" "3"
@@ -325,7 +318,7 @@ WaveSchedule
                 "maxs"          "250 250 250"
                 "StartDisabled" "1"
                 "spawnflags"    "1"
-				"filtername" "filter_red"
+				"filtername" "filter_redteam"
 				"OnStartTouch" "!activator,$takedamage,15,0,-1"
                 "OnStartTouch" "!activator,bleedplayer,1,0,-1"
 				"OnStartTouch" "slice_soundeffects,PickRandomShuffle,,0,-1"

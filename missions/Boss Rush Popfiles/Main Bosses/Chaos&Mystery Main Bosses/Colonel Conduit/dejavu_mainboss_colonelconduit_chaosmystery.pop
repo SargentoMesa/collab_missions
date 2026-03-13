@@ -293,7 +293,7 @@ ColonelConduit
                 "maxs" "50 50 80"
                 "damage" "350"
                 "damagetype" "2"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
                 "StartDisabled" "1"
 				"spawnflags" "64"
             }
@@ -396,7 +396,7 @@ ColonelConduit
 				"damage" "300"
 				"startdisabled" "1"
 				"spawnflags" "64"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
             }
             env_beam
             {
@@ -589,7 +589,7 @@ ColonelConduit
                 "maxs" "50 50 80"
                 "damage" "300"
                 "damagetype" "2"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
                 "StartDisabled" "1"
 				"spawnflags" "64"
             }

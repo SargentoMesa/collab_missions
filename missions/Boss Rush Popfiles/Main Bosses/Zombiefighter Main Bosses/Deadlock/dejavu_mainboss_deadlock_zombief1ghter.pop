@@ -103,30 +103,23 @@ Population
     			Repeats 1
     			IfHealthBelow 12000
 			}
-			FireInput [$SIGSEGV]	// TO BE CHANGED AS THE MAP IS DEVELOPED
-			{
-    			Target !self
-				Action $SetLocalOrigin
-				Param "1818 -1310 687"
-				Delay 0.1
-				Repeats 1
-			}
-			FireInput [$SIGSEGV]	// TO BE CHANGED AS THE MAP IS DEVELOPED
+			FireInput [$SIGSEGV]
 		    {
 				Target !self
 		    	Action $SetLocalOrigin
-				Param "-1012 5 685"
+				Param "129 4927 -618"
 		    	Delay 0.875
 				Repeats 1
 				IfHealthBelow	12000
 			}
-			Message [$SIGSEGV]	
-			{
-				Name	"{blue}Deadlock has spawned behind you!"
-				Delay	0.1
-				Repeats	1
-				Cooldown	3
-				IfSeeTarget 0
+			FireInput [$SIGSEGV]
+		    {
+				Target !self
+		    	Action $SetLocalOrigin
+				Param "-3503 4095 -938"
+		    	Delay 2.875
+				Repeats 1
+				IfHealthBelow	12000
 			}
             Message [$SIGSEGV]	
 			{

@@ -98,24 +98,6 @@ ChaosSurge
 				Target "scosmetic"
 				Action "TurnOn"
 			}
-			//Trigger hurt to kill bots commented out just in case.
-//			OnParentKilledOutput
-//			{
-//				Target "everythingreturnstohell"
-//				Action "Enable"
-//			}
-//			OnParentKilledOutput
-//			{
-//				Target "everythingreturnstohell"
-//				Delay 1
-//				Action "Disable"
-//			}
-//			OnParentKilledOutput
-//			{
-//				Target "everythingreturnstohell"
-//				Delay 1.1
-//				Action "Kill"
-//			}
 			OnParentKilledOutput
 			{
 				Target chief_csurge_dead
@@ -127,21 +109,6 @@ ChaosSurge
 				Action Trigger
 				Delay 0.1
 			}
-//			trigger_hurt
-//			{
-//				"targetname" "everythingreturnstohell"
-//				"startdisabled" "1"
-//				"origin" "0 0 0"
-//				"mins" "-99999 -99999 -99999"
-//				"maxs" "99999 99999 99999"
-//				"damage" "999999"
-//				"damagecap" "999999"
-//				"damagemodel" "0"
-//				"damagetype" "16"
-//				"filtername" "filter_is_blue"
-//				"nodmgforce" "1"
-//				"spawnflags" "1"
-//			}
 			prop_dynamic_ornament
 			{
 				"targetname" "scosmetic"
@@ -353,7 +320,7 @@ ChaosSurge
 				"spawnflags" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,6,0,-1"
 				"$killicon" "firedeath"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 			}
 			info_particle_system
 			{
@@ -575,13 +542,7 @@ ChaosSurge
 				"OnTrigger" "hell_rain_setup,FireOnce,,0.2,-1"
 			}
             //Uncommented and left for the moment.
-//			logic_relay
-//			{
-//				"targetname" "giantsupport"
-//				"OnTrigger" "player,$PlaySoundToSelf,=40/mvm/mvm_bought_in.wav,0,-1"
-//				"OnTrigger" "player,$DisplayTextChat,{blue}Giant Rapid Fire Demoman{reset} has {green}bought back{reset} into the game for '{red}undefined{reset}' credits!,0,-1"
-//				"OnTrigger" "pop_interface,$ResumeWaveSpawn,bosssupport3,0,-1"
-//			}
+
 			logic_case
 			{
 				"targetname" "surge_weapons_only"
@@ -647,14 +608,7 @@ ChaosSurge
 				AttachToProjectile 1
 				ItemName "CSurge_indicatorlauncher2"
 			}
-//			FireInput
-//			{
-//				Name giantsupport
-//				Action Trigger
-//				IfHealthBelow 45000
-//				Repeats 1
-//				Delay 0.5
-//			}
+
 			ChangeAttributes
 			{
 				Name FurySpammer

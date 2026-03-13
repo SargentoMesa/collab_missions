@@ -148,30 +148,23 @@ Population
 				"use robot voice" 1
 				"rage giving scale" 0.5
 			}
-			FireInput [$SIGSEGV]	// TO BE CHANGED AS THE MAP IS DEVELOPED
-			{
-    			Target !self
-				Action $SetLocalOrigin
-				Param "-550 5 685"
-				Delay 0.1
-				Repeats 1
-			}
-			FireInput [$SIGSEGV]	// TO BE CHANGED AS THE MAP IS DEVELOPED
+			FireInput [$SIGSEGV]
 			{
 				Target !self
 				Action $SetLocalOrigin
-				Param "-1012 5 685"
+				Param "129 4927 -618"
 				Delay 1.75
 				Repeats 1
 				IfHealthBelow	25000
 			}
-			Message [$SIGSEGV]	
-			{
-				Name	"{blue}Field Marshal Mechanus has arrived!"
-				Delay	0.1
-				Repeats	1
-				Cooldown	3
-				IfSeeTarget 0
+			FireInput [$SIGSEGV]
+		    {
+				Target !self
+		    	Action $SetLocalOrigin
+				Param "-3503 4095 -938"
+		    	Delay 3.75
+				Repeats 1
+				IfHealthBelow	12000
 			}
             Message [$SIGSEGV]	
 			{
