@@ -1,0 +1,55 @@
+WaveSchedule
+{
+    PrecacheModel "models/bots/skeleton_sniper_boss/skeleton_sniper_boss.mdl"
+    
+    Templates
+    {
+        T_Graver // spams skeletons
+		{
+			Class Sniper
+			ClassIcon dead
+			Name "Magician Lord"
+			Skill Expert
+			Health 20000
+			Item "The Crone's Dome"
+			Item "TF_WEAPON_SPELLBOOK"
+			StripItem "Zombie Sniper"
+			StripItemSlot 0 [$SIGSEGV]
+			StripItemSlot 1 [$SIGSEGV]
+			Action Mobber
+			ItemModel [$SIGSEGV]
+			{
+				ItemName "TF_WEAPON_CLUB"
+				Model "models/empty.mdl" // no club
+			}
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
+			Scale 2.1
+			UseCustomModel "models/bots/skeleton_sniper_boss/skeleton_sniper_boss.mdl" [$SIGSEGV]
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_CLUB"
+				"fire rate bonus" 1.5
+			}
+			Spell [$SIGSEGV] //Gives specified spell to bots.
+			{
+				Delay 3 //Time before the first spell charges are given (Default: 10)
+				Cooldown 3 //Time between each spell changes (Default: 10)
+                Repeats 0 //How many times should spell charges be given in total (Default: 0 - Infinite)
+				IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default: 0 - Always activate)
+				Charges 1 //How many spell charges to give every time the spell is given (Default: 1)
+				Limit 1 //How many spell charges the bot can store (Default: Same as charges given)
+				Type "Summon Skeletons" //roll the bones
+			}
+			CharacterAttributes
+			{
+				"move speed bonus" 0.5
+				"damage force reduction" 0
+				"airblast vulnerability multiplier" 0
+				"override footstep sound set" 7
+				"rage giving scale" 0.00001
+				"voice pitch scale" 0
+			}
+		}
+    }
+}

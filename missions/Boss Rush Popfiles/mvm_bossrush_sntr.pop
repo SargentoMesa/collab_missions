@@ -52,14 +52,6 @@ WaveSchedule
 		"Heavy.M_MVM_No01"		 shadows/rip_up_rock_1.mp3
 		"Heavy.M_MVM_No02"		 shadows/rip_up_rock_1.mp3
 		"Heavy.M_MVM_No03"		 shadows/rip_up_rock_1.mp3
-	//	"Heavy.M_MVM_Meleeing01" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing02" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing03" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing04" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing05" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing06" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing07" misc/null.wav
-	//	"Heavy.M_MVM_Meleeing08" misc/null.wav		// commented out since other people will (probably?) have punching giant heavies, lets not muffle them?
 	}
 	
 	PointTemplates  
@@ -88,7 +80,6 @@ WaveSchedule
 				message #*bonegang_loop.mp3
 				radius 20
 				spawnflags 49 // it's set to 49 because mp3 files can't loop, that only works for .wav files with added cuepoints
-		//		fadeinsecs 3
 				fadeoutsecs 1.2
 				targetname mus_loop
 			}
@@ -204,7 +195,6 @@ WaveSchedule
 		}
 		Iron_Lich_Cosmetics // HEDACT.WAV
 		{
-			//NoFixup 1
 			prop_dynamic // -15 0 0 angles when open
 			{
 				model "models/player/items/heavy/skull_horns_b.mdl"
@@ -229,27 +219,12 @@ WaveSchedule
 				targetname lich_laff
 				health 10 // this is volume
 				pitch 100
-		//		radius 12000
 				message "crush/HEDACT.wav"
 				spawnflags 49
-		//		parentname lich_skull_1
 			}
-		//	logic_relay
-		//	{
-		//		targetname openwide
-		//		"OnTrigger" "lich_skull_1,AddOutput,angles -15 0 0,0,-1" 
-		//		"OnTrigger" "lich_skull_2,AddOutput,angles 15 0 0,0,-1" 
-		//	}
-		//	logic_relay
-		//	{
-		//		targetname sutdaupfuk
-		//		"OnTrigger" "lich_skull_1,AddOutput,angles 0 0 0,0,-1" 
-		//		"OnTrigger" "lich_skull_2,AddOutput,angles 0 0 0,0,-1" 
-		//	}
 		}
 		Tornado // lich spell
 		{
-		//	KeepAlive 1
 			OnParentKilledOutput // remove the particle effect
 			{
 				Target tornado_eff
@@ -333,170 +308,6 @@ WaveSchedule
 				effect_name skull_island_explosion
 			}
 		}
-		Soldier_Tank
-		{
-			NoFixup 1 // no!!!!!!!!!!!!!!!!!!
-			KeepAlive 1
-			OnSpawnOutput
-			{
-				Target autotank_turret_weapon
-				Action $SetOwner
-			}
-			OnParentKilledOutput
-			{
-				Target autotank_death
-				Action Trigger
-			}
-			prop_dynamic // tank
-			{
-				angles "0 0 0"
-				origin "0 0 -8"
-				DisableBoneFollowers 1
-				disableshadows 0
-				model "models/props_frontline/tank_animated.mdl"
-				DefaultAnim "move_slow"
-				ModelScale 0.55
-				solid 0
-				skin 1
-				targetname autotank_body
-			}
-			prop_dynamic // gibby~
-			{
-				angles "0 0 0"
-				origin "0 0 -8"
-				DisableBoneFollowers 1
-				disableshadows 0
-				StartDisabled 1
-				model "models\bots\soldier\bot_soldier.mdl"
-				DefaultAnim "PRIMARY_stun_middle"
-				ModelScale 1.75
-				solid 0
-				skin 1
-				targetname autotank_gibby
-				parentname autotank_body
-			}
-			info_particle_system
-			{
-				angles "0 0 0"
-				origin "0 0 0"
-				effect_name cinefx_goldrush
-				start_active 0
-				targetname autotank_blast
-				parentname autotank_body
-			}
-			ambient_generic
-			{
-				targetname autotank_deathsound
-				spawnflags 17
-				health 10 // this is volume
-				radius 18000
-				pitch 100
-				message ")shadows/treadkill_death.mp3"
-				parentname autotank_body
-			}
-			ambient_generic
-			{
-				targetname autotank_explosionsound
-				spawnflags 17
-				health 10 // this is volume
-				radius 18000
-				pitch 100
-				message ")mvm\mvm_tank_explode.wav"
-				parentname autotank_body
-			}
-			info_particle_system
-			{
-				angles "0 180 0"
-				origin "-70 38 52"
-				effect_name kartdamage_smoke4
-				start_active 1
-				targetname autotank_smoke
-				parentname autotank_body
-			}
-			info_particle_system
-			{
-				angles "0 180 0"
-				origin "-70 -39 52"
-				effect_name kartdamage_smoke4
-				start_active 1
-				targetname autotank_smoke
-				parentname autotank_body
-			}
-			env_shake
-			{
-				amplitude 16
-				duration 1.5
-				frequency 2.5
-				radius 1500
-				spawnflags 1
-				targetname autotank_shake
-			}
-			ambient_generic // turret ready
-			{
-				targetname autotank_turret_ready
-				spawnflags 48
-				health 10 // this is volume
-				radius 18000
-				pitch 100
-				message ")vehicles/tank_readyfire1.wav"
-				parentname autotank_body
-			}
-			ambient_generic // revving with fury
-			{
-				targetname autotank_ragemode
-				spawnflags 48
-				health 10
-				radius 18000
-				pitch 100
-				message ")shadows/treadkill_rage.mp3"
-				parentname autotank_body
-			}
-			ambient_generic // turret fire
-			{
-				targetname autotank_turret_shoot
-				spawnflags 48
-				health 10
-				radius 18000
-				pitch 100
-				message ")player\taunt_tank_shoot.wav"
-				parentname autotank_body
-			}
-			tf_point_weapon_mimic
-			{
-				origin "125 0 59"
-				damage 75
-				speedmin 2200
-				speedmax 2200
-				splashradius 216
-				targetname autotank_turret_weapon
-		//		firesound player\taunt_tank_shoot.wav
-				parentname autotank_body
-			}
-			logic_relay
-			{
-				targetname autotank_turretshoot
-				"OnTrigger" "autotank_turret_ready,PlaySound,,0,-1"
-				"OnTrigger" "autotank_body,SetAnimation,shoot_forward,1,-1"
-				"OnTrigger" "autotank_turret_weapon,Fireonce,,1.3,-1"
-				"OnTrigger" "autotank_turret_shoot,PlaySound,,1.3,-1"
-			}
-			logic_relay
-			{
-				targetname autotank_death
-				"OnTrigger" "autotank_idle,StopSound,,0,-1"
-				"OnTrigger" "autotank_gibby,Enable,,0,-1"
-				"OnTrigger" "autotank_smoke,Stop,,0,-1"
-				"OnTrigger" "autotank_gibby,SetAnimation,PRIMARY_Stun_begin,0,-1"
-				"OnTrigger" "autotank_gibby,SetPlaybackRate,0.36,0.3,-1" // stun animation has that blend that doesn't work
-				"OnTrigger" "autotank_deathsound,PlaySound,,0,-1"
-				"OnTrigger" "autotank_gibby,Disable,,3,-1"
-				"OnTrigger" "autotank_body,Disable,,3,-1"
-				"OnTrigger" "autotank_explosionsound,PlaySound,,3,-1"
-				"OnTrigger" "autotank_blast,Start,,3,-1"
-				"OnTrigger" "autotank_shake,StartShake,,3,-1"
-				"OnTrigger" "autotank_*,Kill,,8,-1"
-			}
-		}
 	}
 	
 	Templates
@@ -572,9 +383,7 @@ WaveSchedule
 			Name "Skull Magician"
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
-	//		Attributes HoldFireUntilFullReload
 			StripItem "Zombie Demo"
-	//		WeaponRestrictions PrimaryOnly
 			Action Mobber [$SIGSEGV]
 			Health 10000
 			Item "The Loose Cannon"
