@@ -3,8 +3,6 @@ WaveSchedule
 {
 	Templates
 	{
-
-
 		T_TFBot_URL_Field_General // Miniboss seen in Spine Thief. (and technically ultimate robot legend too.) Note he can be given any banner you please.
 		{
 			Class Soldier

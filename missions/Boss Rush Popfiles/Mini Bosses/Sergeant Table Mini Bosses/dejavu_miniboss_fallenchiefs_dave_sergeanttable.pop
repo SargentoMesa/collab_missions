@@ -412,7 +412,7 @@ WaveSchedule
     }
     Templates
     {
-        TFBot
+        T_TFBot_Demo_PatrolChief
         {
             SpawnTemplate boss_dead_demo
             ClassIcon		demo_robot_nys
@@ -425,7 +425,7 @@ WaveSchedule
             Action Mobber
             Attributes DisableDodge
         }
-        TFBot
+        T_TFBot_Heavy_PatrolChief
         {
             SpawnTemplate boss_dead_heavy
             ClassIcon	heavy_robot_nys
@@ -438,8 +438,7 @@ WaveSchedule
             Tag giant
             Action Mobber
         }
-        
-        TFBot
+        T_TFBot_Pyro_PatrolChief
         {
             ClassIcon	boss_death_pyro
             Health	12000
@@ -455,7 +454,8 @@ WaveSchedule
             Tag giant
             SpawnTemplate boss_dead_pyro
         }
-        TFBot
+
+        T_TFBot_Heavy_Dave
         {
             SpawnTemplate boss_dead_dave
             SpawnTemplate w4boss
@@ -512,11 +512,9 @@ WaveSchedule
                 "projectile lifetime" 3.0
                 "projectile detonate time" 2.8
                 "minigun spinup time increased"	-0.5
-//				"mult crit dmg" 0.35
                 "dont count damage towards crit rate" 1
                 "custom projectile model" "models\weapons\w_models\w_repair_claw.mdl"
                 "projectile trail particle" "flaregun_trail_crit_blue"
-//				"no damage falloff" 1
                 "damage bonus" 3
                 "mod minigun can holster while spinning" 1
             }
