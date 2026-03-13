@@ -1508,23 +1508,6 @@ population
                 "move speed bonus" 0.9
             }
 		}
-		T_TFBot_MajorCatastrophe_Boss_Minion //Spawn him on random places
-		{
-			Class Demoman
-			Item "The Ullapool Caber"
-			WeaponRestrictions MeleeOnly
-			Name "Little Bomber"
-			Scale 0.8
-			Skill Hard
-			Health 125
-			Tag bossminion
-			Action Mobber [$SIGSEGV]
-			CharacterAttributes
-			{
-				"damage bonus" 1.6
-				"move speed bonus" 1.2
-			}
-		}
 
 	}
 	Wave

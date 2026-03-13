@@ -1,0 +1,1147 @@
+WaveSchedule
+{
+    LuaScriptFile "scripts/skangus_event_boss_fire_attempt2.lua"
+
+	ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+	{
+		ItemName "The Air Strike"
+		"special damage type" 1
+	}
+    ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+	{
+		ItemName "The Beggar's Bazooka"
+		"special damage type" 2
+	}
+    ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+	{
+		ItemName "The Dragon's Fury"
+		"special damage type" 3
+	}
+	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+	{
+		ItemName "The Scottish Resistance"
+		"stickies detonate stickies" 0
+	}
+	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+	{
+		ItemName "The Quickiebomb Launcher"
+		"stickies detonate stickies" 0
+	}
+
+    SpawnTemplate [$SIGSEGV] //Spawn template once the mission loads
+	{
+		Name "MajorCatastrophe_logic"
+		//Origin "0 0 0" //Position where to spawn the template
+		//Angles "0 0 0" //Rotation
+	}
+
+    PointTemplates
+    {
+        		MajorCatastrophe_logic
+		{
+			NoFixup 1
+            logic_auto
+            {
+                //"OnMapSpawn" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,When the Sun Shines Red,0,-1"
+                "OnMapSpawn" "player,Color,255 255 255,0,-1"
+                "OnMapSpawn" "demobosstargetname,AddOutput,targetname yes,1,-1"
+                //"OnMapSpawn" "individualfiremaker,AddOutput,OnUser1 individualfiremaker:ForceSpawnAtEntityOrigin:spawnbot:0:-1,0,-1"
+                //"OnMapSpawn" "tf_objective_resource,$SetClientProp$m_iChallengeIndex,1,0,-1"
+            }
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_nukestickies_scdeniedrelay"
+                "ontrigger" "MajorCatastrophe_nukestickies_scdeniedsound*,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_scdenied*,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_scdenied*,Stop,0,0.3,-1"
+            }
+			filter_tf_condition
+            {
+                "condition" "5"
+                "Negated" "1"
+                "targetname" "MajorCatastrophe_invulnfilter"
+            }
+            filter_tf_condition
+            {
+                "condition" "52"
+                "Negated" "1"
+                "targetname" "MajorCatastrophe_ubercanteenfilter"
+            }
+			filter_tf_condition
+            {
+                "condition" "65"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobosschargehasendedfilter"
+            }
+			//filter_activator_name
+            //{
+            //    "filtername" "demobosstargetname"
+            //    "Negated" "0"
+            //    "targetname" "demobossnamefilter"
+            //}
+			filter_activator_class
+            {
+                "filterclass" "tf_projectile_mechanicalarmorb"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobossstickyantishortcircuitfilter"
+            }
+			filter_activator_class
+            {
+                "filterclass" "prop_dynamic"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobossstickycollisionfilter1"
+            }
+			filter_activator_class
+            {
+                "filterclass" "worldspawn"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobossstickycollisionfilter2"
+            }
+			filter_activator_class
+            {
+                "filterclass" "prop_static"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobossstickycollisionfilter3"
+            }
+			filter_multi
+            {
+                "Filter01" "MajorCatastrophe_demobossstickycollisionfilter1"
+                "Filter02" "MajorCatastrophe_demobossstickycollisionfilter2"
+                "Filter03" "MajorCatastrophe_demobossstickycollisionfilter3"
+                "filtertype" "1"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_demobossstickycollisionfilter4"
+            }
+            filter_multi
+            {
+                "Filter01" "filter_redteam"
+                "Filter02" "MajorCatastrophe_invulnfilter"
+                "Filter03" "MajorCatastrophe_ubercanteenfilter"
+                "filtertype" "0"
+                "Negated" "0"
+                "targetname" "MajorCatastrophe_filter_red_notubered"
+            }
+		}
+		MajorCatastrophe_FakeIcon
+        {
+            NoFixup 1
+            logic_auto
+            {
+                "OnMapSpawn" "!self,Kill,,0,-1"
+            }
+        }
+		MajorCatastrophe_BossLeftWing
+        {
+            info_particle_system
+            {
+                "origin" "0 -20 0"
+				"angles" "0 30 90"
+                "targetname" "MajorCatastrophe_boss_leftwingparticle"
+                "start_active" "1"
+                "flag_as_weather" "0"
+                "effect_name" "boss_wing_l_1"
+            }
+        }
+		MajorCatastrophe_BossRightWing
+        {
+            info_particle_system
+            {
+                "origin" "0 -20 0"
+				"angles" "180 0 120"
+                "targetname" "MajorCatastrophe_boss_rightwingparticle"
+                "start_active" "1"
+                "flag_as_weather" "0"
+                "effect_name" "boss_wing_r_1"
+            }
+        }
+		MajorCatastrophe_BossRageSteam
+        {
+            NoFixup 1
+			info_particle_system
+            {
+                "origin" "0 0 100"
+				"angles" "0 0 0"
+                "targetname" "MajorCatastrophe_boss_ragesteamparticle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "smoke_chiefrage"
+            }
+        }
+		CaptainPunchMDXXVIII_BossDeathEntities //Identical but pts lmaoooo imagine 
+		{
+			NoFixup 1
+			KeepAlive 1
+			OnParentKilledOutput
+			{
+				Target "CaptainPunchMDXXVIII_deathanim_bigboom_relay"
+				Action "trigger"
+				Delay 0.00
+				Param 1
+			}
+			logic_relay
+            {
+                "targetname" "CaptainPunchMDXXVIII_deathanim_bigboom_relay"
+                "ontrigger" "CaptainPunchMDXXVIII_deathanim_bigexplosion_particle,Start,0,0,-1"
+                "ontrigger" "CaptainPunchMDXXVIII_deathanim_bigexplosion_sound,PlaySound,0,0,-1"
+                "ontrigger" "CaptainPunchMDXXVIII_deathanim_scream_sound,PlaySound,0,0,-1"
+                "ontrigger" "CaptainPunchMDXXVIII_deathanim_shaker,StartShake,0,0,-1"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 20"
+                "targetname" "CaptainPunchMDXXVIII_deathanim_bigexplosion_particle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "mvm_tank_destroy"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 75"
+                "targetname" "CaptainPunchMDXXVIII_deathanim_bigexplosion_particle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "explosionTrail_seeds_mvm"
+            }
+			ambient_generic
+            {
+                "targetname" "CaptainPunchMDXXVIII_deathanim_bigexplosion_sound"
+                "message" "mvm\mvm_tank_explode.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+            ambient_generic
+            {
+                "targetname" "CaptainPunchMDXXVIII_deathanim_bigexplosion_sound"
+                "message" "mvm\mvm_tank_explode.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+            ambient_generic
+            {
+                "targetname" "=145|CaptainPunchMDXXVIII_deathanim_scream_sound"
+                "message" "vo\mvm\mght\heavy_mvm_m_paincrticialdeath01.mp3"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			env_shake
+            {
+                "targetname" "CaptainPunchMDXXVIII_deathanim_shaker"
+                "amplitude" "45"
+                "radius" "9999"
+                "duration" "3"
+                "frequency" "70"
+            }
+		}
+		MajorCatastrophe_BossDeathEntities
+		{
+			NoFixup 1
+			KeepAlive 1
+			OnParentKilledOutput
+			{
+				Target "MajorCatastrophe_deathanim_bigboom_relay"
+				Action "trigger"
+				Delay 0.00
+				Param 1
+			}
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_deathanim_bigboom_relay"
+                "ontrigger" "MajorCatastrophe_deathanim_bigexplosion_particle,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_deathanim_bigexplosion_sound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_deathanim_scream_sound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_deathanim_shaker,StartShake,0,0,-1"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 20"
+                "targetname" "MajorCatastrophe_deathanim_bigexplosion_particle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "mvm_tank_destroy"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 75"
+                "targetname" "MajorCatastrophe_deathanim_bigexplosion_particle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "explosionTrail_seeds_mvm"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_deathanim_bigexplosion_sound"
+                "message" "mvm\mvm_tank_explode.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+            ambient_generic
+            {
+                "targetname" "MajorCatastrophe_deathanim_bigexplosion_sound"
+                "message" "mvm\mvm_tank_explode.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+            ambient_generic
+            {
+                "targetname" "=145|MajorCatastrophe_deathanim_scream_sound"
+                "message" "vo\mvm\mght\demoman_mvm_m_paincrticialdeath01.mp3"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			env_shake
+            {
+                "targetname" "MajorCatastrophe_deathanim_shaker"
+                "amplitude" "45"
+                "radius" "9999"
+                "duration" "3"
+                "frequency" "70"
+            }
+		}
+		MajorCatastrophe_BossEntities
+        {
+            NoFixup 1
+			
+			//SETUP
+			OnSpawnOutput
+			{
+				Target "!activator"
+				Action "AddOutput"
+				Param "targetname demobosstargetname"
+			}
+			//math_remap
+			//{
+			//	"targetname" "test"
+			//}
+			logic_auto
+            {
+                "onmapspawn" "MajorCatastrophe_minion_teleport_trigger,Enable,0,0,-1"
+                "onmapspawn" "MajorCatastrophe_poisonnova_timer,Enable,0,10,-1"
+                //"onmapspawn" "!parent,AddOutput,targetname demobosstargetname,0.1,-1"
+                "onmapspawn" "MajorCatastrophe_poisonnova_trigger_hurt,$SetOwner,demobosstargetname,1,-1"
+            }
+			info_target
+			{
+				"origin" "0 0 50"
+				"targetname" "MajorCatastrophe_bossminiontplocation"
+			}
+			logic_timer
+            {
+                "targetname" "MajorCatastrophe_shake_timer"
+                "UseRandomTime" "0"
+                "RefireTime" "1"
+                "OnTimer" "MajorCatastrophe_shaker,StartShake,0,0,-1"
+            }
+            env_shake
+            {
+                "targetname" "MajorCatastrophe_shaker"
+                "amplitude" "5"
+                "radius" "650"
+                "duration" "1.5"
+                "frequency" "60"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 100"
+                "targetname" "MajorCatastrophe_phasechangeparticle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "punch_wrath_damagedenied"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_phasechangesound"
+                "message" "misc\halloween\spell_meteor_cast.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_ragesteamsound"
+                "message" "ambient\alarms\razortrain_horn1.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			
+			//PHASE 1
+			
+			info_particle_system
+            {
+                "origin" "15 0 45"
+                "targetname" "MajorCatastrophe_poisonnova_warnparticle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "megademo_poisonnova_chargeparticle"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 8"
+                "targetname" "MajorCatastrophe_poisonnova_blastparticle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "megademo_poisonnova_explode"
+            }
+            ambient_generic
+            {
+                "targetname" "MajorCatastrophe_poisonnova_warnsound"
+                "message" "ambient\levels\labs\teleport_mechanism_windup1.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_poisonnova_boomsound"
+                "message" "items\powerup_pickup_supernova_activate.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			trigger_stun
+            {
+                "targetname" "MajorCatastrophe_poisonnova_trigger_stun"
+                "origin" "0 0 0"
+                "mins" "-256 -256 -256"
+                "maxs" "256 256 256"
+                "filtername" "filter_redteam"
+                "spawnflags" "1"
+                "move_speed_reduction" "0.15"
+                "stun_duration" "4"
+                "stun_type" "1"
+                "stun_effects" "0"
+                "StartDisabled" "1"
+            }
+			trigger_hurt
+            {
+                "targetname" "MajorCatastrophe_poisonnova_trigger_hurt"
+                "origin" "0 0 0"
+                "mins" "-256 -256 -256"
+                "maxs" "256 256 256"
+                "damage" "100"
+                "damagecap" "100"
+                "damagemodel" "0"
+                "damagetype" "131072"
+                "filtername" "MajorCatastrophe_filter_red_notubered"
+                "nodmgforce" "1"
+                "spawnflags" "1"
+                "StartDisabled" "1"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_poisonnova_tauntsound"
+                "message" "vo\mvm\mght\demoman_mvm_m_specialcompleted11.mp3"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			logic_timer
+            {
+                "targetname" "MajorCatastrophe_poisonnova_timer"
+                "UseRandomTime" "1"
+                "StartDisabled" "1"
+                "UpperRandomBound" "15"
+                "LowerRandomBound" "10"
+                "OnTimer" "MajorCatastrophe_poisonnova_warnparticle,Start,0,0,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_warnsound,PlaySound,0,0,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_warnsound,StopSound,0,8,-1"
+				"OnTimer" "MajorCatastrophe_poisonnova_tauntsound,PlaySound,0,1.333,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_tauntsound,StopSound,0,7,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_blastparticle,Start,0,2,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_boomsound,PlaySound,0,2-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_boomsound,StopSound,0,9,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_warnparticle,Stop,0,2,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_blastparticle,Stop,0,5,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_trigger*,Enable,0,2.25,-1"
+                "OnTimer" "MajorCatastrophe_poisonnova_trigger*,Disable,0,3,-1"
+                "OnTimer" "demobosstargetname,$Taunt,0,0,-1"
+            }
+			
+			//PHASE 2
+
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_phase2_start"
+                "ontrigger" "MajorCatastrophe_poisonnova_timer,CancelPending,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_timer,Kill,0,0.015,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_warnparticle,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_warnsound,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_tauntsound,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_blastparticle,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_trigger*,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_boomsound,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_poisonnova_warnparticle,Kill,0,10,-1"
+                "ontrigger" "demobosstargetname,$AddCond,52,0.1,-1"
+                "ontrigger" "MajorCatastrophe_boss_ragesteamparticle,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_phasechangeparticle,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_boss_ragesteamparticle,Stop,0,5,-1"
+                "ontrigger" "MajorCatastrophe_phasechangeparticle,Stop,0,5,-1"
+                "ontrigger" "MajorCatastrophe_ragesteamsound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_phasechangesound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_ragesteamsound,StopSound,0,10,-1"
+                "ontrigger" "MajorCatastrophe_phasechangesound,StopSound,0,10,-1"
+                "ontrigger" "MajorCatastrophe_firewave_timer,Enable,0,1.5,-1"
+                "ontrigger" "demobosstargetname,$RemoveCond,52,1.5,-1"
+                "ontrigger" "demobosstargetname,$ChangeAttributes,phase2,0,-1"
+            }
+			info_particle_system
+            {
+                "origin" "25 -25 45"
+                "targetname" "MajorCatastrophe_firewave_warnparticle"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "megademo_firenova_chargeparticle"
+            }
+			info_particle_system
+            {
+                "origin" "-125 125 45"
+                "targetname" "MajorCatastrophe_firewave_benchmark_donotenable"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "megademo_firenova_chargeparticle"
+            }
+			logic_timer
+            {
+                "targetname" "MajorCatastrophe_firewave_timer"
+                "UseRandomTime" "1"
+                "StartDisabled" "1"
+                "UpperRandomBound" "20"
+                "LowerRandomBound" "16"
+                "OnTimer" "MajorCatastrophe_firewave_warnparticle,Start,0,0,-1"
+                "OnTimer" "MajorCatastrophe_firewave_warnparticle,Stop,0,3.5,-1"
+                "OnTimer" "MajorCatastrophe_firewave_tauntsound,PlaySound,0,0,-1"
+                "OnTimer" "MajorCatastrophe_firewave_boomsound,PlaySound,0,3.5,-1"
+                "OnTimer" "MajorCatastrophe_firewave_tauntsound,StopSound,0,10,-1"
+                "OnTimer" "MajorCatastrophe_firewave_boomsound,StopSound,0,10,-1"
+				"OnTimer" "MajorCatastrophe_phasechangesound,PlaySound,0,3.5,-1"
+                "OnTimer" "MajorCatastrophe_phasechangesound,StopSound,0,10,-1"
+                "OnTimer" "alternativefiremathmaker,ForceSpawnAtEntityOrigin,MajorCatastrophe_firewave_benchmark_donotenable,3.3,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,4,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,5,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,6,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,7,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,8,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,9,-1"
+                "OnTimer" "individualfiretarget_900dps,FireUser1,0,10,-1"
+                "OnTimer" "individualfiretarget_900dps,Kill,0,12,-1" //Failsafe
+                "OnTimer" "alternativefiremathtarget*,Kill,0,12,-1" //Failsafe
+                "OnTimer" "putfirehere*,Kill,0,12,-1" //Failsafe
+                "OnTimer" "math_remap,Kill,0,12,-1" //Failsafe
+                "OnTimer" "math_colorblend,Kill,0,12,-1" //Failsafe
+                //"OnTimer" "alternativefiremathmaker,ForceSpawnAtEntityOrigin,spawnbot,3.5,-1"
+				"OnTimer" "demobosstargetname,$TauntFromItem,Spent Well Spirits Taunt,0,-1"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_firewave_tauntsound"
+                "message" "vo\mvm\mght\taunts\demoman_mvm_m_taunts08.mp3"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_firewave_boomsound"
+                "message" "misc\halloween\spell_fireball_impact.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			
+			
+			//PHASE 3
+			
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_phase3_start"
+                "ontrigger" "MajorCatastrophe_firewave_timer,CancelPending,0,0,-1"
+                "ontrigger" "MajorCatastrophe_firewave_timer,Kill,0,0.015,-1"
+                "ontrigger" "individualfiretarget_900dps,Kill,0,0,-1"
+                "ontrigger" "individualfiretarget_900dps,Kill,6,0,-1"
+                "ontrigger" "MajorCatastrophe_firewave_warnparticle,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_firewave_benchmark_donotenable,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_firewave_tauntsound,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_firewave_boomsound,Kill,0,0,-1"
+                "ontrigger" "demobosstargetname,$AddCond,52,0.1,-1"
+                "ontrigger" "MajorCatastrophe_boss_ragesteamparticle,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_phasechangeparticle,Start,0,0,-1"
+                "ontrigger" "MajorCatastrophe_boss_ragesteamparticle,Stop,0,5,-1"
+                "ontrigger" "MajorCatastrophe_phasechangeparticle,Stop,0,5,-1"
+                "ontrigger" "MajorCatastrophe_ragesteamsound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_phasechangesound,PlaySound,0,0,-1"
+                "ontrigger" "MajorCatastrophe_ragesteamsound,StopSound,0,10,-1"
+                "ontrigger" "MajorCatastrophe_phasechangesound,StopSound,0,10,-1"
+                "ontrigger" "demobosstargetname,$RemoveCond,52,1.5,-1"
+                "ontrigger" "demobosstargetname,$ChangeAttributes,phase3,0,-1"
+            }
+			
+			env_shake
+            {
+                "targetname" "MajorCatastrophe_nukestickies_shaker"
+                "amplitude" "45"
+                "radius" "4000"
+                "duration" "2"
+                "frequency" "120"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_nukestickies_boomsound"
+                "message" "misc\doomsday_missile_explosion.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_nukestickies_boomsound"
+                "message" "misc\doomsday_missile_explosion.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_nukestickies_scdeniedsound"
+                "message" "physics\metal\metal_solid_impact_bullet4.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+			env_fade
+			{
+				"targetname" "MajorCatastrophe_nukestickies_fade"
+				"duration" "0.35"
+				"holdtime" "0.1"
+				"rendercolor" "255 255 255"
+				"spawnflags" "1"
+			}
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_stickynuke_warnsound"
+                "message" "weapons\det_pack_timer.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "49"
+                "origin" "0 0 100"
+            }
+		}
+		MajorCatastrophe_FireCannonballs
+		{
+			KeepAlive 1
+            OnParentKilledOutput
+			{
+				Target "MajorCatastrophe_firecannonballs_relay"
+				Action "trigger"
+				Delay 0.00
+				Param 1
+			}
+			ambient_generic
+            {
+                "targetname" "MajorCatastrophe_firecannonballs_sound"
+                "message" "ambient\fire\firebig.wav"
+                "health" "10"
+                "radius" "2100"
+                "spawnflags" "16"
+                "origin" "0 0 100"
+            }
+			trigger_ignite
+            {
+                "targetname" "MajorCatastrophe_firecannonballs_triggerignite"
+                "origin" "0 0 16"
+                "mins" "-144 -144 -144"
+                "maxs" "144 144 144"
+                "burn_duration" "4"
+                "damage_percent_per_second" "400"
+                "filtername" "MajorCatastrophe_filter_red_notubered"
+                "spawnflags" "1"
+                "StartDisabled" "1"
+            }
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_firecannonballs_relay"
+                "ontrigger" "MajorCatastrophe_firecannonballs_triggerignite,Enable,0,0.5,-1"
+                "ontrigger" "MajorCatastrophe_firecannonballs_sound,PlaySound,0,0.25,-1"
+                "ontrigger" "MajorCatastrophe_firecannonballs_sound,StopSound,0,3.75,-1"
+                "ontrigger" "MajorCatastrophe_firecannonballs_triggerignite,Kill,0,3.5,-1"
+                "ontrigger" "!self,Kill,0,4,-1"
+            }
+		}
+		MajorCatastrophe_NukeStickies
+		{
+			KeepAlive 1
+			OnSpawnOutput
+			{
+				Target "MajorCatastrophe_nukestickies_setuprelay"
+				Action "trigger"
+				Delay -1
+				Param 1
+			}
+			OnParentKilledOutput
+			{
+				Target "MajorCatastrophe_nukestickies_boomrelay"
+				Action "trigger"
+				Delay 0.00
+				Param 1
+			}
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_nukestickies_setuprelay"
+                "ontrigger" "!parent,$SetVar$isbosssticky,1,-1,-1"
+                //"ontrigger" "!parent,Kill,0,3,-1"
+                "ontrigger" "tf_projectile_pipe_remote,SetDamageFilter,filter_damagetype_none,0,-1"
+                "ontrigger" "tf_projectile_pipe_remote,$SetCollisionFilter,demobossstickycollisionfilter4,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_chargeup,Start,0,3,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_chargeup,Kill,0,9,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_scdenied,Kill,0,9,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_blowupwarning,Start,0,8,-1"
+                //"ontrigger" "scnullifier_trigger,Kill,0,9,-1"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_blowupwarning,Kill,0,9,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,3,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,6,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,7.5,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,8.25.,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,8.625.,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,8.8125.,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,8.890625.,-1"
+                "ontrigger" "MajorCatastrophe_stickynuke_warnsound,PlaySound,0,8.953125.,-1"
+                "ontrigger" "!self,Kill,0,10,-1"
+            }
+			logic_relay
+            {
+                "targetname" "MajorCatastrophe_nukestickies_boomrelay"
+                "ontrigger" "MajorCatastrophe_nukestickiesparticle_scdenied,Kill,0,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickies_shaker,StartShake,0,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickies_fade,Fade,0,0,-1"
+                "ontrigger" "MajorCatastrophe_nukestickies_boomsound,PlaySound,0,0,-1"
+                "ontrigger" "!self,Kill,0,0.5,-1"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 0"
+                "targetname" "MajorCatastrophe_nukestickiesparticle_blowupwarning"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "nukesticky_blowupwarning"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 0"
+                "targetname" "MajorCatastrophe_nukestickiesparticle_chargeup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "nukesticky_chargeup"
+            }
+			info_particle_system
+            {
+                "origin" "0 0 0"
+                "targetname" "MajorCatastrophe_nukestickiesparticle_scdenied"
+                "start_active" "0"
+                "flag_as_weather" "0"
+                "effect_name" "nukesticky_scdenied"
+            }
+		}
+    }
+
+    Templates
+    {
+        T_TFBot_Demo_Catastrophe
+        {
+            	Class Demoman
+				Name "Major Catastrophe"
+				ClassIcon demo_bomber
+				Health 225000
+				Scale 2.1
+				Tag forcefollowbombpath
+				Tag nostupidtopsidedoorway
+				FastUpdate 1 [$SIGSEGV]
+				WeaponResist [$SIGSEGV] //Multiplies damage received from weapons listed below
+                {
+                    "TF_WEAPON_SCATTERGUN" 1.449
+                    "tf_weapon_soda_popper" 1.412
+                    "tf_weapon_handgun_scout_primary" 1.63
+                    "tf_weapon_pep_brawler_blaster" 1.875
+                    "TF_WEAPON_ROCKETLAUNCHER" 1.7
+                    //"tf_weapon_rocketlauncher_airstrike" 1.786
+                    "tf_weapon_flamethrower" 1.5
+                    //"TF_Weapon_DragonsFury" 2
+                    "TF_WEAPON_GRENADELAUNCHER" 1.616
+                    "tf_weapon_cannon" 1.54
+                    "TF_WEAPON_PIPEBOMBLAUNCHER" 1.5767
+                    "tf_weapon_sword" 2
+                    "tf_weapon_knife" 1.25
+                    "TF_WEAPON_MINIGUN" 0.85
+                    //"TF_WEAPON_SHOTGUN" 1.723
+                    "TF_WEAPON_SHOTGUN_PRIMARY" 2.5
+                    "tf_weapon_sentry_revenge" 2.5
+                    "TF_WEAPON_SNIPERRIFLE" 2
+                    "tf_weapon_compound_bow" 2
+                }
+				AlwaysGlow 1 [$SIGSEGV]
+                UseMeleeThreatPrioritization 1 [$SIGSEGV]
+                Action Mobber [$SIGSEGV]
+				//Attributes IgnoreEnemies
+				Attributes UseBossHealthBar
+                SpawnTemplate "MajorCatastrophe_BossEntities" [$SIGSEGV]
+                SpawnTemplate "MajorCatastrophe_BossDeathEntities" [$SIGSEGV]
+				UseCustomModel "models/bots/skangus_event_boss/bot_demo_boss_mega.mdl" [$SIGSEGV]
+				SpawnTemplate [$SIGSEGV] //Spawn custom player template
+				{
+					Name "MajorCatastrophe_BossLeftWing"
+					Bone "bip_upperArm_L"
+				}
+				SpawnTemplate [$SIGSEGV] //Spawn custom player template
+				{
+					Name "MajorCatastrophe_BossRightWing"
+					Bone "bip_upperArm_R"
+				}
+				SpawnTemplate [$SIGSEGV] //Spawn custom player template
+				{
+					Name "MajorCatastrophe_BossRageSteam"
+					Bone "exhaust_bone"
+				}
+				FireInput [$SIGSEGV] 
+				{
+					Target "MajorCatastrophe_phase2_start" //Entity name to use
+					Action "Trigger" //Input to fire
+					Param "" //Parameter to use
+					Delay 0 //Delay before firing the input
+					Cooldown 1 //Cooldown between firing the input
+					Repeats 1 //How many times should the input be fired
+					IfHealthBelow 150001 //When set, the task activates only when the bot health is below specified value
+				}
+				FireInput [$SIGSEGV] 
+				{
+					Target "MajorCatastrophe_phase3_start" //Entity name to use
+					Action "Trigger" //Input to fire
+					Param "" //Parameter to use
+					Delay 0 //Delay before firing the input
+					Cooldown 1 //Cooldown between firing the input
+					Repeats 1 //How many times should the input be fired
+					IfHealthBelow 75001 //When set, the task activates only when the bot health is below specified value
+				}
+				FireWeapon [$SIGSEGV]  //Periodically fires weapon
+                {
+                    Delay 3.0 //Time before the first fire input starts (Default: 10)
+                    Cooldown 0.5 //Time between each fire input (Default: 10)
+                    Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+                    Duration 0.1 //How long should the button be pressed (Default: 0.1)
+                    Type "Primary" 
+                    IfSeeTarget 1
+                    IfHealthBelow 150001
+                    IfHealthAbove 75000
+                }
+				FireWeapon [$SIGSEGV]  //Periodically fires weapon
+                {
+                    Delay 6.0 //Time before the first fire input starts (Default: 10)
+                    Cooldown 12.5 //Time between each fire input (Default: 10)
+                    Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+                    Duration 0.4 //How long should the button be pressed (Default: 0.1)
+                    Type "Primary" 
+                    //IfSeeTarget 1
+                    IfHealthBelow 75001
+                    //IfHealthAbove 50000
+                }
+				FireWeapon [$SIGSEGV]  //Periodically fires weapon
+                {
+                    Delay 15.0 //Time before the first fire input starts (Default: 10)
+                    Cooldown 12.5 //Time between each fire input (Default: 10)
+                    Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+                    Duration 0.4 //How long should the button be pressed (Default: 0.1)
+                    Type "Secondary" 
+                    //IfSeeTarget 1
+                    IfHealthBelow 75001
+                    //IfHealthAbove 20000
+                }
+				//FireWeapon [$SIGSEGV]  //Periodically fires weapon
+                //{
+                //    Delay 2.0 //Time before the first fire input starts (Default: 10)
+                //    Cooldown 0.2 //Time between each fire input (Default: 10)
+                //    Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+                //    Duration 0.1 //How long should the button be pressed (Default: 0.1)
+                //    Type "Primary" 
+                //    IfSeeTarget 1
+                //    IfHealthBelow 50001
+                //}
+				ShootTemplate [$SIGSEGV]  //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
+				{
+					Name MajorCatastrophe_FireCannonballs //Name of the template
+					Speed 1 //Velocity of the spawned objects (Default: 1000)
+					Offset "0 0 0" //Offset from the bot shooting position (Default: 0 0 0)
+					Angles "0 0 0" //Shooting angle offset (Default: 0 0 0)
+					Spread 0 //Spread of the fired template entities. 0 - No spread, 0.1 - Beggar like spread, 1 - Very inaccurate (Default: 0)
+					AttachToProjectile 1 //If set, the template is spawned as a child of the projectile being fired. Incompatible with overrideshoot
+					ItemName "The Loose Cannon" //Can be specified to limit to a specific weapon
+				}
+				ShootTemplate [$SIGSEGV]  //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
+				{
+					Name MajorCatastrophe_NukeStickies //Name of the template
+					Speed 1 //Velocity of the spawned objects (Default: 1000)
+					Offset "0 0 0" //Offset from the bot shooting position (Default: 0 0 0)
+					Angles "0 0 0" //Shooting angle offset (Default: 0 0 0)
+					Spread 0 //Spread of the fired template entities. 0 - No spread, 0.1 - Beggar like spread, 1 - Very inaccurate (Default: 0)
+					AttachToProjectile 1 //If set, the template is spawned as a child of the projectile being fired. Incompatible with overrideshoot
+					ItemName "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER" //Can be specified to limit to a specific weapon
+				}
+				EventChangeAttributes
+                {
+                    Default
+                    {
+						Skill Expert
+						Attributes HoldFireUntilFullReload
+						Attributes MiniBoss
+						Item "Forgotten King's Pauldrons"
+						Item "Prince Tavish's Crown"
+						Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
+						WeaponRestrictions PrimaryOnly
+						CustomEyeGlowColor "0 175 8" [$SIGSEGV]
+						ItemAttributes
+						{
+							ItemName "Upgradeable TF_WEAPON_GRENADELAUNCHER"
+							"paintkit_proto_def_index" 255
+							"set_item_texture_wear"    0.2
+							"fire input on hit" "!activator^$PlaySoundToSelf^ambient\levels\canals\toxic_slime_sizzle4.wav"
+							"custom projectile model" "models/props_skangus_event\w_grenade_toxic.mdl"
+							"explosion particle" "greenfist_explosion"
+							"projectile trail particle" "pipebombtrail_green"
+							"damage bonus" 4.5
+							"clip size bonus" 4
+							"projectile spread angle penalty" 5
+							"faster reload rate" 0.001
+							"fire rate bonus" 0.5
+							"grenade bounce speed" 1.5
+							"grenade bounce damage" 0.5
+							//"dmg current health" 0.5
+							//"projectile no deflect" 1
+							"no self blast dmg" 1
+						}
+						CharacterAttributes
+						{
+							"move speed bonus"	0.45
+							"damage force reduction" 0
+							"airblast vulnerability multiplier" 0
+							"airblast vertical vulnerability multiplier" 0
+							"override footstep sound set" 3
+							"gesture speed increase" 0.5
+							"voice pitch scale" 0
+							"rage giving scale" 0.4
+                            "SET BONUS: dmg from sentry reduced" 3
+                            "dmg taken mult from special damage type 1" 0.7754
+                            "dmg taken mult from special damage type 2" 0.6449
+                            "dmg taken mult from special damage type 3" 2
+                            "health from healers reduced" 0.001
+							"mult stun resistance" 0
+						}
+					}
+					phase2
+                    {
+						Skill Expert
+						Attributes MiniBoss
+						Item "Forgotten King's Pauldrons"
+						Item "Prince Tavish's Crown"
+						Item "The Loose Cannon"
+						Attributes SuppressFire
+						WeaponRestrictions PrimaryOnly
+						CustomEyeGlowColor "255 125 0" [$SIGSEGV]
+						ItemAttributes
+						{
+							ItemName "The Loose Cannon"
+							"paintkit_proto_def_index" 293
+							"set_item_texture_wear"    0.2
+							"faster reload rate" 1.5
+							"fire rate bonus" 1.5
+							"damage bonus" 5
+							"set damagetype ignite" 1
+							"clip size penalty" 0.25
+							"blast radius increased" 1.2
+							"grenade launcher mortar mode" 0
+							"explosion particle" "massive_fire_explosion"
+							"custom projectile model" "models/props_skangus_event\w_cannonball_fire.mdl"
+							//"dmg current health" 0.25
+							"projectile no deflect" 1
+							"no self blast dmg" 1
+						}
+						CharacterAttributes
+						{
+							"move speed bonus"	0.45
+							"damage force reduction" 0
+							"airblast vulnerability multiplier" 0
+							"airblast vertical vulnerability multiplier" 0
+							"override footstep sound set" 3
+							"gesture speed increase" 2
+							"voice pitch scale" 0
+							"rage giving scale" 0.4
+                            "SET BONUS: dmg from sentry reduced" 3
+                            "dmg taken mult from special damage type 1" 0.7754
+                            "dmg taken mult from special damage type 2" 0.6449
+                            "dmg taken mult from special damage type 3" 2
+                            "health from healers reduced" 0.001
+							"mult stun resistance" 0
+						}
+					}
+					phase3
+                    {
+						Skill Expert
+						Attributes SuppressFire
+						Attributes MiniBoss
+						Item "Forgotten King's Pauldrons"
+						Item "Prince Tavish's Crown"
+						Item "The Loch-n-Load"
+						Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
+						WeaponRestrictions SecondaryOnly
+						CustomEyeGlowColor "13 229 229" [$SIGSEGV]
+						ItemAttributes
+						{
+							ItemName    "The Loch-n-Load"
+							"is_passive_weapon"    1
+							"override projectile type"    27 // Fires nothing
+						}
+						ItemAttributes
+						{
+							ItemName "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
+							"paintkit_proto_def_index" 245
+							"set_item_texture_wear"    0.2
+							"faster reload rate" 0.1
+							"clip size penalty" 0.125
+							"damage bonus" 40
+							"blast radius increased" 15
+							//"grenade launcher mortar mode" 0
+							"explosion particle" "nukeexplosion"
+							//"custom projectile model" "models/props_skangus_event\w_cannonball_fire.mdl"
+							//"dmg current health" 0.25
+							"projectile no deflect" 1
+							"damage causes airblast" 1
+							"airblast pushback scale" 5
+							"no self blast dmg" 1
+							"mult projectile scale" 3
+						}
+						CharacterAttributes
+						{
+							"move speed bonus"	0.45
+							"damage force reduction" 0
+							"airblast vulnerability multiplier" 0
+							"airblast vertical vulnerability multiplier" 0
+							"override footstep sound set" 3
+							"gesture speed increase" 2
+							"voice pitch scale" 0
+							"rage giving scale" 0.4
+                            "SET BONUS: dmg from sentry reduced" 3
+                            "dmg taken mult from special damage type 1" 0.7754
+                            "dmg taken mult from special damage type 2" 0.6449
+                            "dmg taken mult from special damage type 3" 2
+                            "health from healers reduced" 0.001
+							"mult stun resistance" 0
+						}
+					}
+					phase4
+                    {
+						Skill Expert
+						Attributes SuppressFire
+						Attributes MiniBoss
+						Item "Forgotten King's Pauldrons"
+						Item "Prince Tavish's Crown"
+						Item "The Ullapool Caber"
+						Item "The Loch-n-Load"
+						Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
+						//Item "The Splendid Screen"
+						WeaponRestrictions MeleeOnly
+						CustomEyeGlowColor "255 0 0" [$SIGSEGV]
+						ItemAttributes
+						{
+							ItemName    "The Loch-n-Load"
+							"is_passive_weapon"    0
+							"override projectile type"    27 // Fires nothing
+						}
+						ItemAttributes
+						{
+							ItemName "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
+							"paintkit_proto_def_index" 245
+							"set_item_texture_wear"    0.2
+							"faster reload rate" 0.1
+							"clip size penalty" 0.125
+							"damage bonus" 0.01
+							"blast radius increased" 6.5
+							//"grenade launcher mortar mode" 0
+							"explosion particle" "nukeexplosion"
+							//"custom projectile model" "models/props_skangus_event\w_cannonball_fire.mdl"
+							//"dmg current health" 0.25
+							"projectile no deflect" 1
+							"no self blast dmg" 1
+							"damage causes airblast" 0
+							"mult projectile scale" 3
+						}
+						ItemAttributes
+						{
+							ItemName "The Ullapool Caber"
+							"regenerate stickbomb" 1
+							"damage bonus" 10
+							"melee range multiplier" 1.25
+							"blast radius increased" 1.5
+							//"grenade launcher mortar mode" 0
+							"explosion particle" "fluidsmokeexpl_short"
+							//"custom projectile model" "models/props_skangus_event\w_cannonball_fire.mdl"
+							//"dmg current health" 0.25
+							"no self blast dmg" 1
+							"add cond on kill" 65
+							"add cond on kill duration" 0.5
+						}
+						CharacterAttributes
+						{
+							"move speed bonus"	0.01
+							"damage force reduction" 0
+							"airblast vulnerability multiplier" 0
+							"airblast vertical vulnerability multiplier" 0
+							"override footstep sound set" 3
+							"gesture speed increase" 2
+							"voice pitch scale" 0
+							"rage giving scale" 0.4
+                            "SET BONUS: dmg from sentry reduced" 3
+                            "dmg taken mult from special damage type 1" 0.7754
+                            "dmg taken mult from special damage type 2" 0.6449
+                            "dmg taken mult from special damage type 3" 2
+                            "health from healers reduced" 0.001
+							"mult stun resistance" 0
+						}
+					}
+				}
+        }
+        T_TFBot_MajorCatastrophe_Boss_Minion //Spawn him on random places
+		{
+			Class Demoman
+			Item "The Ullapool Caber"
+			WeaponRestrictions MeleeOnly
+			Name "Little Bomber"
+			Scale 0.8
+			Skill Hard
+			Health 125
+			Tag bossminion
+			Action Mobber [$SIGSEGV]
+			CharacterAttributes
+			{
+				"damage bonus" 1.6
+				"move speed bonus" 1.2
+			}
+		}
+    }
+}
