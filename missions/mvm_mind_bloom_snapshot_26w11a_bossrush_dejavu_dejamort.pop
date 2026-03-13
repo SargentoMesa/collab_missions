@@ -17,6 +17,7 @@
 #base dejavu_miniboss_generalbomber_zombief1ghter.pop
 #base dejavu_miniboss_kingburst_zombief1ghter.pop
 #base dejavu_miniboss_fallenchiefs_dave_sergeanttable.pop
+#base dejavu_miniboss_fivelitersinmyblood_sergeanttable.pop
 
 WaveSchedule
 {
@@ -415,7 +416,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
@@ -529,8 +529,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     EntFire(`wave_init_arena_coastrock_relay`, `Trigger`, null, 6)
@@ -663,7 +662,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
@@ -896,7 +894,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
                     
                     IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
@@ -956,6 +953,468 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                       "
+            }
+        }
+
+        // Boss 1 - Fallen Heavy Patrol Chief
+        WaveSpawn
+        {
+            Name "Wave5_Boss1-HeavyPatrolChief"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Heavy_PatrolChief
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave5_Support1-Demomen`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave5_Support1-Demomen`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave5_Support1-Demoknights`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave5_Support1-Demoknights`)
+                        EntFire(`arena_spyfactory_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Demomen
+        {
+            Name "Wave5_Support1-Demomen"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Demoman
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support Demoknights
+        {
+            Name "Wave5_Support1-Demoknights"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 3
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Demoman_Knight
+            }
+        }
+
+        // Boss 2 - Fallen Pyro & Demo Patrol Chiefs
+        WaveSpawn
+        {
+            Name "Wave5_Boss2-PyroPatrolChief"
+            WaitForAllDead "Wave5_Boss1-HeavyPatrolChief"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_PatrolChief
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave5_Support1-Demomen`, 7.5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave5_Support1-Demoknights`, 7.5)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave5_Boss2-DemoPatrolChief"
+            WaitForAllDead "Wave5_Boss1-HeavyPatrolChief"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Demo_PatrolChief
+            }
+        }
+    }
+
+    // ADVANCED GAUNTLET //
+
+    Wave // Mini Boss - Drunken Drivers
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                    
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossRushMusic
+
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            HideIcon 1
+
+            TFBot
+            {
+                Name "the bob"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry01.mp3"
+            DoneWarningSound "vo/mvm/norm/heavy_mvm_paincrticialdeath02.mp3"
+
+            TFBot
+            {
+                Name "God's Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+                Health 10000
+                Attributes UseBossHealthBar
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-Interlude"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            WaitBeforeStarting 3
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_negativevocalization02.mp3"
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-Interlude"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            WaitBeforeStarting 6
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_domination13.mp3"
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-Interlude"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            WaitBeforeStarting 10
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_go01.mp3"
+        }
+
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry05.mp3"
+
+            TFBot
+            {
+                Name "God's 2nd Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 13
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry06.mp3"
+
+            TFBot
+            {
+                Name "God's 3rd Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 13.5
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry03.mp3"
+
+            TFBot
+            {
+                Name "God's 4th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 14
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_yell7.mp3"
+
+            TFBot
+            {
+                Name "God's 5th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 14.5
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_specialcompleted05.mp3"
+
+            TFBot
+            {
+                Name "God's 6th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 15
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry01.mp3"
+
+            TFBot
+            {
+                Name "God's 7th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 15.5
+            WaitBetweenSpawns 0
+            TotalCurrency 20
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry04.mp3"
+
+            TFBot
+            {
+                Name "God's 8th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 16
+            WaitBetweenSpawns 0
+            TotalCurrency 40
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry06.mp3"
+
+            TFBot
+            {
+                Name "God's 9th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 16.5
+            WaitBetweenSpawns 0
+            TotalCurrency 40
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry05.mp3"
+
+            TFBot
+            {
+                Name "God's 10th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 16.5
+            WaitBetweenSpawns 0
+            TotalCurrency 40
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_domination16.mp3"
+
+            TFBot
+            {
+                Name "God's 11th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave6_Boss1-TheDrunkHorde"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 16.5
+            WaitBetweenSpawns 0
+            TotalCurrency 40
+
+            FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_revenge02.mp3"
+
+            TFBot
+            {
+                Name "God's 12th Drunkest Driver"
+                Template MiniBossHorde_DrivingInMyCar
             }
         }
     }
