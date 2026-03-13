@@ -944,6 +944,10 @@ if(!("RedWorldMissionName" in ROOT))
 
 	function TagCheck(player)
 	{
+		if (!player.IsBotOfType(TF_BOT_TYPE))
+		{
+			return;
+		}
 		local tags = {};
 		player.GetAllBotTags(tags);
 		foreach (tag in tags)

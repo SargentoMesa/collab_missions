@@ -22,28 +22,6 @@ WaveSchedule
 
 	Templates
 	{
-		T_TFBot_Giant_Armored_Heavyweapons
-		{
-			Class Heavyweapons
-			Name "Giant Armored Heavy"
-			ClassIcon heavy_armored
-			Skill Expert
-			Health 12000
-			WeaponRestrictions PrimaryOnly
-			MaxVisionRange 1200
-			Attributes MiniBoss
-			Attributes UseBossHealthBar
-			Tag bot_giant
-			// Damage bonus is cancer with this guy, so no more damage bonus
-			CharacterAttributes
-			{
-				"move speed bonus"	0.5
-				"damage force reduction" 0.3
-				"airblast vulnerability multiplier" 0.3
-				"override footstep sound set" 2
-			}
-		}
-
 		T_TFBot_Chief_Armored_Heavy
 		{
 			Class Heavyweapons
@@ -328,11 +306,7 @@ WaveSchedule
 					[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
 					[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
 			]);
-			EntFire(`gamerules`, `SetRedTeamRespawnWaveTime`, `15.0`, 0.1);
-
-			EntFire(`portal_enable_relay`, `Trigger`)
-			EntFire(`boss_rush_deathcounter_init`, `Disable`)
-			"
+			EntFire(`gamerules`, `SetRedTeamRespawnWaveTime`, `15.0`, 0.1);"
 		}
 		DoneOutput
 		{
@@ -341,12 +315,7 @@ WaveSchedule
 			Param "EntFire(`wave_finished_relay`, `Trigger`)
 			AlternateWaves.bTrackIcons = true;
 
-			Convars.SetValue(`tf_allow_sliding_taunt`, 0);
-
-			EntFire(`boss_rush_deathcounter_init`, `Enable`)
-			EntFire(`spawn_teleporter`, `Disable`)
-			EntFire(`portal_disable_relay`, `Trigger`)
-			EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 2)"
+			Convars.SetValue(`tf_allow_sliding_taunt`, 0);"
 		}
 		InitWaveOutput
 		{
@@ -377,45 +346,35 @@ WaveSchedule
 				{
 					IncludeScript(`mvm_meltdown_red_world`, getroottable());
 				}
-				RedWorld.BossPositions = [Vector(4600.0, 6450.0, 720.0)];
-				RedWorld.BossAngles = [QAngle(0.0, 0.0, 0.0)];
+				RedWorld.BossPositions = [Vector(7987.0, -465.0, -1200.0)];
+				RedWorld.BossAngles = [QAngle(0.0, 180.0, 0.0)];
 				RedWorld.BossFleeRange = [1500.0, 2500.0];
 				PrecacheSound(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
-				PrecacheSound(`#mentrillum/mvm/music/hard_boiled_heavies.wav`);
 				PrecacheSound(`)mentrillum/mvm/sfx/attack_groundpound.wav`);
 				PrecacheSound(`)mentrillum/mvm/sfx/attack_chestbeam.wav`);
 				Convars.SetValue(`tf_allow_sliding_taunt`, 1); // For Tonka Weapons's sandvich eating
 
-				EntFire(`spawnbot_support_desert_teleporter_relay`, `Disable`)
-				EntFire(`spawnbot_support_industrial_teleporter_relay`, `Enable`)
-				EntFire(`spawnbot_support_saxford_teleporter_relay`, `Disable`)
-
-				EntFire(`spawnbot_boss_desert_teleporter_relay`, `Disable`)
-				EntFire(`spawnbot_boss_industrial_teleporter_relay`, `Enable`)
-				EntFire(`spawnbot_boss_saxford_teleporter_relay`, `Disable`)
+				EntFire(`wave_init_arena_meltdown_relay`, `Trigger`);
 			"
 		}
 
 		WaveSpawn // Teleporting Players
 		{
 			Name "Wave1_PlayerTeleport"
-			WaitBeforeStarting 5
+			WaitBeforeStarting 10
 			FirstSpawnOutput
 			{
 				Target BigNet
 				Action RunScriptCode
 				Param "
-						EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
-						EntFire(`spawn_teleporter`, `Enable`)
-						EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
-						EntFire(`letsgetthisshowrolling`, `Trigger`, null, 10)
+						EntFire(`arena_teleport_relay`, `Trigger`)
 					"
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // Start of music
 		{
-			WaitBeforeStarting 7
+			WaitBeforeStarting 12
 			FirstSpawnOutput
 			{
 				Target BigNet
@@ -426,10 +385,10 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // This is when the boss will do his intro
 		{
 			Name "intro"
-			WaitBeforeStarting 12.0
+			WaitBeforeStarting 16.0
 			FirstSpawnOutput
 			{
 				Target bignet
@@ -438,7 +397,8 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // This is when the boss actually spawns, don't change this WaveSpawn's WBS
+		// change the intro WBS if you want to make it faster or shorter
 		{
 			Name "boss"
 			WaitForAllSpawned "intro"
@@ -455,7 +415,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // For when the boss dies, just reset his music or do whatever
 		{
 			WaitForAllDead "boss"
 			FirstSpawnOutput
@@ -468,7 +428,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // Support bots
 		{
 			Name "phase0_bots"
 			WaitForAllSpawned "intro"
@@ -708,7 +668,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // You don't REALLY need this, so just do whatever whenever the boss dies
 		{
 			WaitForAllDead "boss"
 			WaitBeforeStarting 5

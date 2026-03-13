@@ -213,6 +213,7 @@ if (!("MusicSystemMentMission" in ROOT))
 	MasterEntity = null
 	function OnGameEvent_recalculate_holidays(params)
 	{
+		ResetTracks();
 		local ent = FindByClassname(null, "tf_objective_resource");
 		if (ent)
 		{
