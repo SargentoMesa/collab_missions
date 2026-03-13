@@ -193,43 +193,6 @@ population
                 "spawnflags" "1"
                 "StartDisabled" "1"
             }
-            trigger_teleport
-            {
-                "filtername" "CaptainPunchMDXXVIII_filter_minions"
-                "origin" "-1948 5064 192"
-                "mins" "-328 -328 -700"
-                "maxs" "328 328 700"
-                "spawnflags" "1"
-                "StartDisabled" "1"
-                "target" "CaptainPunchMDXXVIII_invulnbeam_bossattachpoint"
-                "targetname" "CaptainPunchMDXXVIII_minion_teleport_trigger"
-                "onstarttouch" "CaptainPunchMDXXVIII_summonbabypunches_sound,StopSound,0,4,-1"
-                "onstarttouch" "CaptainPunchMDXXVIII_summonbabypunches_sound,PlaySound,0,0,-1"
-            }
-            trigger_teleport
-            {
-                "filtername" "CaptainPunchMDXXVIII_filter_isdeathanim"
-                "origin" "-1948 5064 192"
-                "mins" "-3280 -3280 -7000"
-                "maxs" "3280 3280 7000"
-                "spawnflags" "1"
-                "StartDisabled" "0"
-                "target" "CaptainPunchMDXXVIII_lastbossposition"
-                "targetname" "CaptainPunchMDXXVIII_deathanim_teleporter"
-                "onstarttouch" "!activator,AddOutput,targetname punchbossdeathanimname,0,-1"
-                "onstarttouch" "!activator,SetDamageFilter,CaptainPunchMDXXVIII_filter_damagedeath,0,-1"
-            }
-            trigger_teleport
-            {
-                "filtername" "CaptainPunchMDXXVIII_filter_minions"
-                "origin" "-1948 5064 192"
-                "mins" "-328 -328 -700"
-                "maxs" "328 328 700"
-                "spawnflags" "1"
-                "StartDisabled" "1"
-                "target" "CaptainPunchMDXXVIII_babyjail_teleporttarget"
-                "targetname" "CaptainPunchMDXXVIII_minion_deathpit_trigger"
-            }
             filter_tf_bot_has_tag
             {
                 "Negated" "0"

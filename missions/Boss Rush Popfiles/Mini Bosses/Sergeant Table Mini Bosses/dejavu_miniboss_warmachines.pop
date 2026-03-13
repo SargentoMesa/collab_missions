@@ -15,7 +15,6 @@ WaveSchedule
             Skill Expert
             UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
             Attributes MiniBoss
-            AddCond
             Item "The AWPer Hand"
             ItemAttributes
             {

@@ -196,17 +196,6 @@ WaveSchedule
 				
 				"OnTimer" "player,$playsoundtoself,pda_w7_sntr.mp3,0,-1" 
 			}
-		//	trigger_hurt
-		//	{
-		//		damage 4500
-		//		spawnflags 1
-		//		damagetype 1048576
-		//		filtername filter_redteam
-		//		targetname rider_hurt
-		//		origin "48 0 0"
-		//		mins "-36 -36 -112"
-		//		maxs "36 36 112"
-		//	}
 			logic_relay
 			{
 				targetname ridertime
@@ -269,7 +258,7 @@ WaveSchedule
 			trigger_hurt
 			{
 				damage 70
-				filtername filter_blu
+				filtername filter_blueteam
 				nodmgforce 0
 				damagetype 4
 				origin "0 0 0"
@@ -284,7 +273,7 @@ WaveSchedule
 				pushdir "0 90 0"
 				spawnflags 1
 				speed 192
-				filtername filter_blu
+				filtername filter_blueteam
 				mins "-48 -48 -96"
 				maxs "48 48 96"
 				targetname tornado_eff
