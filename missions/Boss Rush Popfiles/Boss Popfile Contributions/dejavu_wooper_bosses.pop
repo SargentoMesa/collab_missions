@@ -1,9 +1,28 @@
 WaveSchedule
 {
-	
-	Templates
+    CustomWeapon
 	{
-		T_TFBot_Giant_Demo_King
+		"Crackle Mangler"
+		{
+			OriginalItemName "The Cow Mangler 5000"
+			"faster reload rate" 0.1
+			"fire rate bonus" 0.1
+			"projectile spread angle penalty" 7
+			"add attributes when active" "no clip|0.001"
+		}
+		"Crackle Shotgun"
+		{
+			OriginalItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+			"override projectile type extra" "mechanicalarmorb"
+			"projectile spread angle penalty" 5
+			"burst fire count" 3
+		}
+	}
+
+    Templates
+    {
+        //// MINI BOSSES ////
+        T_TFBot_Giant_Demo_King
 		{
 			Class Demoman
 			ClassIcon demo_lochnload_sif
@@ -29,7 +48,6 @@ WaveSchedule
 			{
 				ItemName "The Loch-n-Load"
 				"faster reload rate" 2
-				// "damage penalty" 0.5 // not sure if this is needed, test this
 				"fire rate bonus" 0.01
 				"clip size upgrade atomic" 6
 				"mod mini-crit airborne" 1
@@ -67,23 +85,45 @@ WaveSchedule
 				MaxTargetRange 299
 			}
 		}
-	}
-	
-	Wave
-	{
-		WaveSpawn
+        T_TFBot_Giant_Soldier_Crackle
 		{
-			Name "finalboss"
-			WaitForAllSpawned "7-2"
-			Where spawnbot
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
-			WaitBeforeStarting 8
-			TFBot
+			Class Soldier
+			ClassIcon soldier_barrage_mangler_rain
+			Name "Colonel Crackle"
+			Health 20000
+			Skill Expert
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
+			ExtAttr IgnoreBuildings
+			Item "Crackle Mangler"
+			Item "Crackle Shotgun"
+			CharacterAttributes
 			{
-				Template T_TFBot_Giant_Demo_King
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 6.0
+				"damage force reduction" 0.60
+				"move speed bonus" 0.50
+				"increased jump height" 2.5
+				"cancel falling damage" 1
+			}
+			WeaponSwitch
+			{
+				Type "Secondary"
+				Delay 0
+				Cooldown 40
+			}
+			FireWeapon
+			{
+				Type "Jump"
+				Delay 20
+				Cooldown 40
+			}
+			WeaponSwitch
+			{
+				Type "Primary"
+				Delay 20.5
+				Cooldown 40
 			}
 		}
-	}
+    }
 }

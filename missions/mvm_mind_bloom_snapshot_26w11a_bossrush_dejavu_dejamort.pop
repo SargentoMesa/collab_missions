@@ -10,37 +10,14 @@
 #base dejavu_mainboss_deadlock_zombief1ghter.pop
 #base dejavu_mainboss_miningsupervisor_zombief1ghter.pop
 #base dejavu_mainboss_fieldmarshalmechanus_zombief1ghter.pop
-#base dejavu_mainboss_slave_knight_dael_thefat.pop
-#base dejavu_mainboss_directdisaster_wiz2.pop
-#base dejavu_mainboss_treadonator_sntr.pop
-#base dejavu_mainboss_magicianlord_sntr.pop
 #base dejavu_mainboss_timeddisaster_sergeanttable.pop
-#base dejavu_mainboss_chaossurge_chaosmystery.pop
-#base dejavu_mainboss_colonelconduit_chaosmystery.pop
-#base dejavu_mainboss_mimicry_package.pop
 
 // Mini Bosses //
-#base dejavu_miniboss_fieldgeneral_wiz2.pop
-#base dejavu_miniboss_explosive_surprise_thefat.pop
 #base dejavu_miniboss_fallenchiefs_dave_sergeanttable.pop
-#base dejavu_miniboss_bigheaded_behemoth_thefat.pop
-#base dejavu_miniboss_blackhole_pyro_thefat.pop
 #base dejavu_miniboss_generalbomber_zombief1ghter.pop
 #base dejavu_miniboss_kingburst_zombief1ghter.pop
 #base dejavu_miniboss_fivelitersinmyblood_sergeanttable.pop
-#base dejavu_miniboss_prismaticdiffractor_kai.pop
-#base dejavu_miniboss_immolator_kai.pop
-#base dejavu_miniboss_decimator_kai.pop
-#base dejavu_miniboss_howitzermachination_kai.pop
-#base dejavu_miniboss_dragonking_kai.pop
-#base dejavu_miniboss_headless_mann_thefat.pop
-#base dejavu_miniboss_majorbonecremator_cookiecat.pop
-#base dejavu_miniboss_distorted_messenger_package.pop
 #base dejavu_miniboss_privateseeker_sergeanttable.pop
-#base dejavu_miniboss_shell_package.pop
-#base dejavu_miniboss_badtothebone_sntr.pop
-#base dejavu_miniboss_skull_magician_sntr.pop
-#base dejavu_miniboss_tank_zombie_sntr.pop
 
 WaveSchedule
 {
@@ -1330,6 +1307,7 @@ WaveSchedule
                                 [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                             ])
+                            break;
                         }
                     }
                   "
@@ -2993,28 +2971,31 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }                     
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }
