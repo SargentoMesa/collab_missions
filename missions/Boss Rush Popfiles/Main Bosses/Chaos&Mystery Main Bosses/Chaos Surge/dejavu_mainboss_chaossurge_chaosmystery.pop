@@ -320,7 +320,7 @@ ChaosSurge
 				"spawnflags" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,6,0,-1"
 				"$killicon" "firedeath"
-				"filtername" "filter_redteam_nouber"
+				"filtername" "filter_is_red_not_ubered"
 			}
 			info_particle_system
 			{
@@ -541,8 +541,6 @@ ChaosSurge
 				"OnTrigger" "!activator,$TauntFromItem,replay taunt,0.1,-1"
 				"OnTrigger" "hell_rain_setup,FireOnce,,0.2,-1"
 			}
-            //Uncommented and left for the moment.
-
 			logic_case
 			{
 				"targetname" "surge_weapons_only"
@@ -608,7 +606,6 @@ ChaosSurge
 				AttachToProjectile 1
 				ItemName "CSurge_indicatorlauncher2"
 			}
-
 			ChangeAttributes
 			{
 				Name FurySpammer

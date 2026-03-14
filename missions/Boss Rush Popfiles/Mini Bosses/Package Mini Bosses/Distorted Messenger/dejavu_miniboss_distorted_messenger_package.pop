@@ -1,194 +1,8 @@
-#base robot_giant.pop
-#base robot_standard.pop
-
-//TheHoly
-
 WaveSchedule
 {
-	StartingCurrency	7000
-	RespawnWaveTime	4
-	CanBotsAttackWhileInSpawnRoom	no
-	FixedRespawnWaveTime	No
-	AddSentryBusterWhenDamageDealtExceeds	3000
-	AddSentryBusterWhenKillCountExceeds	20
-	Advanced	1
-	
-	Wave
+	Templates
 	{
-		StartWaveOutput
-		{
-			Target wave_start_relay
-			Action Trigger
-		}
-		InitWaveOutput
-        {
-            Target gamerules
-            Action RunScriptCode
-            Param "
-                EntFire(`initMain_ab`, `Trigger`)
-                local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-                if (ent)
-                {
-                    NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `RECEIVE RECEIVE RECEIVE RECEIVE`)
-                }
-				IncludeScript(`death_associate3`, getroottable())
-            "
-        }
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	0
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	2
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	3.5
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	4.5
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	5.25
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	5.75
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	6
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	6.2
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy1
-			WaitBeforeStarting	6.4
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	6.6
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	6.8
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[RECEIVE A PRESCRIPT AND CARRY IT OUT] `);"
-			}
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	7
-			FirstSpawnWarningSound "mvm\giant_heavy\giant_heavy_entrance.wav"
-		}
-		WaveSpawn
-		{
-			Name	dummy
-			WaitBeforeStarting	8
-			FirstSpawnWarningSound npc\combine_gunship\ping_patrol.wav
-		}
-			
-		WaveSpawn
-		{
-			Name	7boss
-			TotalCurrency	0
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			FirstSpawnWarningSound "mvm\giant_heavy\giant_heavy_entrance.wav"
-			DoneWarningSound "ambient\explosions\explode_2.wav"
-			Where spawnbot_g0s0_alt
-			Where spawnbot_g0s1_alt
-			WaitBeforeStarting	7
-			FirstSpawnOutput
-			{
-				Target gamerules
-				Action RunScriptCode
-				Param "ClientPrint(null,3,`\x08FFFF00FF[FULFILL THE WILL OF THE PRESCRIPT] `);"
-			}
-			Squad
-			{
-				TFBot
+				T_TFBot_Miniboss_DistortedMessenger_Package
 				{
 					Class Demoman
 					Name "얀샋ㄷ읃ㄴㄴ둫ㄷㄱ"
@@ -263,7 +77,7 @@ WaveSchedule
 						"set item tint RGB" 1315860
 					}
 				}
-				TFBot
+				T_TFBot_Miniboss_DistortedMessenger_LeftHand_Package
 				{
 					Class Engineer
 					Item "gentlemanne_shotgun_coffinnail"
@@ -318,7 +132,7 @@ WaveSchedule
 						"increased jump height" 1.5
 					}
 				}
-				TFBot
+				T_TFBot_Miniboss_DistortedMessenger_RightHand_Package
 				{
 					Class Engineer
 					Item "gentlemanne_shotgun_dressedtokill"
@@ -389,92 +203,5 @@ WaveSchedule
 						"increased jump height" 1.5
 					}
 				}
-			}
-		}
-		WaveSpawn
-		{
-			Name	7fakeicons
-			TotalCurrency	0
-			TotalCount	2
-			MaxActive	2
-			SpawnCount	2
-			Support 1
-			Where spawnbot_g2s0a
-			Where spawnbot_g2s1a
-			Where spawnbot_g1s0a
-			Where spawnbot_g1s1a
-			Where spawnbot_g0s0_alt
-			Where spawnbot_g0s1_alt
-			WaitBeforeStarting	9999
-			WaitBetweenSpawns 3
-			Squad
-			{
-				TFBot
-				{
-					Class Pyro
-					Skill Expert
-					Item  "the sub zero suit"
-					Item "The Backburner"
-					Name "Backburner Pyro"
-					ClassIcon soldier_rocketwall
-					CharacterAttributes
-					{
-						"airblast disabled" 1
-					}
-				}
-				TFBot
-				{
-					Class Pyro
-					Skill Expert
-					Item  "the sub zero suit"
-					Item "The Backburner"
-					Name "Backburner Pyro"
-					ClassIcon heavy_shotgun
-					CharacterAttributes
-					{
-						"airblast disabled" 1
-					}
-				}
-			}
-		}
-		WaveSpawn
-		{
-			Name	7messenger support
-			WaitForAllSpawned 7aa
-			TotalCurrency	50
-			TotalCount	50
-			MaxActive	10
-			SpawnCount	5
-			Support 1
-			Where spawnbot_g2s0a
-			Where spawnbot_g2s1a
-			Where spawnbot_g1s0a
-			Where spawnbot_g1s1a
-			Where spawnbot_g0s0_alt
-			Where spawnbot_g0s1_alt
-			Where spawnbot_g0s2_alt
-			WaitBeforeStarting	7.1
-			WaitBetweenSpawns 6
-			TFBot
-			{
-				Template T_TFBot_Scout_Melee
-				Name "Vigil"
-				ClassIcon scout_bat_nys
-				Attributes AlwaysCrit
-				Item "EOTL_demopants"
-				Item "Upgradeable TF_WEAPON_BAT"
-				ItemAttributes
-				{
-					ItemName "Upgradeable TF_WEAPON_BAT"
-					//"fire rate bonus" 0.7
-					"damage bonus" 1.2
-				}
-				CharacterAttributes
-				{
-					"head scale" 0.001
-					//"move speed bonus" 1.25
-				}
-			}
-		}
 	}
 }

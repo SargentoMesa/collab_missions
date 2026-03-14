@@ -10,7 +10,7 @@ WaveSchedule
 			ClassIcon dead
 			Name "Magician Lord"
 			Skill Expert
-			Health 20000
+			Health 70000
 			Item "The Crone's Dome"
 			Item "TF_WEAPON_SPELLBOOK"
 			StripItem "Zombie Sniper"

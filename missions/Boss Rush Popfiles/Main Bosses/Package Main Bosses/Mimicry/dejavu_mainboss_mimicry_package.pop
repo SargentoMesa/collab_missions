@@ -1,76 +1,11 @@
-#base robot_giant.pop
-#base robot_standard.pop
-
-//Bit by bit, we discovered that this Abnormality may be evolving. 
-//It demonstrates behaviour similar to the character of the person who used to be its shell. 
-//It even makes attempts to equate itself with human beings.
-
-//TheUnknowableHeights
-
-
 There_Was_Nothing_There
 {
-	StartingCurrency	7000
-	RespawnWaveTime	4
-	CanBotsAttackWhileInSpawnRoom	no
-	FixedRespawnWaveTime	No
-	AddSentryBusterWhenDamageDealtExceeds	3000
-	AddSentryBusterWhenKillCountExceeds	20
-	Advanced	1
-
-	Wave
+	Templates
 	{
-		Checkpoint	Yes
-		StartWaveOutput
+		T_TFBot_MainBoss_NemesisMimicry_Package
 		{
-			Target	wave_start_relay
-			Action	Trigger
-		}
-		InitWaveOutput
-		{
-			Target gamerules
-            Action RunScriptCode
-            Param "
-				EntFire(`bombpath_select_left1`, `Trigger`)
-				SpawnEntityFromTable(`logic_script`,{vscripts=`rangescript`,targetname=`vscripts`})
-            "
-        }
-		DoneOutput
-		{
-			Target	wave_finished_relay
-			Action	Trigger
-		} 
-		WaveSpawn
-		{
-			WaitForAllDead Nemesis
-		}
-		WaveSpawn
-		{
-			Name FromASeaOfPain
-			WaitBeforeStarting 0
-			DoneOutput
-            {
-                Target gamerules
-                Action RunScriptCode
-                Param "
-                    ScreenFade(null,255,63,63,30,0.5,0.5,1)
-                    EntFire(`gamerules`,`PlayVO`,`npc/combine_gunship/ping_search.wav`)
-                "
-            }
-		}
-		Wavespawn //And the many shells cried out one word, "Manager".
-		{
-			Name Nemesis
-			Where spawnbot_flank_left
-			TotalCount 1
-			MaxActive 1
-			Spawncount 1
-			DoneWarningSound "ambient\explosions\explode_2.wav"
-			WaitBeforeStarting 0
-				TFBot
-				{
-					Name "Nemesis Program MK2 Mimicry"
-					Tag bot_rangescript
+			Name "Nemesis Program MK2 Mimicry"
+			Tag bot_rangescript
 					Class Soldier
 					Skill Expert
 					ClassIcon tf2_lite_shadeless
@@ -78,8 +13,8 @@ There_Was_Nothing_There
 					Scale 1.75
 					Attributes MiniBoss
 					Attributes UseBossHealthBar
-					EventChangeAttributes
-					{
+				EventChangeAttributes
+				{
 						// phase 1
 						LongRange_FOS
 						{
@@ -193,71 +128,7 @@ There_Was_Nothing_There
 								"cancel falling damage" 1
 							}
 						}
-					}
 				}
-		}
-		WaveSpawn
-		{
-			Name Smile
-			Where spawnbot_flank_left
-			Where spawnbot_flank_right
-			Where spawnbot
-			RandomSpawn 1
-			TotalCurrency 600
-			TotalCount 200
-			SpawnCount 4
-			MaxActive 12
-			Support 1
-			WaitBeforeStarting 8
-			WaitBetweenSpawns 5
-			RandomChoice
-			{
-				TFBot
-				{
-					Template T_TFBot_Sniper_Huntsman
-					Attributes AlwaysCrit
-					Item "Larrikin Robin"
-					BehaviorModifiers Push
-				}
-				TFBot
-				{
-					Class Pyro
-					Skill Hard
-					Attributes AlwaysCrit
-					CharacterAttributes
-					{
-						"airblast disabled" 1
-					}
-				}
-				TFBot
-				{
-					Name "Super-Charge Medic"
-					Tag bot_squad_member
-					Class Medic
-					ClassIcon medic_infpop
-					Skill Expert
-					Attributes IgnoreEnemies
-					Attributes SpawnWithFullCharge	
-					Item "Das Metalmeatencasen"
-					Item "Das Naggenvatcher"
-					Item "The Quick-Fix"
-					Item "The Overdose"
-					
-					ItemAttributes
-					{
-						ItemName "The Quick-Fix"
-						"ubercharge rate bonus" 100
-						"uber duration bonus" 420
-						"heal rate bonus" 2
-						"health from healers reduced" 0.5
-					}
-					
-					CharacterAttributes
-					{
-						"bot medic uber health threshold" 690
-					}
-				}
-			}
 		}
 	}
 }

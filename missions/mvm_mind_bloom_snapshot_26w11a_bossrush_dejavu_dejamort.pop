@@ -12,7 +12,12 @@
 #base dejavu_mainboss_fieldmarshalmechanus_zombief1ghter.pop
 #base dejavu_mainboss_slave_knight_dael_thefat.pop
 #base dejavu_mainboss_directdisaster_wiz2.pop
+#base dejavu_mainboss_treadonator_sntr.pop
+#base dejavu_mainboss_magicianlord_sntr.pop
 #base dejavu_mainboss_timeddisaster_sergeanttable.pop
+#base dejavu_mainboss_chaossurge_chaosmystery.pop
+#base dejavu_mainboss_colonelconduit_chaosmystery.pop
+#base dejavu_mainboss_mimicry_package.pop
 
 // Mini Bosses //
 #base dejavu_miniboss_fieldgeneral_wiz2.pop
@@ -29,6 +34,10 @@
 #base dejavu_miniboss_howitzermachination_kai.pop
 #base dejavu_miniboss_dragonking_kai.pop
 #base dejavu_miniboss_headless_mann_thefat.pop
+#base dejavu_miniboss_majorbonecremator_cookiecat.pop
+#base dejavu_miniboss_distorted_messenger_package.pop
+#base dejavu_miniboss_privateseeker_sergeanttable.pop
+#base dejavu_miniboss_shell_package.pop
 
 WaveSchedule
 {
@@ -2316,9 +2325,9 @@ WaveSchedule
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_IndustrialGauntlet1`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_IndustrialGauntlet2`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave7_RancherGauntlet`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet1`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet2`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave8_RancherGauntlet`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -2396,13 +2405,13 @@ WaveSchedule
         //// Prismatic Diffractor, Immolator & Decimator ////
         WaveSpawn
         {
-            Name "Wave7_IndustrialGauntlet1"
+            Name "Wave8_IndustrialGauntlet1"
             StartDisabled 1
         }
         WaveSpawn // Boss 1 - Prismatic Diffractor
         {
-            Name "Wave7_Boss1-PrismaticDiffractor"
-            WaitForAllSpawned "Wave7_IndustrialGauntlet1"
+            Name "Wave8_Boss1-PrismaticDiffractor"
+            WaitForAllSpawned "Wave8_IndustrialGauntlet1"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2435,8 +2444,8 @@ WaveSchedule
         }
         WaveSpawn // Boss 2 - The Immolator
         {
-            Name "Wave7_Boss2-Immolator"
-            WaitForAllDead "Wave7_Boss1-PrismaticDiffractor"
+            Name "Wave8_Boss2-Immolator"
+            WaitForAllDead "Wave8_Boss1-PrismaticDiffractor"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2461,8 +2470,8 @@ WaveSchedule
         }
         WaveSpawn // Boss 3 - The Decimator
         {
-            Name "Wave7_Boss3-Decimator"
-            WaitForAllDead "Wave7_Boss2-Immolator"
+            Name "Wave8_Boss3-Decimator"
+            WaitForAllDead "Wave8_Boss2-Immolator"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2489,13 +2498,13 @@ WaveSchedule
         //// Howitzer Machination, Dragon King & Headless Mann ////
         WaveSpawn
         {
-            Name "Wave7_IndustrialGauntlet2"
+            Name "Wave8_IndustrialGauntlet2"
             StartDisabled 1
         }
         WaveSpawn // Boss 1 - Howitzer Machination
         {
-            Name "Wave7_Boss1-HowitzerMachination"
-            WaitForAllSpawned "Wave7_IndustrialGauntlet2"
+            Name "Wave8_Boss1-HowitzerMachination"
+            WaitForAllSpawned "Wave8_IndustrialGauntlet2"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2528,8 +2537,8 @@ WaveSchedule
         }
         WaveSpawn // Boss 2 - The Dragon King
         {
-            Name "Wave7_Boss2-DragonKing"
-            WaitForAllDead "Wave7_Boss1-HowitzerMachination"
+            Name "Wave8_Boss2-DragonKing"
+            WaitForAllDead "Wave8_Boss1-HowitzerMachination"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2554,8 +2563,8 @@ WaveSchedule
         }
         WaveSpawn // Boss 3 - Headless Mann
         {
-            Name "Wave7_Boss3-HeadlessMann"
-            WaitForAllDead "Wave7_Boss2-DragonKing"
+            Name "Wave8_Boss3-HeadlessMann"
+            WaitForAllDead "Wave8_Boss2-DragonKing"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -2582,21 +2591,694 @@ WaveSchedule
         //// The Otherworldly Robots ////
         WaveSpawn
         {
-            Name "Wave7_RancherGauntlet"
+            Name "Wave8_RancherGauntlet"
             StartDisabled 1
         }
     }
     Wave // Main Boss - The Treadonator OR Magician Lord OR Timed Disaster
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave9_Treadonator`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_shank_relay`, `Wave9_MagicianLord`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave9_TimedDisaster`);
+                    MindBloomRNG.InitRNGArena();
+
+                    IncludeScript(`popextensions_main`, getroottable())
+                    PopExt.AddRobotTag(`bossflare`, {
+                        OnSpawn = function(bot, tag) {
+                    
+                            local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable.SetOwner(bot)
+                            wearable.SetModelScale(2.3, 0)
+                            wearable.SetLocalOrigin(Vector(-15, 0, -6))
+                            wearable.SetAngles(45, -90, 0)
+                            local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable2.SetOwner(bot)
+                            wearable2.SetLocalOrigin(Vector(12, 0, -0))
+                            wearable2.SetModelScale(2.3, 0)
+                            wearable2.SetAngles(45, -45, 45)
+                        },
+                    })
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MainBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        //// The Treadonator ////
+        WaveSpawn
+        {
+            Name "Wave9_Treadonator"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave9_Boss-Treadonator"
+            WaitForAllSpawned "Wave9_Treadonator"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_Robot_Boss_Treadkill
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Magician Lord ////
+        WaveSpawn
+        {
+            Name "Wave9_MagicianLord"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave9_Boss-MagicianLord"
+            WaitForAllSpawned "Wave9_MagicianLord"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_Graver
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Timed Disaster ////
+        WaveSpawn
+        {
+            Name "Wave9_TimedDisaster"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave9_Boss-TimedDisaster"
+            WaitForAllSpawned "Wave9_TimedDisaster"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Mainboss_TimedDisaster_Table
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Mini Boss - Major Bonecremator OR Distorted Messenger OR Private Seeker OR Nemesis Program MKI: Shell
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+                    if (!(`pyro_boss_special` in getroottable()))
+                    {
+                        IncludeScript(`pyro_boss_special`, getroottable());
+                    }
+                    if (!(`death_associate3` in getroottable()))
+                    {
+                        IncludeScript(`death_associate3`, getroottable());
+                    }
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_scallops_relay`, `Wave10_MajorBonecremator`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_doppler_relay`, `Wave10_DistortedMessenger`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave10_PrivateSeeker`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave10_NemesisShell`);
+                    MindBloomRNG.InitRNGArena();
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        //// Major Bonecremator ////
+        WaveSpawn
+        {
+            Name "Wave10_MajorBonecremator"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave10_Boss-MajorBonecremator"
+            WaitForAllSpawned "Wave10_MajorBonecremator"
+            Where spawnbot_boss
+            TotalCount 2
+            MaxActive 2
+            SpawnCount 2
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            Squad
+            {
+                TFBot
+                {
+                    Template T_TFBot_Giant_Pyro_Phlog_Boss
+                    Action Mobber
+                }
+                TFBot
+                {
+                    Template T_TFBot_Giant_Medic_Shield
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Distorted Messenger ////
+        WaveSpawn
+        {
+            Name "Wave10_DistortedMessenger"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave10_Boss-DistortedMessenger"
+            WaitForAllSpawned "Wave10_DistortedMessenger"
+            Where spawnbot_boss
+            TotalCount 3
+            MaxActive 3
+            SpawnCount 3
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            Squad
+            {
+                TFBot
+                {
+                    Template T_TFBot_Miniboss_DistortedMessenger_Package
+                    Action Mobber
+                }
+                TFBot
+                {
+                    Template T_TFBot_Miniboss_DistortedMessenger_LeftHand_Package
+                }
+                TFBot
+                {
+                    Template T_TFBot_Miniboss_DistortedMessenger_RightHand_Package
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Private Seeker ////
+        WaveSpawn
+        {
+            Name "Wave10_PrivateSeeker"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave10_Boss-PrivateSeeker"
+            WaitForAllSpawned "Wave10_PrivateSeeker"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template MiniBoss_PrivateSeeker
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Nemesis Program MKI: Shell ////
+        WaveSpawn
+        {
+            Name "Wave10_NemesisShell"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave10_Boss-NemesisShell"
+            WaitForAllSpawned "Wave10_NemesisShell"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_MiniBoss_NemesisShell_Phase1_Package
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave10_Boss-NemesisShell2"
+            WaitForAllDead "Wave10_Boss-NemesisShell"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_MiniBoss_NemesisShell_Phase2_Package
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Main Boss - Chaos Surge OR Colonel Conduit OR The Master Mechanic OR Nemesis Program MKII: Mimicry
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+                    if (!(`rangescript` in getroottable()))
+                    {
+                        IncludeScript(`rangescript`, getroottable());
+                    }
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_NemesisMimicry`);
+                    MindBloomRNG.InitRNGArena();
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+    
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MainBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        //// Chaos Surge ////
+        WaveSpawn
+        {
+            Name "Wave11_ChaosSurge"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave11_Boss-ChaosSurge"
+            WaitForAllSpawned "Wave11_ChaosSurge"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_Chief_Surge_Chaos
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Colonel Conduit ////
+        WaveSpawn
+        {
+            Name "Wave11_ColonelConduit"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave11_Boss-ColonelConduit"
+            WaitForAllSpawned "Wave11_ColonelConduit"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Engineer_Chief_Conduit
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// The Master Mechanic ////
+        WaveSpawn
+        {
+            Name "Wave11_MasterMechanic"
+            StartDisabled 1
+        }
+
+        //// Nemesis Program MKII: Mimicry ////
+        WaveSpawn
+        {
+            Name "Wave11_NemesisMimicry"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave11_Boss-NemesisMimicry"
+            WaitForAllSpawned "Wave11_NemesisMimicry"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_MainBoss_NemesisMimicry_Package
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Boss Gauntlet - Bad to the Bone, Skull Magician, then Tank Zombies OR Dr. Dismemberment, The Mann in Black then Captain Cognac
     {
