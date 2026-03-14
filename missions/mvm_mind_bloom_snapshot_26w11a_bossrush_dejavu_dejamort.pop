@@ -32,17 +32,28 @@ WaveSchedule
 
     ForceRedMoney 1
 
-    //// DISABLED VOICELINES ////
+    //// DISABLED SOUNDS ////
 
     DisableSound "Announcer.MVM_Wave_End"
+    DisableSound "Announcer.MVM_Final_Wave_End"	
 	DisableSound "Announcer.MVM_Bonus"
+    DisableSound "Announcer.MVM_Get_To_Upgrade"
+
+    DisableSound "music.mvm_start_wave"
+    DisableSound "music.mvm_start_last_wave"					   
+	DisableSound "music.mvm_start_mid_wave"						   
+	DisableSound "music.mvm_start_tank_wave"
+    DisableSound "music.mvm_end_wave"
+    DisableSound "music.mvm_end_last_wave"						   
+	DisableSound "music.mvm_end_mid_wave"						   
+	DisableSound "music.mvm_end_tank_wave"						   
 
     //// PRECACHES ////
 
     // Sound Precaches
     PrecacheSound "minibossrush2.mp3" 
     PrecacheSound "minibossrush2intro.mp3" 
-    PrecacheSound "mainbosstheme1.mp3" 
+    PrecacheSound "mainbosstheme1.mp3"
 
     //// POINT TEMPLATES ////
 
@@ -121,9 +132,7 @@ WaveSchedule
                 "Filter05"   "filter_is_player"
             }
 
-            // Planned Setup Music
         }
-
         BossRushSpecialSpawnLocation
         {
             RemoveIfKilled "arena_unique_boss_spawn_tesla"
@@ -205,7 +214,28 @@ WaveSchedule
             }
         }
 
-        MiniBossRushMusic
+        IntSetupMusic
+        {
+
+        }
+        AdvSetupMusic
+        {
+
+        }
+        ExpSetupMusic
+        {
+
+        }
+        ExpFinalSetupMusic
+        {
+
+        }
+        MasSetupMusic
+        {
+            
+        }
+
+        MiniBossMusic
         {
             ambient_generic // Intro Music
             {
@@ -225,7 +255,7 @@ WaveSchedule
             }
             logic_relay // Intro Music Relay
             {
-                "targetname" "letsgetthisshowrolling"
+                "targetname" "minibossmusicinit"
                 "OnTrigger"	"intromidbossmusic,PlaySound,,0,-1"
                 "OnTrigger"	"intromidbossmusic,StopSound,,2.3,-1"
                 "OnTrigger" "music_controller,trigger,,2.3,-1"
@@ -240,7 +270,7 @@ WaveSchedule
                 "spawnflags" "2"
             }
         }
-        MainBossRushMusic
+        MainBossMusic
         {
             ambient_generic // Looping Music
             {
@@ -252,7 +282,7 @@ WaveSchedule
             }
             logic_relay // Intro Music Relay
             {
-                "targetname" "letsgetthisbossrolling"
+                "targetname" "mainbossmusicinit"
                 "OnTrigger"	"loopingbossmusic,PlaySound,,0,-1"
                 "OnTrigger"	"loopingbossmusic,StopSound,,257.3,-1"
                 "OnTrigger" "music_controller,trigger,,257.305,-1"
@@ -299,12 +329,17 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    IncludeScript(`buddhamode`, getroottable())
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
+
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`buddhamode` in getroottable()))
+                    {
+                        IncludeScript(`buddhamode`, getroottable())
+                    }
                   "
         }
         StartWaveOutput
@@ -327,26 +362,7 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossRushMusic
-
-        WaveSpawn // Dummy Bomb
-        {
-            Where spawnbot_bomb
-            Support Limited
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-
-            HideIcon 1
-
-            TFBot
-            {
-                Name "the bob"
-                Class Scout
-            }
-        }
+        SpawnTemplate MainBossMusic
 
         WaveSpawn
         {
@@ -377,6 +393,7 @@ WaveSchedule
             TFBot
             {
                 Template T_TFChief_Deadlock
+                Action Mobber
 
                 FireInput
                 {
@@ -425,7 +442,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`letsgetthisbossrolling`, `Trigger`)
+                        EntFire(`mainbossmusicinit`, `Trigger`)
                       "
             }
         }
@@ -446,6 +463,7 @@ WaveSchedule
             {
                 Class Scout
                 Skill Easy
+                Action Mobber
             }
         }
 
@@ -468,6 +486,7 @@ WaveSchedule
                 ClassIcon pyro_fireaxe_lite
                 Skill Hard
                 WeaponRestrictions MeleeOnly
+                Action Mobber
             }
         }
     }
@@ -478,10 +497,12 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
+
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
                   "
         }
         StartWaveOutput
@@ -504,26 +525,7 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusic
-
-        WaveSpawn // Dummy Bomb
-        {
-            Where spawnbot_bomb
-            Support Limited
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-
-            HideIcon 1
-
-            TFBot
-            {
-                Name "the bob"
-                Class Scout
-            }
-        }
+        SpawnTemplate MiniBossMusic
 
         WaveSpawn
         {
@@ -554,6 +556,7 @@ WaveSchedule
             TFBot
             {
                 Template T_TFBot_URL_Field_General
+                Action Mobber
             }
 
             FirstSpawnOutput
@@ -561,7 +564,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`minibossmusicinit`, `Trigger`)
                       "
             }
         }
@@ -581,20 +584,60 @@ WaveSchedule
             {
                 Name "Shotgun Heavy"
                 Template T_TFBot_Heavyweapons_Shotgun
+                Action Mobber
             }
         }
     }
-    Wave // Mini Boss - Explosive Surprise
+    Wave // Mini Boss - Explosive Surprise OR Fallen Patrol Chiefs
     {
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
-                     Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    EntFire(`wave_init_arena_coastrock_relay`, `Trigger`, null, 6)
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `Wave3_ExplosiveSurprise`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave3_FallenPatrolChiefs`);
+                    MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 1:
+                        {   
+                            AlternateWaves.AddWaveIcons([
+                                [`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                            ])
+                        }
+                    }
                   "
         }
         StartWaveOutput
@@ -603,6 +646,35 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`arena_spyfactory_boss_spawn_relay`, `Disable`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 1:
+                        {   
+                            AlternateWaves.AddWaveIcons([
+                                [`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                            ])
+                        }
+                    }
+
+                    MindBloomRNG.StartRNGArena();
                   "
         }
         DoneOutput
@@ -612,31 +684,14 @@ WaveSchedule
             Param "
                     EntFire(`wave_finished_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
                   "
         }
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusic
-
-        WaveSpawn // Dummy Bomb
-        {
-            Where spawnbot_bomb
-            Support Limited
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-
-            HideIcon 1
-
-            TFBot
-            {
-                Name "the bob"
-                Class Scout
-            }
-        }
+        SpawnTemplate MiniBossMusic
 
         WaveSpawn
         {
@@ -653,9 +708,16 @@ WaveSchedule
             }
         }
 
+        //// Explosive Surprise ////
+        WaveSpawn
+        {
+            Name "Wave3_ExplosiveSurprise"
+            StartDisabled 1
+        }
         WaveSpawn // Boss
         {
             Name "Wave3_Boss-ExplosiveSurprise"
+            WaitForAllSpawned "Wave3_ExplosiveSurprise"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -674,14 +736,22 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
-
         WaveSpawn // Support Soldiers
         {
             Name "Wave3_Support-Soldiers"
+            WaitForAllSpawned "Wave3_ExplosiveSurprise"
             Where spawnbot_support
             Support 1
             TotalCount 150
@@ -700,6 +770,7 @@ WaveSchedule
         WaveSpawn // Support Bat Scouts
         {
             Name "Wave3_Support-BatScouts"
+            WaitForAllSpawned "Wave3_ExplosiveSurprise"
             Where spawnbot_support
             Support 1
             TotalCount 150
@@ -716,6 +787,185 @@ WaveSchedule
                 ClassIcon scout_bat_nys
             }
         }
+
+        //// Fallen Patrol Chiefs ////
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefs"
+            StartDisabled 1
+        }
+
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefSpawns"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -5427 -5633 -610`)
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6015 -4577 -610`)
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6847 -4481 -610`)
+                      "
+            }
+        }
+
+        WaveSpawn // Heavy Patrol Chief
+        {
+            Name "Wave3_Boss-HeavyPatrolChief"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Heavy_PatrolChief
+
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -6015 -4577 -610
+                    Delay 0.1
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+        }
+        WaveSpawn // Pyro Patrol Chief
+        {
+            Name "Wave3_Boss-PyroPatrolChief"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_PatrolChief
+
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -5427 -5633 -610
+                    Delay 0.1
+                }
+            }
+        }
+        WaveSpawn // Demo Patrol Chief
+        {
+            Name "Wave3_Boss-DemoPatrolChief"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Demo_PatrolChief
+                
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -6847 -4481 -610
+                    Delay 0.1
+                }
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave3_Boss-HeavyPatrolChief"
+        }
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave3_Boss-PyroPatrolChief"
+        }
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave3_Boss-DemoPatrolChief"
+        }
+        WaveSpawn
+        {
+            Name "Wave3_FallenPatrolChiefsComplete"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefsCheck"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Demomen
+        {
+            Name "Wave3_Support-Demomen"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Demoman
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support Demoknights
+        {
+            Name "Wave3_Support-Demoknights"
+            WaitForAllSpawned "Wave3_FallenPatrolChiefs"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 3
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Demoman_Knight
+            }
+        }
     }
     Wave // Boss Gauntlet - Bigheaded Behemoth, TON 618 Black Hole Pyro, then General Bomber & King Burst
     {
@@ -724,10 +974,12 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
+
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
                   "
         }
         StartWaveOutput
@@ -750,7 +1002,7 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusic
+        SpawnTemplate MiniBossMusic
 
         WaveSpawn // Dummy Bomb
         {
@@ -808,7 +1060,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`minibossmusicinit`, `Trigger`)
                       "
             }
             DoneOutput
@@ -949,17 +1201,13 @@ WaveSchedule
             }
         }
     }
-    Wave // Boss Gauntlet - The Fallen Patrol Chiefs
+    Wave 
     {
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
                   "
         }
         StartWaveOutput
@@ -983,177 +1231,9 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusicz
+        SpawnTemplate MiniBossMusic
 
-        WaveSpawn // Dummy Bomb
-        {
-            Where spawnbot_bomb
-            Support Limited
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
 
-            HideIcon 1
-
-            TFBot
-            {
-                Name "the bob"
-                Class Scout
-            }
-        }
-
-        WaveSpawn
-        {
-            Name "teleporthotfix"
-            WaitBeforeStarting 5.1
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_teleport_relay`, `Trigger`)
-                      "
-            }
-        }
-
-        WaveSpawn
-        {
-            Name "newspawnlocations"
-            WaitBeforeStarting 7.5
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -5427 -5633 -610`)
-                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6015 -4577 -610`)
-                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6847 -4481 -610`)
-                      "
-            }
-        }
-
-        // Boss 1 - Fallen Heavy Patrol Chief
-        WaveSpawn
-        {
-            Name "Wave5_Boss1-HeavyPatrolChief"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 100
-
-            TFBot
-            {
-                Template T_TFBot_Heavy_PatrolChief
-
-                FireInput
-                {
-                    Target !self
-                    Action $SetLocalOrigin
-                    Param -6015 -4577 -610
-                    Delay 0.1
-                }
-            }
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`letsgetthisshowrolling`, `Trigger`)
-                      "
-            }
-        }
-        WaveSpawn
-        {
-            Name "Wave5_Boss1-PyroPatrolChief"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template T_TFBot_Pyro_PatrolChief
-
-                FireInput
-                {
-                    Target !self
-                    Action $SetLocalOrigin
-                    Param -5427 -5633 -610
-                    Delay 0.1
-                }
-            }
-        }
-        WaveSpawn
-        {
-            Name "Wave5_Boss1-DemoPatrolChief"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template T_TFBot_Demo_PatrolChief
-                
-                FireInput
-                {
-                    Target !self
-                    Action $SetLocalOrigin
-                    Param -6847 -4481 -610
-                    Delay 0.1
-                }
-            }
-        }
-
-        WaveSpawn // Support Demomen
-        {
-            Name "Wave5_Support1-Demomen"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 3
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 4
-            TotalCurrency 100
-
-            TFBot
-            {
-                Class Demoman
-                Skill Easy
-            }
-        }
-        WaveSpawn // Support Demoknights
-        {
-            Name "Wave5_Support1-Demoknights"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 4
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 3
-            TotalCurrency 100
-
-            TFBot
-            {
-                Template T_TFBot_Demoman_Knight
-            }
-        }
 
     }
 
@@ -1192,7 +1272,7 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusic
+        SpawnTemplate MiniBossMusic
 
         WaveSpawn // Dummy Bomb
         {
@@ -1329,7 +1409,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`minibossmusicinit`, `Trigger`)
                       "
             }
         }

@@ -1,0 +1,921 @@
+// "saRy is third long map. Design by Neptune" - saRy
+// Created by Mentrillum
+
+#base robot_standard.pop
+#base robot_giant.pop
+#base robot_mentrillum.pop
+// Absolute Cinemaga
+WaveSchedule
+{
+    StartingCurrency 1000
+    RespawnWaveTime 2
+    FixedRespawnWaveTime Yes
+    AddSentryBusterWhenDamageDealtExceeds 3000
+    AddSentryBusterWhenKillCountExceeds 10
+
+    WaveStartCountdown 3 [$SIGSEGV]
+	DisableSound "Announcer.MVM_Wave_End" [$SIGSEGV]
+	DisableSound "Announcer.MVM_Bonus" [$SIGSEGV]
+
+	PrecacheSound "mentrillum/mvm/sfx/attack_groundpound.wav" [$SIGSEGV]
+	PrecacheSound "mentrillum/mvm/sfx/attack_chestbeam.wav" [$SIGSEGV]
+	PrecacheSound "mentrillum/mvm/music/red_alert_3_hell_march_3.wav" [$SIGSEGV]
+	PrecacheSound "mentrillum/mvm/music/what_im_made_of.wav" [$SIGSEGV]
+	PrecacheModel "models/mentrillum/bots/soviet_tonka_weapons_02.mdl" [$SIGSEGV]
+
+	Templates
+	{
+		T_TFBot_Chief_Armored_Heavy
+		{
+			Class Heavyweapons
+			Name "Soviet Tonka Weapons"
+			ClassIcon heavy_titanium
+			Item "Potato of Labor"
+			ItemModel
+			{
+				ItemName "Potato of Labor"
+				Model "models/player/items/heavy/cop_glasses.mdl"
+			}
+			Item "Officer's Ushanka"
+			Item "Heavy Metal"
+			Tag "soviet_tonka_weapons"
+			Tag "dontdoublehp_damageres"
+			UseCustomModel "models/mentrillum/bots/soviet_tonka_weapons_02.mdl"
+			CustomEyeGlowColor "255 0 0"
+			Tag bot_giant
+			Skill Expert
+			//Health 90000
+			Health 50000
+			WeaponRestrictions MeleeOnly
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
+			AlwaysGlow 1
+			FastUpdate 1
+			UseMeleeThreatPrioritization 1
+			ExtAttr IgnoreNPC
+			ExtAttr IgnoreBuildings
+			Attributes IgnoreFlag
+			Scale 1.9
+			Action Mobber
+			Item "TF_WEAPON_MINIGUN"
+			Item "TF_WEAPON_SHOTGUN_HWG"
+			Item "Advanced Training Gauntlets"
+			WeaponResist
+			{
+				"TF_WEAPON_MINIGUN"	0.65
+			}
+			ItemAttributes
+			{
+				ItemName "Advanced Training Gauntlets"
+				"melee cleave attack" 1
+				"fire rate bonus" 5555
+				"melee range multiplier" 1.3
+				"move speed bonus" 2.0
+				"gesture speed increase" 3.0
+				"health regen" 0.0
+				"set item tint RGB" 14197
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.65
+				"damage force reduction" 0.3
+				"airblast vulnerability multiplier" 0.3
+				"override footstep sound set" 2
+				"rage giving scale" 0.1
+				"cancel falling damage" 1
+				"gesture speed increase" 1.5
+			}
+
+			EventChangeAttributes
+			{
+				Minigun_Action
+				{
+					WeaponRestrictions PrimaryOnly
+					Item "TF_WEAPON_MINIGUN"
+					Item "TF_WEAPON_SHOTGUN_HWG"
+					Item "TF_WEAPON_FISTS"
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_MINIGUN"
+						"damage bonus"	1.5
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.4
+						"damage force reduction" 0.3
+						"airblast vulnerability multiplier" 0.3
+						"override footstep sound set" 2
+						"rage giving scale" 0.1
+						"cancel falling damage" 1
+						"gesture speed increase" 1.5
+						"maxammo primary reduced" 3.0
+					}
+				}
+
+				Shotgun_Action_Dragonsbreath
+				{
+					WeaponRestrictions SecondaryOnly
+					Item "Dragonsbreath"
+					Item "Necro Smasher"
+					ItemAttributes
+					{
+						ItemName "Dragonsbreath"
+						"fire rate bonus" 1.1
+						"bullets per shot bonus" 2.0
+						"damage penalty" 0.75
+						"faster reload rate" 0.1
+						"move speed bonus" 1.1
+						"attack projectiles" 1
+						"weapon burn dmg reduced" 1.0
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.7
+						"damage force reduction" 0.3
+						"airblast vulnerability multiplier" 0.3
+						"override footstep sound set" 2
+						"rage giving scale" 0.1
+						"cancel falling damage" 1
+						"gesture speed increase" 1.5
+					}
+				}
+
+				Shotgun_Action_ResupplyShotgun
+				{
+					WeaponRestrictions SecondaryOnly
+					Attributes HoldFireUntilFullReload
+					Item "Panic Attack Shotgun"
+					Item "Necro Smasher"
+					ItemAttributes
+					{
+						ItemName "Panic Attack Shotgun"
+						"bullets per shot bonus" 1.5
+						"fixed_shot_pattern" 0
+						"damage penalty" 0.9
+						"mult_spread_scales_consecutive" 0
+						"move speed bonus" 1.1
+
+						"fire rate bonus with reduced health" 1.0
+						"fire rate bonus HIDDEN" 0.2
+						"reload time decreased" 0.4
+						"paintkit_proto_def_index" 215
+						"set_item_texture_wear" 0
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.7
+						"damage force reduction" 0.3
+						"airblast vulnerability multiplier" 0.3
+						"override footstep sound set" 2
+						"rage giving scale" 0.1
+						"cancel falling damage" 1
+						"gesture speed increase" 1.5
+					}
+				}
+
+				Melee_Action
+				{
+					WeaponRestrictions MeleeOnly
+					Item "TF_WEAPON_MINIGUN"
+					Item "TF_WEAPON_SHOTGUN_HWG"
+					Item "Advanced Training Gauntlets"
+					ItemAttributes
+					{
+						ItemName "Advanced Training Gauntlets"
+						"melee cleave attack" 1
+						"fire rate bonus" 0.9
+						"melee range multiplier" 1.3
+						"move speed bonus" 2.0
+						"health regen" 0.0
+						"set item tint RGB" 14197
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.65
+						"damage force reduction" 0.3
+						"airblast vulnerability multiplier" 0.3
+						"override footstep sound set" 2
+						"rage giving scale" 0.1
+						"cancel falling damage" 1
+						"gesture speed increase" 1.5
+					}
+				}
+
+				Sandvich_Action
+				{
+					WeaponRestrictions SecondaryOnly
+					Attributes AlwaysFireWeapon
+					Item "The Robo-Sandvich"
+					ItemAttributes
+					{
+						ItemName "The Robo-Sandvich"
+						"lunchbox healing decreased" 180
+						"mult_item_meter_charge_rate" 0.01
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.7
+						"damage force reduction" 0.3
+						"airblast vulnerability multiplier" 0.3
+						"override footstep sound set" 2
+						"rage giving scale" 0.1
+						"cancel falling damage" 1
+						"gesture speed increase" 1.0
+					}
+				}
+			}
+		}
+	}
+
+	CustomWeapon [$SIGSEGV]
+	{
+		"Advanced Training Gauntlets"
+		{
+			OriginalItemname "Fists of Steel"
+
+			"dmg from ranged reduced" 0.8
+			"dmg from melee increased" 1.0
+			"single wep holster time increased" 1.1
+			"patient overheal penalty" 1.0
+			"health from healers reduced" 1.0
+
+			"provide on active" 1
+			"move speed bonus" 1.3
+			"heal on kill" 50.0
+			"dmg bonus while half dead" 1.25
+			"dmg penalty while half alive" 0.75
+			"health regen" -3.0
+			"SPELL: set item tint RGB" 5
+			"set item tint RGB" 7667712
+			"item color rgb" 7667712
+			"melee cleave attack" 1
+			"melee range multiplier" 1.7
+			"melee bounds multiplier" 1.55
+
+			"special item description" "Deals 25% less/more damage when above/below 50% health | Cleaves nearby targets | 70% extra melee range | 55% higher hitbox bounds"
+			"special item description 2" "-3 health regen | Restores 50 health on kill | 20% resistance from ranged sources when the weapon is active"
+			"special item description 3" "30% faster movement speed when the weapon is active"
+			"special item description 4" "Best used for risk based melee playstyles."
+		}
+	}
+
+	CustomWeapon [$SIGSEGV]
+	{
+		"Dragonsbreath"
+		{
+			OriginalItemname "upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+
+			"damage bonus HIDDEN" 1.1
+			"bullets per shot bonus" 0.8
+			"weapon spread bonus" 1.1
+			"Set DamageType Ignite" 1
+			"weapon burn dmg reduced" 2.0
+			"fire rate penalty" 1.1
+			"paintkit_proto_def_index" 390
+			"set_item_texture_wear" 0
+
+			"special item description" "Fires 20% less bullets | +10% wider bullet spread | Fires 10% slower"
+			"special item description 2" "Ignites targets on hit | +100% increased afterburn damage"
+			"special item description 3" "Go cook some scrap metal with this weapon!"
+		}
+	}
+
+	PointTemplates [$SIGSEGV]
+	{
+		PopulatorInterface
+		{
+			point_populator_interface
+			{
+				"targetname" "pop_interface"
+			}
+		}
+	}
+
+	SpawnTemplate "PopulatorInterface" [$SIGSEGV]
+
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target bignet
+			Action RunScriptCode
+			Param "EntFire(`wave_start_relay`, `Trigger`);
+			AlternateWaves.ClearWaveIcons();
+			switch (MindBloomRNG.GlobalIndex) // You'll need to do this for RNG icons
+			{
+				case 0:
+				{
+					AlternateWaves.AddWaveIcons([
+						[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
+						[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+						[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+						[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+						[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+						[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
+					])
+					break;
+				}
+
+				case 1:
+				{
+					AlternateWaves.AddWaveIcons([
+						[ `soldier_bison_a_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT ],
+						[ `soldier_bison_spammer_hyper_mentrillum`, 1, MVM_CLASS_FLAG_MINIBOSS |  MVM_CLASS_FLAG_ALWAYSCRIT ],
+						[ `soldier_bison_a`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+						[ `heavy_mittens`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT ]
+					])
+					break;
+				}
+			}
+			MindBloomRNG.StartRNGArena();"
+		}
+		DoneOutput // I actually don't know how to bring players back to spawn, so whatever you do to accomplish that, do it
+		{
+			Target bignet
+			Action RunScriptCode
+			Param "EntFire(`wave_finished_relay`, `Trigger`)
+			EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+			AlternateWaves.bTrackIcons = true;
+			MusicSystemMent.ResetTracks(); // It is YOUR responsibility to add this on wave end, otherwise the music will keep playing throughout waves
+
+			Convars.SetValue(`tf_allow_sliding_taunt`, 0);"
+		}
+		InitWaveOutput
+		{
+			Target bignet
+			Action RunScriptCode
+			Param "
+				if (!(`alternatewaves` in getroottable())) // You'll need alternatewaves and mvm_mind_bloom_arena_rng
+				{
+					IncludeScript(`alternatewaves`, getroottable());
+				}
+				if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+				{
+					IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+				}
+				if (!(`music_system_ment` in getroottable())) // This is for custom musics for WAVs
+				{
+					IncludeScript(`music_system_ment`, getroottable());
+				}
+				MusicSystemMent.ResetAll(); // For the music system, you'll need to call these two functions
+				MusicSystemMent.HookByName(`bignet`);
+				MindBloomRNG.AddRNGArena(`wave_init_arena_meltdown_relay`, `soviet`); // For the RNG bosses, the first parameter is the init logic relay name
+				MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `captain`); // and the second parameter is the dummy squad name you want to activate
+				MindBloomRNG.InitRNGArena(); // After adding all of your RNG arenas and squad names, call this function
+				AlternateWaves.bTrackIcons = false;
+				AlternateWaves.ClearWaveIcons();
+				switch (MindBloomRNG.GlobalIndex) // You'll need to do this for RNG icons
+				{
+					case 0:
+					{
+						AlternateWaves.AddWaveIcons([
+							[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
+							[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+							[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+							[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+							[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+							[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
+						])
+						break;
+					}
+
+					case 1:
+					{
+						AlternateWaves.AddWaveIcons([
+							[ `soldier_bison_a_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT ],
+							[ `soldier_bison_spammer_hyper_mentrillum`, 1, MVM_CLASS_FLAG_MINIBOSS |  MVM_CLASS_FLAG_ALWAYSCRIT ],
+							[ `soldier_bison_a`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+							[ `heavy_mittens`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT ]
+						])
+						break;
+					}
+				}
+
+				if (!(`mvm_meltdown_red_world` in getroottable())) // Red World's script file
+				{
+					IncludeScript(`mvm_meltdown_red_world`, getroottable());
+				}
+				RedWorld.BossPositions = [Vector(7987.0, -465.0, -1200.0)];
+				RedWorld.BossAngles = [QAngle(0.0, 180.0, 0.0)];
+				RedWorld.BossFleeRange = [1500.0, 2500.0];
+				PrecacheSound(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
+				PrecacheSound(`#mentrillum/mvm/music/what_im_made_of.wav`);
+				PrecacheSound(`)mentrillum/mvm/sfx/attack_groundpound.wav`);
+				PrecacheSound(`)mentrillum/mvm/sfx/attack_chestbeam.wav`);
+				Convars.SetValue(`tf_allow_sliding_taunt`, 1); // For Tonka Weapons's sandvich eating
+			"
+		}
+		RedTeamWipeCausesWaveLoss 1 [$SIGSEGV]
+
+		WaveSpawn // Teleporting Players
+		{
+			Name "Wave1_PlayerTeleport"
+			WaitBeforeStarting 5.1
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`arena_teleport_relay`, `Trigger`)
+					"
+			}
+		}
+
+		WaveSpawn // Dummy for Soviet Tonka Weapons
+		{
+			Name "soviet" // This is why we want to pass in squad names, it's for these dummy wave spawns
+			StartDisabled 1 [$SIGSEGV] // This is the main driving force for getting RNG squads to work
+		}
+
+		WaveSpawn // Dummy for the laser wall duo
+		{
+			Name "captain"
+			StartDisabled 1 [$SIGSEGV]
+		}
+
+		// SOVIET TONKA WEAPONS
+		WaveSpawn // Start of music
+		{
+			WaitForAllSpawned "soviet"
+			WaitBeforeStarting 6
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						local populator = FindByClassname(null, `point_populator_interface`);
+						populator.AcceptInput(`$ResumeWavespawn`, `phase0_bots`, null, null);
+						MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
+					"
+			}
+		}
+
+		WaveSpawn // This is when the boss will do his intro
+		{
+			WaitForAllSpawned "soviet"
+			Name "sovietintro" // This is how you stop multiple bosses from spawning when they're not supposed to
+			WaitBeforeStarting 12.5
+			FirstSpawnOutput
+			{
+				Target bignet
+				Action RunScriptCode
+				Param "RedWorld.ShuffleBossSpawn()"
+			}
+		}
+
+		WaveSpawn // This is when the boss actually spawns, don't change this WaveSpawn's WBS
+		// change the intro WBS if you want to make it shorter or faster
+		{
+			Name "sovietboss"
+			WaitForAllSpawned "sovietintro"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 8.65
+			WaitBetweenSpawns 0
+
+			TFBot
+			{
+				Template T_TFBot_Chief_Armored_Heavy
+			}
+		}
+
+		WaveSpawn // For when the boss dies, just reset his music or do whatever idk
+		{
+			WaitForAllDead "sovietboss"
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						MusicSystemMent.SetMusicTrack(``);
+					"
+			}
+		}
+
+		WaveSpawn // Support bots
+		{
+			Name "phase0_bots"
+			WaitForAllSpawned "sovietintro" // This is the main driving force for forcing support bots to spawn or not
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 18
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 2.5
+			Support Limited
+			TotalCurrency 400
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Class Scout
+					Skill Easy
+					//Attributes AlwaysCrit
+					MaxVisionRange 1500
+					ClassIcon scout
+					WeaponRestrictions MeleeOnly
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Pyro_Detonator
+					MaxVisionRange 1000
+					ClassIcon pyro
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+					MaxVisionRange 1500
+					ClassIcon heavy
+					Action Mobber [$SIGSEGV]
+				}
+			}
+		}
+
+		WaveSpawn // Support bots
+		{
+			// The remaining phase bot squads don't need a WFAS since Tonka Weapons enables these bots automatically
+			Name "phase1_bots"
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 18
+			SpawnCount 1
+			WaitBeforeStarting 0.0
+			WaitBetweenSpawns 2
+			StartDisabled 1 [$SIGSEGV]
+			Support Limited
+			TotalCurrency 400
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Class Scout
+					Skill Easy
+					//Attributes AlwaysCrit
+					MaxVisionRange 1500
+					ClassIcon scout
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Soldier_Bison
+					MaxVisionRange 1500
+					ClassIcon soldier
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Class Pyro
+					Skill Easy
+					MaxVisionRange 1500
+					ClassIcon pyro
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+					MaxVisionRange 1500
+					ClassIcon demo
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_SteelFist
+					MaxVisionRange 1500
+					ClassIcon heavy
+					Action Mobber [$SIGSEGV]
+				}
+			}
+		}
+
+		WaveSpawn // Support bots
+		{
+			Name "phase2_bots"
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 18
+			SpawnCount 1
+			WaitBeforeStarting 0.0
+			WaitBetweenSpawns 2
+			StartDisabled 1 [$SIGSEGV]
+			Support Limited
+			TotalCurrency 350
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Scout_Popper
+					//Attributes AlwaysCrit
+					MaxVisionRange 1100
+					ClassIcon scout
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Soldier_Bazooka
+					MaxVisionRange 1500
+					ClassIcon soldier
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Pyro_BackBurner
+					MaxVisionRange 1500
+					ClassIcon pyro
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Demoknight_Caber
+					//Attributes AlwaysCrit
+					MaxVisionRange 1500
+					ClassIcon demo
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Shotgun
+					Skill Normal
+					MaxVisionRange 1500
+					ClassIcon heavy
+					Action Mobber [$SIGSEGV]
+				}
+			}
+		}
+
+		WaveSpawn // Support bots
+		{
+			Name "phase3_bots"
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 18
+			SpawnCount 1
+			WaitBeforeStarting 0.0
+			WaitBetweenSpawns 2
+			StartDisabled 1 [$SIGSEGV]
+			Support Limited
+			TotalCurrency 250
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Scout_Shortstop_Small
+					//Attributes AlwaysCrit
+					MaxVisionRange 1500
+					ClassIcon scout
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Shortstop_Small
+					//Attributes AlwaysCrit
+					MaxVisionRange 1500
+					ClassIcon scout
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Class Soldier
+					Skill Normal
+					MaxVisionRange 1500
+					ClassIcon soldier
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Class Soldier
+					Skill Normal
+					MaxVisionRange 1500
+					ClassIcon soldier
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Pyro_DF
+					ClassIcon pyro
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Demoman_Targe
+					MaxVisionRange 1500
+					ClassIcon demo
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Tomislav
+					MaxVisionRange 1500
+					ClassIcon heavy
+					Action Mobber [$SIGSEGV]
+				}
+			}
+		}
+
+		WaveSpawn // If you're gonna do RNG bosses, do this to end the wave
+		{
+			WaitForAllDead "sovietboss"
+			WaitBeforeStarting 5
+
+			FirstSpawnOutput
+			{
+				Target "pop_interface"
+				Action $FinishWave
+				Delay 0
+			}
+		}
+
+		// LASER WALLS, TAKEN FROM MINUSCLUB
+
+		WaveSpawn // Start of music
+		{
+			WaitForAllSpawned "captain"
+			WaitBeforeStarting 6
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/what_im_made_of.wav`, 1.0, 1.0, 0.75);
+					"
+			}
+		}
+
+		WaveSpawn // Boss A
+		{
+			Name "captainbossA"
+			WaitForAllSpawned "captain"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.5
+			WaitBetweenSpawns 8
+			FirstSpawnWarningSound "vo/mvm/mght/Soldier_mvm_m_autodejectedtie02.mp3"
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier_Laser_Wall
+				Item	"The B.A.S.E. Jumper"
+				Attributes	"UseBossHealthBar"
+				Attributes	"AlwaysCrit"
+				Attributes	"Parachute"
+				Attributes	"AutoJump"
+				AutoJumpMin	10
+				AutoJumpMax	10
+				ClassIcon soldier_bison_a_giant
+				Attributes AlwaysCrit
+				Name "The Stepmother Of Laser Walls"
+				Health 35000
+				Attributes UseBossHealthBar
+				Scale 1.9
+				Action Mobber [$SIGSEGV]
+				CharacterAttributes
+				{
+					"move speed bonus"	0.4
+					"health regen"	250
+					"dmg taken increased" 0.05
+					"dmg from melee increased" 20
+					"dmg from ranged reduced" 20
+					"boots falling stomp" 1
+					"airblast vulnerability multiplier"	0
+					"airblast vertical vulnerability multiplier"	0
+					"rage giving scale"	0.1
+					"increased jump height" 3.2069
+					"hand scale"	1.69
+				}
+			}
+		}
+
+		WaveSpawn // Another portal
+		{
+			WaitForAllSpawned "captain"
+			WaitBeforeStarting 12.6
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "EntFire(`arena_coastrock_boss_spawn_relay`, `Trigger`, null, 0.0)"
+			}
+		}
+
+		WaveSpawn // Boss B
+		{
+			Name "captainbossA"
+			WaitForAllSpawned "captain"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 17.6
+			WaitBetweenSpawns 8
+			FirstSpawnWarningSound "vo/mvm/mght/Soldier_mvm_m_jeers06.mp3"
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier_Laser_Spammer
+				Item	"The B.A.S.E. Jumper"
+				Attributes	"UseBossHealthBar"
+				Attributes	"AlwaysCrit"
+				Attributes	"Parachute"
+				Attributes	"AutoJump"
+				AutoJumpMin	10
+				AutoJumpMax	10
+				Attributes AlwaysCrit
+				Name "The Father Of All Laser Walls"
+				Health 40000
+				Attributes UseBossHealthBar
+				Scale 1.9
+				Action Mobber [$SIGSEGV]
+				CharacterAttributes
+				{
+					"move speed bonus"	0.4
+					"health regen"	250
+					"dmg taken increased" 0.05
+					"dmg from melee increased" 20
+					"dmg from ranged reduced" 20
+					"boots falling stomp" 1
+					"airblast vulnerability multiplier"	0
+					"airblast vertical vulnerability multiplier"	0
+					"rage giving scale"	0.1
+					"increased jump height" 3.2069
+					"hand scale"	1.69
+				}
+			}
+		}
+
+		WaveSpawn // Support bots
+		{
+			Name "captainsupport"
+			WaitForAllSpawned "captain"
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 18
+			SpawnCount 1
+			WaitBeforeStarting 15.0
+			WaitBetweenSpawns 2.5
+			Support 1
+			TotalCurrency 400
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Name "Bison Soldier"
+					Class Soldier
+					Skill Hard
+					WeaponRestrictions SecondaryOnly
+					ClassIcon soldier_bison_a
+					Item "The Righteous Bison"
+					Action Mobber [$SIGSEGV]
+				}
+
+				TFBot
+				{
+					Template	T_TFBot_Heavyweapons_Gnome
+					Health	200
+					Name	"A Really Annoying Heavy"
+					Item	"pestering jester"
+					Action Mobber [$SIGSEGV]
+				}
+			}
+		}
+
+		// End of wave for when the bosses die
+		WaveSpawn
+		{
+			WaitForAllDead "captainbossA"
+			WaitBeforeStarting 0
+
+			FirstSpawnOutput
+			{
+				Target "pop_interface"
+				Action $FinishWave
+				Delay 0
+			}
+		}
+
+		// Bottom line, use WFAS on the bot squads and use dummy wave spawns to dictate what bosses and supports will spawn
+	}
+}
