@@ -6,13 +6,13 @@ There_Was_Nothing_There
 		{
 			Name "Nemesis Program MK2 Mimicry"
 			Tag bot_rangescript
-					Class Soldier
-					Skill Expert
-					ClassIcon tf2_lite_shadeless
-					Health 60000
-					Scale 1.75
-					Attributes MiniBoss
-					Attributes UseBossHealthBar
+			Class Soldier
+			Skill Expert
+			ClassIcon tf2_lite_shadeless
+			Health 60000
+			Scale 1.75
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
 				EventChangeAttributes
 				{
 						// phase 1

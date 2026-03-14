@@ -38,6 +38,9 @@
 #base dejavu_miniboss_distorted_messenger_package.pop
 #base dejavu_miniboss_privateseeker_sergeanttable.pop
 #base dejavu_miniboss_shell_package.pop
+#base dejavu_miniboss_badtothebone_sntr.pop
+#base dejavu_miniboss_skull_magician_sntr.pop
+#base dejavu_miniboss_tank_zombie_sntr.pop
 
 WaveSchedule
 {
@@ -2338,7 +2341,9 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }
@@ -2346,7 +2351,9 @@ WaveSchedule
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`demo_burst_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_dragon_crown`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demoknight_headtaker_nys`, 1, MVM_CLASS_FLAG_MINIBOSS]
                                 break;
                             ])
                         }
@@ -2367,6 +2374,39 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`demo_burst_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_dragon_crown`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demoknight_headtaker_nys`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
@@ -2620,6 +2660,36 @@ WaveSchedule
                     MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave9_TimedDisaster`);
                     MindBloomRNG.InitRNGArena();
 
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
+
                     IncludeScript(`popextensions_main`, getroottable())
                     PopExt.AddRobotTag(`bossflare`, {
                         OnSpawn = function(bot, tag) {
@@ -2644,6 +2714,40 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
@@ -2835,6 +2939,44 @@ WaveSchedule
                     MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave10_PrivateSeeker`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave10_NemesisShell`);
                     MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
                   "
         }
         StartWaveOutput
@@ -2843,6 +2985,40 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
@@ -3107,6 +3283,41 @@ WaveSchedule
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_NemesisMimicry`);
                     MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`pyro_hyper_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
                   "
         }
         StartWaveOutput
@@ -3282,7 +3493,200 @@ WaveSchedule
     }
     Wave // Boss Gauntlet - Bad to the Bone, Skull Magician, then Tank Zombies OR Dr. Dismemberment, The Mann in Black then Captain Cognac
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+                    if (!(`rangescript` in getroottable()))
+                    {
+                        IncludeScript(`rangescript`, getroottable());
+                    }
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave12_IndustrialGauntlet`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave12_RancherGauntlet`);
+                    MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_zombie_arm2_lite`, 10, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+                    }
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_zombie_arm2_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                break;
+                            ])
+                        }
+                    }
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+
+        //// Bad to the Bone, Skull Magician & The Tank Zombies ////
+        WaveSpawn
+        {
+            Name "Wave12_IndustrialGauntlet"
+            StartDisabled 1
+        }
+
+        WaveSpawn // Boss 1 - Bad to the Bone
+        {
+            Name "Wave12_Boss1-BadtotheBone"
+            WaitForAllSpawned "Wave12_IndustrialGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_BossRider
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 2 - Skull Magician
+        {
+            Name "Wave12_Boss2-SkullMagician"
+            WaitForAllDead "Wave12_Boss1-BadtotheBone"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_IronLich
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 3 - 10 Tank Zombies
+        {
+            Name "Wave12_Boss3-TankZombies"
+            WaitForAllDead "Wave12_Boss2-SkullMagician"
+            Where spawnbot_support
+            TotalCount 10
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_Zombie_Special_Hulk
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Dr. Dismemberment, The Mann in Black & Captain Cognac ////
+        WaveSpawn
+        {
+            Name "Wave12_RancherGauntlet"
+            StartDisabled 1
+        }
     }
     Wave // Main Boss - Captain Punch the MDXXVIII OR Soviet Tonka Weapons
     {
