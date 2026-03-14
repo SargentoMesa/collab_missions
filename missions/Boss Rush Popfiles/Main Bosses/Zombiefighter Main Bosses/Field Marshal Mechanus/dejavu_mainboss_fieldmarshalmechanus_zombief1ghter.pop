@@ -164,7 +164,7 @@ Population
 				Param "-3503 4095 -938"
 		    	Delay 3.75
 				Repeats 1
-				IfHealthBelow	12000
+				IfHealthBelow	25000
 			}
             Message [$SIGSEGV]	
 			{
