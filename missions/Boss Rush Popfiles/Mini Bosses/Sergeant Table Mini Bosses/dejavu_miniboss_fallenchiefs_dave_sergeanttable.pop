@@ -419,7 +419,6 @@ WaveSchedule
             Health	12000
             Name	"Fallen Demo Patrol Chief"
             Template	T_TFBot_Giant_Demo_Burst
-            Attributes	"AlwaysCrit"
             Attributes	"UseBossHealthBar"
             UseCustomModel	"models\bots\demo_boss\bot_demo_boss_gibby.mdl"
             Action Mobber
@@ -445,7 +444,6 @@ WaveSchedule
             Name	"Fallen Pyro Patrol Chief"
             Scale	2
             Template	T_TFBot_Giant_Pyro
-            Attributes	"AlwaysCrit"
             Attributes	"UseBossHealthBar"
             UseCustomModel "models\bots\pyro_boss\bot_pyro_boss_gibby.mdl"
             UseBestWeapon 1

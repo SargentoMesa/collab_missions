@@ -27,7 +27,7 @@ Population
 			UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]   //Use custom model
 			Action	Sniper [$SIGSEGV]
 			ClassIcon	sniper_machina_nys
-			Health	20000
+			Health	25000
 			Name	"Deadlock"
 			Class	Sniper
 			Skill	Expert

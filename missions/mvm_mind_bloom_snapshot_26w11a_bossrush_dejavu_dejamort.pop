@@ -8,6 +8,7 @@
 
 // Main Bosses //
 #base dejavu_mainboss_deadlock_zombief1ghter.pop
+#base dejavu_mainboss_timeddisaster_sergeanttable.pop
 
 // Mini Bosses //
 #base dejavu_miniboss_fieldgeneral_wiz2.pop
@@ -118,6 +119,67 @@ WaveSchedule
                 "Filter03"   "filter_is_not_ubered3"
                 "Filter04"   "filter_is_not_ubered4"
                 "Filter05"   "filter_is_player"
+            }
+
+            // Planned Setup Music
+        }
+
+        BossRushSpecialSpawnLocation
+        {
+            RemoveIfKilled "arena_unique_boss_spawn_tesla"
+
+            info_particle_system
+            {
+                "targetname" "arena_unique_boss_spawn_particle"
+                "effect_name" "charge_up"
+                "start_active" "0"
+            }
+            point_tesla
+            {
+                "targetname" "arena_unique_boss_spawn_tesla"
+                "texture" "sprites/physbeam.vmt"
+                "beamcount_min" 3
+                "beamcount_max" 9
+                "interval_min" 0.05
+                "interval_max" 0.05
+                "lifetime_min" 0.15
+                "lifetime_max" 0.15
+                "thick_min" 4
+                "thick_max" 10
+                "m_bOn" 0
+                "m_Color" "255 32 32"
+                "m_flRadius" 550
+            }
+
+            OnSpawnOutput
+            {
+                Target "arena_unique_boss_spawn_tesla"
+                Action TurnOn
+                Delay 0
+            }
+            OnSpawnOutput
+            {
+                Target "arena_unique_boss_spawn_particle"
+                Action Start
+                Delay 0.5
+            }
+            OnSpawnOutput
+            {
+                Target "arena_unique_boss_spawn_tesla"
+                Action TurnOff
+                Delay 5
+            }
+            OnSpawnOutput
+            {
+                Target "arena_unique_boss_spawn_particle"
+                Action Stop
+                Delay 5
+            }
+            OnSpawnOutput
+            {
+                Target "arena_unique_boss_spawn_tesla"
+                Action Kill
+                Delay 5.5
             }
         }
 
@@ -906,6 +968,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`arena_spyfactory_boss_spawn_relay`, `Disable`)
                   "
         }
         DoneOutput
@@ -920,7 +983,7 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossRushMusic
+        SpawnTemplate MiniBossRushMusicz
 
         WaveSpawn // Dummy Bomb
         {
@@ -956,6 +1019,23 @@ WaveSchedule
             }
         }
 
+        WaveSpawn
+        {
+            Name "newspawnlocations"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -5427 -5633 -610`)
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6015 -4577 -610`)
+                        EntFire(`BossRushSpecialSpawnLocation`, `ForceSpawn -6847 -4481 -610`)
+                      "
+            }
+        }
+
         // Boss 1 - Fallen Heavy Patrol Chief
         WaveSpawn
         {
@@ -971,6 +1051,14 @@ WaveSchedule
             TFBot
             {
                 Template T_TFBot_Heavy_PatrolChief
+
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -6015 -4577 -610
+                    Delay 0.1
+                }
             }
 
             FirstSpawnOutput
@@ -981,17 +1069,53 @@ WaveSchedule
                         EntFire(`letsgetthisshowrolling`, `Trigger`)
                       "
             }
-            DoneOutput
+        }
+        WaveSpawn
+        {
+            Name "Wave5_Boss1-PyroPatrolChief"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
             {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave5_Support1-Demomen`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave5_Support1-Demomen`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave5_Support1-Demoknights`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave5_Support1-Demoknights`)
-                        EntFire(`arena_spyfactory_boss_spawn_relay`, `Trigger`, null, 2.5)
-                      "
+                Template T_TFBot_Pyro_PatrolChief
+
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -5427 -5633 -610
+                    Delay 0.1
+                }
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave5_Boss1-DemoPatrolChief"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Demo_PatrolChief
+                
+                FireInput
+                {
+                    Target !self
+                    Action $SetLocalOrigin
+                    Param -6847 -4481 -610
+                    Delay 0.1
+                }
             }
         }
 
@@ -1031,51 +1155,6 @@ WaveSchedule
             }
         }
 
-        // Boss 2 - Fallen Pyro & Demo Patrol Chiefs
-        WaveSpawn
-        {
-            Name "Wave5_Boss2-PyroPatrolChief"
-            WaitForAllDead "Wave5_Boss1-HeavyPatrolChief"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template T_TFBot_Pyro_PatrolChief
-            }
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave5_Support1-Demomen`, 7.5)
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave5_Support1-Demoknights`, 7.5)
-                      "
-            }
-        }
-        WaveSpawn
-        {
-            Name "Wave5_Boss2-DemoPatrolChief"
-            WaitForAllDead "Wave5_Boss1-HeavyPatrolChief"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template T_TFBot_Demo_PatrolChief
-            }
-        }
     }
 
     // ADVANCED GAUNTLET //
@@ -1158,7 +1237,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry01.mp3"
             DoneWarningSound "vo/mvm/norm/heavy_mvm_paincrticialdeath02.mp3"
@@ -1197,6 +1276,34 @@ WaveSchedule
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_go01.mp3"
         }
 
+
+        WaveSpawn
+        {
+            Name "Wave6_Support1-Caberknights"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 3
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Caberknight"
+                Template T_TFBot_Demoman_Knight
+                ClassIcon demo_caber_nys
+                Item "The Ullapool Caber"
+
+                ItemAttributes
+                {
+                    ItemName "The Ullapool Caber"
+                    "blast dmg to self increased" 99999
+                }
+            }
+        }
         WaveSpawn
         {
             Name "Wave6_Boss1-TheDrunkHorde"
@@ -1215,6 +1322,15 @@ WaveSchedule
             {
                 Name "God's 2nd Drunkest Driver"
                 Template MiniBossHorde_DrivingInMyCar
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                      "
             }
         }
         WaveSpawn

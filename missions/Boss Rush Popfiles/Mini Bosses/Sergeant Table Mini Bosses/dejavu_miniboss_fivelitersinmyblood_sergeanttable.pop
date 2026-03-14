@@ -9,11 +9,12 @@ WaveSchedule
             Attributes MiniBoss
             UseHumanAnimations 1
             Template T_TFBot_Heavyweapons_Fist
-            Scale 0.7
+            ClassIcon heavy_head_drunk
+            Scale 1
             AddCond   {Name "TF_COND_HALLOWEEN_KART"}
             CharacterAttributes
             {
-                "damage bonus" 2
+                "damage bonus" 1.5
             }
             FireWeapon    //Periodically fires weapon
             {

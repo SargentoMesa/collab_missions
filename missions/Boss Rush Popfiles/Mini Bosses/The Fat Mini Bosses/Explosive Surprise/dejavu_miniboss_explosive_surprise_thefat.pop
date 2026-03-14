@@ -225,7 +225,7 @@ WaveSchedule
 			Name "Explosive Surprise"
 			ClassIcon demoman_sandman_chief 
 			Skill Expert
-			Health 15000
+			Health 25000
 			WeaponRestrictions PrimaryOnly
 			Attributes HoldFireUntilFullReload
 			Attributes MiniBoss

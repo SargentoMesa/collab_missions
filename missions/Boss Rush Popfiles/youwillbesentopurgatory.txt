@@ -1,0 +1,983 @@
+    Wave // Colonel Crackle
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
+                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                    
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`wave_init_arena_desert_relay`, `Trigger`, null, 0.2)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossRushMusic
+
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            HideIcon 1
+
+            TFBot
+            {
+                Name "the bob"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        // Boss
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave1_Boss"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 300
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_directhittaunt01.mp3"
+        
+            TFBot
+            {
+                Template T_TFBot_Miniboss_ColonelCrackle_Wooper
+
+                // Intro Sequence
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Delay 8
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 8
+                    Delay -1
+                }
+                Taunt
+                {
+                    Delay 1
+                    Repeats 1
+                    Cooldown -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "0 2304 592"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave1_Support"
+            WaitForAllSpawned "Wave1_Boss"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+        
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Name "Bat Scout"
+                Template T_TFBot_Scout_Melee
+                ClassIcon scout_bat_nys
+            }
+        }
+    }
+    Wave // The Decimator
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`wave_init_arena_industrial_relay`, `Trigger`, null, 0.2)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossRushMusic
+
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            HideIcon 1
+
+            TFBot
+            {
+                Name "the ben"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        // Boss
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave2_Boss"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 300
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_directhittaunt02.mp3"
+        
+            TFBot
+            { 
+                Template T_TFBot_Miniboss_Decimator_Kai
+
+                // Intro Sequence
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.0001
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.5
+                    Delay 5
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 5
+                    Delay -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "taunt07"
+                    Delay 0.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "run_primary"
+                    Delay 3.3
+                    Repeats 1
+                    Cooldown -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisshowrolling`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave2_Support"
+            WaitForAllSpawned "Wave2_Boss"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+        
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Class Scout
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave2_Support"
+            WaitForAllSpawned "Wave2_Boss"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+        
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Template T_TFBot_Demoman_Knight
+            }
+        }
+    }
+    Wave // Triple Boss Fight (Prismatic Diffractor, Dragon King, Howitzer Machination)
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`wave_init_arena_industrial_relay`, `Trigger`, null, 0.2)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossRushMusic
+
+        // Wave Setup
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            HideIcon 1
+
+            TFBot
+            {
+                Name "the big"
+                Class Scout
+            }
+        }
+        WaveSpawn // Teleporting Players
+        {
+            Name "Wave3_PlayerTeleport"
+            WaitBeforeStarting 5
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawn_teleporter`, `AddOutput`, `target portal_target_industrial`)
+                        EntFire(`spawn_teleporter`, `Enable`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        // Boss 1
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave3_Boss1"
+            WaitForAllSpawned "Wave3_PlayerTeleport"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/soldier_mvm_m_directhittaunt02.mp3"
+        
+            TFBot
+            { 
+                Template T_TFBot_Miniboss_PrismaticDiffractor_Kai
+
+                // Intro Sequence
+                Taunt
+                {
+                    Delay 1
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 5
+                    Delay -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisshowrolling`, `Trigger`)
+                        EntFire(`arena_industrial_vortex_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support1`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support1`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
+                      "
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support1"
+            WaitForAllSpawned "Wave3_Boss1"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Heavy
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support1"
+            WaitForAllSpawned "Wave3_Boss1"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Soldier
+                Skill Easy
+            }
+        }
+
+        // Boss 2
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave3_Boss2"
+            WaitForAllDead "Wave3_Boss1"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/pyro_mvm_m_laughevil01.mp3"
+
+            TFBot
+            {
+                Template T_TFBot_MiniBoss_DragonKing_Kai
+
+                // Intro Sequence
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_jump"
+                    Delay 5.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Value 1
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                RemoveAttribute
+                {
+                    Item "Player"
+                    Name "no_attack"
+                    Delay 5.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.0001
+                    Delay -1
+                    Repeats 1
+                    Cooldown -1
+                }
+                AddAttribute
+                {
+                    Item "Player"
+                    Name "move speed penalty"
+                    Value 0.5
+                    Delay 5.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 5.5
+                    Delay -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "taunt_bubbles"
+                    Delay 0.5
+                    Repeats 1
+                    Cooldown -1
+                }
+                FireInput
+                {
+                    Target "!activator"
+                    Action "$PlaySequence"
+                    Param "run_primary"
+                    Delay 5.4
+                    Repeats 1
+                    Cooldown -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 10
+                    Repeats 0
+                    Cooldown 10
+                }
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support2`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support2`)
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2)
+                      "
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support2"
+            WaitForAllSpawned "Wave3_Boss2"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 6
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_Flaregun
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support2"
+            WaitForAllSpawned "Wave3_Boss2"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Axtinguisher Pyro"
+                Class Pyro
+                ClassIcon pyro_jug_axtinguisher
+                WeaponRestrictions MeleeOnly
+                
+                Item "The Axtinguisher"
+            }
+        }
+
+        // Boss 3
+        WaveSpawn // Boss Spawn
+        {
+            Name "Wave3_Boss3"
+            WaitForAllDead "Wave3_Boss2"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 0
+        
+            TotalCurrency 100
+            
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "vo/mvm/mght/demoman_mvm_m_battlecry02.mp3"
+        
+            TFBot
+            { 
+                Template T_TFBot_MiniBoss_HowitzerMachination_Kai
+
+                // Intro Sequence
+                Taunt
+                {
+                    Delay 1
+                    Repeats 1
+                    Cooldown -1
+                }
+                Addcond
+                {
+                    Index 51
+                    Duration 5
+                    Delay -1
+                }
+
+                // Interrupt Action Points
+                InterruptAction
+                {
+                    Target "4576 6448 832"
+                    Distance 80
+                    Duration 5
+                    Delay 5
+                    Repeats 0
+                    Cooldown 5
+                }
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support3"
+            WaitForAllSpawned "Wave3_Boss3"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 8
+            SpawnCount 2
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+            
+            TFBot
+            {
+                Template T_TFBot_Sniper_Huntsman
+            }
+        }
+        WaveSpawn // Support Spawn
+        {
+            Name "Wave3_Support3"
+            WaitForAllSpawned "Wave3_Boss3"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 4
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 10
+            TotalCurrency 100
+            
+            TFBot
+            {
+                Template T_TFBot_Demo_Burst
+            }
+        }
+    }
+
+
+    Wave // Temporary Timed Disaster
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
+                    
+                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    EntFire(`wave_init_arena_saxford_relay`, `Trigger`, null, 6)
+
+                    IncludeScript(`popextensions_main`, getroottable())
+                    PopExt.AddRobotTag(`bossflare`, {
+                        OnSpawn = function(bot, tag) {
+                    
+                            local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable.SetOwner(bot)
+                            wearable.SetModelScale(2.3, 0)
+                            wearable.SetLocalOrigin(Vector(-15, 0, -6))
+                            wearable.SetAngles(45, -90, 0)
+                            local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
+                            wearable2.SetOwner(bot)
+                            wearable2.SetLocalOrigin(Vector(12, 0, -0))
+                            wearable2.SetModelScale(2.3, 0)
+                            wearable2.SetAngles(45, -45, 45)
+                        },
+                    })
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MainBossRushMusic
+
+        WaveSpawn // Dummy Bomb
+        {
+            Where spawnbot_bomb
+            Support Limited
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+
+            HideIcon 1
+
+            TFBot
+            {
+                Name "the bob"
+                Class Scout
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave7_Boss-TimedDisaster"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 200
+
+            FirstSpawnWarningSound "mvm/giant_heavy/giant_heavy_entrance.wav"
+            LastSpawnWarningSound "npc/combine_gunship/ping_patrol.wav"
+
+            TFBot
+            {
+                Template T_TFBot_Mainboss_TimedDisaster_Table
+            }
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`letsgetthisbossrolling`, `Trigger`)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Scouts
+        {
+            Name "Wave2_Support-Scouts"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Class Scout
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support GRU Heavies
+        {
+            Name "Wave2_Support-GRUHeavies"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 3
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Name "Lightweight Champ"
+                Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+            }
+        }
+    }

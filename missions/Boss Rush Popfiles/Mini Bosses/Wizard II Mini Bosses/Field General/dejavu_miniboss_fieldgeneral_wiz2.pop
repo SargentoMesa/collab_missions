@@ -8,7 +8,7 @@ WaveSchedule
 			Class Soldier
 			Name "Field General"
 			Skill Expert
-			Health 11500
+			Health 25000
 			Scale 1.8
 			Attributes MiniBoss
 			WeaponRestrictions PrimaryOnly
