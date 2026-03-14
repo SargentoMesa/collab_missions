@@ -1,13 +1,61 @@
-// Absolute Cinemaga
 WaveSchedule
 {
-	PrecacheSound "mentrillum/mvm/sfx/attack_groundpound.wav" [$SIGSEGV]
+    PrecacheSound "mentrillum/mvm/sfx/attack_groundpound.wav" [$SIGSEGV]
 	PrecacheSound "mentrillum/mvm/sfx/attack_chestbeam.wav" [$SIGSEGV]
 	PrecacheModel "models/mentrillum/bots/soviet_tonka_weapons_02.mdl" [$SIGSEGV]
 
-	Templates
+    CustomWeapon [$SIGSEGV]
 	{
-		T_TFBot_Chief_Armored_Heavy
+		"Advanced Training Gauntlets"
+		{
+			OriginalItemname "Fists of Steel"
+
+			"dmg from ranged reduced" 0.8
+			"dmg from melee increased" 1.0
+			"single wep holster time increased" 1.1
+			"patient overheal penalty" 1.0
+			"health from healers reduced" 1.0
+
+			"provide on active" 1
+			"move speed bonus" 1.3
+			"heal on kill" 50.0
+			"dmg bonus while half dead" 1.25
+			"dmg penalty while half alive" 0.75
+			"health regen" -3.0
+			"SPELL: set item tint RGB" 5
+			"set item tint RGB" 7667712
+			"item color rgb" 7667712
+			"melee cleave attack" 1
+			"melee range multiplier" 1.7
+			"melee bounds multiplier" 1.55
+
+			"special item description" "Deals 25% less/more damage when above/below 50% health | Cleaves nearby targets | 70% extra melee range | 55% higher hitbox bounds"
+			"special item description 2" "-3 health regen | Restores 50 health on kill | 20% resistance from ranged sources when the weapon is active"
+			"special item description 3" "30% faster movement speed when the weapon is active"
+			"special item description 4" "Best used for risk based melee playstyles."
+		}
+        "Dragonsbreath"
+		{
+			OriginalItemname "upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+
+			"damage bonus HIDDEN" 1.1
+			"bullets per shot bonus" 0.8
+			"weapon spread bonus" 1.1
+			"Set DamageType Ignite" 1
+			"weapon burn dmg reduced" 2.0
+			"fire rate penalty" 1.1
+			"paintkit_proto_def_index" 390
+			"set_item_texture_wear" 0
+
+			"special item description" "Fires 20% less bullets | +10% wider bullet spread | Fires 10% slower"
+			"special item description 2" "Ignites targets on hit | +100% increased afterburn damage"
+			"special item description 3" "Go cook some scrap metal with this weapon!"
+		}
+	}
+
+    Templates
+    {
+        T_TFBot_Chief_Armored_Heavy
 		{
 			Class Heavyweapons
 			Name "Soviet Tonka Weapons"
@@ -207,58 +255,5 @@ WaveSchedule
 				}
 			}
 		}
-	}
-
-	CustomWeapon [$SIGSEGV]
-	{
-		"Advanced Training Gauntlets"
-		{
-			OriginalItemname "Fists of Steel"
-
-			"dmg from ranged reduced" 0.8
-			"dmg from melee increased" 1.0
-			"single wep holster time increased" 1.1
-			"patient overheal penalty" 1.0
-			"health from healers reduced" 1.0
-
-			"provide on active" 1
-			"move speed bonus" 1.3
-			"heal on kill" 50.0
-			"dmg bonus while half dead" 1.25
-			"dmg penalty while half alive" 0.75
-			"health regen" -3.0
-			"SPELL: set item tint RGB" 5
-			"set item tint RGB" 7667712
-			"item color rgb" 7667712
-			"melee cleave attack" 1
-			"melee range multiplier" 1.7
-			"melee bounds multiplier" 1.55
-
-			"special item description" "Deals 25% less/more damage when above/below 50% health | Cleaves nearby targets | 70% extra melee range | 55% higher hitbox bounds"
-			"special item description 2" "-3 health regen | Restores 50 health on kill | 20% resistance from ranged sources when the weapon is active"
-			"special item description 3" "30% faster movement speed when the weapon is active"
-			"special item description 4" "Best used for risk based melee playstyles."
-		}
-	}
-
-	CustomWeapon [$SIGSEGV]
-	{
-		"Dragonsbreath"
-		{
-			OriginalItemname "upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
-
-			"damage bonus HIDDEN" 1.1
-			"bullets per shot bonus" 0.8
-			"weapon spread bonus" 1.1
-			"Set DamageType Ignite" 1
-			"weapon burn dmg reduced" 2.0
-			"fire rate penalty" 1.1
-			"paintkit_proto_def_index" 390
-			"set_item_texture_wear" 0
-
-			"special item description" "Fires 20% less bullets | +10% wider bullet spread | Fires 10% slower"
-			"special item description 2" "Ignites targets on hit | +100% increased afterburn damage"
-			"special item description 3" "Go cook some scrap metal with this weapon!"
-		}
-	}
+    }
 }

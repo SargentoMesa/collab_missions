@@ -6,18 +6,18 @@
 
 //// BOSS POPFILE IMPORTS ////
 
-// Main Bosses //
-#base dejavu_mainboss_deadlock_zombief1ghter.pop
-#base dejavu_mainboss_miningsupervisor_zombief1ghter.pop
-#base dejavu_mainboss_fieldmarshalmechanus_zombief1ghter.pop
-#base dejavu_mainboss_timeddisaster_sergeanttable.pop
-
-// Mini Bosses //
-#base dejavu_miniboss_fallenchiefs_dave_sergeanttable.pop
-#base dejavu_miniboss_generalbomber_zombief1ghter.pop
-#base dejavu_miniboss_kingburst_zombief1ghter.pop
-#base dejavu_miniboss_fivelitersinmyblood_sergeanttable.pop
-#base dejavu_miniboss_privateseeker_sergeanttable.pop
+#base dejavu_bazooks_bosses.pop
+#base dejavu_chaosmystery_bosses.pop
+#base dejavu_cookiecat_bosses.pop
+#base dejavu_mentrillum_bosses.pop
+#base dejavu_package_bosses.pop
+#base dejavu_sergeanttable_bosses.pop
+#base dejavu_sleeeepykai_bosses.pop
+#base dejavu_sntr_bosses.pop
+#base dejavu_thefat_bosses.pop
+#base dejavu_wiz2_bosses.pop
+#base dejavu_wooper_bosses.pop
+#base dejavu_zombief1ghter_bosses.pop
 
 WaveSchedule
 {

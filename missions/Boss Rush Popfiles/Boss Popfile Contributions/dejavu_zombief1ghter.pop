@@ -1,8 +1,47 @@
-Population
+WaveSchedule
 {
-	PointTemplates	 [$SIGSEGV]  
+    PrecacheModel	"models/bots/sniper_boss/bot_sniper_boss.mdl"	[$SIGSEGV]
+
+    PointTemplates	[$SIGSEGV]
 	{
-		Distortion_Effect
+        //// DEADLOCK ////
+		bossdeathsmoke
+		{
+			KeepAlive 1
+			OnParentKilledOutput
+			{
+				"target" "boom"
+				"action" "start"
+			}
+
+			info_particle_system
+			{
+				"targetname" "boom"
+				"effect_name" "hightower_explosion" //Particle name the value needs to be the name of a particle. Ask for help to find the one you want.
+				"start_active" "0"
+			}
+		}
+
+        //// FIELD MARSHAL MECHANUS ////
+        bossdeathsmoke
+		{
+			KeepAlive 1
+			OnParentKilledOutput
+			{
+				"target" "boom"
+				"action" "start"
+			}
+
+			info_particle_system
+			{
+				"targetname" "boom"
+				"effect_name" "hightower_explosion" //Particle name the value needs to be the name of a particle. Ask for help to find the one you want.
+				"start_active" "0"
+			}
+		}
+
+        //// MINING SUPERVISOR ////
+        Distortion_Effect
 		{
 			OnSpawnOutput
 			{
@@ -28,9 +67,372 @@ Population
 			}
 		}
 	}
-	Templates
-	{
-		T_TFChief_Mining_Supervisor
+
+    Templates
+    {
+        //// MAIN BOSSES ////
+        
+        // Deadlock
+        T_TFChief_Deadlock
+		{
+			UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]   //Use custom model
+			Action	Sniper [$SIGSEGV]
+			ClassIcon	sniper_machina_nys
+			Health	25000
+			Name	"Deadlock"
+			Class	Sniper
+			Skill	Expert
+			Item	"The Machina"
+			Item	"The Triggerman's Tacticals"
+			Item	"Poacher's Safari Jacket"
+			Item	"The Dread Hiding Hood"
+			//Attributes	"IgnoreFlag"
+			Attributes	"UseBossHealthBar"
+			Attributes	"MiniBoss"
+			SpawnTemplate	"bossdeathsmoke" [$SIGSEGV]
+			AlwaysGlow	1 [$SIGSEGV]
+			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]  
+			ItemAttributes
+			{
+				ItemName	"The Machina"
+				"damage bonus"	3
+				"fire rate penalty"	2
+				"minicritboost on kill"	6
+				"sniper zoom penalty"	0.5
+				"restore health on kill"	10	
+				"slow enemy on hit"	1
+			}
+			ItemAttributes
+			{
+				ItemName	"TF_WEAPON_SMG"
+				"damage bonus"	5
+				"fire rate bonus"	0.6
+				"faster reload rate"	2
+				"minicritboost on kill"	10
+				"minicrits become crits"	1
+			}
+			CharacterAttributes
+			{
+				//"health regen"	50
+				"move speed bonus"	0.5
+				"damage force reduction"	0.3
+				"airblast vulnerability multiplier"	0.3
+				"override footstep sound set"	2
+			}
+			WeaponSwitch [$SIGSEGV]    //Periodically switches weapon
+             {
+                 Delay 1 //Time before the first weapon switch starts (Default: 10)
+                 Cooldown 1 //Time between each weapon switch (Default: 10)
+                 Repeats 1 //How many times should bot switch weapons in total (Default: 0 - Infinite)
+				//IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
+				Type "Secondary" // Weapon slot, possible values:
+					//Primary
+					//Secondary
+					//Melee
+					//PDA
+					//Building
+				IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
+			}
+			FireInput [$SIGSEGV]   
+			{
+    			Target "!self"
+    			Action "$BotCommand"
+    			Param "switch_action FetchFlag"
+    			Delay 1
+    			Cooldown 0.1
+    			Repeats 1 //How many times should the input be fired
+    			IfHealthBelow 12000
+			}
+			FireInput [$SIGSEGV]   
+			{
+    			Target "!self"
+    			Action "RunScriptCode"
+    			Param "self.SetMission(0,true)"
+    			Delay 1
+    			Cooldown 0.1
+    			Repeats 1
+    			IfHealthBelow 12000
+			}
+			FireInput [$SIGSEGV]
+		    {
+				Target !self
+		    	Action $SetLocalOrigin
+				Param "129 4927 -618"
+		    	Delay 0.875
+				Repeats 1
+				IfHealthBelow	12000
+			}
+			FireInput [$SIGSEGV]
+		    {
+				Target !self
+		    	Action $SetLocalOrigin
+				Param "-3503 4095 -938"
+		    	Delay 2.875
+				Repeats 1
+				IfHealthBelow	12000
+			}
+            Message [$SIGSEGV]	
+			{
+				Name	"{blue}Deadlock {FFFFFF}has used their {9BBF4D}RECALL{FFFFFF} Power Up Canteen!"
+				Delay	0.875
+				Repeats	1
+				IfHealthBelow	12000
+			}
+            FireInput [$SIGSEGV]
+            {
+                Target "player"
+                Action "$PlaySoundToSelf"
+                Param "=40|mvm/mvm_used_powerup.wav"
+                Delay 0.875
+             	Repeats 1
+				IfHealthBelow	12000
+            }
+			FireInput [$SIGSEGV] //Enable buddha mode.
+			{
+ 				Target !self
+  				Action RunScriptCode
+  				Param "self.EnableBuddha()"
+  				Repeats 1
+  				Delay 0.1
+			}
+			FireInput [$SIGSEGV] //Disable buddhamode.
+			{
+  				Target !self
+  				Action RunScriptCode
+  				Param "self.DisableBuddha()"
+ 				Repeats 1
+  				Delay 4.5
+  				IfHealthBelow 2
+			}
+			FireInput [$SIGSEGV]   
+            {
+                Target !self //Entity name to use
+                Action "RunScriptCode" //Input to fire
+                Param "self.TakeDamage(999999, 0, self)" //Parameter to use
+                Delay 0.1 //Delay before firing the input
+				Cooldown 0.1 //Cooldown between firing the input
+                Repeats 100000 //How many times should the input be fired
+                IfHealthBelow 2 //When set, the task activates only when the bot health is below specified value
+            }
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 0.1 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Taunt: Unleashed Rage" //If set, uses this item taunt instead of default
+    			IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+			}
+			AddCond [$SIGSEGV]   //Adds conditions to bots
+			{
+    			Name "TF_COND_REPROGRAMMED" // Condition to apply. List of available conditions https://wiki.teamfortress.com/wiki/Cheats#addcond
+    			Index 52 //Condition index can be used instead
+    			Delay 0.1 // Delay before the condition activates (Default: 0)
+    			Duration 1 // Duration of the condition effect (Default: -1 - infinite duration)
+    			IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+			}
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 0.1 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Taunt: Mourning Mercs" //If set, uses this item taunt instead of default
+    			IfHealthBelow 2 //When set, the task activates only when the bot health is below specified value
+			}
+		}
+
+        // Field Marshal Mechanus
+        T_TFChief_Field_Marshal_Mechanus
+		{
+			FireInput [$SIGSEGV]
+			{
+  				Target "!self"
+  				Action RunScriptCode
+				Param "self.RemoveWeaponRestriction(4); self.AddWeaponRestriction(2)"
+  				//[do all the other keyvalues here of WeaponSwitch, the IfHealthBelow and Repeats 1 and whatever]
+				IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
+                Delay 1 //Time before the first weapon switch starts (Default: 10)
+                Cooldown 3 //Time between each weapon switch (Default: 10)
+                Repeats 1 //How many times should bot switch weapons in total (Default: 0 - Infinite)
+			}
+			WeaponSwitch [$SIGSEGV]    //Periodically switches weapon
+            {
+            	Delay 1 //Time before the first weapon switch starts (Default: 10)
+            	Cooldown 3 //Time between each weapon switch (Default: 10)
+            	Repeats 1 //How many times should bot switch weapons in total (Default: 0 - Infinite)
+				//IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
+				Type "Primary" // Weapon slot, possible values:
+				//Primary
+				//Secondary
+				//Melee
+				//PDA
+				//Building
+				IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
+			}
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 1 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Taunt: The Fubar Fanfare" //If set, uses this item taunt instead of default
+    			IfHealthAbove 44999 //When set, the task activates only when the bot health is below specified value
+			}
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 7 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Laugh Taunt" //If set, uses this item taunt instead of default
+    			IfHealthAbove 44999 //When set, the task activates only when the bot health is below specified value
+			}
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 0 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Taunt: Unleashed Rage" //If set, uses this item taunt instead of default
+    			IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+			}
+			AddCond [$SIGSEGV]   //Adds conditions to bots
+			{
+    			//Name "TF_COND_REPROGRAMMED" // Condition to apply. List of available conditions https://wiki.teamfortress.com/wiki/Cheats#addcond
+    			Index 52 //Condition index can be used instead
+    			Delay 0.1 // Delay before the condition activates (Default: 0)
+    			Duration 2 // Duration of the condition effect (Default: -1 - infinite duration)
+    			IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+			}
+			Taunt [$SIGSEGV]    //Taunt periodically
+			{
+    			Delay 0 //Time before the first taunt starts (Default: 10)
+    			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
+    			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
+    			Name "Taunt: Mourning Mercs" //If set, uses this item taunt instead of default
+    			IfHealthBelow 2 //When set, the task activates only when the bot health is below specified value
+			}
+			ClassIcon	soldier_bison_rocket_spammer
+			Health	45000
+			Name	"Field Marshal Mechanus"
+			Class	Soldier
+			Skill	Expert
+			Attributes	"MiniBoss"
+			Attributes	"UseBossHealthBar"
+			WeaponRestrictions	"SecondaryOnly"
+			Item	"Fancy Dress Uniform"
+			Item	"The Patriot's Pouches"
+			Item	"Armored Authority"
+			SpawnTemplate	"bossdeathsmoke" [$SIGSEGV]
+			AlwaysGlow	1 [$SIGSEGV]
+			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]  
+			UseHumanAnimations 1 [$SIGSEGV]   // Use normal class animations instead of a bot / custom model ones
+			ItemAttributes
+			{
+				ItemName	"TF_WEAPON_ROCKETLAUNCHER"
+				"override projectile type"	13
+				"set item tint RGB"	13203205 205, 50
+				"Center fire projectile"	1
+				"energy weapon penetration" 1
+				"fire rate bonus"	0.1
+				"mod max primary clip override"	-1
+				"damage penalty"	0.5
+				// "attach particle effect"	704
+				"damage bonus vs buildings" 5
+				"paintkit_proto_def_index" 429
+				"set_item_texture_wear" 0.8
+			}
+			ItemAttributes
+			{
+				ItemName	"TF_WEAPON_SHOTGUN_SOLDIER"
+				"damage bonus"	5
+				"mod max primary clip override"	-1
+				"fire rate bonus"	0.25
+				"override projectile type"	2
+				"blast radius increased"	2
+			}
+			ItemAttributes
+	    	{
+				ItemName	"Armored Authority"
+				"attach particle effect"	13
+				"particle effect use head origin" 1
+				// "particle effect vertical offset"    10
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction"	0.4
+				"airblast vulnerability multiplier"	0.4
+				"override footstep sound set"	3
+				"cannot pick up intelligence"	1
+				"always allow taunt" 1
+				"use robot voice" 1
+				"rage giving scale" 0.5
+			}
+			FireInput [$SIGSEGV]
+			{
+				Target !self
+				Action $SetLocalOrigin
+				Param "129 4927 -618"
+				Delay 1.75
+				Repeats 1
+				IfHealthBelow	25000
+			}
+			FireInput [$SIGSEGV]
+		    {
+				Target !self
+		    	Action $SetLocalOrigin
+				Param "-3503 4095 -938"
+		    	Delay 3.75
+				Repeats 1
+				IfHealthBelow	25000
+			}
+            Message [$SIGSEGV]	
+			{
+				Name	"{blue}Field Marshal Mechanus {FFFFFF}has used their {9BBF4D}RECALL{FFFFFF} Power Up Canteen!"
+				Delay	1.75
+				Repeats	1
+				IfHealthBelow	25000
+			}
+            FireInput [$SIGSEGV]
+            {
+                Target "player"
+                Action "$PlaySoundToSelf"
+                Param "=40|mvm/mvm_used_powerup.wav"
+                Delay 1.75
+             	Repeats 1
+				IfHealthBelow	25000
+            }
+			FireInput [$SIGSEGV] //Enable buddha mode.
+			{
+ 				Target !self
+  				Action RunScriptCode
+  				Param "self.EnableBuddha()"
+  				Repeats 1
+  				Delay 0.1
+			}
+			FireInput [$SIGSEGV] //Disable buddhamode.
+			{
+  				Target !self
+  				Action RunScriptCode
+  				Param "self.DisableBuddha()"
+ 				Repeats 1
+  				Delay 4.5
+  				IfHealthBelow 2
+			}
+			FireInput [$SIGSEGV]   
+            {
+                Target !self //Entity name to use
+                Action "RunScriptCode" //Input to fire
+                Param "self.TakeDamage(999999, 0, self)" //Parameter to use
+                Delay 0.1 //Delay before firing the input
+				Cooldown 0.1 //Cooldown between firing the input
+                Repeats 100000 //How many times should the input be fired
+                IfHealthBelow 2 //When set, the task activates only when the bot health is below specified value
+            }
+		}
+
+        // Mining Supervisor
+        T_TFChief_Mining_Supervisor
 		{
 			Class			Soldier
 			Name			"Mining Supervisor"
@@ -612,5 +1014,149 @@ Population
 				// MinTargetRange 50 // If set, the task activates only when the target is more than specified units away
 			}
 		}
-	}
+
+        //// MINI BOSSES ////
+
+        // General Bomber
+        T_TFChief_General_Bomber
+		{
+			ClassIcon	demo_ibomber
+			Health	10000
+			Name	"General Bomber"
+			Class	Demoman
+			Skill	Expert
+			Item	"The Iron Bomber"
+			Item	"Spine-Chilling Skull"
+			Item	"The King of Scotland Cape"
+			//Attributes	"AlwaysCrit"
+			Attributes	"HoldFireUntilFullReload"
+			Attributes	"MiniBoss"
+			Attributes	"UseBossHealthBar"
+			ItemAttributes
+			{
+				ItemName	"The Iron Bomber"
+				"damage bonus"	2
+				"faster reload rate"	0.2
+				"fire rate bonus"	0.2
+				"clip size bonus"	4
+				"Projectile speed increased"	1.5
+			}
+			CharacterAttributes
+			{
+				//"health regen"	60
+				"move speed bonus"	0.32
+				"damage force reduction"	0.7
+				"airblast vulnerability multiplier"	0.3
+				"override footstep sound set"	4
+				"airblast vertical vulnerability multiplier"	0.1
+				"rage giving scale"	0.1
+			}
+		}
+
+        // King Burst
+        T_TFChief_King_Burst
+		{
+			Class	Demoman
+			ClassIcon	burst_demo_boss
+			Name	"King Burst"
+			Skill	Expert
+			Health	15000
+			Item	"The Warsworn Helmet"
+			Item	"The King of Scotland Cape"
+			//Attributes	"AlwaysCrit"
+			WeaponRestrictions	PrimaryOnly
+			Attributes	"MiniBoss"
+			Attributes	"UseBossHealthBar"
+			Attributes	"HoldFireUntilFullReload"
+			ItemAttributes
+			{
+				ItemName	TF_WEAPON_GRENADELAUNCHER
+				"fire rate bonus"	0.1
+				"faster reload rate"	0.2
+				"clip size upgrade atomic"	20
+				"Projectile speed increased"	2
+			}
+			CharacterAttributes
+			{
+				//"health regen"	320
+				"move speed bonus"	0.32
+				"damage force reduction" 0.7
+				"airblast vulnerability multiplier" 0.3
+				"override footstep sound set" 4
+				"airblast vertical vulnerability multiplier" 0.1
+				"rage giving scale" 0.1
+			}
+		}
+
+        // Mechonagher Brothers
+        T_TFBot_Chief_Mechonagher1
+		{
+			Action	FetchFlag [$SIGSEGV]
+			ClassIcon	engineer_ranger_spammer_penetrate_hyper
+			Health	20000
+			Name	Mechonagher
+			Class	Engineer
+			Skill	Expert
+			WeaponRestrictions	PrimaryOnly
+			Attributes	"MiniBoss"
+			Attributes	"UseBossHealthBar"
+			Attributes	"HoldFireUntilFullReload"
+			Item	"The Rescue Ranger"
+			//Item	"Texas Tin-Gallon"
+			Item	"The Data Mining Light"
+			Item	"The Antarctic Researcher"
+			ItemAttributes
+			{
+				ItemName	"The Rescue Ranger"
+				"projectile penetration"	1
+				"damage bonus"	2
+				//"mod max primary clip override"	-1
+				"faster reload rate"	0.25
+				"fire rate bonus"	0.45
+				"dmg bonus vs buildings"	3.25
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"airblast vulnerability multiplier"	0.4
+				"damage force reduction"	0.4
+				"override footstep sound set"	3
+				"head scale"	0.75
+			}
+		}
+		T_TFBot_Chief_Mechonagher2
+		{
+			Action	FetchFlag [$SIGSEGV]
+			ClassIcon	engineer_ranger_spammer_penetrate_hyper
+			Health	20000
+			Name	Mechonagher
+			Class	Engineer
+			Skill	Expert
+			WeaponRestrictions	PrimaryOnly
+			Attributes	"MiniBoss"
+			Attributes	"UseBossHealthBar"
+			Attributes	"HoldFireUntilFullReload"
+			Item	"The Rescue Ranger"
+			Item	"Texas Tin-Gallon"
+			Item	"The Antarctic Researcher"
+			ItemAttributes
+			{
+				ItemName	"The Rescue Ranger"
+				"projectile penetration"	1
+				"damage bonus"	2
+				//"mod max primary clip override"	-1
+				"faster reload rate"	0.25
+				"fire rate bonus"	0.45
+				"dmg bonus vs buildings"	3.25
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"airblast vulnerability multiplier"	0.4
+				"damage force reduction"	0.4
+				"override footstep sound set"	3
+				"head scale"	0.75
+			}
+		}
+    }
 }

@@ -7,20 +7,17 @@
 // Absolute Cinemaga
 WaveSchedule
 {
-    StartingCurrency 1000
-    RespawnWaveTime 2
-    FixedRespawnWaveTime Yes
-    AddSentryBusterWhenDamageDealtExceeds 3000
-    AddSentryBusterWhenKillCountExceeds 10
-
-    WaveStartCountdown 3 [$SIGSEGV]
-	DisableSound "Announcer.MVM_Wave_End" [$SIGSEGV]
-	DisableSound "Announcer.MVM_Bonus" [$SIGSEGV]
+	StartingCurrency 900
+	RespawnWaveTime 4
+	CanBotsAttackWhileInSpawnRoom no
+	Advanced 1
+	ForceRedMoney 1 [$SIGSEGV]
+	WaveStartCountdown 3 [$SIGSEGV]
+	Robotlimit 40 [$SIGSEGV]
 
 	PrecacheSound "mentrillum/mvm/sfx/attack_groundpound.wav" [$SIGSEGV]
 	PrecacheSound "mentrillum/mvm/sfx/attack_chestbeam.wav" [$SIGSEGV]
 	PrecacheSound "mentrillum/mvm/music/red_alert_3_hell_march_3.wav" [$SIGSEGV]
-	PrecacheSound "mentrillum/mvm/music/what_im_made_of.wav" [$SIGSEGV]
 	PrecacheModel "models/mentrillum/bots/soviet_tonka_weapons_02.mdl" [$SIGSEGV]
 
 	Templates
@@ -301,42 +298,22 @@ WaveSchedule
 			Action RunScriptCode
 			Param "EntFire(`wave_start_relay`, `Trigger`);
 			AlternateWaves.ClearWaveIcons();
-			switch (MindBloomRNG.GlobalIndex) // You'll need to do this for RNG icons
-			{
-				case 0:
-				{
-					AlternateWaves.AddWaveIcons([
-						[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
-						[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-						[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-						[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-						[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-						[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
-					])
-					break;
-				}
-
-				case 1:
-				{
-					AlternateWaves.AddWaveIcons([
-						[ `soldier_bison_a_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT ],
-						[ `soldier_bison_spammer_hyper_mentrillum`, 1, MVM_CLASS_FLAG_MINIBOSS |  MVM_CLASS_FLAG_ALWAYSCRIT ],
-						[ `soldier_bison_a`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-						[ `heavy_mittens`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT ]
-					])
-					break;
-				}
-			}
-			MindBloomRNG.StartRNGArena();"
+			AlternateWaves.AddWaveIcons([
+					[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
+					[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
+			]);
+			EntFire(`gamerules`, `SetRedTeamRespawnWaveTime`, `15.0`, 0.1);"
 		}
-		DoneOutput // I actually don't know how to bring players back to spawn, so whatever you do to accomplish that, do it
+		DoneOutput
 		{
 			Target bignet
 			Action RunScriptCode
 			Param "EntFire(`wave_finished_relay`, `Trigger`)
-			EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
 			AlternateWaves.bTrackIcons = true;
-			MusicSystemMent.ResetTracks(); // It is YOUR responsibility to add this on wave end, otherwise the music will keep playing throughout waves
 
 			Convars.SetValue(`tf_allow_sliding_taunt`, 0);"
 		}
@@ -345,53 +322,27 @@ WaveSchedule
 			Target bignet
 			Action RunScriptCode
 			Param "
-				if (!(`alternatewaves` in getroottable())) // You'll need alternatewaves and mvm_mind_bloom_arena_rng
+				if (!(`alternatewaves` in getroottable()))
 				{
 					IncludeScript(`alternatewaves`, getroottable());
 				}
-				if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-				{
-					IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-				}
-				if (!(`music_system_ment` in getroottable())) // This is for custom musics for WAVs
+				if (!(`music_system_ment` in getroottable()))
 				{
 					IncludeScript(`music_system_ment`, getroottable());
 				}
-				MusicSystemMent.ResetAll(); // For the music system, you'll need to call these two functions
+				MusicSystemMent.ResetAll();
 				MusicSystemMent.HookByName(`bignet`);
-				MindBloomRNG.AddRNGArena(`wave_init_arena_meltdown_relay`, `soviet`); // For the RNG bosses, the first parameter is the init logic relay name
-				MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `captain`); // and the second parameter is the dummy squad name you want to activate
-				MindBloomRNG.InitRNGArena(); // After adding all of your RNG arenas and squad names, call this function
 				AlternateWaves.bTrackIcons = false;
 				AlternateWaves.ClearWaveIcons();
-				switch (MindBloomRNG.GlobalIndex) // You'll need to do this for RNG icons
-				{
-					case 0:
-					{
-						AlternateWaves.AddWaveIcons([
-							[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
-							[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-							[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-							[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-							[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-							[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
-						])
-						break;
-					}
-
-					case 1:
-					{
-						AlternateWaves.AddWaveIcons([
-							[ `soldier_bison_a_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT ],
-							[ `soldier_bison_spammer_hyper_mentrillum`, 1, MVM_CLASS_FLAG_MINIBOSS |  MVM_CLASS_FLAG_ALWAYSCRIT ],
-							[ `soldier_bison_a`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
-							[ `heavy_mittens`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT ]
-						])
-						break;
-					}
-				}
-
-				if (!(`mvm_meltdown_red_world` in getroottable())) // Red World's script file
+				AlternateWaves.AddWaveIcons([
+					[ `heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS ],
+					[ `scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ],
+					[ `heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT ]
+				])
+				if (!(`mvm_meltdown_red_world` in getroottable()))
 				{
 					IncludeScript(`mvm_meltdown_red_world`, getroottable());
 				}
@@ -399,18 +350,18 @@ WaveSchedule
 				RedWorld.BossAngles = [QAngle(0.0, 180.0, 0.0)];
 				RedWorld.BossFleeRange = [1500.0, 2500.0];
 				PrecacheSound(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
-				PrecacheSound(`#mentrillum/mvm/music/what_im_made_of.wav`);
 				PrecacheSound(`)mentrillum/mvm/sfx/attack_groundpound.wav`);
 				PrecacheSound(`)mentrillum/mvm/sfx/attack_chestbeam.wav`);
 				Convars.SetValue(`tf_allow_sliding_taunt`, 1); // For Tonka Weapons's sandvich eating
+
+				EntFire(`wave_init_arena_meltdown_relay`, `Trigger`);
 			"
 		}
-		RedTeamWipeCausesWaveLoss 1 [$SIGSEGV]
 
 		WaveSpawn // Teleporting Players
 		{
 			Name "Wave1_PlayerTeleport"
-			WaitBeforeStarting 5.1
+			WaitBeforeStarting 10
 			FirstSpawnOutput
 			{
 				Target BigNet
@@ -421,30 +372,14 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // Dummy for Soviet Tonka Weapons
-		{
-			Name "soviet" // This is why we want to pass in squad names, it's for these dummy wave spawns
-			StartDisabled 1 [$SIGSEGV] // This is the main driving force for getting RNG squads to work
-		}
-
-		WaveSpawn // Dummy for the laser wall duo
-		{
-			Name "captain"
-			StartDisabled 1 [$SIGSEGV]
-		}
-
-		// SOVIET TONKA WEAPONS
 		WaveSpawn // Start of music
 		{
-			WaitForAllSpawned "soviet"
-			WaitBeforeStarting 6
+			WaitBeforeStarting 12
 			FirstSpawnOutput
 			{
 				Target BigNet
 				Action RunScriptCode
 				Param "
-						local populator = FindByClassname(null, `point_populator_interface`);
-						populator.AcceptInput(`$ResumeWavespawn`, `phase0_bots`, null, null);
 						MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
 					"
 			}
@@ -452,9 +387,8 @@ WaveSchedule
 
 		WaveSpawn // This is when the boss will do his intro
 		{
-			WaitForAllSpawned "soviet"
-			Name "sovietintro" // This is how you stop multiple bosses from spawning when they're not supposed to
-			WaitBeforeStarting 12.5
+			Name "intro"
+			WaitBeforeStarting 16.0
 			FirstSpawnOutput
 			{
 				Target bignet
@@ -464,10 +398,10 @@ WaveSchedule
 		}
 
 		WaveSpawn // This is when the boss actually spawns, don't change this WaveSpawn's WBS
-		// change the intro WBS if you want to make it shorter or faster
+		// change the intro WBS if you want to make it faster or shorter
 		{
-			Name "sovietboss"
-			WaitForAllSpawned "sovietintro"
+			Name "boss"
+			WaitForAllSpawned "intro"
 			Where spawnbot_boss
 			TotalCount 1
 			MaxActive 1
@@ -481,9 +415,9 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // For when the boss dies, just reset his music or do whatever idk
+		WaveSpawn // For when the boss dies, just reset his music or do whatever
 		{
-			WaitForAllDead "sovietboss"
+			WaitForAllDead "boss"
 			FirstSpawnOutput
 			{
 				Target BigNet
@@ -497,7 +431,7 @@ WaveSchedule
 		WaveSpawn // Support bots
 		{
 			Name "phase0_bots"
-			WaitForAllSpawned "sovietintro" // This is the main driving force for forcing support bots to spawn or not
+			WaitForAllSpawned "intro"
 			Where spawnbot_support
 			TotalCount 50
 			MaxActive 18
@@ -538,9 +472,8 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // Support bots
+		WaveSpawn
 		{
-			// The remaining phase bot squads don't need a WFAS since Tonka Weapons enables these bots automatically
 			Name "phase1_bots"
 			Where spawnbot_support
 			TotalCount 50
@@ -599,7 +532,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // Support bots
+		WaveSpawn
 		{
 			Name "phase2_bots"
 			Where spawnbot_support
@@ -659,7 +592,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // Support bots
+		WaveSpawn
 		{
 			Name "phase3_bots"
 			Where spawnbot_support
@@ -735,9 +668,9 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn // If you're gonna do RNG bosses, do this to end the wave
+		WaveSpawn // You don't REALLY need this, so just do whatever whenever the boss dies
 		{
-			WaitForAllDead "sovietboss"
+			WaitForAllDead "boss"
 			WaitBeforeStarting 5
 
 			FirstSpawnOutput
@@ -747,175 +680,5 @@ WaveSchedule
 				Delay 0
 			}
 		}
-
-		// LASER WALLS, TAKEN FROM MINUSCLUB
-
-		WaveSpawn // Start of music
-		{
-			WaitForAllSpawned "captain"
-			WaitBeforeStarting 6
-			FirstSpawnOutput
-			{
-				Target BigNet
-				Action RunScriptCode
-				Param "
-						MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/what_im_made_of.wav`, 1.0, 1.0, 0.75);
-					"
-			}
-		}
-
-		WaveSpawn // Boss A
-		{
-			Name "captainbossA"
-			WaitForAllSpawned "captain"
-			Where spawnbot_boss
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 12.5
-			WaitBetweenSpawns 8
-			FirstSpawnWarningSound "vo/mvm/mght/Soldier_mvm_m_autodejectedtie02.mp3"
-			TFBot
-			{
-				Template T_TFBot_Giant_Soldier_Laser_Wall
-				Item	"The B.A.S.E. Jumper"
-				Attributes	"UseBossHealthBar"
-				Attributes	"AlwaysCrit"
-				Attributes	"Parachute"
-				Attributes	"AutoJump"
-				AutoJumpMin	10
-				AutoJumpMax	10
-				ClassIcon soldier_bison_a_giant
-				Attributes AlwaysCrit
-				Name "The Stepmother Of Laser Walls"
-				Health 35000
-				Attributes UseBossHealthBar
-				Scale 1.9
-				Action Mobber [$SIGSEGV]
-				CharacterAttributes
-				{
-					"move speed bonus"	0.4
-					"health regen"	250
-					"dmg taken increased" 0.05
-					"dmg from melee increased" 20
-					"dmg from ranged reduced" 20
-					"boots falling stomp" 1
-					"airblast vulnerability multiplier"	0
-					"airblast vertical vulnerability multiplier"	0
-					"rage giving scale"	0.1
-					"increased jump height" 3.2069
-					"hand scale"	1.69
-				}
-			}
-		}
-
-		WaveSpawn // Another portal
-		{
-			WaitForAllSpawned "captain"
-			WaitBeforeStarting 12.6
-			FirstSpawnOutput
-			{
-				Target BigNet
-				Action RunScriptCode
-				Param "EntFire(`arena_coastrock_boss_spawn_relay`, `Trigger`, null, 0.0)"
-			}
-		}
-
-		WaveSpawn // Boss B
-		{
-			Name "captainbossA"
-			WaitForAllSpawned "captain"
-			Where spawnbot_boss
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 17.6
-			WaitBetweenSpawns 8
-			FirstSpawnWarningSound "vo/mvm/mght/Soldier_mvm_m_jeers06.mp3"
-			TFBot
-			{
-				Template T_TFBot_Giant_Soldier_Laser_Spammer
-				Item	"The B.A.S.E. Jumper"
-				Attributes	"UseBossHealthBar"
-				Attributes	"AlwaysCrit"
-				Attributes	"Parachute"
-				Attributes	"AutoJump"
-				AutoJumpMin	10
-				AutoJumpMax	10
-				Attributes AlwaysCrit
-				Name "The Father Of All Laser Walls"
-				Health 40000
-				Attributes UseBossHealthBar
-				Scale 1.9
-				Action Mobber [$SIGSEGV]
-				CharacterAttributes
-				{
-					"move speed bonus"	0.4
-					"health regen"	250
-					"dmg taken increased" 0.05
-					"dmg from melee increased" 20
-					"dmg from ranged reduced" 20
-					"boots falling stomp" 1
-					"airblast vulnerability multiplier"	0
-					"airblast vertical vulnerability multiplier"	0
-					"rage giving scale"	0.1
-					"increased jump height" 3.2069
-					"hand scale"	1.69
-				}
-			}
-		}
-
-		WaveSpawn // Support bots
-		{
-			Name "captainsupport"
-			WaitForAllSpawned "captain"
-			Where spawnbot_support
-			TotalCount 50
-			MaxActive 18
-			SpawnCount 1
-			WaitBeforeStarting 15.0
-			WaitBetweenSpawns 2.5
-			Support 1
-			TotalCurrency 400
-
-			RandomChoice
-			{
-				TFBot
-				{
-					Name "Bison Soldier"
-					Class Soldier
-					Skill Hard
-					WeaponRestrictions SecondaryOnly
-					ClassIcon soldier_bison_a
-					Item "The Righteous Bison"
-					Action Mobber [$SIGSEGV]
-				}
-
-				TFBot
-				{
-					Template	T_TFBot_Heavyweapons_Gnome
-					Health	200
-					Name	"A Really Annoying Heavy"
-					Item	"pestering jester"
-					Action Mobber [$SIGSEGV]
-				}
-			}
-		}
-
-		// End of wave for when the bosses die
-		WaveSpawn
-		{
-			WaitForAllDead "captainbossA"
-			WaitBeforeStarting 0
-
-			FirstSpawnOutput
-			{
-				Target "pop_interface"
-				Action $FinishWave
-				Delay 0
-			}
-		}
-
-		// Bottom line, use WFAS on the bot squads and use dummy wave spawns to dictate what bosses and supports will spawn
 	}
 }
