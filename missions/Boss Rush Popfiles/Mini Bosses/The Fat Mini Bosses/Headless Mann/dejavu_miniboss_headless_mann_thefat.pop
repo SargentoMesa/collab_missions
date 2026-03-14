@@ -331,7 +331,7 @@ WaveSchedule
 		T_TFBot_Fat_Demo_Headless_Mann
 		{
 			Class Demoman
-			Health 18000
+			Health 30000
 			Name "Headless Mann"
 			Attributes UseBossHealthBar
 			Attributes MiniBoss

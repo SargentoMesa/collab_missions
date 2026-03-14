@@ -8,7 +8,7 @@ WaveSchedule
             Class Demoman
             ClassIcon demo_burst_giant
             Skill Expert
-            Health 30000
+            Health 25000
             Scale 2
             Attributes MiniBoss
             Attributes UseBossHealthBar

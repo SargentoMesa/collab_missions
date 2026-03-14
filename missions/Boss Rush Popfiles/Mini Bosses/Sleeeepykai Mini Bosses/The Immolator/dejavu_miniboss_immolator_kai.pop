@@ -8,7 +8,7 @@ WaveSchedule
             Class Pyro
             ClassIcon pyro_giant
             Skill Expert
-            Health 50000
+            Health 25000
             Scale 2
             Attributes MiniBoss
             Attributes UseBossHealthBar

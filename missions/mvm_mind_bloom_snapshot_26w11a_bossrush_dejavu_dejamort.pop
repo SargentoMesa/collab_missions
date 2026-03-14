@@ -23,6 +23,12 @@
 #base dejavu_miniboss_generalbomber_zombief1ghter.pop
 #base dejavu_miniboss_kingburst_zombief1ghter.pop
 #base dejavu_miniboss_fivelitersinmyblood_sergeanttable.pop
+#base dejavu_miniboss_prismaticdiffractor_kai.pop
+#base dejavu_miniboss_immolator_kai.pop
+#base dejavu_miniboss_decimator_kai.pop
+#base dejavu_miniboss_howitzermachination_kai.pop
+#base dejavu_miniboss_dragonking_kai.pop
+#base dejavu_miniboss_headless_mann_thefat.pop
 
 WaveSchedule
 {
@@ -1711,7 +1717,6 @@ WaveSchedule
             }
         }
     }
-
     Wave // Mini Boss - Drunken Drivers
     {
         InitWaveOutput
@@ -2100,8 +2105,7 @@ WaveSchedule
             }
         }
     }
-
-    Wave // Main Boss - Slave Knight Dael OR Direct Disaster
+    Wave // Main Boss - Slave Knight Dael OR Direct Disaster (WIP, needs Support Bots)
     {
         InitWaveOutput
         {
@@ -2127,6 +2131,25 @@ WaveSchedule
 
                     AlternateWaves.bTrackIcons = false;
 				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead_lite_dummy`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
                   "
         }
         StartWaveOutput
@@ -2137,6 +2160,25 @@ WaveSchedule
                     EntFire(`wave_start_relay`, `Trigger`)
 
                     AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`dead_lite_dummy`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
@@ -2253,5 +2295,353 @@ WaveSchedule
                       "
             }
         }
+    }
+    Wave // Boss Gauntlet - Prismatic Diffractor, the Immolator, then the Decimator OR Howitzer Machination, the Dragon King, then Headless Mann OR The Otherworldly Robots (WIP, needs Support Bots)
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_IndustrialGauntlet1`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_IndustrialGauntlet2`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave7_RancherGauntlet`);
+                    MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                        
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                break;
+                            ])
+                        }
+                    }
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+    
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MiniBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        //// Prismatic Diffractor, Immolator & Decimator ////
+        WaveSpawn
+        {
+            Name "Wave7_IndustrialGauntlet1"
+            StartDisabled 1
+        }
+        WaveSpawn // Boss 1 - Prismatic Diffractor
+        {
+            Name "Wave7_Boss1-PrismaticDiffractor"
+            WaitForAllSpawned "Wave7_IndustrialGauntlet1"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Miniboss_PrismaticDiffractor_Kai
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 2 - The Immolator
+        {
+            Name "Wave7_Boss2-Immolator"
+            WaitForAllDead "Wave7_Boss1-PrismaticDiffractor"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Miniboss_Immolator_Kai
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 3 - The Decimator
+        {
+            Name "Wave7_Boss3-Decimator"
+            WaitForAllDead "Wave7_Boss2-Immolator"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Miniboss_Decimator_Kai
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Howitzer Machination, Dragon King & Headless Mann ////
+        WaveSpawn
+        {
+            Name "Wave7_IndustrialGauntlet2"
+            StartDisabled 1
+        }
+        WaveSpawn // Boss 1 - Howitzer Machination
+        {
+            Name "Wave7_Boss1-HowitzerMachination"
+            WaitForAllSpawned "Wave7_IndustrialGauntlet2"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_MiniBoss_HowitzerMachination_Kai
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 2 - The Dragon King
+        {
+            Name "Wave7_Boss2-DragonKing"
+            WaitForAllDead "Wave7_Boss1-HowitzerMachination"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Miniboss_DragonKing_Kai
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 3 - Headless Mann
+        {
+            Name "Wave7_Boss3-HeadlessMann"
+            WaitForAllDead "Wave7_Boss2-DragonKing"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Fat_Demo_Headless_Mann
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// The Otherworldly Robots ////
+        WaveSpawn
+        {
+            Name "Wave7_RancherGauntlet"
+            StartDisabled 1
+        }
+    }
+    Wave // Main Boss - The Treadonator OR Magician Lord OR Timed Disaster
+    {
+
+    }
+    Wave // Mini Boss - Major Bonecremator OR Distorted Messenger OR Private Seeker OR Nemesis Program MKI: Shell
+    {
+
+    }
+    Wave // Main Boss - Chaos Surge OR Colonel Conduit OR The Master Mechanic OR Nemesis Program MKII: Mimicry
+    {
+
+    }
+    Wave // Boss Gauntlet - Bad to the Bone, Skull Magician, then Tank Zombies OR Dr. Dismemberment, The Mann in Black then Captain Cognac
+    {
+
+    }
+    Wave // Main Boss - Captain Punch the MDXXVIII OR Soviet Tonka Weapons
+    {
+
+    }
+    Wave // Main Boss - Iron Star
+    {
+
+    }
+
+    // EXPERT GAUNTLET //
+
+    Wave // Main Boss - Major Shocks
+    {
+
+    }
+    Wave // Main Boss - Mercenary Matter
+    {
+
+    }
+    Wave // Mixed Boss Wave - The Mechonagher Brothers, Larry, then Private Mannpower OR Captain Capharnaum, then Colonel Crackle OR The War Machines OR Overclocked Dave
+    {
+
+    }
+    Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence OR The Foremann
+    {
+
+    }
+    Wave // Main Boss - Major Catastrophe OR Overclocked Dave Reborn
+    {
+
+    }
+    Wave // Main Boss - The Lone Swordsman
+    {
+
+    }
+
+    // MASTER GAUNTLET //
+
+    Wave // Final Boss - Ouroboros, then Fallen Shocks
+    {
+
     }
 }
