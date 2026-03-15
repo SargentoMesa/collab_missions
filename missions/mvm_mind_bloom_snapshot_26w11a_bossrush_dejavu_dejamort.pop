@@ -58,6 +58,7 @@ WaveSchedule
 
     PointTemplates 
     {
+        //// CORE BOSS RUSH LOGIC ////
         BossRushMapLogic
         {
             logic_relay // Wave Finish Teleporter
@@ -296,6 +297,26 @@ WaveSchedule
                 "OnTrigger"	"loopingbossmusic,StopSound,,257.3,-1"
                 "OnTrigger" "music_controller,trigger,,257.305,-1"
                 "spawnflags" "2"
+            }
+        }
+
+        //// BOSS POINT-TEMPLATE FIXES ////
+
+        // Nemesis Shell Teleporting
+        NemesisShellTeleport
+        {
+            KeepAlive 1
+            info_target
+            {
+                "targetname" "nemesis_shell_teleport_target"
+                "origin" "0 0 0"
+            }
+
+            OnParentKilledOutput
+            {
+                Target nemesis_shell_teleport_target
+                Action Kill
+                Delay 1
             }
         }
     }
@@ -1292,7 +1313,7 @@ WaveSchedule
                                 [`soldier_bison_rocket_spammer`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`scout`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -2096,16 +2117,16 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`dead_lite_dummy`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
                   "
@@ -2125,16 +2146,16 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`dead_lite_dummy`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
 
@@ -2290,8 +2311,8 @@ WaveSchedule
                                 [`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         
                         case 1:
@@ -2300,16 +2321,8 @@ WaveSchedule
                                 [`demo_burst_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_dragon_crown`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demoknight_headtaker_nys`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
-                        }
-
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
-                            ])
+                            break;
                         }
                     }
                   "
@@ -2331,8 +2344,8 @@ WaveSchedule
                                 [`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         
                         case 1:
@@ -2341,16 +2354,8 @@ WaveSchedule
                                 [`demo_burst_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_dragon_crown`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demoknight_headtaker_nys`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
-                        }
-
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
-                            ])
+                            break;
                         }
                     }
 
@@ -2615,24 +2620,24 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                break;
+                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
 
@@ -2669,29 +2674,24 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`tank`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
-                        }                     
+                            break;
+                        }
+                        
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                break;
+                                [`dead`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
+
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`sentry_buster_king`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
-                        }
-                        case 3:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
-                            ])
+                            break;
                         }
                     }
 
@@ -2896,8 +2896,8 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }                     
                         case 1:
                         {
@@ -2905,22 +2905,22 @@ WaveSchedule
                                 [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
                   "
@@ -2941,8 +2941,8 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }                     
                         case 1:
                         {
@@ -2950,22 +2950,22 @@ WaveSchedule
                                 [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
 
@@ -3166,6 +3166,8 @@ WaveSchedule
             {
                 Template T_TFBot_MiniBoss_NemesisShell_Phase1_Package
                 Action Mobber
+
+                SpawnTemplate NemesisShellTeleport
             }
             FirstSpawnOutput
             {
@@ -3192,6 +3194,16 @@ WaveSchedule
             {
                 Template T_TFBot_MiniBoss_NemesisShell_Phase2_Package
                 Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param nemesis_shell_teleport_target
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
             }
             DoneOutput
             {
@@ -3230,7 +3242,7 @@ WaveSchedule
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_NemesisMimicry`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -3242,29 +3254,30 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`pyro_hyper_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
+                                
                             ])
+                            break;
                         }                     
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                break;
+                                [`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                         case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }
                     }
                   "
@@ -3275,6 +3288,41 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`pyro_hyper_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                
+                            ])
+                            break;
+                        }                     
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
@@ -3459,10 +3507,6 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
-                    if (!(`rangescript` in getroottable()))
-                    {
-                        IncludeScript(`rangescript`, getroottable());
-                    }
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave12_IndustrialGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave12_RancherGauntlet`);
@@ -3479,15 +3523,15 @@ WaveSchedule
                                 [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_zombie_arm2_lite`, 10, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
                             ])
+                            break;
                         }                     
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [``, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                break;
                             ])
+                            break;
                         }
                     }
                   "
@@ -3499,7 +3543,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
 
-                    AlternateWaves.ClearWaveIcons();
+				    AlternateWaves.ClearWaveIcons();
 
                     switch (MindBloomRNG.GlobalIndex)
                     {
@@ -3508,16 +3552,16 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_zombie_arm2_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
-                                break;
+                                [`heavy_zombie_arm2_lite`, 10, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }                     
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [``, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                break;
                             ])
+                            break;
                         }
                     }
 
@@ -3680,12 +3724,14 @@ WaveSchedule
                                 [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                     }
 
@@ -3718,12 +3764,14 @@ WaveSchedule
                                 [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                     }
 
@@ -4018,6 +4066,7 @@ WaveSchedule
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                                 [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 1:
@@ -4026,6 +4075,7 @@ WaveSchedule
                                 [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 2:
@@ -4036,6 +4086,7 @@ WaveSchedule
                                 [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 3:
@@ -4043,6 +4094,7 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                     }
                   "
@@ -4065,6 +4117,7 @@ WaveSchedule
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                                 [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 1:
@@ -4073,6 +4126,7 @@ WaveSchedule
                                 [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 2:
@@ -4083,6 +4137,7 @@ WaveSchedule
                                 [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
 
                         case 3:
@@ -4090,6 +4145,7 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
+                            break;
                         }
                     }
 
@@ -4592,6 +4648,33 @@ WaveSchedule
 
                     AlternateWaves.bTrackIcons = false;
 				    AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_gib_jumper_lite`, 3, MVM_CLASS_FLAG_MINIBOSS],
+                            ])
+                            break;
+                        }
+
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+                    }
                   "
         }
         StartWaveOutput
@@ -4602,6 +4685,33 @@ WaveSchedule
                     EntFire(`wave_start_relay`, `Trigger`)
 
                     AlternateWaves.ClearWaveIcons();
+
+                    switch (MindBloomRNG.GlobalIndex)
+                    {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 3, MVM_CLASS_FLAG_MINIBOSS],
+                            ])
+                            break;
+                        }
+
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                            break;
+                        }
+                    }
 
                     MindBloomRNG.StartRNGArena();
                   "
