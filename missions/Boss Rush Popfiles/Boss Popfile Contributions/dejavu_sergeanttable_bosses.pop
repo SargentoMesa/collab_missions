@@ -6923,7 +6923,7 @@ WaveSchedule
             Attributes MiniBoss
             UseHumanAnimations 1
             Template T_TFBot_Heavyweapons_Fist
-            ClassIcon heavy_head_drunk
+            ClassIcon heavy_head_driver_nys_lite
             Scale 1
             AddCond   {Name "TF_COND_HALLOWEEN_KART"}
             CharacterAttributes
