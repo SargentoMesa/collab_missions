@@ -4014,6 +4014,34 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
+                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
                             ])
                         }
                     }
@@ -4030,6 +4058,39 @@ WaveSchedule
 
                     switch (MindBloomRNG.GlobalIndex)
                     {
+                        case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
+
+                        case 3:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                            ])
+                        }
                     }
 
                     MindBloomRNG.StartRNGArena();
@@ -4076,7 +4137,7 @@ WaveSchedule
 
         WaveSpawn
         {
-            Name "Wave3_FallenPatrolChiefSpawns"
+            Name "Wave17_MechonagherSpawns"
             WaitForAllSpawned "Wave17_ElectricmineGauntlet"
             WaitBeforeStarting 5
 
@@ -4091,7 +4152,7 @@ WaveSchedule
         }
         WaveSpawn
         {
-            Name "Wave3_FallenPatrolChiefSpawns"
+            Name "Wave17_MechonagherSpawns"
             WaitForAllSpawned "Wave17_ElectricmineGauntlet"
             WaitBeforeStarting 7.5
 
@@ -4273,20 +4334,549 @@ WaveSchedule
                         EntFire(`minibossmusicinit`, `Trigger`)
                       "
             }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_redstone_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 2 - Captain Capharnaum
+        {
+            Name "Wave17_Boss2-CaptainCapharnaum"
+            WaitForAllDead "Wave17_Boss1-ColonelCrackle"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 50
+
+            TFBot
+            {
+                Template T_TFBot_Giant_Demo_King
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// The War Machines ////
+        WaveSpawn
+        {
+            Name "Wave17_TerrorlictGauntlet"
+            StartDisabled 1
+        }
+
+        WaveSpawn // Boss 1 - Sniper War Machine
+        {
+            Name "Wave17_Boss1-SniperWarMachine"
+            WaitForAllSpawned "Wave17_TerrorlictGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_SniperWarMachine
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`minibossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 2 - Engineer War Machine
+        {
+            Name "Wave17_Boss2-EngineerWarMachine"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_EngineerWarMachine
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Disable`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 3 - Heavy War Machine
+        {
+            Name "Wave17_Boss3-HeavyWarMachine"
+            WaitForAllDead "Wave17_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_HeavyWarMachine
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict1
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+        }
+        WaveSpawn // Boss 3 - Pyro War Machine
+        {
+            Name "Wave17_Boss3-PyroWarMachine"
+            WaitForAllDead "Wave17_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_PyroTrenchBurner
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
         }
 
         WaveSpawn
         {
-            Name ""
+            Name "Wave17_WarMachinesDead"
+            WaitForAllDead "Wave17_Boss3-HeavyWarMachine"
+        }
+        WaveSpawn
+        {
+            Name "Wave17_WarMachinesDead"
+            WaitForAllDead "Wave17_Boss3-PyroWarMachine"
+        }
+
+        WaveSpawn
+        {
+            Name "Wave17_WarMachinesComplete"
+            WaitForAllSpawned "Wave17_WarMachinesDead"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
+        //// Overclocked Dave ////
+        WaveSpawn
+        {
+            Name "Wave17_OverclockedDave"
+            StartDisabled 1
+        }
+        WaveSpawn // Boss
+        {
+            Name "Wave17_Boss-OverclockedDave"
+            WaitForAllSpawned "Wave17_OverclockedDave"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Heavy_Dave
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
         }
     }
     Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence OR The Foremann
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`alternatewaves` in getroottable()))
+                    {
+                        IncludeScript(`alternatewaves`, getroottable());
+                    }
+                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_TrolldierTrio`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_PlannedObsolescence`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_Foremann`);
+                    MindBloomRNG.InitRNGArena();
+
+                    AlternateWaves.bTrackIcons = false;
+				    AlternateWaves.ClearWaveIcons();
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+
+                    AlternateWaves.ClearWaveIcons();
+
+                    MindBloomRNG.StartRNGArena();
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MainBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        //// The Three Trolldiers ////
+
+        //// Planned Obsolescence ////
+        WaveSpawn
+        {
+            Name "Wave18_PlannedObsolescence"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave18_PlannedObsolescenceSetup"
+            WaitForAllSpawned "Wave18_PlannedObsolescence"
+            
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`bosswavelogic`, `ForceSpawn`)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave18_Boss-PlannedObsolescence"
+            WaitForAllSpawned "Wave18_PlannedObsolescence"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template BigFunnyBossMan
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`backupteleporting`, `Kill`)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Conch Soldiers and Homewrecker Demos
+        {
+            Name "disableformidboss"
+            WaitForAllDead ""
+            Where spawnbot_support
+            TotalCount 10
+            MaxActive 10
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            Support 1
+            TotalCurrency 50
+            RandomChoice
+            {
+                TFBot
+                { 
+                    Template T_TFBot_Soldier_Extended_Concheror
+                    Action Mobber
+                }
+                TFBot
+                {
+                    Template T_TFBot_Demoman_Knight
+                    ClassIcon    pyro_homewrecker_lite_armored
+                    Name    "Chargin' Mace"
+                    Item    "The Homewrecker"
+                    Item    "The Tide Turner"
+                    Health 300
+                    Scale 1.3
+                    Action Mobber
+                    CharacterAttributes
+                    {
+                        "dmg pierces resists absorbs"    1
+                        "charge time increased" 2
+                    }
+                }
+            }
+
+        }
+        WaveSpawn // Support Neon Annihilator Pyros
+        {
+            Name "forthesplashattack"
+            WaitForAllDead ""
+            Where spawnbot_support
+            TotalCount 30
+            MaxActive 12
+            SpawnCount 4
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            Support 1
+            TotalCurrency 50
+
+            TFBot
+            { 
+                Class Pyro
+                Name "Armored Neon Annihilator"
+                WeaponRestrictions MeleeOnly
+                Health 300
+                Scale 1.3
+                Item "The Neon Annihilator"
+                ClassIcon pyro_neon
+                Action Mobber
+            }
+        }
+
+        //// The Foremann ////
+        WaveSpawn
+        {
+            Name "Wave18_TheForemann"
+            StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave18_Boss-TheForemann"
+            WaitForAllSpawned "Wave18_TheForemann"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template ForeMann
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Main Boss - Overclocked Dave Reborn
     {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
 
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate MainBossMusic
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave19_Boss-OverclockedDaveReborn"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template DaveReborn
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`mainbossmusicinit`, `Trigger`)
+                      "
+            }
+        }
     }
     Wave // Main Boss - The Lone Swordsman
     {
