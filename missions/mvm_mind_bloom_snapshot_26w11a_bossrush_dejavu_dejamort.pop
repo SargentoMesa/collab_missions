@@ -319,6 +319,35 @@ WaveSchedule
                 Delay 1
             }
         }
+
+        // Mini Riders for Bad to the Bone
+        SmallRider
+		{
+			OnSpawnOutput
+			{
+				Target "smallrider_idle"
+				Action "PlaySound"
+			}
+			ambient_generic
+			{
+				targetname smallrider_idle
+				health 10 // this is volume
+				pitch 90
+				radius 3500
+				message "Taunt.MopedForward"
+				sourceentityname rider_soundsource
+			}
+			prop_dynamic // noisebox
+			{
+				angles "0 0 0"
+				origin "-70 25 80"
+				disableshadows 0
+				model "models\empty.mdl"
+				rendermode 10
+				solid 0
+				targetname rider_soundsource
+			}
+		}
     }
 
     //// SPAWNED POINTTEMPLATES ////
@@ -2234,6 +2263,26 @@ WaveSchedule
             }
         }
 
+        WaveSpawn // Support Flare Pyros
+        {
+            Name "Wave7_Support-FlarePyros"
+            WaitForAllSpawned "Wave7_SlaveKnightDael"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_Flaregun
+                Action Mobber
+            } 
+        }
+
         //// Direct Disaster ////
         WaveSpawn
         {
@@ -2548,10 +2597,59 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-Pyros`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-AxtinguisherPyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-Pyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-AxtinguisherPyros`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
         }
+        WaveSpawn // Support Pyros
+        {
+            Name "Wave8_Support2-Pyros"
+            WaitForAllDead "Wave8_Boss1-HowitzerMachination"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 7
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Pyro
+                Skill Easy
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Axtinguisher Pyros
+        {
+            Name "Wave8_Support2-AxtinguisherPyros"
+            WaitForAllDead "Wave8_Boss1-HowitzerMachination"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 10
+            WaitBetweenSpawns 7
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Axtinguisher Pyro"
+                Class Pyro
+                ClassIcon pyro_jug_axtinguisher
+                Skill Hard
+                WeaponRestrictions MeleeOnly
+                Item "The Axtinguisher"
+                Action Mobber
+            }
+        }
+
         WaveSpawn // Boss 3 - Headless Mann
         {
             Name "Wave8_Boss3-HeadlessMann"
@@ -2735,7 +2833,7 @@ WaveSchedule
             Name "Wave9_Treadonator"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave9_Boss-Treadonator"
             WaitForAllSpawned "Wave9_Treadonator"
@@ -2776,7 +2874,7 @@ WaveSchedule
             Name "Wave9_MagicianLord"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave9_Boss-MagicianLord"
             WaitForAllSpawned "Wave9_MagicianLord"
@@ -2811,13 +2909,52 @@ WaveSchedule
             }
         }
 
+        WaveSpawn // Support Sticky Demos
+        {
+            Name "Wave9_Support-StickyDemos"
+            WaitForAllSpawned "Wave9_MagicianLord"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Stickybomb Demoman"
+                Class Demoman
+                ClassIcon demo_sticky_daan
+                Skill Hard
+                WeaponRestrictions SecondaryOnly
+                Action Mobber
+
+                ItemAttributes
+                {
+                    ItemName "TF_WEAPON_GRENADELAUNCHER"
+                    "is_passive_weapon" 1
+                    "override projectile type" 27.0
+                }
+
+                ItemAttributes
+                {
+                    ItemName "TF_WEAPON_PIPEBOMBLAUNCHER"
+                    "stickybomb charge rate" 0.01
+                    "projectile range decreased" 0.35
+                    "max pipebombs decreased" -7
+                }
+            }
+        }
+
         //// Timed Disaster ////
         WaveSpawn
         {
             Name "Wave9_TimedDisaster"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave9_Boss-TimedDisaster"
             WaitForAllSpawned "Wave9_TimedDisaster"
@@ -2847,8 +2984,52 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave9_Support-Scouts`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave9_Support-GRUHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-Scouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-GRUHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Scouts
+        {
+            Name "Wave9_Support-Scouts"
+            WaitForAllSpawned "Wave9_TimedDisaster"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Class Scout
+                Skill Easy
+            }
+        }
+        WaveSpawn // Support GRU Heavies
+        {
+            Name "Wave9_Support-GRUHeavies"
+            WaitForAllSpawned "Wave9_TimedDisaster"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 3
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 100
+        
+            TFBot
+            { 
+                Name "Lightweight Champ"
+                Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+                Skill Hard
             }
         }
     }
@@ -3009,7 +3190,7 @@ WaveSchedule
             Name "Wave10_MajorBonecremator"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave10_Boss-MajorBonecremator"
             WaitForAllSpawned "Wave10_MajorBonecremator"
@@ -3046,8 +3227,78 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Deflector Heavies
+        {
+            Name "Wave10_Support-DeflectorHeavies"
+            WaitForAllSpawned "Wave10_MajorBonecremator"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Deflector Heavy"
+                Class Heavy
+                ClassIcon heavy_deflector
+                Skill Easy
+                WeaponRestrictions PrimaryOnly
+
+                Item "Deflector"
+
+                Item "The U-clank-a"
+
+                ItemAttributes 
+                {
+                    ItemName "Deflector"
+                    "attack projectiles" 1
+                }
+            }
+        }
+
+        WaveSpawn // Support Bazooka Soldiers
+        {
+            Name "Wave10_Support-BazookaSoldiers"
+            WaitForAllSpawned "Wave10_MajorBonecremator"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Beggar's Bazooka Soldier"
+                Class Soldier
+                ClassIcon soldier_bazooka
+                Skill Easy
+                Attributes HoldFireUntilFullReload
+                WeaponRestrictions PrimaryOnly
+
+                Item "The Beggar's Bazooka"
+
+                ItemAttributes
+                {
+                    ItemName "The Beggar's Bazooka"
+                    "auto fires full clip" 0
+                    "can overload" 0
+                }
             }
         }
 
@@ -3057,7 +3308,7 @@ WaveSchedule
             Name "Wave10_DistortedMessenger"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave10_Boss-DistortedMessenger"
             WaitForAllSpawned "Wave10_DistortedMessenger"
@@ -3098,8 +3349,56 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BatScouts`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BackburnerPyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BatScouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BackburnerPyros`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Bat Scouts
+        {
+            Name "Wave10_Support-BatScouts"
+            WaitForAllSpawned "Wave10_DistortedMessenger"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 6
+            SpawnCount 3
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Bat Scout"
+                Template T_TFBot_Scout_Melee
+                ClassIcon scout_bat_nys
+                Attributes AlwaysCrit
+            }
+        }
+        WaveSpawn // Support Backburner Pyros
+        {
+            Name "Wave10_Support-BackburnerPyros"
+            WaitForAllSpawned "Wave10_DistortedMessenger"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Backburner Pyro"
+                Class Pyro
+                ClassIcon pyro_backburner_nys
+                Skill Easy
+                Item "The Backburner"
             }
         }
 
@@ -3109,7 +3408,7 @@ WaveSchedule
             Name "Wave10_PrivateSeeker"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave10_Boss-PrivateSeeker"
             WaitForAllSpawned "Wave10_PrivateSeeker"
@@ -3139,8 +3438,61 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-WidowmakerEngineers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-WidowmakerEngineers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Widow Engies
+        {
+            Name "Wave10_Support-WidowmakerEngineers"
+            WaitForAllSpawned "Wave10_PrivateSeeker"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Widowmaker Engineer"
+                Class Engineer
+                ClassIcon engineer_widowmaker_nys
+                Skill Easy
+                WeaponRestrictions PrimaryOnly
+                Action Mobber
+
+                Item "The Widowmaker"
+            }
+        }
+        WaveSpawn // Support Dragon's Fury Pyros
+        {
+            Name "Wave10_Support-DragonFuryPyros"
+            WaitForAllSpawned "Wave10_PrivateSeeker"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 4
+            SpawnCount 3
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Dragon's Fury Pyro"
+                Class Pyro
+                ClassIcon pyro_dragon_fury_swordstone
+                Skill Easy
+
+                Item "The Dragon's Fury"
             }
         }
 
@@ -3150,7 +3502,7 @@ WaveSchedule
             Name "Wave10_NemesisShell"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss Phase 1
         {
             Name "Wave10_Boss-NemesisShell"
             WaitForAllSpawned "Wave10_NemesisShell"
@@ -3160,7 +3512,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 100
 
             TFBot
             {
@@ -3178,7 +3530,7 @@ WaveSchedule
                       "
             }
         }
-        WaveSpawn
+        WaveSpawn // Boss Phase 2
         {
             Name "Wave10_Boss-NemesisShell2"
             WaitForAllDead "Wave10_Boss-NemesisShell"
@@ -3188,7 +3540,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 100
 
             TFBot
             {
@@ -3210,8 +3562,55 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-SodaScouts`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-KGBHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-SodaScouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-KGBHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Soda Popper Scouts
+        {
+            Name "Wave10_Support-SodaScouts"
+            WaitForAllSpawned "Wave10_NemesisShell"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Soda Popper Scout"
+                Class Scout
+                ClassIcon scout_popper2_giant
+                Skill Easy
+                Item "The Soda Popper"
+            }
+        }
+        WaveSpawn // Support KGB Heavies
+        {
+            Name "Wave10_Support-KGBHeavies"
+            WaitForAllSpawned "Wave10_NemesisShell"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Heavyweapons_Heavyweight_Champ
+                Skill Hard
+                Attributes AlwaysCrit
             }
         }
     }
@@ -3364,7 +3763,7 @@ WaveSchedule
             Name "Wave11_ChaosSurge"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave11_Boss-ChaosSurge"
             WaitForAllSpawned "Wave11_ChaosSurge"
@@ -3394,8 +3793,53 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Demomen`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Heavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Demomen`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Heavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Demomen
+        {
+            Name "Wave11_Support-Demomen"
+            WaitForAllSpawned "Wave11_ChaosSurge"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Demoman
+                Skill Easy
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Heavies
+        {
+            Name "Wave11_Support-Heavies"
+            WaitForAllSpawned "Wave11_ChaosSurge"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 7
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Heavy
+                Skill Easy
+                Action Mobber
             }
         }
 
@@ -3453,7 +3897,7 @@ WaveSchedule
             Name "Wave11_NemesisMimicry"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave11_Boss-NemesisMimicry"
             WaitForAllSpawned "Wave11_NemesisMimicry"
@@ -3483,8 +3927,55 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-ManglerSoldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Bowmen`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-ManglerSoldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Bowmen`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Mangler Soldiers
+        {
+            Name "Wave11_Support-ManglerSoldiers"
+            WaitForAllSpawned "Wave11_NemesisMimicry"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Mangler Soldier"
+                Class Soldier
+                Skill Easy
+                ClassIcon soldier_mangler_v2
+                Item "The Cow Mangler 5000"
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Bowmen
+        {
+            Name "Wave11_Support-Bowmen"
+            WaitForAllSpawned "Wave11_NemesisMimicry"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Sniper_Huntsman
+                Action Mobber
             }
         }
     }
@@ -3617,8 +4108,74 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
+            }
+        }
+
+        WaveSpawn // Support Mini Riders
+        {
+            Name "Wave12_Support-MiniBones"
+            WaitForAllSpawned "Wave12_IndustrialGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Pyro
+                Skill Easy
+                ClassIcon dead_blu_lite
+                Health 1100
+                Attributes MiniBoss
+                Action Mobber
+                ExtAttr IgnoreBuildings  
+                WeaponRestrictions MeleeOnly
+                Item "The Pardner's Pompadour"
+                Item "Merc's Pride Scarf"
+                Name "Hell Rider"
+                Scale 1.1
+                NoIdleSound 1 			 
+                UseHumanAnimations 1 	 
+                AimTrackingInterval 1.5   
+                FastUpdate 1 			 
+                UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl"  
+                SpawnTemplate "SmallRider"
+                DeathSound "=150|mvm\giant_soldier\giant_soldier_explode.wav" [$SIGSEGV]
+                FireInput [$SIGSEGV]
+                {
+                    Target "!self"
+                    Action "$TauntFromItem"
+                    Param "Taunt: The Hot Wheeler|taunt move speed|225|taunt turn speed|50,0,-1" 
+                    Delay 1
+                    Repeats 1
+                }
+                ItemAttributes
+                {
+                    ItemName "TF_WEAPON_FIREAXE"
+                    "custom kill icon" bumper_kart
+                }
+                CharacterAttributes
+                {
+                    "always allow taunt" 1  
+                    "rage giving scale"	0
+                    "voice pitch scale" 0
+                    "damage causes airblast" 1
+                    "stomp player force" 320
+                    "stomp player damage" 50
+                    "stomp player time" 0.3
+                    "stomp building damage" 200
+                    "damage force reduction" 0.2
+                    "airblast vulnerability multiplier" 0.2
+                    "bombinomicon effect on death" 1
+                }
             }
         }
         WaveSpawn // Boss 2 - Skull Magician
@@ -3638,11 +4195,21 @@ WaveSchedule
                 Template T_TFBot_IronLich
                 Action Mobber
             }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-MiniBones`)
+                      "
+            }
             DoneOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
@@ -3664,11 +4231,21 @@ WaveSchedule
                 Template T_Zombie_Special_Hulk
                 Action Mobber
             }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-MiniBones`)
+                      "
+            }
             DoneOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -3852,6 +4429,43 @@ WaveSchedule
             }
         }
 
+        WaveSpawn // Support Baby Punches
+        {
+            Name "Wave13_Support-BabyPunches"
+            WaitForAllSpawned "Wave13_BazooksDuo"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Baby_Punch
+            }
+        }
+        WaveSpawn // Support Little Bombers
+        {
+            Name "Wave13_Support-LittleBombers"
+            WaitForAllSpawned "Wave13_BazooksDuo"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_MajorCatastrophe_Boss_Minion
+            }
+        }
+
         WaveSpawn
         {
             Name "Wave13_BazooksDuoCheck"
@@ -3872,6 +4486,10 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-BabyPunches`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-LittleBombers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-BabyPunches`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-LittleBombers`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -3884,7 +4502,6 @@ WaveSchedule
             StartDisabled 1
         }
 
-        
 		WaveSpawn // Start of music
 		{
             WaitForAllSpawned "Wave13_SovietTonkaWeapons"
@@ -3933,11 +4550,84 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(``);
+
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-Soldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-TomislavHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-BackburnerPyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-Soldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-TomislavHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-BackburnerPyros`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
 
+        WaveSpawn // Support Soldiers
+        {
+            Name "Wave13_Support-Soldiers"
+            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Soldier
+                Skill Easy
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Tomislav Heavies
+        {
+            Name "Wave13_Support-TomislavHeavies"
+            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 6
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Tomislav Heavy"
+                Class Heavy
+                ClassIcon heavy_accurate_lite
+                Skill Easy
+                Action Mobber
+
+                Item "Tomislav"
+            }
+        }
+        WaveSpawn // Support Backburner Pyros
+        {
+            Name "Wave13_Support-BackburnerPyros"
+            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 150
+
+            TFBot
+            {
+                Name "Backburner Pyro"
+                Class Pyro
+                ClassIcon pyro_backburner_nys
+                Skill Easy
+                Item "The Backburner"
+            }
+        }
     }
     Wave // Main Boss - Iron Star
     {
@@ -4288,6 +4978,51 @@ WaveSchedule
                 }
             }
         }
+        WaveSpawn // Support Direct Hit Soldiers
+        {
+            Name "Wave17_Support-DirectHitSoldiers"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Direct Hit Soldier"
+                Class Soldier
+                ClassIcon soldier_directhit_lite
+                Skill Easy
+                Action Mobber
+
+                Item "The Direct Hit"
+            }
+        }
+        WaveSpawn // Support Heavies
+        {
+            Name "Wave17_Support-Heavies"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Heavy
+                Skill Easy
+                Action Mobber
+            }
+        }
+
         WaveSpawn
         {
             Name "Wave17_MechonaghersDead"
@@ -4298,6 +5033,10 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-Heavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Heavies`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Enable`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
@@ -4326,8 +5065,52 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GBurstSoldier`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
+            }
+        }
+        WaveSpawn // Support GBurst Soldiers
+        {
+            Name "Wave17_Support-GBurstSoldier"
+            WaitForAllDead "Wave17_MechonaghersDead"
+            Where spawnbot_support
+            Support 1
+            TotalCount 25
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 15
+            TotalCurrency 25
+
+            TFBot
+            {
+                Name "Hoe Harvester"
+                Template T_TFBot_Giant_Soldier_Spammer_Reload
+            }
+        }
+        WaveSpawn // Support Super Steel Gauntlets
+        {
+            Name "Wave17_Support-GSteelGauntlet"
+            WaitForAllDead "Wave17_MechonaghersDead"
+            Where spawnbot_support
+            Support 1
+            TotalCount 25
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 25
+            TotalCurrency 25
+
+            TFBot
+            {
+                Name "Bitch Haver"
+                Template T_TFBot_Giant_Boxing_Heavy
+                ClassIcon heavy_steelfist_giant
+                Item "Fists of Steel"
             }
         }
 
@@ -4353,10 +5136,40 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ConchPunchies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ConchPunchies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
+        WaveSpawn // Support Conch Punchies
+        {
+            Name "Wave17_Support-ConchPunchies"
+            WaitForAllDead "Wave17_Boss2-Larry"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 3
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Heavyweapons_Heavyweight_Champ
+                Item     "The Concheror"
+                Attributes      SpawnWithFullCharge
+                ClassIcon heavy_champ_conch2
+                Name "Extended Conch Punchie"
+                Attributes AlwaysCrit
+                CharacterAttributes
+                {
+                    "increase buff duration"    141.0
+                }
+            }
+        }
+
 
         //// Colonel Crackle & Captain Capharnaum ////
         WaveSpawn
@@ -4375,7 +5188,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 100
 
             TFBot
             {
@@ -4395,8 +5208,51 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-Demoknights`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-Soldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Demoknights`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Soldiers`)
                         EntFire(`arena_redstone_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
+            }
+        }
+        WaveSpawn // Support Demoknights
+        {
+            Name "Wave17_Support-Demoknights"
+            WaitForAllSpawned "Wave17_RedstoneGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Demoman_Knight
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Soldiers
+        {
+            Name "Wave17_Support-Soldiers"
+            WaitForAllSpawned "Wave17_RedstoneGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 5
+            SpawnCount 4
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Soldier
+                Skill Normal
+                Action Mobber
             }
         }
 
@@ -4409,7 +5265,8 @@ WaveSchedule
             MaxActive 1
             SpawnCount 1
             WaitBeforeStarting 7.5
-            WaitBetweenSpawns 50
+            WaitBetweenSpawns 0
+            TotalCurrency 100
 
             TFBot
             {
@@ -4421,8 +5278,72 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GlockDemos`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-PersianDemoknights`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GlockDemos`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-PersianDemoknights`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+        WaveSpawn // Support Glock Demos
+        {
+            Name "Wave17_Support-GlockDemos"
+            WaitForAllDead "Wave17_Boss1-ColonelCrackle"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 5
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Demoman
+                WeaponRestrictions SecondaryOnly
+                Item "TF_WEAPON_PISTOL"
+                Skill Normal
+                Name "Glock Demoman"
+                ClassIcon scout_pistol_nys
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Persian Demoknights
+        {
+            Name "Wave17_Support-PersianDemoknights"
+            WaitForAllDead "Wave17_Boss2-CaptainCapharnaum"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 5
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Demoman
+                ClassIcon demoknight_persian_nys
+                Name "Persian Demoknight"
+                Skill Expert
+                WeaponRestrictions MeleeOnly
+                Item "Ali Baba's Wee Booties"
+                Item "The Persian Persuader"
+                Item "The Splendid Screen"
+                Item "Sultan's Ceremonial"
+                ItemAttributes
+                {
+                    ItemName "The Persian Persuader"
+                    "critboost on kill" 3
+                }
+                ItemAttributes
+                {
+                    ItemName "The Splendid Screen"
+                    "attack not cancel charge" 1
+                }
             }
         }
 
@@ -4463,8 +5384,34 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-CarbineSnipers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-CarbineSnipers`)
                         EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
+            }
+        }
+        WaveSpawn // Support Carbine Snipers
+        {
+            Name "Wave17_Support-CarbineSnipers"
+            WaitForAllSpawned "Wave17_TerrorlictGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 2
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Carbine Sniper"
+                Class Sniper
+                ClassIcon sniper_carbine
+                WeaponRestrictions SecondaryOnly
+                Action Mobber
+
+                Item "The Cleaner's Carbine"
             }
         }
 
@@ -4490,10 +5437,66 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+
                         EntFire(`arena_terrorlict_boss_spawn_relay`, `Disable`)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
                       "
+            }
+        }
+        WaveSpawn // Support Deflector Heavies
+        {
+            Name "Wave17_Support-DeflectorHeavies"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 75
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 75
+
+            TFBot
+            {
+                Name "Deflector Heavy"
+                Class Heavy
+                ClassIcon heavy_deflector
+                Skill Easy
+                WeaponRestrictions PrimaryOnly
+
+                Item "Deflector"
+
+                Item "The U-clank-a"
+
+                ItemAttributes 
+                {
+                    ItemName "Deflector"
+                    "attack projectiles" 1
+                }
+            }
+        }
+        WaveSpawn // Support Shotgun Heavies
+        {
+            Name "Wave17_Support-ShotgunHeavies"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 75
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 75
+
+            TFBot
+            {
+                Name "Shotgun Heavy"
+                Template T_TFBot_Heavyweapons_Shotgun
             }
         }
 
@@ -4523,6 +5526,15 @@ WaveSchedule
                     Repeats 1
                     Cooldown -1
                 }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-DeflectorHeavies`, 5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-ShotgunHeavies`, 45)
+                      "
             }
         }
         WaveSpawn // Boss 3 - Pyro War Machine
@@ -4564,7 +5576,6 @@ WaveSchedule
             Name "Wave17_WarMachinesDead"
             WaitForAllDead "Wave17_Boss3-PyroWarMachine"
         }
-
         WaveSpawn
         {
             Name "Wave17_WarMachinesComplete"
@@ -4575,6 +5586,10 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -4616,8 +5631,51 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesSoldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Soldiers
+        {
+            Name "Wave17_Support-DavesSoldiers"
+            WaitForAllSpawned "Wave17_OverclockedDave"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 3
+            TotalCurrency 150
+
+            TFBot
+            {
+                Class Soldier
+                Skill Easy
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Heavies
+        {
+            Name "Wave17_Support-DavesHeavies"
+            WaitForAllSpawned "Wave17_OverclockedDave"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 150
+
+            TFBot
+            {
+                Class Heavy
+                Skill Easy
+                Action Mobber
             }
         }
     }
@@ -4769,7 +5827,7 @@ WaveSchedule
                       "
             }
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave18_Boss-PlannedObsolescence"
             WaitForAllSpawned "Wave18_PlannedObsolescence"
@@ -4799,6 +5857,10 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `disableformidboss`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `forthesplashattack`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                         EntFire(`backupteleporting`, `Kill`)
                       "
@@ -4810,13 +5872,13 @@ WaveSchedule
             Name "disableformidboss"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 10
+            TotalCount 150
             MaxActive 10
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 50
+            TotalCurrency 150
             RandomChoice
             {
                 TFBot
@@ -4848,13 +5910,13 @@ WaveSchedule
             Name "forthesplashattack"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 30
+            TotalCount 150
             MaxActive 12
             SpawnCount 4
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 50
+            TotalCurrency 150
 
             TFBot
             { 
@@ -4875,7 +5937,7 @@ WaveSchedule
             Name "Wave18_TheForemann"
             StartDisabled 1
         }
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave18_Boss-TheForemann"
             WaitForAllSpawned "Wave18_TheForemann"
@@ -4905,8 +5967,72 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-SteelGauntlets`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-FlarePyros`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-SuperScouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SteelGauntlets`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-FlarePyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SuperScouts`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Steel Gauntlets
+        {
+            Name "Wave18_Support-SteelGauntlets"
+            WaitForAllSpawned "Wave18_TheForemann"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Heavyweapons_Fist
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Flare Pyros
+        {
+            Name "Wave18_Support-FlarePyros"
+            WaitForAllSpawned "Wave18_TheForemann"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 7
+            SpawnCount 3
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Pyro_Flaregun
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Super Scouts
+        {
+            Name "Wave18_Support-SuperScouts"
+            WaitForAllSpawned "Wave18_TheForemann"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 20
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Giant_Scout_Fast
+                Attributes AlwaysCrit
             }
         }
     }
@@ -4962,7 +6088,7 @@ WaveSchedule
             }
         }
 
-        WaveSpawn
+        WaveSpawn // Boss
         {
             Name "Wave19_Boss-OverclockedDaveReborn"
             Where spawnbot_boss
@@ -4985,6 +6111,47 @@ WaveSchedule
                 Param "
                         EntFire(`mainbossmusicinit`, `Trigger`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Soldiers
+        {
+            Name "Wave19_Support-Soldiers"
+            Where spawnbot_support
+            Support 1
+            TotalCount 200
+            MaxActive 8
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 6
+            TotalCurrency 200
+
+            TFBot
+            {
+                Class Soldier
+                Skill Expert
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Armored Bat Scouts
+        {
+            Name "Wave19_Support-ArmoredBatScouts"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 3
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 6
+            TotalCurrency 100
+
+            TFBot
+            {
+                Name "Armored Bat Scout"
+                Template T_TFBot_Scout_Melee
+                ClassIcon scout_bat_nys_armored
+                Scale 1.4
+                Health 900
             }
         }
     }
