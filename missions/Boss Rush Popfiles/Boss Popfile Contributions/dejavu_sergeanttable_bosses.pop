@@ -4499,11 +4499,11 @@ WaveSchedule
 			}
 			FireInput
 			{
-				Target "!self"
-				Action "$SetLocalOrigin"
-				Param  "1030 348 -184"
+				Target "func_door"
+				Action "open"
 				Delay  -1
 				Cooldown 99999
+                IfHealthBelow 40000
 			}
 			FireInput //shake
 			{
@@ -5888,6 +5888,14 @@ WaveSchedule
             UseHumanAnimations 1
             AlwaysGlow 1
             HeadRotateSpeed 2000
+            FireInput
+			{
+				Target "func_door"
+				Action "open"
+				Delay  -1
+				Cooldown 99999
+                IfHealthBelow 60000
+			}
             CharacterAttributes
             {
                 "cancel falling damage" 1
@@ -6958,6 +6966,14 @@ WaveSchedule
             Autojumpmin 1
             Action Mobber
             AlwaysGLow 1
+            FireInput
+			{
+				Target "func_door"
+				Action "open"
+				Delay  -1
+				Cooldown 99999
+                IfHealthBelow 40000
+			}
             WeaponSwitch
             {
                 Type "Melee"

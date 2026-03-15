@@ -2156,7 +2156,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_claymore_kai`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demoknight_claymore_kai`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
@@ -2189,7 +2189,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_directhit_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_claymore_kai`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demoknight_claymore_kai`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
@@ -3402,7 +3402,7 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
                                 [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
@@ -3422,7 +3422,7 @@ WaveSchedule
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`scout_popper2_giant`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`heavy_champ`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
@@ -3458,7 +3458,7 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
                                 [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
@@ -4416,7 +4416,7 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`dead_blu_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_zombie_arm2_lite`, 10, MVM_CLASS_FLAG_MINIBOSS],
                                 [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT]
@@ -4447,7 +4447,7 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`dead_blu_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_zombie_arm2_lite`, 10, MVM_CLASS_FLAG_MINIBOSS],
                                 [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT]
@@ -5046,17 +5046,17 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - Iron Star
-    {
+    //Wave // Main Boss - Iron Star
+    //{
 
-    }
+    //}
 
     // EXPERT GAUNTLET //
 
-    Wave // Main Boss - Major Shocks
-    {
+    //Wave // Main Boss - Major Shocks
+    //{
 
-    }
+    //}
     Wave // Main Boss - Mercenary Matter
     {
         InitWaveOutput
@@ -5592,11 +5592,11 @@ WaveSchedule
                                 [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                                 [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_directhit_lite`, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_burstfire`, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_steelfist_giant`, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -5634,11 +5634,11 @@ WaveSchedule
                                 [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                                 [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_directhit_lite`, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_burstfire`, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_steelfist_giant`, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -5884,6 +5884,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`arena_electricmine_barrier`, `Close`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GBurstSoldier`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
@@ -6289,10 +6290,10 @@ WaveSchedule
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYS_CRIT]
+                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -6332,10 +6333,10 @@ WaveSchedule
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYS_CRIT]
+                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -6427,12 +6428,13 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`arena_electricmine_barrier`, `Close`)
+                        EntFire(`backupteleporting`, `Kill`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `forthesplashattack`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
-                        EntFire(`backupteleporting`, `Kill`)
                       "
             }
         }
