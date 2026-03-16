@@ -378,7 +378,7 @@ WaveSchedule
         }
 
         //// OVERCLOCKED DAVE REBORN ////
-        boss_dead_heavy
+        boss_dead_dave_reborn
         {
             OnParentKilledOutput
             {
@@ -2012,7 +2012,7 @@ WaveSchedule
 		}
 
         //// THE FOREMANN ////
-        boss_dead_pyro
+        boss_dead_pyro_foremann
         {
             OnSpawnOutput
             {
@@ -3428,7 +3428,7 @@ WaveSchedule
             SpawnTemplate boss_mimics
             SpawnTemplate { Name iguessihavetodothis Bone bip_spine_2 }
             SpawnTemplate punch_projectiles
-            SpawnTemplate boss_dead_heavy
+            SpawnTemplate boss_dead_dave_reborn
             Skill expert
             Tag bot_bossdeath
             Health 110000
@@ -5871,7 +5871,7 @@ WaveSchedule
         ForeMann
         {
             SpawnTemplate boss
-            SpawnTemplate boss_dead_pyro
+            SpawnTemplate boss_dead_pyro_foremann
             Template T_TFBot_Giant_Pyro 
             ClassIcon pyro_fireaxe_lite_armored
             WeaponRestrictions MeleeOnly

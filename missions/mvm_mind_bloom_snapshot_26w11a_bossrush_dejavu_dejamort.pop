@@ -8,6 +8,7 @@
 
 #base dejavu_bazooks_bosses.pop
 #base dejavu_chaosmystery_bosses.pop
+#base dejavu_claudz_bosses.pop
 #base dejavu_cookiecat_bosses.pop
 #base dejavu_mentrillum_bosses.pop
 #base dejavu_package_bosses.pop
@@ -54,6 +55,16 @@ WaveSchedule
     PrecacheSound "minibossrush2intro.mp3" 
     PrecacheSound "mainbosstheme1.mp3"
 
+    PrecacheSound "mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/internal_struggle.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/the_arena_rest_area.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/true_arena_showdown.wav"
+	PrecacheSound "mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav"
+
     //// POINT TEMPLATES ////
 
     PointTemplates 
@@ -67,6 +78,17 @@ WaveSchedule
                 "OnTrigger" "@f@filter_red@player,$TeleportToEntity,skybox_sun_target,0,-1"
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
+            }
+
+            info_teleport_destination // Fix for Skeleheat Arena
+            {
+                "targetname" "portal_target_skeleheat"
+                "origin" "-8744 -552 -1160"
+            }
+            info_teleport_destination // Fix for Redstone Ridge
+            {
+                "targetname" "portal_target_redstone_new"
+                "origin" "2376 934 -892"
             }
 
             // Universal Filters
@@ -224,82 +246,6 @@ WaveSchedule
             }
         }
 
-        IntSetupMusic
-        {
-
-        }
-        AdvSetupMusic
-        {
-
-        }
-        ExpSetupMusic
-        {
-
-        }
-        ExpFinalSetupMusic
-        {
-
-        }
-        MasSetupMusic
-        {
-            
-        }
-
-        MiniBossMusic
-        {
-            ambient_generic // Intro Music
-            {
-                "targetname" "intromidbossmusic"
-                "message" "#minibossrush2intro.mp3"
-                "health" "10"
-                "pitch" "100"
-                "spawnflags" "17"
-            }
-            ambient_generic // Looping Music
-            {
-                "targetname" "loopingmidbossmusic"
-                "message" "#minibossrush2.mp3"
-                "health" "10"
-                "pitch" "100"
-                "spawnflags" "17"
-            }
-            logic_relay // Intro Music Relay
-            {
-                "targetname" "minibossmusicinit"
-                "OnTrigger"	"intromidbossmusic,PlaySound,,0,-1"
-                "OnTrigger"	"intromidbossmusic,StopSound,,2.3,-1"
-                "OnTrigger" "music_controller,trigger,,2.3,-1"
-                "spawnflags" "2"
-            }
-            logic_relay // Looping Music Relay
-            {
-                "targetname" "music_controller"
-                "OnTrigger"	"loopingmidbossmusic,PlaySound,,0,-1"
-                "OnTrigger"	"loopingmidbossmusic,StopSound,,87.7,-1"
-                "OnTrigger" "music_controller,trigger,,87.705,-1"
-                "spawnflags" "2"
-            }
-        }
-        MainBossMusic
-        {
-            ambient_generic // Looping Music
-            {
-                "targetname" "loopingbossmusic"
-                "message" "#mainbosstheme1.mp3"
-                "health" "10"
-                "pitch" "100"
-                "spawnflags" "17"
-            }
-            logic_relay // Intro Music Relay
-            {
-                "targetname" "mainbossmusicinit"
-                "OnTrigger"	"loopingbossmusic,PlaySound,,0,-1"
-                "OnTrigger"	"loopingbossmusic,StopSound,,257.3,-1"
-                "OnTrigger" "music_controller,trigger,,257.305,-1"
-                "spawnflags" "2"
-            }
-        }
-
         //// BOSS POINT-TEMPLATE FIXES ////
 
         // Nemesis Shell Teleporting
@@ -399,6 +345,22 @@ WaveSchedule
                     {
                         IncludeScript(`buddhamode`, getroottable())
                     }
+
+                    if (!(`music_system_ment` in getroottable()))
+                    {
+                        IncludeScript(`music_system_ment`, getroottable())
+                    }
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`);
+                    MusicSystemMent.ResetAll();
+                    MusicSystemMent.HookByName(`bignet`);
                   "
         }
         StartWaveOutput
@@ -420,8 +382,6 @@ WaveSchedule
         }
 
         RedTeamWipeCausesWaveLoss 1
-
-        SpawnTemplate MainBossMusic
 
         WaveSpawn
         {
@@ -501,7 +461,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
@@ -562,6 +522,17 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+
+                    if (!(`music_system_ment` in getroottable()))
+					{
+						IncludeScript(`music_system_ment`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`, 2.0, 2.0, 0.65);
                   "
         }
         StartWaveOutput
@@ -584,8 +555,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -597,6 +566,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -623,7 +593,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
         }
@@ -666,6 +636,16 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (!(`music_system_ment` in getroottable()))
+					{
+						IncludeScript(`music_system_ment`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`, 2.0, 2.0, 0.65);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `Wave3_ExplosiveSurprise`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave3_FallenPatrolChiefs`);
@@ -751,8 +731,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -764,6 +742,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -797,7 +776,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -929,7 +908,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
         }
@@ -1077,6 +1056,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`, 2.0, 2.0, 0.65);
                   "
         }
         StartWaveOutput
@@ -1099,8 +1084,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -1112,6 +1095,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        usicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -1139,7 +1123,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -1315,6 +1299,12 @@ WaveSchedule
                     {
                         IncludeScript(`miningop`, getroottable())
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_underground_relay`, `Wave5_MiningSupervisor`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_bogland_relay`, `Wave5_FieldMarshalMechanus`);
@@ -1399,8 +1389,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -1412,6 +1400,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -1506,7 +1495,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -1750,11 +1739,19 @@ WaveSchedule
         {
             Target BigNet
             Action RunScriptCode
-            Param "
-                    Convars.SetValue(`tf_bot_flag_escort_max_count`, 0)
-                    
-                    IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+            Param " 
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
+
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -1777,8 +1774,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -1790,6 +1785,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -1898,7 +1894,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
         }
@@ -2132,6 +2128,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_SlaveKnightDael`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_doppler_relay`, `Wave7_DirectDisaster`);
@@ -2213,8 +2215,6 @@ WaveSchedule
     
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -2226,6 +2226,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -2258,7 +2259,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -2343,7 +2344,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -2423,6 +2424,23 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
+
+                    IncludeScript(`contact_logic`, getroottable())
+
+                    EntFire(`wave_init_relay_route_r`, `Trigger`, null, 0.5)
+                    EntFire(`w6intro`,`StopSound`,null,0.3)	
+                    EntFire(`w6intro`,`Disable`,null,0.4)	
+                    EntFire(`w6loop`,`StopSound`,null,0.3)	
+                    EntFire(`w6loop`,`Disable`,null,0.4)	
+                    EntFire(`w6loop2`,`StopSound`,null,0.3)	
+                    EntFire(`w6loop2`,`Disable`,null,0.4)
+                    EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet1`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet2`);
@@ -2519,8 +2537,6 @@ WaveSchedule
     
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -2532,6 +2548,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -2564,7 +2581,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -2728,7 +2745,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -2914,6 +2931,104 @@ WaveSchedule
             Name "Wave8_RancherGauntlet"
             StartDisabled 1
         }
+
+        WaveSpawn // Boss 1 - Otherworldly Elite Heavies
+        {
+            Name "Wave8_Boss1-OtherworldlyHeavies"
+            WaitForAllSpawned "Wave8_RancherGauntlet"
+            Where spawnbot_boss
+            TotalCount 2
+            MaxActive 2
+            SpawnCount 2
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            FirstSpawnWarningSound "vo\mvm\mght\heavy_mvm_m_painsharp04.mp3"
+
+            Squad
+            {
+                NoWaitForFormation 1 [$SIGSEGV]
+                NoFormation 1 [$SIGSEGV]
+                TFBot
+                { 
+                    Template T_TFBot_Contact_W4Pair_Heavy_Gunner
+                }
+                TFBot
+                { 
+                    Template T_TFBot_Contact_W4Pair_Heavy_EMPer
+                }
+            }
+
+            FirstSpawnOutput
+            {
+                Target "wave3stupidness"
+                Action ForceSpawn
+            }
+        }
+
+        WaveSpawn // Boss 2 - Otherworldly Barrage Soldier
+        {
+            Name "Wave8_Boss2-OtherworldlySoldier"
+            WaitForAllDead "Wave8_Boss1-OtherworldlyHeavies"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            FirstSpawnWarningSound mvm\giant_heavy\giant_heavy_entrance.wav
+
+            TFBot 
+            {
+                Template T_TFBot_Contact_W6Pair_Soldier
+            }
+        }
+        WaveSpawn // Boss 2 - Otherworldly Annihilator Demo
+        {
+            Name "Wave8_Boss2-OtherworldlyDemo"
+            WaitForAllDead "Wave8_Boss1-OtherworldlyHeavies"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot 
+            {
+                Template T_TFBot_Contact_W6Pair_Demo
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave8_OtherworldlyRobotsDead"
+            WaitForAllDead "Wave8_Boss2-OtherworldlySoldier"
+        }
+        WaveSpawn
+        {
+            Name "Wave8_OtherworldlyRobotsDead"
+            WaitForAllDead "Wave8_Boss2-OtherworldlyDemo"
+        }
+
+        WaveSpawn
+        {
+            Name "Wave8_OtherworldlyRobotsComplete"
+            WaitForAllSpawned "Wave8_OtherworldlyRobotsDead"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Main Boss - The Treadonator OR Magician Lord OR Timed Disaster
     {
@@ -2934,6 +3049,16 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (!(`mvm_mind_bloom_bossflare` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_bossflare`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave9_Treadonator`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_shank_relay`, `Wave9_MagicianLord`);
@@ -2975,23 +3100,6 @@ WaveSchedule
                             break;
                         }
                     }
-
-                    IncludeScript(`popextensions_main`, getroottable())
-                    PopExt.AddRobotTag(`bossflare`, {
-                        OnSpawn = function(bot, tag) {
-                    
-                            local wearable = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
-                            wearable.SetOwner(bot)
-                            wearable.SetModelScale(2.3, 0)
-                            wearable.SetLocalOrigin(Vector(-15, 0, -6))
-                            wearable.SetAngles(45, -90, 0)
-                            local wearable2 = PopExtUtil.CreatePlayerWearable(bot, `models/weapons/w_models/w_grenadelauncher.mdl`, false, `flag`)
-                            wearable2.SetOwner(bot)
-                            wearable2.SetLocalOrigin(Vector(12, 0, -0))
-                            wearable2.SetModelScale(2.3, 0)
-                            wearable2.SetAngles(45, -45, 45)
-                        },
-                    })
                   "
         }
         StartWaveOutput
@@ -3066,6 +3174,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -3098,7 +3207,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -3210,7 +3319,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -3290,7 +3399,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -3354,81 +3463,87 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-                    }
-                    if (!(`pyro_boss_special` in getroottable()))
-                    {
-                        IncludeScript(`pyro_boss_special`, getroottable());
-                    }
-                    if (!(`death_associate3` in getroottable()))
-                    {
-                        IncludeScript(`death_associate3`, getroottable());
-                    }
+					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+					}
+					if (!(`alternatewaves` in getroottable()))
+					{
+						IncludeScript(`alternatewaves`, getroottable());
+					}
+					if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+					}
+					if (!(`pyro_boss_special` in getroottable()))
+					{
+						IncludeScript(`pyro_boss_special`, getroottable());
+					}
+					if (!(`death_associate3` in getroottable()))
+					{
+						IncludeScript(`death_associate3`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_scallops_relay`, `Wave10_MajorBonecremator`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_doppler_relay`, `Wave10_DistortedMessenger`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave10_PrivateSeeker`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave10_NemesisShell`);
-                    MindBloomRNG.InitRNGArena();
+					MindBloomRNG.AddRNGArena(`wave_init_arena_scallops_relay`, `Wave10_MajorBonecremator`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_doppler_relay`, `Wave10_DistortedMessenger`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave10_PrivateSeeker`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave10_NemesisShell`);
+					MindBloomRNG.InitRNGArena();
 
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
+					AlternateWaves.bTrackIcons = false;
+					AlternateWaves.ClearWaveIcons();
 
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_bazooka`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+					switch (MindBloomRNG.GlobalIndex)
+					{
+						case 0:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`pyro_phlog_skull`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`medic_shield_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`soldier_bazooka`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
-                                [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+						case 1:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
+								[`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_widowmaker_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_dragon_fury_swordstone`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+						case 2:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`soldier_barrage_homing_nys_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`engineer_widowmaker_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`pyro_dragon_fury_swordstone`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 3:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`scout_popper2_giant`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
-                            ])
-                            break;
-                        }
-                    }
+						case 3:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`scout_popper2_giant`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy_champ`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
+							])
+							break;
+						}
+					}
                   "
         }
         StartWaveOutput
@@ -3478,7 +3593,7 @@ WaveSchedule
                         case 3:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`soldier_bison`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`scout_popper2_giant`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`heavy_champ`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
@@ -3503,8 +3618,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -3516,6 +3629,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -3555,7 +3669,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -3677,7 +3791,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -3766,7 +3880,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -3862,7 +3976,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
         }
@@ -3969,6 +4083,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
@@ -4080,8 +4200,6 @@ WaveSchedule
     
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -4092,7 +4210,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -4125,7 +4243,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -4211,7 +4329,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -4324,7 +4442,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -4403,9 +4521,17 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
+
+                    IncludeScript(`contact_logic_bossrush`, getroottable())
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave12_IndustrialGauntlet`);
-                    //MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave12_RancherGauntlet`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave12_RancherGauntlet`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -4423,13 +4549,13 @@ WaveSchedule
                             ])
                             break;
                         }                     
-                        //case 1:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //       [``, 1, MVM_CLASS_FLAG_MINIBOSS],
-                        //    ])
-                        //    break;
-                        //}
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [``, 1, MVM_CLASS_FLAG_MINIBOSS],
+                            ])
+                            break;
+                        }
                     }
                   "
         }
@@ -4454,13 +4580,13 @@ WaveSchedule
                             ])
                             break;
                         }                     
-                        //case 1:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //       [``, 1, MVM_CLASS_FLAG_MINIBOSS],
-                        //    ])
-                        //    break;
-                        //}
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                               [``, 1, MVM_CLASS_FLAG_MINIBOSS],
+                            ])
+                            break;
+                        }
                     }
 
                     MindBloomRNG.StartRNGArena();
@@ -4476,6 +4602,24 @@ WaveSchedule
 
                     AlternateWaves.bTrackIcons = true;
                   "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                      "
+            }
         }
 
         //// Bad to the Bone, Skull Magician & The Tank Zombies ////
@@ -4500,6 +4644,7 @@ WaveSchedule
             TFBot
             {
                 Template T_TFBot_BossRider
+                ClassIcon dead_blu_lite_giant
                 Action Mobber
             }
             FirstSpawnOutput
@@ -4507,7 +4652,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -4621,16 +4766,16 @@ WaveSchedule
                       "
             }
         }
-        WaveSpawn // Boss 3 - 10 Tank Zombies
+        WaveSpawn // Boss 3 - 5 Tank Zombies
         {
             Name "Wave12_Boss3-TankZombies"
             WaitForAllDead "Wave12_Boss2-SkullMagician"
-            Where spawnbot_support
-            TotalCount 10
-            MaxActive 4
-            SpawnCount 1
+            Where spawnbot_boss
+            TotalCount 5
+            MaxActive 5
+            SpawnCount 5
             WaitBeforeStarting 7.5
-            WaitBetweenSpawns 5
+            WaitBetweenSpawns 0
             TotalCurrency 100
 
             TFBot
@@ -4664,6 +4809,165 @@ WaveSchedule
             Name "Wave12_RancherGauntlet"
             StartDisabled 1
         }
+
+        WaveSpawn
+        {
+            Name "Wave12_RancherSetup"
+            WaitForAllSpawned "Wave12_RancherGauntlet"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnWarningSound "misc\rd_spaceship01.wav"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`w6sky`, `Trigger`, null, 0.2)
+                        EntFire(`itshere`, `Trigger`)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 1 - Dr. Dismemberment
+        {
+            Name "Wave12_Boss1-DrDismemberment"
+            WaitForAllSpawned "Wave12_RancherGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            FirstSpawnWarningSound "mvm\giant_heavy\giant_heavy_entrance.wav"
+
+            TFBot
+            {
+                Template T_TFBot_Contact_Medic_Miniboss
+            }
+            FirstSpawnOutput
+            {
+                Target "w7_loop"
+                Action "trigger"
+            }
+        }
+
+        WaveSpawn // Support Lil UFOs
+        {
+            Name "Wave12_Support-LilUFOs"
+            WaitForAllSpawned "Wave12_RancherGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 2
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Lil_UFO
+            }
+        }
+
+        WaveSpawn // Boss 2 - Mann in Black
+        {
+            Name "Wave12_Boss2-MannInBlack"
+            WaitForAllDead "Wave12_Boss1-DrDismemberment"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            FirstSpawnWarningSound "mvm\giant_heavy\giant_heavy_entrance.wav"
+
+            TFBot
+            {
+                Template T_TFBot_Contact_Spy_Miniboss
+            }
+        }
+
+        WaveSpawn // Support Subspace Agents
+        {
+            Name "Wave12_Support-SubspaceAgents"
+            WaitForAllSpawned "Wave12_Boss2-MannInBlack"
+            Where spawnbot_extrspy1 [$SIGSEGV]
+            Support 1
+            RandomSpawn 1
+            TotalCount 100
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 15
+            TotalCurrency 100
+        
+            Squad
+            {
+                NoWaitForFormation 1 [$SIGSEGV]
+                NoFormation 1  [$SIGSEGV]
+                TFBot
+                {
+                    Class Spy
+                    Skill Expert
+                    Item "Your Eternal Reward"
+                    Item "The Graylien"
+                    Name "Subspace Agent"
+                    UseHumanModel 1
+                    MoveBehindEnemy 1
+                    Attributes IgnoreFlag
+                }
+                TFBot
+                {
+                    Class Spy
+                    Skill Expert
+                    Item "The Graylien"
+                    Name "Subspace Agent"
+                    UseHumanModel 1
+                    MoveBehindEnemy 1
+                    Action Mobber
+                    WeaponRestrictions PrimaryOnly
+                }
+            }
+        }
+
+        WaveSpawn // Boss 3 - Captain Cognac
+        {
+            Name "Wave12_Boss3-CaptainCognac"
+            WaitForAllDead "Wave12_Boss2-MannInBlack"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            FirstSpawnWarningSound "mvm\giant_heavy\giant_heavy_entrance.wav"
+
+            TFBot
+            {
+                Template T_TFBot_Contact_Demo_Miniboss
+            }
+
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-LilUFOs`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-LilUFOs`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-SubspaceAgents`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-SubspaceAgents`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
     }
     Wave // Main Boss - Captain Punch the MDXXVIII & Major Catastrophe OR Soviet Tonka Weapons
     {
@@ -4692,6 +4996,12 @@ WaveSchedule
                     {
                         IncludeScript(`music_system_ment`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_skeleheat_relay`, `Wave13_BazooksDuo`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_meltdown_relay`, `Wave13_SovietTonkaWeapons`);
@@ -4770,8 +5080,6 @@ WaveSchedule
                     }
 
                     MindBloomRNG.StartRNGArena();
-
-                    EntFire(`gamerules`, `SetRedTeamRespawnWaveTime`, `15.0`, 0.1);
                   "
         }
         DoneOutput
@@ -4788,6 +5096,8 @@ WaveSchedule
                   "
         }
 
+        RedTeamWipeCausesWaveLoss 1
+
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -4799,6 +5109,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -4825,6 +5136,14 @@ WaveSchedule
             {
                 Template T_TFBot_Heavy_CaptainPunchMDXXVIII
                 Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                      "
             }
         }
         WaveSpawn // Major Catastrophe
@@ -4922,7 +5241,7 @@ WaveSchedule
 		WaveSpawn // Start of music
 		{
             WaitForAllSpawned "Wave13_SovietTonkaWeapons"
-			WaitBeforeStarting 12.5
+			WaitBeforeStarting 8.5
 			FirstSpawnOutput
 			{
 				Target BigNet
@@ -5046,10 +5365,191 @@ WaveSchedule
             }
         }
     }
-    //Wave // Main Boss - Iron Star
-    //{
+    Wave // Main Boss - Iron Star
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
 
-    //}
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+                    if (!(`music_system_ment` in getroottable()))
+                    {
+                        IncludeScript(`music_system_ment`, getroottable());
+                    }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
+
+                    IncludeScript(`contact_logic`, getroottable())
+
+                    CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
+                    ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
+
+                    EntFire(`makesureeverythingisonjustincase`, `Trigger`, null, 0.2)
+                    EntFire(`w6sky`, `Trigger`, null, 0.2)
+
+                    EntFire(`engi_intro`, `Trigger`, null, 0.4)
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+
+                    AlternateWaves.bTrackIcons = true;
+                  "
+        }
+
+        RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate finalwavesky
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                      "
+            }
+        }
+
+        WaveSpawn // Dummy
+        {
+            FirstSpawnWarningSound "mvm/ambient_mp3/mvm_siren.mp3"
+            WaitBeforeStarting 7.5
+        }
+
+        WaveSpawn // Ironstar Phase 1
+        {
+            Name "Wave14_Boss-IronstarPhase1"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 0
+            HideIcon 1
+
+            FirstSpawnWarningSound "ambient\spacebase\spacebase_rumble_06.wav"
+
+            TFBot 
+            {
+                Template T_TFBot_Contact_Ironstar_Phase1
+            }
+
+            FirstSpawnOutput
+            {
+                Target "engi_theme1"
+                Action "Trigger"
+                Delay 0.0
+            }
+        }
+        WaveSpawn // Ironstar Phase 1 Ship
+        {
+            Name "Wave14_Boss-IronstarPhase1Ship"
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 200
+
+            Tank
+            {
+                SpawnTemplate engiguns
+                Name "engiufotank"
+                ClassIcon 		saucer_lite
+                StartingPathTrackNode "engiship_spot_1"
+                Health 35000
+                Speed 0
+                Skin 0
+                Scale 1.0
+                DisableBomb 1
+                IsMiniBoss 1
+                Immobile 1
+                Gravity 0
+                IsCrit 1
+				NoCrushDamage 1
+                Model
+                {
+                    Default "models/mvm_ufo/ufo_core.mdl"
+                    Damage1 "models/mvm_ufo/ufo_core.mdl"
+                    Damage2 "models/mvm_ufo/ufo_core.mdl"
+                    Damage3 "models/mvm_ufo/ufo_core.mdl"
+                    Destruction "models/empty.mdl"
+                    LeftTrack "models/empty.mdl"
+                    RightTrack "models/empty.mdl"
+                    Bomb "models/empty.mdl"
+                }
+                //OffsetZ -50
+                ReplaceModelCollisions 1
+                //DisableChildModels 1
+                DisableTracks 1
+                DisableSmokestack 1
+
+                StartSound "npc\strider\striderx_alert4.wav"
+                EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav"  
+                //PingSound "npc\combine_gunship\ping_search.wav"
+				PingSound "misc/null.wav" 
+                DeploySound "misc/null.wav" 
+
+				OnKilledOutput
+				{
+					target "engi_theme_kill"
+					action "trigger"
+				}
+                // when tank dies, spawn ufo gibs
+            }
+        }
+        
+        WaveSpawn // Ironstar Phase 2
+        {
+            Name "Wave14_Boss-IronstarPhase2"
+            WaitForAllDead "Wave14_Boss-IronstarPhase1Ship"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            FirstSpawnWarningSound "vo\mvm\norm\engineer_mvm_revenge02.mp3"
+
+            TFBot
+            {
+                Template T_TFBot_Contact_Ironstar_Phase2
+            }
+        }
+    }
 
     // EXPERT GAUNTLET //
 
@@ -5070,6 +5570,13 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -5092,8 +5599,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -5105,6 +5610,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -5130,7 +5636,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
@@ -5212,6 +5718,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_redstone_relay`, `Wave17_RedstoneGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave17_OverclockedDave`);
@@ -5297,11 +5809,43 @@ WaveSchedule
                   "
         }
 
+        RedTeamWipeCausesWaveLoss 1
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                      "
+            }
+        }
+
         //// Colonel Crackle & Captain Capharnaum ////
         WaveSpawn
         {
             Name "Wave17_RedstoneGauntlet"
             StartDisabled 1
+        }
+        WaveSpawn
+        {
+            Name "Wave17_Redstonehotfix"
+            WaitForAllSpawned "Wave17_RedstoneGauntlet"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleporter`, `AddOutput`, `target portal_target_redstone_new`)
+                      "
+            }
         }
 
         WaveSpawn // Boss 1 - Colonel Crackle
@@ -5326,7 +5870,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -5501,7 +6045,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -5576,6 +6120,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_ElectricmineGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave18_TerrorlictGauntlet`);
@@ -5675,9 +6225,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-        SpawnTemplate MiniBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -5689,6 +6236,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -5765,7 +6313,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
@@ -5910,6 +6458,7 @@ WaveSchedule
             {
                 Name "Hoe Harvester"
                 Template T_TFBot_Giant_Soldier_Spammer_Reload
+                Action Mobber
             }
         }
         WaveSpawn // Support Super Steel Gauntlets
@@ -5930,6 +6479,8 @@ WaveSchedule
                 Name "Bitch Haver"
                 Template T_TFBot_Giant_Boxing_Heavy
                 ClassIcon heavy_steelfist_giant
+                Action Mobber
+
                 Item "Fists of Steel"
             }
         }
@@ -5983,6 +6534,8 @@ WaveSchedule
                 ClassIcon heavy_champ_conch2
                 Name "Extended Conch Punchie"
                 Attributes AlwaysCrit
+                Action Mobber
+
                 CharacterAttributes
                 {
                     "increase buff duration"    141.0
@@ -6019,7 +6572,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`minibossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
                       "
             }
             DoneOutput
@@ -6111,6 +6664,7 @@ WaveSchedule
                 ClassIcon heavy_deflector
                 Skill Easy
                 WeaponRestrictions PrimaryOnly
+                Action Mobber
 
                 Item "Deflector"
 
@@ -6140,6 +6694,7 @@ WaveSchedule
             {
                 Name "Shotgun Heavy"
                 Template T_TFBot_Heavyweapons_Shotgun
+                Action Mobber
             }
         }
 
@@ -6176,7 +6731,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-DeflectorHeavies`, 5)
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-ShotgunHeavies`, 45)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-ShotgunHeavies`, 5)
                       "
             }
         }
@@ -6257,6 +6812,12 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
 
                     //MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_PlannedObsolescence`);
@@ -6359,8 +6920,6 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
-        SpawnTemplate MainBossMusic
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -6372,6 +6931,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -6420,7 +6980,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -6451,6 +7011,8 @@ WaveSchedule
             WaitBetweenSpawns 0
             Support 1
             TotalCurrency 150
+            StartDisabled 1
+
             RandomChoice
             {
                 TFBot
@@ -6477,6 +7039,7 @@ WaveSchedule
             }
 
         }
+
         WaveSpawn // Support Neon Annihilator Pyros
         {
             Name "forthesplashattack"
@@ -6489,6 +7052,7 @@ WaveSchedule
             WaitBetweenSpawns 0
             Support 1
             TotalCurrency 150
+            StartDisabled 1
 
             TFBot
             { 
@@ -6531,7 +7095,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -6605,6 +7169,7 @@ WaveSchedule
             {
                 Template T_TFBot_Giant_Scout_Fast
                 Attributes AlwaysCrit
+                Action Mobber
             }
         }
     }
@@ -6621,6 +7186,13 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -6642,8 +7214,6 @@ WaveSchedule
         }
 
         RedTeamWipeCausesWaveLoss 1
-
-        SpawnTemplate MainBossMusic
 
         WaveSpawn
         {
@@ -6681,7 +7251,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`mainbossmusicinit`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
@@ -6724,18 +7294,126 @@ WaveSchedule
                 ClassIcon scout_bat_nys_armored
                 Scale 1.4
                 Health 900
+                Action Mobber
             }
         }
     }
     Wave // Main Boss - The Lone Swordsman
     {
+        InitWaveOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
 
+					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+					}
+
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
+				  "
+		}
+		StartWaveOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_start_relay`, `Trigger`)
+				  "
+		}
+		DoneOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_finished_relay`, `Trigger`)
+					EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+				  "
+		}
+
+		RedTeamWipeCausesWaveLoss 1
+
+        WaveSpawn
+		{
+			Name "teleporthotfix"
+			WaitBeforeStarting 5.1
+
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`arena_teleport_relay`, `Trigger`)
+						MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+					  "
+			}
+		}
     }
 
     // MASTER GAUNTLET //
 
     Wave // Final Boss - Ouroboros, then Fallen Shocks
     {
+		InitWaveOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
 
+					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+					}
+
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`, 2.0, 2.0, 0.75);
+				  "
+		}
+		StartWaveOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_start_relay`, `Trigger`)
+                    MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+				  "
+		}
+		DoneOutput
+		{
+			Target BigNet
+			Action RunScriptCode
+			Param "
+					EntFire(`wave_finished_relay`, `Trigger`)
+				  "
+		}
+
+        RedTeamWipeCausesWaveLoss 1
+
+        WaveSpawn
+		{
+			Name "teleporthotfix"
+			WaitBeforeStarting 5.1
+
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`arena_teleport_relay`, `Trigger`)
+					  "
+			}
+		}
     }
 }
