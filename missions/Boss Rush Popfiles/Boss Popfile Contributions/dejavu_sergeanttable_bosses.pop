@@ -1702,7 +1702,7 @@ WaveSchedule
 			obj_dispenser
 			{
 				"targetname" "uber_generating_for_boss"
-				"origin" "969 -198 -383"
+				"origin" "8370 -5641 -906"
 				"teamnum" "3"
 				"SolidToPlayer" "0"
 				"defaultupgrade" "1"
@@ -1912,6 +1912,8 @@ WaveSchedule
 				"OnTrigger"	"tf_gamerules,PlayVO,mvm/giant_heavy/giant_heavy_entrance.wav,2.1,-1"
 				"OnTrigger"	"tf_gamerules,PlayVO,mvm/giant_heavy/giant_heavy_entrance.wav,2.1,-1"
 				"OnTrigger"	"tf_gamerules,PlayVO,npc/combine_gunship/ping_patrol.wav,2.9,-1"
+                "OnTrigger"  "upper_text,show,,2,-1"
+                "OnTrigger"  "upper_text,show,,2.9,-1"
 			}
 			game_text
 			{
@@ -5032,24 +5034,24 @@ WaveSchedule
 					{ // this makes the bot move forward in the air
 						Target "!self"
 						Action "RunScriptCode"
-						Param "self.ApplyAbsVelocityImpulse(Vector(0,-175,1300))"
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,-210,1300))"
 						Delay 0.73
 						Repeats 1
 						Cooldown 99
 					}
 					FireInput
 					{ // this makes the bot move forward in the air
-						Target "todisable"
+						Target "pit_hurt_waterfall"
 						Action "disable"
 						Delay 3
 						Repeats 1
 						Cooldown 99
 					}
-					FireInput
+                    FireInput
 					{ // this makes the bot move forward in the air
-						Target "todisable"
+						Target "pit_hurt_waterfall"
 						Action "disable"
-						Delay 6.5
+						Delay 11
 						Repeats 1
 						Cooldown 99
 					}

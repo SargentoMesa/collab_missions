@@ -95,6 +95,13 @@ WaveSchedule
                 "origin" "2376 934 -892"
             }
 
+            logic_timer // Ragdoll Remover
+			{
+				"targetname"    "ragdollremover"
+				"RefireTime"    "7"
+				"OnTimer"       "tf_ragdoll*,kill,,0,-1"
+			}
+
             // Universal Filters
             filter_activator_class // Is a Player
             {
@@ -642,6 +649,10 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
                     if (!(`music_system_ment` in getroottable()))
 					{
 						IncludeScript(`music_system_ment`, getroottable());
@@ -1062,6 +1073,10 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -2160,6 +2175,10 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -4228,6 +4247,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -4531,6 +4551,7 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+                    IncludeScript(`contact_logic_bossrush`, getroottable())
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -4545,8 +4566,6 @@ WaveSchedule
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
-
-                    IncludeScript(`contact_logic_bossrush`, getroottable())
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave12_IndustrialGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave12_RancherGauntlet`);
@@ -5627,10 +5646,65 @@ WaveSchedule
 
     // EXPERT GAUNTLET //
 
-    //Wave // Main Boss - Major Shocks
-    //{
+    Wave // Main Boss - Major Shocks
+    {
+        InitWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
+
+                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+                    {
+                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+                    }
+
+                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					{
+						MusicSystemMent.ResetAll();
+						MusicSystemMent.HookByName(`bignet`);
+					}
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
+                  "
+        }
+        StartWaveOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_start_relay`, `Trigger`)
+                  "
+        }
+        DoneOutput
+        {
+            Target BigNet
+            Action RunScriptCode
+            Param "
+                    EntFire(`wave_finished_relay`, `Trigger`)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                  "
+        }
+
         CustomMaxWaveNumber 0
-    //}
+        RedTeamWipeCausesWaveLoss 1
+
+        WaveSpawn
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                      "
+            }
+        }
+    }
     Wave // Main Boss - Mercenary Matter
     {
         InitWaveOutput
@@ -5644,6 +5718,10 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -5725,6 +5803,14 @@ WaveSchedule
             {
                 Template T_TFBot_Fat_Boss_Merc_Matter
                 Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`miracle_matter_dead`, `Trigger`)
+                      "
             }
         }
 
@@ -7320,6 +7406,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
