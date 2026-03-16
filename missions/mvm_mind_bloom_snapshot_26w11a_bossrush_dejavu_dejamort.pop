@@ -2484,7 +2484,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    IncludeScript(`contact_logic`, getroottable())
+                    //IncludeScript(`contact_logic`, getroottable())
 
                     EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
 
@@ -2958,6 +2958,7 @@ WaveSchedule
         {
             Name "Wave8_RancherGauntletSetup"
             WaitForAllSpawned "Wave8_RancherGauntlet"
+            WaitBeforeStarting 5
 
             FirstSpawnOutput
             {
@@ -4552,7 +4553,7 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
-                    IncludeScript(`contact_logic_bossrush`, getroottable())
+                    //IncludeScript(`contact_logic_bossrush`, getroottable())
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5471,7 +5472,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    IncludeScript(`contact_logic`, getroottable())
+                    //IncludeScript(`contact_logic`, getroottable())
 
                     CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
                     ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
@@ -5481,7 +5482,7 @@ WaveSchedule
 
                     EntFire(`engi_intro`, `Trigger`, null, 0.4)
 
-                    Contact.SetLowGravity(true)
+                    //Contact.SetLowGravity(true)
                   "
         }
         StartWaveOutput
@@ -7062,7 +7063,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]

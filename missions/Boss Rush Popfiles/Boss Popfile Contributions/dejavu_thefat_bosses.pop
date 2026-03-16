@@ -3347,6 +3347,8 @@ WaveSchedule
 				Target "gael_spawn_relay"
 				Action "Trigger"
 				Delay 0.1
+				Repeats 1
+				Cooldown -1
 			}
 
 			FireInput
@@ -4049,6 +4051,8 @@ WaveSchedule
 				Target "behemoth_spawn_relay"
 				Action "Trigger"
 				Delay 0.1
+				Repeats 1
+				Cooldown -1
 			}
 
 			Taunt 
@@ -4247,6 +4251,8 @@ WaveSchedule
 				Target "explosive_spawn_relay"
 				Action "Trigger"
 				Delay 0.1
+				Repeats 1
+				Cooldown -1
 			}
 
 			FireInput
@@ -4428,6 +4434,8 @@ WaveSchedule
 				Target "headless_spawn_relay"
 				Action "Trigger"
 				Delay 0.1
+				Repeats 1
+				Cooldown -1
 			}
 
 			ChangeAttributes   //5 seconds of invis reposition, 3 seconds of prespecial attack (2 seconds of visibility), 2 seconds of idle
@@ -4669,6 +4677,8 @@ WaveSchedule
 				Target "blackhole_spawn_relay"
 				Action "Trigger"
 				Delay 0.1
+				Repeats 1
+				Cooldown -1
 			}
 
 			FireInput

@@ -32,7 +32,7 @@ switch (MindBloomRNG.GlobalIndex)
 			["demoknight", 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
 			["demo_burst", 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
 		])
-		
+		break;
 	}
 
 	case 2:
@@ -43,6 +43,6 @@ switch (MindBloomRNG.GlobalIndex)
 		["soldier_barrage_mangler", 1, MVM_CLASS_FLAG_MINIBOSS],
 		["demo_sticky_nuke_giant", 1, MVM_CLASS_FLAG_MINIBOSS]
 		])
-	break;
+		break;
 	}
 }
