@@ -6,7 +6,7 @@ WaveSchedule
         {
             Class Pyro
             Skill Expert
-            Health 15000
+            Health 25000
             Name "Major Bonecremator"
             ClassIcon pyro_phlog_skull
             Item "Skullbrero"
@@ -50,7 +50,7 @@ WaveSchedule
         T_TFBot_Giant_Medic_Shield
         {
             Class Medic
-            Health 4500
+            Health 10000
             Name "Giant Shield Medic"
             ClassIcon medic_shield_lite
             Skill Expert

@@ -173,7 +173,7 @@ WaveSchedule
             Class Soldier
             ClassIcon soldier_hellmet_lite
             Skill Expert
-            Health 30000
+            Health 40000
             Scale 2
             Attributes MiniBoss
             Attributes UseBossHealthBar

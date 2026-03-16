@@ -144,7 +144,7 @@ WaveSchedule
 		{
 			Class Demoman
 			Name "얀샋ㄷ읃ㄴㄴ둫ㄷㄱ"
-			Health 60000
+			Health 40000
 			ClassIcon demo_atomic
 
 			Skill Expert
@@ -331,7 +331,7 @@ WaveSchedule
 			Class Heavy
 			Name "Nemesis Program MK1 Shell"
 			ClassIcon heavy_chief
-			Health 5000
+			Health 15000
 			Skill Expert
 			Item "War Head"
 			WeaponRestrictions MeleeOnly
@@ -353,7 +353,7 @@ WaveSchedule
 			Class Soldier
 			Name "Nemesis Program MK1 Shell"
 			ClassIcon soldier_bison
-			Health 17000
+			Health 30000
 			Skill Expert
 			Tag bot_nemesis
 			Item "Armored Authority"

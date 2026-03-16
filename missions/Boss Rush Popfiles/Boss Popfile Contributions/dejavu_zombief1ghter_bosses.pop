@@ -1027,7 +1027,7 @@ WaveSchedule
         T_TFChief_General_Bomber
 		{
 			ClassIcon	demo_ibomber
-			Health	10000
+			Health	20000
 			Name	"General Bomber"
 			Class	Demoman
 			Skill	Expert
@@ -1068,7 +1068,7 @@ WaveSchedule
 			ClassIcon	burst_demo_boss
 			Name	"King Burst"
 			Skill	Expert
-			Health	15000
+			Health	20000
 			Item	"The Warsworn Helmet"
 			Item	"The King of Scotland Cape"
 			//Attributes	"AlwaysCrit"
@@ -1103,7 +1103,7 @@ WaveSchedule
 		{
 			Action	FetchFlag [$SIGSEGV]
 			ClassIcon	engineer_ranger_spammer_penetrate_hyper
-			Health	20000
+			Health	30000
 			Name	Mechonagher
 			Class	Engineer
 			Skill	Expert
@@ -1140,7 +1140,7 @@ WaveSchedule
 		{
 			Action	FetchFlag [$SIGSEGV]
 			ClassIcon	engineer_ranger_spammer_penetrate_hyper
-			Health	20000
+			Health	30000
 			Name	Mechonagher
 			Class	Engineer
 			Skill	Expert

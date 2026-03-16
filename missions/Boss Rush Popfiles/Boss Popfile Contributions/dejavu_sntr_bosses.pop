@@ -674,7 +674,7 @@ WaveSchedule
 			Class Pyro
 			Skill Easy
 			ClassIcon dead_blu_lite
-			Health 15000
+			Health 25000
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
 			Action Mobber
@@ -744,7 +744,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			StripItem "Zombie Demo"
 			Action Mobber [$SIGSEGV]
-			Health 10000
+			Health 25000
 			Item "The Loose Cannon"
 			Scale 1.2
 			UseCustomModel "models/empty.mdl" // no

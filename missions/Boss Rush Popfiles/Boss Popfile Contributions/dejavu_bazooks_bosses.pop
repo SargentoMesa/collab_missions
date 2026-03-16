@@ -1470,7 +1470,7 @@ WaveSchedule
                 Class Heavyweapons
                 Name "Captain Punch the MDXXVIII"
                 ClassIcon heavy_chief
-                Health 200000
+                Health 125000
                 Scale 1.9
                 AlwaysGlow 1 [$SIGSEGV]
                 UseMeleeThreatPrioritization 1 [$SIGSEGV]
@@ -1526,7 +1526,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 135000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 70000 //When set, the task activates only when the bot health is below specified value
 				}
                 FireInput [$SIGSEGV] 
 				{
@@ -1536,7 +1536,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 75000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 45000 //When set, the task activates only when the bot health is below specified value
 				}
                 FireInput [$SIGSEGV] 
 				{
@@ -1938,7 +1938,7 @@ WaveSchedule
             	Class Demoman
 				Name "Major Catastrophe"
 				ClassIcon demo_bomber
-				Health 225000
+				Health 125000
 				Scale 2.1
 				Tag forcefollowbombpath
 				Tag nostupidtopsidedoorway
@@ -1999,7 +1999,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 150001 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 70000 //When set, the task activates only when the bot health is below specified value
 				}
 				FireInput [$SIGSEGV] 
 				{
@@ -2009,7 +2009,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 75001 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 45000 //When set, the task activates only when the bot health is below specified value
 				}
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {

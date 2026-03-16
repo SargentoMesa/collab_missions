@@ -1899,12 +1899,12 @@ WaveSchedule
             WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
             Where spawnbot_support
             Support 1
-            TotalCount 40
+            TotalCount 75
             MaxActive 5
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 3
-            TotalCurrency 40
+            TotalCurrency 75
 
             TFBot
             {
@@ -1923,6 +1923,26 @@ WaveSchedule
         }
         WaveSpawn
         {
+            Name "Wave6_Support1-Bowmen"
+            WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
+            Where spawnbot_support
+            Support 1
+            TotalCount 75
+            MaxActive 5
+            SpawnCount 2
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 5
+            TotalCurrency 75
+
+            TFBot
+            {
+                Template T_TFBot_Sniper_Huntsman
+                Action Mobber
+            }
+        }
+
+        WaveSpawn
+        {
             Name "Wave6_Boss1-TheDrunkHorde"
             WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
             Where spawnbot_support
@@ -1931,7 +1951,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry05.mp3"
 
@@ -1961,7 +1981,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 13
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry06.mp3"
 
@@ -1982,7 +2002,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 13.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry03.mp3"
 
@@ -2003,7 +2023,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 14
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_yell7.mp3"
 
@@ -2024,7 +2044,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 14.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_specialcompleted05.mp3"
 
@@ -2045,7 +2065,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 15
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry01.mp3"
 
@@ -2066,7 +2086,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 15.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry04.mp3"
 
@@ -2087,7 +2107,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry06.mp3"
 
@@ -2108,7 +2128,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry05.mp3"
 
@@ -2129,7 +2149,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_domination16.mp3"
 
@@ -2150,7 +2170,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 20
+            TotalCurrency 10
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_revenge02.mp3"
 
@@ -4235,7 +4255,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - Chaos Surge OR Colonel Conduit OR The Master Mechanic OR Nemesis Program MKII: Mimicry (Need to re-add Mimicry once the rangescript is fixed)
+    Wave // Main Boss - Chaos Surge OR Colonel Conduit OR The Master Mechanic OR Nemesis Program MKII: Mimicry
     {
         InitWaveOutput
         {
@@ -4261,10 +4281,15 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
+                    if (!(`rangescript_v2` in getroottable()))
+                    {
+                        IncludeScript(`rangescript_v2`, getroottable());
+                    }
+
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
                     //MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
-                    //MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -4291,17 +4316,19 @@ WaveSchedule
                             ])
                             break;
                         }
-                        //case 2:
+                        case 2:
+                        {
+                           AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`sniper_bow`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+                        //case 3:
                         //{
                         //    AlternateWaves.AddWaveIcons([
                         //        [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                        //    ])
-                        //    break;
-                        //}
-                        //case 3:
-                        //{
-                        //   AlternateWaves.AddWaveIcons([
-                        //        [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
                         //    ])
                         //    break;
                         //}
@@ -4340,15 +4367,19 @@ WaveSchedule
                         }
                         //case 2:
                         //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //        [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                        //    ])
-                        //    break;
-                        //}
+                        case 2:
+                        {
+                           AlternateWaves.AddWaveIcons([
+                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`sniper_bow`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
                         //case 3:
                         //{
-                        //   AlternateWaves.AddWaveIcons([
-                        //        [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                        //    AlternateWaves.AddWaveIcons([
+                        //        [``, 1, MVM_CLASS_FLAG_MINIBOSS]
                         //    ])
                         //    break;
                         //}
@@ -4593,6 +4624,95 @@ WaveSchedule
             Name "Wave11_NemesisMimicry"
             StartDisabled 1
         }
+
+        WaveSpawn
+        {
+            Name "Wave11_NemesisMimicrySetup"
+            WaitForAllSpawned "Wave11_NemesisMimicry"
+            WaitBeforeStarting 5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+						RangeScript.BehaviorList = {
+							LongRange_FOS = {
+								Model     = `models/bots/heavy_boss/bot_heavy_boss.mdl`
+								ClassIcon = `heavy_steelfist`
+								Weapon    = [`tf_weapon_fists`, 331] // Fists of Steel
+								WeaponAttributes = {
+									`fire rate bonus` : 0.6
+									`damage bonus` : 5
+									`killstreak tier` : 2
+									`killstreak idleeffect` : 6
+								}
+							}
+							ShortRange_Pyro = {
+								Range = 430
+
+								Model     = `models/bots/pyro_boss/bot_pyro_boss.mdl`
+								ClassIcon = `pyro`
+								Weapon    = [`tf_weapon_flamethrower`, 21] // TF_WEAPON_FLAMETHROWER
+								WeaponAttributes = {
+									`airblast pushback scale` : 2
+									`damage bonus` : 5
+									`killstreak tier` : 2
+									`killstreak idleeffect` : 6
+								}
+							}
+							LongRange_DeflectorHeavy = {
+								IfHealthBelow = 42500
+
+								Model     = `models/bots/heavy_boss/bot_heavy_boss.mdl`
+								ClassIcon = `heavy_deflector`
+								Weapon    = [`tf_weapon_minigun`, 850] // Deflector
+								WeaponAttributes = {
+									`damage bonus` : 1.5
+									`ring of fire while aiming` : 100
+									`attack projectiles` : 1
+									`killstreak tier` : 2
+									`killstreak idleeffect` : 6
+								}
+							}
+							ShortRange_Soldier = {
+								IfHealthBelow = 42500
+								Range         = 430
+
+								Model     = `models/bots/soldier_boss/bot_soldier_boss.mdl`
+								ClassIcon = `soldier_spammer`
+								Weapon    = [`tf_weapon_rocketlauncher`, 18] // TF_WEAPON_ROCKETLAUNCHER
+								WeaponAttributes = {
+									`faster reload rate` : -0.8
+									`damage bonus` : 1.1
+									`fire rate bonus` : 0.45
+									`fire rate bonus with reduced health` : 0.5
+									`killstreak tier` : 2
+									`killstreak idleeffect` : 6
+								}
+							}
+							ConchSoldier = {
+								IfHealthBelow = 20000
+
+								Model     = `models/bots/soldier_boss/bot_soldier_boss.mdl`
+								ClassIcon = `soldier_conch`
+								Weapon    = [`tf_weapon_rocketlauncher`, 18] // TF_WEAPON_ROCKETLAUNCHER
+								WeaponAttributes = {
+									`reload time decreased` : 0.35
+									`damage bonus` : 1.2
+									`projectile spread angle penalty` : 3
+									`fire rate bonus` : 0.0001
+									`projectile speed increased` : 1.1
+									`clip size penalty` : 0.5
+									`killstreak tier` : 2
+									`killstreak idleeffect` : 6
+								}
+							}
+						}
+					  "
+            }
+        }
+
         WaveSpawn // Boss
         {
             Name "Wave11_Boss-NemesisMimicry"
@@ -5411,6 +5531,15 @@ WaveSchedule
                 Action Mobber
 
                 Item "The Cleaner's Carbine"
+
+                FireWeapon
+                {
+                    Duration 0.1
+                    Type "Secondary"
+                    Delay 0
+                    Cooldown 0.01
+                    IfSeeTarget 1
+                }
             }
         }
 

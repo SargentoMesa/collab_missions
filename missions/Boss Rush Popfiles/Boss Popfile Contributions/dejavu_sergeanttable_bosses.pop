@@ -7006,7 +7006,7 @@ WaveSchedule
         MiniBossHorde_DrivingInMyCar
         {
             Name "Drunken Driver" // 12 of these motherfuckers this will be peak
-            Health 3000
+            Health 5000
             Attributes MiniBoss
             UseHumanAnimations 1
             Template T_TFBot_Heavyweapons_Fist
@@ -7120,7 +7120,7 @@ WaveSchedule
 		{
 			Template	T_TFBot_Giant_Heavyweapons
 			ClassIcon	heavy_hyper
-			Health	25000
+			Health	40000
 			Scale	1.8
 			Attributes	UseBossHealthBar
 			Attributes	MiniBoss
@@ -7137,14 +7137,14 @@ WaveSchedule
 			{
 				Delay 0 //Time before the first bot attribute change (Default: 10)
 				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
-				IfHealthBelow 19000 //When set, the task activates only when the bot health is below specified value
+				IfHealthBelow 30000 //When set, the task activates only when the bot health is below specified value
 				Name "ShotgunHaste" // Name of the bot attributes listed in EventChangeAttributes
 			}
 			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
 			{
 				Delay 0 //Time before the first bot attribute change (Default: 10)
 				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
-				IfHealthBelow 11000 //When set, the task activates only when the bot health is below specified value
+				IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
 				Name "MinigunHaste" // Name of the bot attributes listed in EventChangeAttributes
 			}
 			EventChangeAttributes
@@ -7231,7 +7231,7 @@ WaveSchedule
         MiniBoss_PrivateSeeker
         {
             Name	"Private Seeker"
-            Health	20000
+            Health	40000
             Template	T_TFBot_Giant_Soldier_SlowBarrage
             ClassIcon 	soldier_barrage_homing_nys_giant
             Attributes	UseBossHealthBar
@@ -7337,7 +7337,7 @@ WaveSchedule
             Scale 1.7
             Template T_TFBot_Sniper
             ClassIcon sniper_armored
-            Health 15000
+            Health 20000
             Name "R1-SL War Machine"
             Attributes UseBossHealthBar
             Action Sniper
@@ -7439,7 +7439,7 @@ WaveSchedule
             Name "GHK-GBII War Machine"
             ClassIcon heavy_shotgun_champ
             Skill Expert
-            Health 27000
+            Health 30000
             WeaponRestrictions MeleeOnly
             MaxVisionRange 1200
             Attributes MiniBoss
@@ -7527,7 +7527,7 @@ WaveSchedule
         {
             ClassIcon	pyro_degreaser_flare
             Scale 1.75
-            Health	23000
+            Health	25000
             Name	"THR-M4L Trenchburner"
             Class	Pyro
             Skill	Expert

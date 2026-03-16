@@ -1722,7 +1722,7 @@ WaveSchedule
 				Class Pyro
 				ClassIcon booletboomfire
 				Name "Mercenary Matter"
-				Health 40000
+				Health 60000
 
 				SpawnTemplate "MercTemplate"
 
@@ -1869,7 +1869,7 @@ WaveSchedule
 					Delay  5
 					Cooldown  99999
 					Name  "TypeTransition_Blast"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				//BOOM
@@ -1878,7 +1878,7 @@ WaveSchedule
 					Delay  6.69
 					Cooldown  64    
 					Name  "HomingRockets"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -1886,7 +1886,7 @@ WaveSchedule
 					Delay  12.69
 					Cooldown  64 
 					Name  "PillRain"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -1894,7 +1894,7 @@ WaveSchedule
 					Delay  18.69
 					Cooldown  64 
 					Name  "RocketRow"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
  
 			 	ChangeAttributes [$SIGSEGV] 
@@ -1902,7 +1902,7 @@ WaveSchedule
 					Delay  24.69
 					Cooldown  64 
 					Name  "TypeTransition_Bullet"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				//boolet
@@ -1912,7 +1912,7 @@ WaveSchedule
 					Delay  27.19
 					Cooldown  64 
 					Name  "Minigun"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -1920,7 +1920,7 @@ WaveSchedule
 					Delay  30.19
 					Cooldown  64 
 					Name  "Pistol"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -1928,7 +1928,7 @@ WaveSchedule
 					Delay  32.19
 					Cooldown  64 
 					Name  "Minigun"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -1936,7 +1936,7 @@ WaveSchedule
 					Delay  34.19
 					Cooldown  64 
 					Name  "Pistol"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -1944,7 +1944,7 @@ WaveSchedule
 					Delay  39.19
 					Cooldown  64 
 					Name  "Bow"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -1952,7 +1952,7 @@ WaveSchedule
 					Delay  44.19
 					Cooldown  64 
 					Name  "TypeTransition_Fire"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				//fire
@@ -1962,7 +1962,7 @@ WaveSchedule
 					Delay  46.69
 					Cooldown  64 
 					Name  "DragonFury"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -1970,7 +1970,7 @@ WaveSchedule
 					Delay  54.19
 					Cooldown  64 
 					Name  "Fireball"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 			
 				ChangeAttributes [$SIGSEGV] 
@@ -1978,7 +1978,7 @@ WaveSchedule
 					Delay  61.19
 					Cooldown  64 
 					Name  "Flare"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -1986,7 +1986,7 @@ WaveSchedule
 					Delay  68.19
 					Cooldown  64 
 					Name  "TypeTransition_Blast"
-					IfHealthAbove 20000
+					IfHealthAbove 30000
 				}
 
 				//PHASE 2 (15000HP)
@@ -1996,7 +1996,7 @@ WaveSchedule
 					Delay  0
 					Cooldown  9999
 					Name  "PhaseTransition"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2004,7 +2004,7 @@ WaveSchedule
 					Delay  4
 					Cooldown  93.5
 					Name  "HomingRockets2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -2012,7 +2012,7 @@ WaveSchedule
 					Delay  10
 					Cooldown  93.5
 					Name  "PillBomb"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -2020,7 +2020,7 @@ WaveSchedule
 					Delay  16
 					Cooldown  93.5
 					Name  "RocketRow2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2028,7 +2028,7 @@ WaveSchedule
 					Delay  22
 					Cooldown  93.5
 					Name  "TypeTransition_Bullet"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2036,7 +2036,7 @@ WaveSchedule
 					Delay  24.5
 					Cooldown  93.5
 					Name  "Minigun_Stronger"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -2044,7 +2044,7 @@ WaveSchedule
 					Delay  27
 					Cooldown  93.5
 					Name  "FaN"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2052,7 +2052,7 @@ WaveSchedule
 					Delay  28
 					Cooldown  93.5
 					Name  "Minigun_Stronger"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2060,7 +2060,7 @@ WaveSchedule
 					Delay  30.5
 					Cooldown  93.5
 					Name  "FaN"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2068,7 +2068,7 @@ WaveSchedule
 					Delay  31.5
 					Cooldown  93.5
 					Name  "Minigun_Stronger"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2076,7 +2076,7 @@ WaveSchedule
 					Delay  34.5
 					Cooldown  93.5
 					Name  "BisonBigLaser"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2084,7 +2084,7 @@ WaveSchedule
 					Delay  36.5
 					Cooldown  93.5
 					Name  "BisonHomingBurst"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2092,7 +2092,7 @@ WaveSchedule
 					Delay  37.5
 					Cooldown  93.5
 					Name  "BisonBigLaser"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2100,7 +2100,7 @@ WaveSchedule
 					Delay  39.5
 					Cooldown  93.5
 					Name  "BisonHomingBurst"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2108,7 +2108,7 @@ WaveSchedule
 					Delay  40.5
 					Cooldown  93.5
 					Name  "BisonBigLaser"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -2116,7 +2116,7 @@ WaveSchedule
 					Delay  42.5
 					Cooldown  93.5
 					Name  "Bow2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2124,7 +2124,7 @@ WaveSchedule
 					Delay  48
 					Cooldown  93.5
 					Name  "TypeTransition_Fire"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2132,7 +2132,7 @@ WaveSchedule
 					Delay  50.5
 					Cooldown  93.5
 					Name  "PreVolcano"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				FireInput
@@ -2141,7 +2141,7 @@ WaveSchedule
 					Action "Trigger"	
 					Delay 50.5
 					Cooldown  93.5
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 					Repeats 0
 				}
 
@@ -2150,7 +2150,7 @@ WaveSchedule
 					Delay  51
 					Cooldown  93.5
 					Repeats 0
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2158,7 +2158,7 @@ WaveSchedule
 					Delay  53
 					Cooldown  93.5
 					Name  "Volcano"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2166,7 +2166,7 @@ WaveSchedule
 					Delay  58
 					Cooldown  93.5
 					Name  "DragonFury2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2174,7 +2174,7 @@ WaveSchedule
 					Delay  64
 					Cooldown  93.5
 					Name  "Meteor"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2182,7 +2182,7 @@ WaveSchedule
 					Delay  71
 					Cooldown  93.5
 					Name  "Fireball2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				ChangeAttributes [$SIGSEGV] 
@@ -2190,7 +2190,7 @@ WaveSchedule
 					Delay  78
 					Cooldown  93.5
 					Name  "FlareString2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 			
 				ChangeAttributes [$SIGSEGV] 
@@ -2198,7 +2198,7 @@ WaveSchedule
 					Delay  81
 					Cooldown  93.5
 					Name  "FlareBurst2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2206,7 +2206,7 @@ WaveSchedule
 					Delay  83
 					Cooldown  93.5
 					Name  "FlareString2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 			
 				ChangeAttributes [$SIGSEGV] 
@@ -2214,7 +2214,7 @@ WaveSchedule
 					Delay  86
 					Cooldown  93.5
 					Name  "FlareBurst2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2222,7 +2222,7 @@ WaveSchedule
 					Delay  88
 					Cooldown  93.5
 					Name  "FlareString2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 			
 				ChangeAttributes [$SIGSEGV] 
@@ -2230,7 +2230,7 @@ WaveSchedule
 					Delay  91
 					Cooldown  93.5
 					Name  "FlareBurst2"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 
 				ChangeAttributes [$SIGSEGV] 
@@ -2238,7 +2238,7 @@ WaveSchedule
 					Delay  95
 					Cooldown  93.5
 					Name  "TypeTransition_Blast"
-					IfHealthBelow 20000
+					IfHealthBelow 30000
 				}
 				
 				EventChangeAttributes
@@ -4219,7 +4219,7 @@ WaveSchedule
 			Name "Explosive Surprise"
 			ClassIcon demoman_sandman_chief 
 			Skill Expert
-			Health 25000
+			Health 35000
 			WeaponRestrictions PrimaryOnly
 			Attributes HoldFireUntilFullReload
 			Attributes MiniBoss
@@ -4389,7 +4389,7 @@ WaveSchedule
 		T_TFBot_Fat_Demo_Headless_Mann
 		{
 			Class Demoman
-			Health 30000
+			Health 40000
 			Name "Headless Mann"
 			Attributes UseBossHealthBar
 			Attributes MiniBoss

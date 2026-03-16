@@ -92,7 +92,7 @@ WaveSchedule
 			Class Soldier
 			ClassIcon soldier_barrage_mangler_rain
 			Name "Colonel Crackle"
-			Health 20000
+			Health 25000
 			Skill Expert
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
