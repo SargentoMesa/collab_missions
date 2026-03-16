@@ -372,7 +372,7 @@ WaveSchedule
 				{
 					"effect_name" "eyeboss_tp_vortex" //spawns immediately
 					"targetname" "main_particle_body1"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -381,7 +381,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electricity_cloud_parent_WP"
 					"targetname" "main_particle_body2"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -390,7 +390,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electric_mist_parent" 
 					"targetname" "main_particle_body3"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -399,7 +399,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_poweraura_purple_lightning1" 
 					"targetname" "existing_particle1"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -408,7 +408,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_poweraura_purple_lightning2" 
 					"targetname" "existing_particle2"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -417,7 +417,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_lightning_bolt" //
 					"targetname" "spawn_sequence1"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -426,7 +426,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple1"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -435,7 +435,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple2"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -444,7 +444,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple3"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -453,7 +453,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple4"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -462,7 +462,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electricity_purple_discharge" 
 					"targetname" "spawn_sequence3"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -471,7 +471,7 @@ WaveSchedule
 				{
 					"effect_name" "hammer_lock_vanish02" 
 					"targetname" "spawn_sequence4"
-					"origin" "1000 0 -52"
+					"origin" "-5487 8751 696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -547,8 +547,7 @@ WaveSchedule
 					"OnTrigger" "pomson_multiple4,Stop,,12,-1"
 					"OnTrigger" "spawn_sequence1,Stop,,12,-1"
 
-					"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_miracle,12,-1"
-					"OnTrigger" "@p@merc_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)12.2-1"
+					"OnTrigger" "@p@merc_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)12.7-1"
 
 					//fades
 					"OnTrigger" "fade_intro1,Fade,,11.5,-1" 
@@ -576,9 +575,7 @@ WaveSchedule
 
 					"OnTrigger" "tf_gamerules,PlayVO,tmc_fat_boss_loop.mp3,0,-1"
 					"OnTrigger" "tf_gamerules,PlayVO,tmc_fat_boss_loop.mp3,0,-1"
-					"OnTrigger" "!self,Trigger,,75.106,-1"
-
-					
+					"OnTrigger" "!self,Trigger,,75.106,-1"			
 				}
 
 				logic_relay
@@ -854,30 +851,7 @@ WaveSchedule
 		}
         
         //// SLAVE KNIGHT DAEL ////
-        SpawnParticles
-		{
-			NoFixup 1
-			env_fade 
-			{
-				"targetname" "fade_intro_gael1"
-				"duration" "0.5"
-				"holdtime" "1.5"
-				"renderamt" "255"
-				"rendercolor" "255 255 255"
-				"spawnflags" "0"
-			}
-
-			env_fade 
-			{
-				"targetname" "fade_intro_gael2"
-				"duration" "0.5"
-				"holdtime" "1"
-				"renderamt" "255"
-				"rendercolor" "255 255 255"
-				"spawnflags" "1"
-			}
-		}
-		IntroTexts
+		SlaveKnightIntroTexts
 		{
 			NoFixup 1
 
@@ -913,19 +887,15 @@ WaveSchedule
 				"channel" "4"
 			}
 		}
-		MainRelays
+		SlaveKnightMainRelays
 		{
 			NoFixup 1
 			logic_relay
 			{
 				"targetname" "gael_spawn_relay"
 
-
-				"OnTrigger" "fade_intro_gael1,Fade,,0,-1"
-				"OnTrigger" "fade_intro_gael2,Fade,,1.25,-1"
-				"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_gael,1.75,-1"
-				"OnTrigger" "fat_boss1_introtext1,Display,,2.75,-1"
-				"OnTrigger" "fat_boss1_introtext2,Display,,3.75,-1"
+				"OnTrigger" "fat_boss1_introtext1,Display,,0.75,-1"
+				"OnTrigger" "fat_boss1_introtext2,Display,,1.75,-1"
 			}
 		}
 		SlaveKnightTemplate
@@ -1008,19 +978,7 @@ WaveSchedule
         //// MINI BOSSES ////
 
         //// BIGHEADED BEHEMOTH ////
-		SpawnParticles
-		{
-			NoFixup 1
-			info_particle_system
-            {
-                "effect_name" "charge_up"
-                "targetname" "fat_boss_spawn"
-                "origin" "1000 0 -52"
-				"flag_as_weather" "0"
-                "start_active" "0"
-            }
-		}
-		IntroTexts
+		BehemothIntroTexts
 		{
 			NoFixup 1
 			game_text
@@ -1055,7 +1013,7 @@ WaveSchedule
 				"channel" "4"
 			}
 		}
-		MainRelays
+		BehemothMainRelays
 		{
 			NoFixup 1
 	
@@ -1063,12 +1021,8 @@ WaveSchedule
 			{
 				"targetname" "behemoth_spawn_relay"
 
-				"OnTrigger" "fat_boss_spawn,Start,,0,-1"
-				"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_behemoth,5,-1"
-				"OnTrigger" "@p@behemoth_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)5.2-1"
-				"OnTrigger" "fat_miniboss2_introtext1,Display,,6,-1"
-				"OnTrigger" "fat_miniboss2_introtext2,Display,,7,-1"
-				"OnTrigger" "fat_boss_spawn,Stop,,10,-1"
+				"OnTrigger" "@p@behemoth_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)0.2-1"
+				"OnTrigger" "fat_miniboss2_introtext1,Display,,1,-1"
 			}
 		}
 		BehemothPT
@@ -1142,19 +1096,7 @@ WaveSchedule
 		}
 
         //// EXPLOSIVE SURPRISE ////
-        SpawnParticles
-		{
-			NoFixup 1
-			info_particle_system
-            {
-                "effect_name" "charge_up"
-                "targetname" "fat_boss_spawn"
-                "origin" "1000 0 -52"
-				"flag_as_weather" "0"
-                "start_active" "0"
-            }
-		}
-		IntroTexts
+		ExplosiveSurpriseIntroTexts
 		{
 			NoFixup 1
 			game_text
@@ -1189,19 +1131,16 @@ WaveSchedule
 				"channel" "4"
 			}
 		}
-		MainRelays
+		ExplosiveSurpriseMainRelays
 		{
 			NoFixup 1
 			logic_relay
 			{
 				"targetname" "explosive_spawn_relay" //music starts 1.9s in to sync up with the particle effect 
 
-				"OnTrigger" "fat_boss_spawn,Start,,0,-1" 
-				"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_explosive,5,-1"
-				"OnTrigger" "@p@explosive_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)5.2-1"
-				"OnTrigger" "fat_miniboss1_introtext1,Display,,6,-1"
-				"OnTrigger" "fat_miniboss1_introtext2,Display,,7,-1"
-				"OnTrigger" "fat_boss_spawn,Stop,,10,-1"
+				"OnTrigger" "@p@explosive_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)0.2-1"
+				"OnTrigger" "fat_miniboss1_introtext1,Display,,1,-1"
+				"OnTrigger" "fat_miniboss1_introtext2,Display,,2,-1"
             }
 		}
 		ExplosiveSuprisePT
@@ -1327,19 +1266,7 @@ WaveSchedule
 		}
 
         //// HEADLESS MANN ////
-        SpawnParticles
-		{
-			NoFixup 1
-			info_particle_system
-            {
-                "effect_name" "charge_up"
-                "targetname" "fat_boss_spawn"
-                "origin" "1000 0 -52"
-				"flag_as_weather" "0"
-                "start_active" "0"
-            }
-		}
-		IntroTexts
+		HeadlessIntroTexts
 		{
 			NoFixup 1
 			game_text
@@ -1357,20 +1284,32 @@ WaveSchedule
 				"spawnflags" "1"
 				"channel" "3"
 			}
+			game_text
+			{
+				"targetname" "fat_miniboss4_introtext2" 
+				"message" "Headless Mann"
+				"x" "-1"
+				"y" "0.3"
+				"effect" "0"
+				"fxtime" "1"
+				"color" "255 255 255"
+				"fadeout" "0.5"
+				"fadein" "0.5"
+				"holdtime" "5"
+				"spawnflags" "1"
+				"channel" "4"
+			}
 		}
-		MainRelays
+		HeadlessMainRelays
 		{
 			NoFixup 1
 			logic_relay
 			{
 				"targetname" "headless_spawn_relay"
 
-				"OnTrigger" "fat_boss_spawn,Start,,0,-1"
-				"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_headless,5,-1"
-				"OnTrigger" "@p@headless_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)5.2-1"
-				"OnTrigger" "fat_miniboss4_introtext1,Display,,6,-1"
-				"OnTrigger" "fat_miniboss4_introtext2,Display,,7,-1"
-				"OnTrigger" "fat_boss_spawn,Stop,,10,-1"
+				"OnTrigger" "@p@headless_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)0.2-1"
+				"OnTrigger" "fat_miniboss4_introtext1,Display,,1,-1"
+				"OnTrigger" "fat_miniboss4_introtext2,Display,,2,-1"
 			}
 		}
 		HeadlessPT 
@@ -1645,19 +1584,7 @@ WaveSchedule
 		}
 
         //// TON 618 BLACK HOLE PYRO ////
-        SpawnParticles
-		{
-			NoFixup 1
-			info_particle_system
-            {
-                "effect_name" "charge_up"
-                "targetname" "fat_boss_spawn"
-                "origin" "1000 0 -52"
-				"flag_as_weather" "0"
-                "start_active" "0"
-            }
-		}
-		IntroTexts
+		BlackHoleIntroTexts
 		{
 			NoFixup 1
 			game_text
@@ -1692,7 +1619,7 @@ WaveSchedule
 				"channel" "4"
 			}
 		}
-		MainRelays
+		BlackHoleMainRelays
 		{
 			NoFixup 1
 
@@ -1700,15 +1627,10 @@ WaveSchedule
 			{
 				"targetname" "blackhole_spawn_relay"
 
-				"OnTrigger" "fat_boss_spawn,Start,,0,-1"
-				"OnTrigger" "point_populator_interface,$ResumeWavespawn,wave_blackhole,5,-1"
-				"OnTrigger" "@p@blackhole_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)5.2-1"
-				"OnTrigger" "fat_miniboss3_introtext1,Display,,6,-1"
-				"OnTrigger" "fat_miniboss3_introtext2,Display,,7,-1"
-				"OnTrigger" "fat_boss_spawn,Stop,,10,-1"
+				"OnTrigger" "@p@blackhole_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)0.2-1"
+				"OnTrigger" "fat_miniboss3_introtext1,Display,,1,-1"
+				"OnTrigger" "fat_miniboss3_introtext2,Display,,2,-1"
 			}
-
-			
 		}
 		BlackHolePT 
 		{
@@ -3412,10 +3334,19 @@ WaveSchedule
 			ExtAttr IgnoreBuildings
 
 			SpawnTemplate "SlaveKnightTemplate"
+			SpawnTemplate "SlaveKnightIntroTexts"
+			SpawnTemplate "SlaveKnightMainRelays"
 
 			CharacterAttributes
 			{
 				"displace touched enemies" 1
+			}
+
+			FireInput
+			{
+				Target "gael_spawn_relay"
+				Action "Trigger"
+				Delay 0.1
 			}
 
 			FireInput
@@ -4098,6 +4029,8 @@ WaveSchedule
 			Action Mobber
 
 			SpawnTemplate "BehemothPT"
+			SpawnTemplate "BehemothIntroTexts"
+			SpawnTemplate "BehemothMainRelays"
 
 			CharacterAttributes
 			{
@@ -4109,6 +4042,13 @@ WaveSchedule
 				Delay  0.1
 				Cooldown  9999
 				Name  "Immune" 
+			}
+
+			FireInput
+			{
+				Target "behemoth_spawn_relay"
+				Action "Trigger"
+				Delay 0.1
 			}
 
 			Taunt 
@@ -4281,6 +4221,8 @@ WaveSchedule
 			Attributes MiniBoss
 
 			SpawnTemplate "ExplosiveSuprisePT"
+			SpawnTemplate "ExplosiveSurpriseIntroTexts"
+			SpawnTemplate "ExplosiveSurpriseMainRelays"
 
 			Action Mobber
 
@@ -4298,6 +4240,13 @@ WaveSchedule
 				Delay  0.1
 				Cooldown  9999
 				Name  "Immune" 
+			}
+
+			FireInput
+			{
+				Target "explosive_spawn_relay"
+				Action "Trigger"
+				Delay 0.1
 			}
 
 			FireInput
@@ -4456,7 +4405,9 @@ WaveSchedule
 				"displace touched enemies" 1
 			}
 			
-			SpawnTemplate "HeadlessPT" 
+			SpawnTemplate "HeadlessPT"
+			SpawnTemplate "HeadlessIntroTexts"
+			SpawnTemplate "HeadlessMainRelays"
 
 			ChangeAttributes   
 			{
@@ -4470,6 +4421,13 @@ WaveSchedule
 				Delay  4
 				Cooldown  18
 				Name  "Regular" 
+			}
+
+			FireInput
+			{
+				Target "headless_spawn_relay"
+				Action "Trigger"
+				Delay 0.1
 			}
 
 			ChangeAttributes   //5 seconds of invis reposition, 3 seconds of prespecial attack (2 seconds of visibility), 2 seconds of idle
@@ -4689,6 +4647,8 @@ WaveSchedule
 			UseHumanAnimations 1
 
 			SpawnTemplate "BlackHolePT"
+			SpawnTemplate "BlackHoleIntroTexts"
+			SpawnTemplate "BlackHoleMainRelays"
 
 			ExtAttr IgnoreBuildings
 
@@ -4702,6 +4662,13 @@ WaveSchedule
 				Delay  0.1
 				Cooldown  9999
 				Name  "Immune" 
+			}
+
+			FireInput
+			{
+				Target "blackhole_spawn_relay"
+				Action "Trigger"
+				Delay 0.1
 			}
 
 			FireInput

@@ -69,6 +69,16 @@ WaveSchedule
     PrecacheParticle "merasmus_object_spawn"
     PrecacheParticle "merasmus_tp"
 
+    SpawnTemplate contactmusic
+    SpawnTemplate bonuslight
+    SpawnTemplate MissionName
+    SpawnTemplate
+    {
+        Name "contact_sky"
+        Origin "-13664 -10672 3500"
+        Angles "0 0 0" //Rotation
+    }
+
     CustomWeapon
     {
         "cannon_1"
@@ -241,7 +251,7 @@ WaveSchedule
     }
 
     PointTemplates
-    {
+    {		
         MissionName
         {
             NoFixUp 1
@@ -387,13 +397,6 @@ WaveSchedule
                 "OnTrigger" "pop_interface,ChangeBotAttributes,phase2,0,1"
             }
             
-            training_annotation
-            {
-                "targetname" "blimp_warn"
-                "display_text" "Don't let the UFO reach the Laser Cannon Controls!"
-                "lifetime" "20"
-                "origin" "811 -1345 1389"
-            }
             logic_relay
             {
                 "targetname" "deathanim_bigboom_relay"
@@ -464,9 +467,18 @@ WaveSchedule
                 "OnTrigger"	"w6loop,StopSound,,603,-1"
             }
         }
-        finalwavemusic
+        contactmusic
         {
             NoFixUp 1
+            
+            ambient_generic
+            {
+                "targetname" "xtermination"
+                "message" "#xtermination.mp3"
+                "health" "10"
+                "pitch" "100"
+                "spawnflags" "17"
+            }
             ambient_generic
             {
                 "targetname" "w7loop"
@@ -747,6 +759,33 @@ WaveSchedule
                 "ontrigger" "tf_gamerules,PlayVO,ambient\explosions\explode_2.wav,0,-1"
             }
         }
+        // skybox_stuff
+        // {
+        //     func_rotating
+        //     {
+        //         "targetname" "mothership_rotate"
+        //         "maxspeed" "5"
+        //         "origin" "-13136 4057 1005"
+        //         "spawnflags" "65"
+        //         "mins" "-0.1 -0.1 -0.1"
+        //         "maxs" "0.1 0.1 0.1"
+        //         "dmg" "0"
+        //         "fanfriction" "100"
+        //         "volume" "3"
+        //     }
+        //     prop_dynamic
+        //     {
+        //         "parentname" "mothership_rotate"
+        //         "TargetName" "skyboxshids"
+        //         "model" "models/props_invasion/skybox/mothership.mdl"
+        //         "rendermode" "1"
+        //         "solid" "0"
+        //         "angles" "0 0 0"
+        //         "origin" "-13136 4057 1005"
+        //         "modelscale" "1.1"
+                
+        //     }
+        // }
         prop_ufo
         { //548 -4567 1659
             OnSpawnOutput
@@ -774,8 +813,15 @@ WaveSchedule
             {
                 Target "ufo_rotator"
                 Action "runscriptcode"
-                Param  "AddThinkToEnt(self,`thinkfunc`)"
+                Param  "AddThinkToEnt(self,`thinkfuncup`)"
                 Delay  3.5
+            }
+            OnSpawnOutput
+            {
+                Target "ufo_prop_light"
+                Action "disable"
+                Param  ""
+                Delay  5
             }
             func_rotating
             {
@@ -851,7 +897,7 @@ WaveSchedule
                 Target "!activator"
                 Action "RunScriptCode"
                 Param  "
-                    self.AddCondEx(64,3.0,self)
+                    self.AddCondEx(64,4.0,self)
                     self.SetGravity(0.3)
                 "
                 Delay  0.1
@@ -863,7 +909,7 @@ WaveSchedule
                 Param  "
                     self.SetAbsOrigin(self.GetOrigin()+Vector(0,0,650))
                 "
-                Delay  3
+                Delay  4
             }
             OnSpawnOutput
             {
@@ -874,20 +920,6 @@ WaveSchedule
                 "
                 Delay  6
             }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderfx"
-            //     "param" "0"
-            //     "delay" "2.4"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderamt"
-            //     "param" "200"
-            //     "delay" "2.4"
-            // }
 
         }
 
@@ -931,6 +963,8 @@ WaveSchedule
                 "targetname" "nomoremusiccauseimlazy"
                 "OnTrigger" "tf_gamerules,$StopVO,#music\hl2_song29.mp3,0,-1"
                 "OnTrigger" "tf_gamerules,$StopVO,#xtermination.mp3,0,-1"
+                "OnTrigger"  "xtermination,StopSound,0,0,-1"
+                "OnTrigger"	"w7loop,StopSound,,0.1,-1"
             }
             
             logic_relay
@@ -984,23 +1018,8 @@ WaveSchedule
 				"OnTrigger" "orbshoot*,Kill,,0.1,-1"
 				"OnTrigger" "orbital_maker*,Kill,,0.1,-1"
 
-                "OnTrigger" "disable_prop_ufos,Trigger,,4.5,-1"
 
-                "OnTrigger" "mother_splode1,Start,,0.20,-1"
-                "OnTrigger" "mother_splode2,Start,,0.23,-1"
-                "OnTrigger" "mother_splode1,Stop,,3,-1"
-                "OnTrigger" "mother_splode2,Stop,,3,-1"
-                "OnTrigger" "mother_splode3,Start,,0.5,-1"
-                "OnTrigger" "mother_splode3,Start,,0.8,-1"
-                "OnTrigger" "mother_splode3,Stop,,0.75,-1"
-                "OnTrigger" "mother_splode3,Stop,,1.0,-1"
-                // "OnTrigger" "mother_splode1,Start,,0.24,-1"
-                // "OnTrigger" "mother_splode2,Start,,0.25,-1"                
-                // "OnTrigger" "mother_splode1,Start,,0.26,-1"
-                // "OnTrigger" "mother_splode2,Start,,0.27,-1"
                 "OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_explode2.wav,0.0,-1"
-                //"OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_explode2.wav,2.0,-1"
-                //"OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_crashing1.wav,0.0,-1"
 
                 "OnTrigger" "mothership_rotate,enable,,0.2,-1"
                 "OnTrigger" "motherglow,$SetKey$renderfx,5,2.0,-1"
@@ -1121,375 +1140,6 @@ WaveSchedule
                 param "manninblacklightingref"
             }
         }
-
-        prop_ufo_small
-        { //548 -4567 1659
-            // prop_dynamic
-            // {
-            //     "targetname" "asdfw"
-            //     "model"      "models/props_invasion/props_alien/saucer.mdl"
-            //     "origin"     "0 0 0"
-            //     "angles" "0 0 0"
-            //     "disableshadows" "1"
-            //     "modelscale" "0.3"
-            // }
-            func_rotating
-            {
-                "targetname" "ufo_rotator"
-                "maxspeed" "20"
-                "origin" "0 0 0"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "7"
-            }
-            prop_dynamic
-            {
-                "parentname" "ufo_rotator"
-                "targetname" "ufo_prop"
-                "model" "models/props_invasion/props_alien/saucer.mdl"
-                "health" "99999"
-                "damagefilter" "filter_red"
-                "gravity" "0.0"
-                "angles" "0 0 0"
-                "origin" "0 0 0"
-                "modelscale" "0.6"
-                "disableshadows" "1"
-                "minhealthdmg" "1"
-                "solid" "0"
-                //"teamnum" "3"
-                //"disablebonefollowers" "1"
-                // "renderamt" "0"
-                // "rendermode" "1"
-            }
-            // point_spotlight
-            // {
-            //     "parentname" "ufo_prop"
-            //     "targetname" "ufo_prop_light"
-            //     //"renderfx" "1" //slow wide pulse
-            //     "renderamt" "200"
-            //     "rendercolor" "50 255 190"
-            //     "rendermode" "1" //additive 5
-            //     "spotlightlength" "2000"
-            //     "spotlightwidth" "300"
-            //     "HDRColorScale" "1.0"
-            //     "origin" "0 0 -50"
-            //     "angles" "90 0 0"
-            //     "mindxlevel" "90"
-            //     "spawnflags" "3"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderfx"
-            //     "param" "7"
-            //     "delay" "0.15"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderfx"
-            //     "param" "0"
-            //     "delay" "2.4"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderamt"
-            //     "param" "200"
-            //     "delay" "2.4"
-            // }
-        }
-        prop_ufo_faint
-        { //548 -4567 1659
-            func_rotating
-            {
-                "targetname" "ufo_rotator"
-                "maxspeed" "20"
-                "origin" "0 0 0"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "7"
-            }
-            prop_dynamic
-            {
-                "parentname" "ufo_rotator"
-                "targetname" "faint_ufo_prop"
-                "model" "models/props_invasion/props_alien/saucer.mdl"
-                "health" "99999"
-                "damagefilter" "filter_red"
-                "gravity" "0.0"
-                "angles" "0 0 0"
-                "origin" "0 0 0"
-                "modelscale" "0.6"
-                "disableshadows" "1"
-                "minhealthdmg" "1"
-                "solid" "0"
-                //"teamnum" "3"
-                //"disablebonefollowers" "1"
-                "renderamt" "0"
-                "rendermode" "1"
-            }
-            // point_spotlight
-            // {
-            //     "parentname" "faint_ufo_prop"
-            //     "targetname" "faint_ufo_prop_light"
-            //     //"renderfx" "1" //slow wide pulse
-            //     "renderamt" "0"
-            //     "rendercolor" "50 255 190"
-            //     "rendermode" "1" //additive 5
-            //     "spotlightlength" "2000"
-            //     "spotlightwidth" "300"
-            //     "HDRColorScale" "1.0"
-            //     "origin" "0 0 -50"
-            //     "angles" "90 0 0"
-            //     "mindxlevel" "90"
-            //     "spawnflags" "3"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderfx"
-            //     "param" "7"
-            //     "delay" "0.15"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderfx"
-            //     "param" "0"
-            //     "delay" "1.4"
-            // }
-            // OnSpawnOutput
-            // {
-            //     "target" "ufo_prop"
-            //     "action" "$SetKey$renderamt"
-            //     "param" "150"
-            //     "delay" "2.4"
-            // }
-        }
-        skybox_stuff_end_phase
-        {
-            logic_relay
-            {
-                "targetname" "w6sky"
-                "OnTrigger" "clouds,$SetKey$renderfx,7,0.0"
-                "OnTrigger" "clouds,$SetKey$renderfx,0,3.0"
-                "OnTrigger" "clouds,$SetKey$renderamt,150,3"
-            }
-            func_rotating
-            {
-                "targetname" "clouds_rotate"
-                "maxspeed" "5"
-                "origin" "0 0 0"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "3"
-            }
-            prop_dynamic
-            {
-                "ParentName" "clouds_rotate"
-                "TargetName" "clouds"
-                "model" "models/props_invasion/skybox/mothership_clouds.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "0 0 0"
-                "origin" "0 0 0"
-                "modelscale" "1.0"
-                "renderfx" "0"
-                "renderamt" "0"
-            }
- 
-            logic_relay
-            {
-                "targetname" "nomoremusiccauseimlazy"
-                "OnTrigger" "tf_gamerules,$StopVO,#music\hl2_song29.mp3,0,-1"
-                "OnTrigger" "tf_gamerules,$StopVO,#xtermination.mp3,0,-1"
-            }
-            
-            logic_relay
-            {
-                "targetname" "seriously"
-                "OnTrigger" "tf_gamerules,PlayVO,#music\hl2_song29.mp3,0,-1"
-            }
-            logic_relay
-            {
-                "targetname" "makesureeverythingisonjustincase"
-                "OnTrigger" "mothership,$SetKey$renderamt,255,0.0"
-                "OnTrigger" "mothership,$SetKey$renderfx,7,0.0"
-                "OnTrigger" "motherglow,$SetKey$renderfx,7,0.0"
-                //"OnTrigger" "motherglow,$SetKey$renderfx,3,2.0"
-                "OnTrigger" "ufocc,enable,,0,-1"
-            }
-			logic_relay
-            {
-                "targetname" "the_end"
-                "OnTrigger" "mothereye,$SetKey$renderamt,255,4"
-                "OnTrigger" "mothereye,$SetKey$renderfx,7,0.0"
-				"OnTrigger" "motherskysparkley,start,,3.0"
-                "OnTrigger" "arch*,$SetKey$renderfx,7,0.0,-1"
-                // "OnTrigger" "arch*,$SetKey$renderfx,0,2.0,-1"
-                // "OnTrigger" "arch*,$SetKey$renderamt,150,2.0,-1"
-            }
-            logic_relay
-            {
-                "targetname" "itshere"
-                "OnTrigger" "tf_gamerules,PlayVO,mvm/ambient_mp3/mvm_siren.mp3,0.5,1"
-                "OnTrigger" "urmamajoke,StartShake,,1.0,-1"
-                "OnTrigger" "mothership,$SetKey$renderfx,7,3.0"
-                "OnTrigger" "mothership,$SetKey$renderfx,0,8.0"
-                "OnTrigger" "mothership,$SetKey$renderamt,255,7.9"
-                "OnTrigger" "motherglow,$SetKey$renderfx,7,2.0"
-                "OnTrigger" "motherglow,$SetKey$renderfx,3,4.0"
-                "OnTrigger" "ufocc,enable,,2,-1"
-                "OnTrigger" "setuphologram*,disable,,0.1,-1"
-            }
-            logic_relay
-            {
-                "targetname" "killmothership"
-                "OnTrigger" "motherskysparkley,Stop,,0.1,-1"
-                "OnTrigger" "mothereye,$SetKey$renderfx,5,0.0"
-                "OnTrigger" "arch*,$SetKey$renderfx,5,0.0,-1"
-                "OnTrigger" "orbitalcore_*,Kill,,0.1,-1"
-                "OnTrigger" "sparker_*,Kill,,0.1,-1"
-				"OnTrigger" "orbshoot*,Kill,,0.1,-1"
-				"OnTrigger" "orbital_maker*,Kill,,0.1,-1"
-
-                "OnTrigger" "disable_prop_ufos,Trigger,,4.5,-1"
-
-                "OnTrigger" "mother_splode1,Start,,0.20,-1"
-                "OnTrigger" "mother_splode2,Start,,0.23,-1"
-                "OnTrigger" "mother_splode1,Stop,,3,-1"
-                "OnTrigger" "mother_splode2,Stop,,3,-1"
-                "OnTrigger" "mother_splode3,Start,,0.5,-1"
-                "OnTrigger" "mother_splode3,Start,,0.8,-1"
-                "OnTrigger" "mother_splode3,Stop,,0.75,-1"
-                "OnTrigger" "mother_splode3,Stop,,1.0,-1"
-                // "OnTrigger" "mother_splode1,Start,,0.24,-1"
-                // "OnTrigger" "mother_splode2,Start,,0.25,-1"                
-                // "OnTrigger" "mother_splode1,Start,,0.26,-1"
-                // "OnTrigger" "mother_splode2,Start,,0.27,-1"
-                "OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_explode2.wav,0.0,-1"
-                //"OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_explode2.wav,2.0,-1"
-                //"OnTrigger" "player,$PlaySoundToSelf,=70|npc/combine_gunship/gunship_crashing1.wav,0.0,-1"
-
-                "OnTrigger" "mothership_rotate,enable,,0.2,-1"
-                "OnTrigger" "motherglow,$SetKey$renderfx,5,2.0,-1"
-                "OnTrigger" "mothership,$SetKey$renderfx,5,2.0,-1"
-
-            } //!ent_fire killmothership trigger
-            env_shake
-            {
-                "spawnflags" "29" 
-                "amplitude" "5"
-                "duration" "10"
-                "frequency" "15"
-                "targetname" "urmamajoke"
-            }
-
-            prop_dynamic
-            {
-                "parentname" "mothership_rotate"
-                "TargetName" "mothership"
-                "model" "models/props_invasion/skybox/mothership.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "0 0 0"
-                "origin" "0 0 0"
-                "modelscale" "6"
-                "renderfx" "0"
-                "renderamt" "0"
-            }
-
-            info_particle_system
-            {
-                "targetname" "motherskysparkley"
-                "origin" "0 0 -200"
-                "effect_name" "sparks_powerline_blue"
-                "start_active" "0"
-            }
-			//"models/props_invasion/props_alien/eye.mdl"
-			prop_dynamic
-            {
-                "parentname" "mothership_rotate"
-                "TargetName" "mothereye"
-                "model" "models/props_invasion/props_alien/eye.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "180 0 0"
-                "origin" "0 0 -40"
-                "modelscale" "3.0"
-                "renderfx" "0"
-                "renderamt" "0"
-            }
-            prop_dynamic
-            {
-                "parentname" "mothership_rotate"
-                "TargetName" "motherglow"
-                "model" "models/props_invasion/skybox/mothership_glow.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "0 0 0"
-                "origin" "0 0 -2"
-                "modelscale" "6"
-                "renderfx" "0"
-                "renderamt" "0"
-            }
-            func_rotating
-            {
-                "parentname" "mothership"
-                "targetname" "arch_rotate"
-                "maxspeed" "200"
-                "origin" "0 0 -10"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "3"
-            }
-			prop_dynamic
-			{
-				"parentname" "arch_rotate"
-                "TargetName" "arch"
-                "model" "models\props_invasion\props_alien\arch.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "0 0 0"
-                "origin" "0 0 -10"
-                "modelscale" "1.0"
-				"renderamt" "0"
-				//"renderfx" "7"
-			}
-			prop_dynamic
-			{
-				"parentname" "arch_rotate"
-                "TargetName" "arch"
-                "model" "models\props_invasion\props_alien\arch.mdl"
-                "rendermode" "1"
-                "solid" "0"
-                "angles" "0 180 0"
-                "origin" "0 0 -10"
-                "modelscale" "1.0"
-				"renderamt" "0"
-				//"renderfx" "7"
-			}
-            OnSpawnOutput
-            {
-                target "arch"
-                action "SetLightingOrigin"
-                param "manninblacklightingref"
-            }
-        }
-
         dronestrikemarker
         {
             prop_dynamic
@@ -1607,8 +1257,6 @@ WaveSchedule
             }
 
         }
-
-
         nukerdemoparticleandshits
         {
             OnSpawnOutput
@@ -1907,7 +1555,6 @@ WaveSchedule
             }
             
         }
-
 		droneBotGib
 		{
 			OnSpawnOutput
@@ -2290,16 +1937,6 @@ WaveSchedule
                 //"teamnum" "3"
             }
         }
-
-        NavReset
-        {
-            tf_point_nav_interface // in case throwing them out somehow isn't enough
-            {
-                targetname "nav_reset"
-            }
-        }
-
-
 		SentryGunShoot
 		{
 			KeepAlive 1
@@ -2327,7 +1964,6 @@ WaveSchedule
 				delay 0.5
 			}
 		}
-
         ufo_gun_single_w6
         {
             OnSpawnOutput
@@ -2440,7 +2076,6 @@ WaveSchedule
                 Param "projectile trail particle|eyeboss_projectile"
             }
         }
-
         medic_boss_stuff
         {
             NoFixUp 1
@@ -2637,7 +2272,7 @@ WaveSchedule
             env_entity_maker
             {   
                 "targetname" "ring_maker"
-                "entitytemplate" "ringshottest"
+                "entitytemplate" "ringshottestcontact"
             }
             info_target
             {
@@ -2892,421 +2527,6 @@ WaveSchedule
                 //"$OnFire" "!activator,$SetSkin,1,0,-1"
             }
         }
-		medic_shield_spy
-        {
-            //NoFixup 1
-            KeepAlive 1
-			OnSpawnOutput
-			{
-				target "tf_gamerules"
-				action "PlayVO"
-				param "npc\combine_gunship\ping_search.wav"
-				delay 0
-			}
-            info_target
-            {	
-                "parentname" ""
-                "targetname" "spawnpoint"
-                "origin" "0 0 0"
-            }
-            OnSpawnOutput
-            {
-                target "spawnpoint"
-                action "kill"
-                delay "3.5"
-            }
-            prop_dynamic
-            {
-                "parentname" "spawnpoint"
-                "targetname" "shield_model"
-                "model" "models\props_mvm\mvm_player_shield.mdl"
-                "skin" "1"
-                //"spawnflags" "1" //No expire, no blocking line-of-sight
-                "teamnum" "3"
-                "solid" "1"
-                "origin" "0 0 0"			
-            } //250
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 0 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -30 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -60 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -90 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -120 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 30 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 60 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 90 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 120 0"
-                "mins" "-20 -20 -100"
-                "maxs" "20 20 100"
-                "damagetype" "2"
-                "damage" "3"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            OnSpawnOutput
-            {
-                target "spawnpoint"
-                action "RunScriptCode"
-                param "AddThinkToEnt(self, `shootThink`)"
-				delay 0.2
-            }
-        }
-
-        medic_shield
-        {
-            //NoFixup 1
-            KeepAlive 1
-			OnSpawnOutput
-			{
-				target "tf_gamerules"
-				action "PlayVO"
-				param "npc\combine_gunship\ping_search.wav"
-				delay 0
-			}
-            info_target
-            {	
-                "parentname" ""
-                "targetname" "spawnpoint"
-                "origin" "0 0 0"
-            }
-            OnSpawnOutput
-            {
-                target "spawnpoint"
-                action "kill"
-                delay "5"
-            }
-            OnSpawnOutput
-            {
-                target "shield_model"
-                action "EnableCollision"
-                delay "0"
-            }
-            OnSpawnOutput
-            {
-                Target "shield_block"
-                Action "$SetCollisionFilter"
-                Param "filter_is_red"
-                Delay 0.0
-            }
-            func_brush
-            { 
-                "parentname" "spawnpoint"
-                "targetname" "shield_block"
-                "disablereceiveshadows" "0"
-                "origin" "0 0 -230"
-                "angles" "0 0 0"
-                "renderamt" "0"
-                "rendercolor" "255 255 255"
-                "rendermode" "0"
-                "mins" "-20 -220 -300"
-                "maxs" "20 220 300"
-                "StartDisabled" "0"
-                "solid" "2"
-            } 
-            prop_dynamic
-            {
-                "parentname" "spawnpoint"
-                "targetname" "shield_model"
-                "model" "models\props_mvm\mvm_player_shield.mdl"
-                "skin" "1"
-                "spawnflags" "1" //No expire, no blocking line-of-sight
-                "teamnum" "3"
-                "solid" "6"
-                "origin" "0 0 -230"
-                "modelscale" "1.3"	
-                "CollisionGroup" "4"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 0 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 30 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 60 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 90 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 120 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 150 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 180 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -30 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -60 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -90 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -120 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            }
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -150 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            trigger_hurt
-            {
-                "parentname" "shield_model"
-                "targetname" "shieldhurt"
-                "origin" "0 -180 -230"
-                "angles" "0 0 0"
-                "mins" "-20 -20 -300"
-                "maxs" "20 20 300"
-                "damagetype" "2"
-                "damage" "15"
-                "StartDisabled" "0"
-                "spawnflags" "64"
-                "filtername" "filter_is_red_not_uber"
-            } 
-            OnSpawnOutput
-            {
-                target "spawnpoint"
-                action "RunScriptCode"
-                param "AddThinkToEnt(self, `shootThink`)"
-				delay 0.5
-            }
-        }
-
         simpleSaw
         {
             KeepAlive 1
@@ -3433,8 +2653,6 @@ WaveSchedule
                 "OnHurtPlayer" "!activator,$PlaySoundToSelf,=40|weapons\grappling_hook_impact_flesh.wav,0,-1"
             }
         }
-
-        //models/props_mvm/indicator/indicator_circle.mdl
         engi_prop
         {
             prop_dynamic
@@ -4437,7 +3655,7 @@ WaveSchedule
             env_entity_maker
             {
                 "targetname" "ring_maker2"
-                "entitytemplate" "ringshottest"
+                "entitytemplate" "ringshottestcontact"
             }
             OnSpawnOutput
             {
@@ -4488,7 +3706,7 @@ WaveSchedule
                 Delay 0.1
             }
         }
-        ringshottest
+        ringshottestcontact
         {
             KeepAlive 1
 			OnSpawnOutput
@@ -5010,6 +4228,13 @@ WaveSchedule
                 Param "ClientPrint(null,3,`\x07FEEF07 Tip: You can ride the ufo like a mechanical bull, if you are brave enough`)"
                 Delay 55.0
             }
+			// OnSpawnOutput
+            // {
+            //     Target "tf_gamerules"
+            //     Action "RunScriptCode"
+            //     Param "ClientPrint(null,3,`\x07FEEF07 Tip: It's way cooler than a horse`)"
+            //     Delay 120.0
+            // }
             ambient_generic
             {
                 "targetname" "engi_ship_train"
@@ -5337,7 +4562,6 @@ WaveSchedule
                 "OnCase08" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Ironstar: Let me put this in a way you simple folks'll understand: Git Gud`)0-1"
             }
         }
-
         orbitalfirer
         {
             // ////WARNING:POWER SURGE DETECTED////
@@ -5390,6 +4614,22 @@ WaveSchedule
 				"effect_name" "wrenchmotron_teleport_beam"
                 "start_active" "1"
 			}
+            // OnSpawnOutput
+            // {
+            //     Target "target_check"
+            //     Action "Trigger"
+            //     Delay 2
+            // }
+            // logic_relay 
+            // {
+            //     "targetname" "target_check"
+            //     "spawnflags" "2"
+
+            //     "OnTrigger" "yessss,StrikeOnce,,0,-1"
+
+            //     //"OnTrigger" "tf_gamerules,PlayVO,weapons\pomson_fire_crit_01.wav,0,-1"
+            //     "OnTrigger" "!self,Trigger,,0.5,-1"
+            // }
             OnSpawnOutput
             {
                 Target "yessss"
@@ -5503,7 +4743,6 @@ WaveSchedule
             }
 
         }
-
         engi_boss_stuff
         {
 			KeepAlive 1
@@ -5511,7 +4750,7 @@ WaveSchedule
             env_entity_maker
             {   
                 "targetname" "ring_maker"
-                "entitytemplate" "ringshottest"
+                "entitytemplate" "ringshottestcontact"
             }
 			OnParentKilledOutput //kill players after the carrier was dead
 			{
@@ -5857,7 +5096,6 @@ WaveSchedule
                 "rendermode" "1"
             }
         }
-
         wave3stupidness
         {
             // Im extremely lazy im literally just copying everything from echoes
@@ -5869,337 +5107,19 @@ WaveSchedule
             logic_relay
             {
                 "targetname" "heyguyslookup"
+                                
+                //"OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_tele_deliver.wav,22.5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_mothership_loop.wav,0,-1"
-                "OnTrigger" "tf_gamerules,$StopVO,mvm\mvm_mothership_loop.wav,24,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,#xtermination.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,mvm\mvm_mothership_loop.wav,10,-1"
+                //"OnTrigger" "tf_gamerules,PlayVO,misc\halloween\clock_tick.wav,15.5,-1"
+                //"OnTrigger" "tf_gamerules,PlayVO,#xtermination.mp3,0,-1"
+                "OnTrigger"  "xtermination,PlaySound,,0,-1"
                 "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: X-Termination By GoodBobFR`)0-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\mvm\mght\heavy_mvm_m_incoming03.mp3,1,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,npc\strider\striderx_alert4.wav,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\announcer_security_warning.mp3,0,-1"
             }
-        }
-        ufocutsceneleft
-        {
-            // Im extremely lazy im literally just copying everything from echoes
-            OnSpawnOutput
-            {
-                Target heyguyslookup
-                Action Trigger
-            }
-            logic_relay
-            {
-                "targetname" "heyguyslookup"
-                "OnTrigger" "missile_model,enable,,3.1,1"
-                "OnTrigger" "missile_model,$setkey$renderfx,7,3.1,1"
-                "OnTrigger" "prop_move,SetSpeed,0.5,3.1,1"
-                "OnTrigger" "prop_move,SetSpeed,0,8.25,1"
-                "OnTrigger" "prop_move,SetSpeed,1,17,1"
-                "OnTrigger" "ufo_light*,lighton,,8.5,1"
-                "OnTrigger" "ufo_light*,lightoff,,17.5,1"
-                "OnTrigger" "missile_model,$setkey$renderfx,5,20,1"
-                "OnTrigger" "indicatorfortheclueless,start,,9.5,1"
-                "OnTrigger" "indicatorfortheclueless,stop,,17.5,1"
-                "OnTrigger" "tf_gamerules,PlayVO,misc\halloween\clock_tick.wav,8.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_tele_deliver.wav,16.2,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_mothership_loop.wav,3,-1"
-                "OnTrigger" "tf_gamerules,$StopVO,mvm\mvm_mothership_loop.wav,17,-1"
-                //"OnTrigger" "tf_gamerules,PlayVO,misc\halloween\clock_tick.wav,10.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,npc\strider\striderx_alert4.wav,3,-1"
-                //"OnTrigger" "tf_gamerules,PlayVO,vo\announcer_security_warning.mp3,0,-1"
-                "OnTrigger"  "prop_move,kill,,30,-1"
-                "spawnflags" "1"
-            }
-            info_particle_system
-            { 
-                "origin" "53 -1501 713" 
-                "targetname" "indicatorfortheclueless"
-                "effect_name" "teleported_mvm_bot_rings2"
-                "start_active" "0"
-                "parentname" "leftbossteleport"
-            }
-            info_target
-            { 
-                "targetname" "leftbossteleport"
-                "origin" "53 -1501 1513"     
-                "parentname" "ufo_rotator"
-            }
-            func_rotating
-            {
-                //"parentname" "prop_move"
-                "targetname" "ufo_rotator"
-                "maxspeed" "20"
-                "origin" "53 -1501 1713"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "7"
-            }
-            OnSpawnOutput
-            {
-                Target "ufo_rotator"
-                Action "$TeleportToEntity"
-                Param  "prop_move"
-                Delay  0.2
-            }
-            OnSpawnOutput
-            {
-                Target "ufo_rotator"
-                Action "SetParent"
-                Param  "prop_move"
-                Delay  0.6
-            }
-            func_tracktrain
-			{
-				"targetname" "prop_move"
-				"target" "evenmoreufothetrilogy_1"
-				"origin" "210 -2000 1713"
-                "spawnflags" "1"
-				"velocitytype" "1"
-                "orientationtype" "0"
-				"startspeed" "250"
-			    "speed" "0"
-            }
-            prop_dynamic
-			{
-				"targetname" "missile_model"
-				"DisableBoneFollowers" "1"
-				"model" "models/props_invasion/props_alien/saucer.mdl"
-				"modelscale"	"0.8"
-				"origin" "53 -1501 1713"
-				"angles" "0 0 0"
-				"StartDisabled" "1"
-                "renderamt" "0"
-                "parentname" "ufo_rotator"                
-			}
-             point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "800"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-            point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "500"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-             point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "1200"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-            point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "1500"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-        }
-        ufocutsceneright
-        {
-            // Im extremely lazy im literally just copying everything from echoes
-            OnSpawnOutput
-            {
-                Target heyguyslookup
-                Action Trigger
-            }
-            logic_relay
-            {
-                "targetname" "heyguyslookup"
-                "OnTrigger" "missile_model,enable,,3.1,1"
-                "OnTrigger" "missile_model,$setkey$renderfx,7,3.1,1"
-                "OnTrigger" "prop_move,SetSpeed,0.5,3.1,1"
-                "OnTrigger" "prop_move,SetSpeed,0,8.25,1"
-                "OnTrigger" "prop_move,SetSpeed,1,17,1"
-                "OnTrigger" "ufo_light*,lighton,,8.5,1"
-                "OnTrigger" "ufo_light*,lightoff,,17.5,1"
-                "OnTrigger" "missile_model,$setkey$renderfx,5,20,1"
-                "OnTrigger" "indicatorfortheclueless,start,,9.5,1"
-                "OnTrigger" "indicatorfortheclueless,stop,,17.5,1"
-                
-                "OnTrigger"  "prop_move,kill,,30,-1"
-                "spawnflags" "1"
-            }
-            info_particle_system
-            { 
-                "origin" "53 -1501 713" //"-701 -1815 471"
-                "targetname" "indicatorfortheclueless"
-                "effect_name" "teleported_mvm_bot_rings2"
-                "start_active" "0"
-                "parentname" "rightbossteleport"
-            }
-            info_target
-            { 
-                "targetname" "rightbossteleport"
-                "origin" "53 -1501 1513" //"-701 -1815 1051"    
-                "parentname" "ufo_rotator"
-            }
-            func_rotating
-            {
-                //"parentname" "prop_move"
-                "targetname" "ufo_rotator"
-                "maxspeed" "20"
-                "origin" "53 -1501 1713"
-                "spawnflags" "65"
-                "mins" "-0.1 -0.1 -0.1"
-                "maxs" "0.1 0.1 0.1"
-                "dmg" "0"
-                "fanfriction" "100"
-                "volume" "7"
-            }
-            OnSpawnOutput
-            {
-                Target "ufo_rotator"
-                Action "$TeleportToEntity"
-                Param  "prop_move"
-                Delay  0.2
-            }
-            OnSpawnOutput
-            {
-                Target "ufo_rotator"
-                Action "SetParent"
-                Param  "prop_move"
-                Delay  0.6
-            }
-            func_tracktrain
-			{
-				"targetname" "prop_move"
-				"target" "evenmoreufothesequel_1"
-				"origin" "-800 -2000 1713"
-                "spawnflags" "1"
-				"velocitytype" "1"
-                "orientationtype" "0"
-				"startspeed" "250"
-			    "speed" "0"
-            }
-            prop_dynamic
-			{
-				"targetname" "missile_model"
-				"DisableBoneFollowers" "1"
-				"model" "models/props_invasion/props_alien/saucer.mdl"
-				"modelscale"	"0.8"
-				"origin" "53 -1501 1713"
-				"angles" "0 0 0"
-				"StartDisabled" "1"
-                "renderamt" "0"
-                "parentname" "ufo_rotator"
-                
-			}
-             point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "800"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-            point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "500"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-             point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "1200"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
-            point_spotlight
-            {
-                "parentname" "missile_model"
-                "targetname" "ufo_light"
-                //"renderfx" "1" //slow wide pulse
-                "renderamt" "255"
-                "rendercolor" "50 255 190"
-                "rendermode" "1" //additive 5
-                "spotlightlength" "2000"
-                "spotlightwidth" "1500"
-                "HDRColorScale" "1.0"
-                "origin" "53 -1501 1663"
-                "angles" "90 0 0"
-                "mindxlevel" "90"
-                "spawnflags" "2"
-                "startdisabled" 1
-            }
+
         }
         finalwave_teleporters
         {
@@ -7811,27 +6731,6 @@ WaveSchedule
                         "override projectile type" 13
                         "custom weapon fire sound" "weapons\rescue_ranger_charge_02.wav"
                     }
-                    // ShootTemplate  //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
-                    // {
-                    //     Name medic_shield_spy //Name of the template
-                    //     Offset "0 0 -30" //Offset from the bot shooting position (Default: 0 0 0)
-                    //     Angles "0 0 0" //Shooting angle offset (Default: 0 0 0)
-                    //     ItemName "The Diamondback" //Can be specified to limit to a specific weapon
-                    // }
-                    // ShootTemplate    //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
-                    // {
-                    //     Name medic_shield_spy //Name of the template
-                    //     Offset "0 0 -30" //Offset from the bot shooting position (Default: 0 0 0)
-                    //     Angles "0 240 0" //Shooting angle offset (Default: 0 0 0)
-                    //     ItemName "The Diamondback" //Can be specified to limit to a specific weapon
-                    // }
-                    // ShootTemplate    //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
-                    // {
-                    //     Name medic_shield_spy //Name of the template
-                    //     Offset "0 0 -30" //Offset from the bot shooting position (Default: 0 0 0)
-                    //     Angles "0 120 0" //Shooting angle offset (Default: 0 0 0)
-                    //     ItemName "The Diamondback" //Can be specified to limit to a specific weapon
-                    // }
                     FireInput
                     {
                         target "ring_maker"
@@ -8891,7 +7790,7 @@ WaveSchedule
                     }
                     ShootTemplate
                     {
-                        Name ringshottest
+                        Name ringshottestcontact
                         ItemName "the pomson 6000"
                         Offset "0 0 20"
                     }
@@ -9049,7 +7948,7 @@ WaveSchedule
                     }
                     ShootTemplate
                     {
-                        Name ringshottest
+                        Name ringshottestcontact
                         ItemName "the pomson 6000"
                         Offset "0 0 20"
                     }
@@ -9113,7 +8012,7 @@ WaveSchedule
                     }
                     ShootTemplate
                     {
-                        Name ringshottest
+                        Name ringshottestcontact
                         ItemName "the pomson 6000"
                         Offset "0 0 20"
                     }
@@ -9228,7 +8127,7 @@ WaveSchedule
                     }
                     ShootTemplate
                     {
-                        Name ringshottest
+                        Name ringshottestcontact
                         ItemName "tf_weapon_pistol"
                         Offset "0 0 20"
                     }
@@ -10699,6 +9598,17 @@ WaveSchedule
                         "voice pitch scale" 0.9
                         "hand scale" 1.5
                     }
+                    // InterruptAction
+                    // {
+                    //     Target "-471 -1028 645" //"877 -830 559" //move target location
+                    //     Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                    //     Repeats 99999 // How many times should bot do the task in total (Default: 0 - Infinite)
+                    //     Duration 4 // How long should the ai be interrupted
+                    //     Cooldown 0.5
+                    //     Distance 0
+                    //     //AddToQueue 1
+                    //     //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
+                    // }
                     AddCond
                     {
                         Name "TF_COND_INVULNERABLE"

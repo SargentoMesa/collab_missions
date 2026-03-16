@@ -53,9 +53,7 @@ WaveSchedule
 
     //// PRECACHES ////
 
-    // Sound Precaches
-    PrecacheSound "minibossrush2.mp3" 
-    PrecacheSound "minibossrush2intro.mp3" 
+    // Sound Precaches 
     PrecacheSound "mainbosstheme1.mp3"
 
     PrecacheSound "mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav"
@@ -67,6 +65,10 @@ WaveSchedule
 	PrecacheSound "mentrillum/mvm/music/bossrush/the_arena_rest_area.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/true_arena_showdown.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav"
+
+    PrecacheSound "tmc_fat_boss_intro.mp3"
+    PrecacheSound "tmc_fat_boss_loop.mp3"
+
 
     ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
 	{
@@ -1114,7 +1116,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
-                        usicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
         }
@@ -2451,13 +2453,7 @@ WaveSchedule
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
                     IncludeScript(`contact_logic`, getroottable())
-                    EntFire(`wave_init_relay_route_r`, `Trigger`, null, 0.5)
-                    EntFire(`w6intro`,`StopSound`,null,0.3)	
-                    EntFire(`w6intro`,`Disable`,null,0.4)	
-                    EntFire(`w6loop`,`StopSound`,null,0.3)	
-                    EntFire(`w6loop`,`Disable`,null,0.4)	
-                    EntFire(`w6loop2`,`StopSound`,null,0.3)	
-                    EntFire(`w6loop2`,`Disable`,null,0.4)
+
                     EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
 
                     IncludeScript(`mvm_mind_bloom_wave8_hotfix`);
@@ -2923,6 +2919,21 @@ WaveSchedule
         {
             Name "Wave8_RancherGauntlet"
             StartDisabled 1
+        }
+
+        WaveSpawn
+        {
+            Name "Wave8_RancherGauntletSetup"
+            WaitForAllSpawned "Wave8_RancherGauntlet"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_rancher_boss_spawn_relay`, `Disable`)
+                      "
+            }
         }
 
         WaveSpawn // Boss 1 - Otherworldly Elite Heavies
@@ -4824,6 +4835,21 @@ WaveSchedule
             }
         }
 
+        WaveSpawn
+        {
+            Name "Wave12_RancherGauntletSetup"
+            WaitForAllSpawned "Wave12_RancherGauntlet"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_rancher_boss_spawn_relay`, `Disable`)
+                      "
+            }
+        }
+
         WaveSpawn // Boss 1 - Dr. Dismemberment
         {
             Name "Wave12_Boss1-DrDismemberment"
@@ -5390,6 +5416,8 @@ WaveSchedule
                     EntFire(`w6sky`, `Trigger`, null, 0.2)
 
                     EntFire(`engi_intro`, `Trigger`, null, 0.4)
+
+                    Contact.SetLowGravity(true)
                   "
         }
         StartWaveOutput
@@ -5412,6 +5440,13 @@ WaveSchedule
                   "
         }
 
+        ItemAttributes   //Adds attributes to specified item given to players
+        {
+            Classname "tf_weapon_minigun" // you can specify classname instead of itemname  
+            "mult dmg vs tanks"	1.5 
+            "damage force reduction" 0.80
+        }
+
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate finalwavesky
@@ -5427,6 +5462,8 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        EntFire(`arena_rancher_boss_spawn_relay`, `Disable`)
+                        EntFire(`arena_rancher_boss_teleporter_relay`, `Disable`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -5591,6 +5628,8 @@ WaveSchedule
 
         RedTeamWipeCausesWaveLoss 1
 
+        SpawnTemplate SpecialEffectsFat
+
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -5602,7 +5641,23 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+                        EntFire(`arena_cliffside_boss_spawn_relay`, `Disable`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave16_Boss-MercMatterIntro"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`miracle_matter_main_sequence_brain`, `Trigger`)
                       "
             }
         }
@@ -5614,7 +5669,7 @@ WaveSchedule
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 12.5
+            WaitBeforeStarting 20
             WaitBetweenSpawns 0
             TotalCurrency 100
 
@@ -5622,14 +5677,6 @@ WaveSchedule
             {
                 Template T_TFBot_Fat_Boss_Merc_Matter
                 Action Mobber
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
-                      "
             }
         }
 
@@ -5641,7 +5688,7 @@ WaveSchedule
             TotalCount 100
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 20
+            WaitBeforeStarting 25
             WaitBetweenSpawns 10
             TotalCurrency 100
 
@@ -5660,7 +5707,7 @@ WaveSchedule
             TotalCount 100
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 20
+            WaitBeforeStarting 25
             WaitBetweenSpawns 10
             TotalCurrency 100
 
@@ -5679,7 +5726,7 @@ WaveSchedule
             TotalCount 100
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 20
+            WaitBeforeStarting 25
             WaitBetweenSpawns 10
             TotalCurrency 100
 
