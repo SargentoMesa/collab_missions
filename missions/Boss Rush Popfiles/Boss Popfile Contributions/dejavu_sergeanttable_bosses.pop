@@ -53,6 +53,21 @@ WaveSchedule
 				"mod projectile heat aim error" 360
 				"mod projectile heat aim time" 0.05
         }
+        "no_you_cannot_have_this_weapon_BROWN"
+        {
+            OriginalItemName "tf_weapon_rocketlauncher"
+            "projectile spread angle penalty" 35
+            "projectile gravity" 750
+			"projectile speed decreased" 0.55
+			"ignores other projectiles" 1
+            "damage bonus" 1.5
+            "blast dmg to self increased" 0
+            "self dmg push force decreased" 0
+            "mult dmg vs giants" 2.5 // You know if you manage to reflect
+            "projectile trail particle" "manmelter_projectile_trail"
+            "explosion particle" "rd_robot_explosion_smoke_linger"
+            "no self effect" 1
+        }
         "no_you_cannot_have_this_weapon"
         {
             OriginalItemName "tf_weapon_rocketlauncher"
@@ -1319,7 +1334,7 @@ WaveSchedule
 				"origin"     "0 0 25"
 				"angles"     "0 0 0"
 				"teamnum"    "3"
-				"$weaponname" "no_you_cannot_have_this_weapon"
+				"$weaponname" "no_you_cannot_have_this_weapon_BROWN"
 			}
 			
         }

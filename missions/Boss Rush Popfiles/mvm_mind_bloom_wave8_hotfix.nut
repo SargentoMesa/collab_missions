@@ -38,10 +38,12 @@ switch (MindBloomRNG.GlobalIndex)
 	case 2:
 	{
 		AlternateWaves.AddWaveIcons([
-		["heavy_shotgun_explode", 1, MVM_CLASS_FLAG_MINIBOSS],
-		["heavy_fists_electro", 1, MVM_CLASS_FLAG_MINIBOSS],
-		["soldier_barrage_mangler", 1, MVM_CLASS_FLAG_MINIBOSS],
-		["demo_sticky_nuke_giant", 1, MVM_CLASS_FLAG_MINIBOSS]
+			["heavy_shotgun_explode", 1, MVM_CLASS_FLAG_MINIBOSS],
+			["heavy_fists_electro", 1, MVM_CLASS_FLAG_MINIBOSS],
+			["soldier_barrage_mangler", 1, MVM_CLASS_FLAG_MINIBOSS],
+			["demo_sticky_nuke_giant", 1, MVM_CLASS_FLAG_MINIBOSS],
+			["soldier_blackbox", 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+			["scout_batsaber_nys", 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
 		])
 		break;
 	}

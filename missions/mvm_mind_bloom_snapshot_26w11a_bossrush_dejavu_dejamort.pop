@@ -23,7 +23,7 @@
 WaveSchedule
 {
     StartingCurrency 1000
-    RespawnWaveTime 2
+    RespawnWaveTime 3
     FixedRespawnWaveTime Yes
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
@@ -85,7 +85,7 @@ WaveSchedule
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
             }
 
-            info_teleport_destination // Fix for Skeleheat Arena
+            info_teleport_destination // Fix for Skeleheat
             {
                 "targetname" "portal_target_skeleheat"
                 "origin" "-8744 -552 -1160"
@@ -94,6 +94,11 @@ WaveSchedule
             {
                 "targetname" "portal_target_redstone_new"
                 "origin" "2376 934 -892"
+            }
+            info_teleport_destination // Fix for Shank
+            {
+                "targetname" "spawnbot_boss_target_shank_new"
+                "origin" "11397 10263 -926"
             }
 
             logic_timer // Ragdoll Remover
@@ -2535,7 +2540,9 @@ WaveSchedule
                                 [`heavy_shotgun_explode`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_fists_electro`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`soldier_barrage_mangler`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_sticky_nuke_giant`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`demo_sticky_nuke_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_blackbox`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+			                    [`scout_batsaber_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -2991,10 +2998,28 @@ WaveSchedule
                 TFBot
                 { 
                     Template T_TFBot_Contact_W4Pair_Heavy_Gunner
+                    FireInput
+                    {
+                        Target !self
+                        Action $TeleportToEntity
+                        Param spawnbot_target_rancher1
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
                 }
                 TFBot
                 { 
                     Template T_TFBot_Contact_W4Pair_Heavy_EMPer
+                    FireInput
+                    {
+                        Target !self
+                        Action $TeleportToEntity
+                        Param spawnbot_target_rancher4
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
                 }
             }
 
@@ -3002,6 +3027,34 @@ WaveSchedule
             {
                 Target "wave3stupidness"
                 Action ForceSpawn
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BlackBoxes`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support-BlackBoxes`)
+                      "
+            }
+        }
+
+        WaveSpawn // Support Black Boxes
+        {
+            Name "Wave8_Support-BlackBoxes"
+            WaitForAllSpawned "Wave8_RancherGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 75
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 6
+            TotalCurrency 75
+
+            TFBot
+            {
+                Template T_TFBot_Soldier_RocketShotgun
             }
         }
 
@@ -3022,6 +3075,23 @@ WaveSchedule
             TFBot 
             {
                 Template T_TFBot_Contact_W6Pair_Soldier
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_rancher1
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave8_Support-BlackBoxes`)
+                      "
             }
         }
         WaveSpawn // Boss 2 - Otherworldly Annihilator Demo
@@ -3039,6 +3109,38 @@ WaveSchedule
             TFBot 
             {
                 Template T_TFBot_Contact_W6Pair_Demo
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_rancher4
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+        }
+
+        WaveSpawn // Support Batsaber Scouts
+        {
+            Name "Wave8_Support-BatsaberScouts"
+            WaitForAllDead "Wave8_Boss1-OtherworldlyHeavies"
+            Where spawnbot_support
+            Support 1
+            TotalCount 75
+            MaxActive 6
+            SpawnCount 2
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 6
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Scout_Melee 
+                Name "Batsaber Scout" 
+                Attributes AlwaysCrit 
+                ClassIcon scout_batsaber_nys 
+                Item "Batsaber"
             }
         }
 
@@ -3063,6 +3165,10 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BlackBoxes`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BlackBoxes`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BatsaberScouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BatsaberScouts`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -3334,6 +3440,21 @@ WaveSchedule
             Name "Wave9_MagicianLord"
             StartDisabled 1
         }
+        WaveSpawn
+        {
+            Name "Wave9_MagicianLordSetup"
+            WaitForAllSpawned "Wave9_MagicianLord"
+            WaitBeforeStarting 5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`spawnbot_boss_teleporter`, `AddOutput`, `target spawnbot_boss_target_shank_new`)
+                      "
+            }
+        }
         WaveSpawn // Boss
         {
             Name "Wave9_Boss-MagicianLord"
@@ -3350,6 +3471,16 @@ WaveSchedule
             {
                 Template T_Graver
                 Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_boss_target_shank_new
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
             }
             FirstSpawnOutput
             {
@@ -4584,7 +4715,8 @@ WaveSchedule
                                 [`dead_blu_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_zombie_arm2_lite`, 5, MVM_CLASS_FLAG_MINIBOSS],
-                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT]
+                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }                     
@@ -4593,7 +4725,9 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`medic_crossbow_bleed_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`spy_revolver_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`spy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -4617,7 +4751,8 @@ WaveSchedule
                                 [`dead_blu_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`special_magicskull`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`heavy_zombie_arm2_lite`, 5, MVM_CLASS_FLAG_MINIBOSS],
-                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT]
+                                [`dead_blu_lite`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }                     
@@ -4626,7 +4761,9 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`medic_crossbow_bleed_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`spy_revolver_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS]
+                                [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`spy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -4706,6 +4843,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
@@ -4774,6 +4913,25 @@ WaveSchedule
                 }
             }
         }
+        WaveSpawn // Support Demomen
+        {
+            Name "Wave12_Support-Demomen"
+            WaitForAllSpawned "Wave12_IndustrialGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 4
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Demoman
+                Skill Normal
+            }
+        }
         WaveSpawn // Boss 2 - Skull Magician
         {
             Name "Wave12_Boss2-SkullMagician"
@@ -4784,7 +4942,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4797,6 +4955,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-Demomen`)
                       "
             }
             DoneOutput
@@ -4806,6 +4965,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
@@ -4820,7 +4981,7 @@ WaveSchedule
             SpawnCount 5
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4833,6 +4994,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave12_Support-MiniBones`)
                       "
             }
             DoneOutput
@@ -4842,6 +5004,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
