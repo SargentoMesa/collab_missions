@@ -69,33 +69,6 @@ WaveSchedule
     PrecacheSound "tmc_fat_boss_intro.mp3"
     PrecacheSound "tmc_fat_boss_loop.mp3"
 
-
-    ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-	{
-		ItemName "The Air Strike"
-		"special damage type" 1
-	}
-    ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-	{
-		ItemName "The Beggar's Bazooka"
-		"special damage type" 2
-	}
-    ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-	{
-		ItemName "The Dragon's Fury"
-		"special damage type" 3
-	}
-    ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-	{
-		ItemName "The Scottish Resistance"
-		"stickies detonate stickies" 0
-	}
-	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-	{
-		ItemName "The Quickiebomb Launcher"
-		"stickies detonate stickies" 0
-	}
-
     //// POINT TEMPLATES ////
 
     PointTemplates 
@@ -5160,6 +5133,32 @@ WaveSchedule
 
         CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
+
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Air Strike"
+            "special damage type" 1
+        }
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Beggar's Bazooka"
+            "special damage type" 2
+        }
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Dragon's Fury"
+            "special damage type" 3
+        }
+        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+        {
+            ItemName "The Scottish Resistance"
+            "stickies detonate stickies" 0
+        }
+        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+        {
+            ItemName "The Quickiebomb Launcher"
+            "stickies detonate stickies" 0
+        }
 
         WaveSpawn
         {
