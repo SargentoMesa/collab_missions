@@ -393,6 +393,16 @@ WaveSchedule
         }
 
         //// OVERCLOCKED DAVE REBORN ////
+        teleforbossafterdeath
+        {
+            NoFixUp 1
+            KeepAlive 1
+            info_target
+            {
+                "targetname" "imbackmotherfucker"
+                "origin" "0 0 10"
+            }
+        }
         boss_dead_dave_reborn
         {
             OnParentKilledOutput
@@ -3488,6 +3498,8 @@ WaveSchedule
         {
             Class heavyweapons
             Name "Overclocked Dave Reborn"
+            UseCustomModel "models\player\heavy.mdl"
+            Skin 5
             ClassIcon 	heavy_statue
             SpawnTemplate boss_logic
             SpawnTemplate ringOwner
@@ -3670,8 +3682,8 @@ WaveSchedule
                     FireInput
                     {
                         Target "!self"
-                        Action "$TeleportToEntity"
-                        Param "bossteleport"
+                        Action "$SetLocalOrigin"
+                        Param "12960 6349 -1081"
                         Delay 3
                         Cooldown 2
                         Repeats 100

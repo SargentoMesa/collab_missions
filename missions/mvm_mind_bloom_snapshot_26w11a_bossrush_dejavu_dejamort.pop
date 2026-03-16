@@ -367,6 +367,8 @@ WaveSchedule
                     {
                         IncludeScript(`music_system_ment`, getroottable())
                     }
+					
+					PrecacheSound(`#mainbosstheme1.mp3`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
@@ -479,7 +481,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
         }
@@ -1547,7 +1549,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -1708,7 +1710,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -2337,7 +2339,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -2422,7 +2424,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -3372,7 +3374,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -3509,7 +3511,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -3589,7 +3591,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -4263,8 +4265,8 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+					{
+						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
                     if (!(`alternatewaves` in getroottable()))
                     {
@@ -4286,10 +4288,17 @@ WaveSchedule
                         IncludeScript(`rangescript_v2`, getroottable());
                     }
 
+					IncludeScript(`tankextensions_main`, getroottable())
+					IncludeScript(`tankextensions/combattank`, getroottable())
+					IncludeScript(`tankextensions/combattank_weapons/fireball`, getroottable())
+					IncludeScript(`tankextensions/combattank_weapons/minigun`, getroottable())
+					IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
+                	IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
+
                     MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
-                    //MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -4325,13 +4334,13 @@ WaveSchedule
                             ])
                             break;
                         }
-                        //case 3:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //        [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                        //    ])
-                        //    break;
-                        //}
+                        case 3:
+                        {
+                           	AlternateWaves.AddWaveIcons([
+                                [`engineer_beepboy`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                            ])
+                            break;
+                        }
                     }
                   "
         }
@@ -4447,7 +4456,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -4533,7 +4542,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -4617,6 +4626,61 @@ WaveSchedule
             Name "Wave11_MasterMechanic"
             StartDisabled 1
         }
+		WaveSpawn // Boss
+		{
+			Name "Wave11_Boss-MasterMechanic"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.5
+			WaitBetweenSpawns 0
+			TotalCurrency 50
+
+			TFBot
+			{
+				Template T_TFBot_Mainboss_MasterMechanic_Kai
+			}
+			FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
+                      "
+            }
+			DoneOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+					  "
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "Wave11_Boss-RocketTank"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+
+			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
+            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
+
+			Tank
+			{
+				Name "combattank|rocketpod|rocketpod$pingsound|npc/combine_gunship/ping_search.wav"
+				Health 30000
+				Speed 0
+			}
+		}
 
         //// Nemesis Program MKII: Mimicry ////
         WaveSpawn
@@ -4735,7 +4799,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
                       "
             }
             DoneOutput
@@ -5315,7 +5379,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - The War Machines OR Soviet Tonka Weapons
+    Wave // Mixed Boss Wave - The War Machines OR Soviet Tonka Weapons
     {
         InitWaveOutput
         {
@@ -7701,6 +7765,38 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
+					IncludeScript(`tankextensions_main`, getroottable())
+					IncludeScript(`tankextensions/combattank`, getroottable())
+                	IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
+                	IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
+
+                    TankExt.CreateLoopPaths({
+                        tank_loop = [
+                            Vector(13504, 5440, -256)    // tank_path_1
+							Vector(12992, 5440, -1088)    // tank_path_2
+							Vector(12672, 5312, -1088)    // tank_path_3
+							Vector(12480, 5120, -1088)    // tank_path_4
+							Vector(12416, 4800, -1088)    // tank_path_5
+							Vector(12480, 3712, -1024)    // tank_path_6
+							Vector(12416, 3520, -1024)    // tank_path_7
+							Vector(12160, 3392, -1024)    // tank_path_8
+							Vector(11904, 3392, -1024)    // tank_path_9
+							Vector(11776, 3456, -1024)    // tank_path_10
+							Vector(11648, 3584, -1024)    // tank_path_11
+							Vector(11584, 3904, -1024)    // tank_path_12
+							Vector(11712, 4352, -1024)    // tank_path_13
+							Vector(11712, 4928, -1088)    // tank_path_14
+							Vector(11840, 5248, -1088)    // tank_path_15
+							Vector(12032, 5376, -1088)    // tank_path_16
+							Vector(12288, 5376, -1088)    // tank_path_17
+							Vector(12480, 5120, -1088)    // tank_path_18
+                        ]
+                    })
+
+					TankExt.SetValueOverrides({
+                        COMBATTANK_ROTATE_SPEED_DEFAULT = 1.4   // default: 0.8
+                        COMBATTANK_MAX_RANGE = 2000            // default: 1400
+                    })
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -7773,7 +7869,40 @@ WaveSchedule
                       "
             }
         }
-
+        WaveSpawn // Tank # HP
+        {
+            Name "getdisablednoob"
+            WaitForAllDead ""
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 0
+            WaitBetweenSpawns 0
+            StartDisabled 1
+            TotalCurrency 0
+        
+            Tank
+            {
+                Name "combattank|rocketpod_homing|railgun"
+                StartingPathTrackNode "tank_loop_1"
+                ClassIcon 	tank_combat_railgun_homingburst
+                SpawnTemplate teleforbossafterdeath
+                Health 40000
+                Speed 75
+                Skin 0
+        
+                OnKilledOutput 
+                {
+                    Target "aftercombattank"
+                    Action Trigger
+                }
+                OnBombDroppedOutput
+                {
+                    Target boss_deploy_relay
+                    Action Trigger
+                }
+            }
+        }
         WaveSpawn // Support Soldiers
         {
             Name "Wave19_Support-Soldiers"

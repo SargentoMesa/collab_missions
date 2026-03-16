@@ -165,6 +165,49 @@ WaveSchedule
     {
         //// MAIN BOSSES ////
 
+        T_TFBot_Mainboss_MasterMechanic_Kai
+        {
+            Name "The Master Mechanic"
+            Class Engineer
+            ClassIcon engineer_beepboy
+            Skill Expert
+            Health 50000
+            Scale 2
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Action Mobber
+            WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
+
+            UseHumanAnimations 1
+
+            Item "The Rescue Ranger"
+            Item "The Wrangler"
+            Item "The Eureka Effect"
+
+            Item "Beep Man"
+            Item "The Beep Boy"
+
+            CharacterAttributes
+            {
+                "move speed penalty" 0.4
+                "damage force reduction" 0.1
+                "airblast vulnerability multiplier" 0.1
+                "voice pitch scale" 0
+                "override footstep sound set" 4
+                "always allow taunt" 1
+                "displace touched enemies" 1
+            }
+
+            Addcond
+            {
+                Index 51
+                Duration 5
+            }
+            EventChangeAttributes
+
+        }
+
         //// MINI BOSSES ////
 
         T_TFBot_Miniboss_Decimator_Kai

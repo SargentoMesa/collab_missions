@@ -251,7 +251,7 @@ WaveSchedule
     }
 
     PointTemplates
-    {		
+    {
         MissionName
         {
             NoFixUp 1
@@ -5449,6 +5449,7 @@ WaveSchedule
                         "dmg from ranged reduced" 0.9
                         "dmg taken increased" 0.9
                         "damage force reduction"	0.99
+                        "cancel falling damage" 1
                     }
                     ChangeAttributes 
                     {
@@ -5653,6 +5654,7 @@ WaveSchedule
                         "dmg from ranged reduced" 0.9
                         "dmg taken increased" 0.9
                         "damage force reduction"	0.99
+                        "cancel falling damage" 1
                     }
                     ChangeAttributes 
                     {
@@ -5665,14 +5667,14 @@ WaveSchedule
                 contactNormal
                 {
                     CharacterAttributes
-            {
-                "rage giving scale" 0.1
-                "move speed bonus"	0.5
-                "damage force reduction" 0.3
-                "airblast vulnerability multiplier" 0.3
-                "override footstep sound set" 2
-                "stun on hit no giants" 1
-            }
+                    {
+                        "rage giving scale" 0.1
+                        "move speed bonus"	0.5
+                        "damage force reduction" 0.3
+                        "airblast vulnerability multiplier" 0.3
+                        "override footstep sound set" 2
+                        "stun on hit no giants" 1
+                    }
                 }
                 phase2
                 {
@@ -5846,6 +5848,7 @@ WaveSchedule
                         "dmg from ranged reduced" 0.9
                         "dmg taken increased" 0.9
                         "damage force reduction"	0.99
+                        "cancel falling damage" 1
                     }
                     ChangeAttributes 
                     {
@@ -5875,33 +5878,12 @@ WaveSchedule
             Action Mobber
             Attributes UseBossHealthBar
             Name "Otherworldly Barrage"
-                AddCond
-                {
-                    Index 4
-                    Duration 0.75
-                }
-                // FireInput
-                // {
-                //     Target "!self"
-                //     Action "RunScriptCode"
-                //     Param "self.SetGravity(0.25)"
-                //     Delay 0.1
-                // }
-                // FireInput
-                // {
-                //     Target "!self"
-                //     Action "RunScriptCode"
-                //     Param "self.SetGravity(1.0)"
-                //     Delay 2
-                // }
-                // FireInput
-                // {
-                //     Target !self //targets the bot this is on
-                //     Action $TeleportToEntity
-                //     Cooldown 9999
-                //     Delay 0.1
-                //     Param leftbossteleport //name of an info_target on top of the tank
-                // }
+            AddCond
+            {
+                Index 4
+                Duration 0.75
+            }
+
             ItemAttributes
             {
                 ItemName "tf_weapon_rocketlauncher"
@@ -5945,6 +5927,7 @@ WaveSchedule
                         "dmg from ranged reduced" 0.9
                         "dmg taken increased" 0.9
                         "damage force reduction"	0.99
+                        "cancel falling damage" 1
                     }
                     ChangeAttributes 
                     {
@@ -7663,19 +7646,19 @@ WaveSchedule
                 }
                 makeItRainOnPanel
                 { // jumps up and do giant blasts towards panel also pipes maybe
-                    // InterruptAction
-                    // {
-                    //     Target "-66 -918 706" //"877 -830 559" //move target location
-                    //     AimTarget "controlpanel_baseboss"
-                    //     KillAimTarget 1
-                    //     Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
-                    //     Repeats 1 // How many times should bot do the task in total (Default: 0 - Infinite)
-                    //     Duration 10 // How long should the ai be interrupted
-                    //     Cooldown 10
-                    //     Distance 100
-                    //     //AddToQueue 1
-                    //     //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
-                    // }
+                    InterruptAction
+                    {
+                        Target "-13915 3184 -200" //"877 -830 559" //move target location
+                        AimTarget "ClosestPlayer"
+                        KillAimTarget 1
+                        Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                        Repeats 1 // How many times should bot do the task in total (Default: 0 - Infinite)
+                        Duration 10 // How long should the ai be interrupted
+                        Cooldown 10
+                        Distance 100
+                        //AddToQueue 1
+                        //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
+                    }
                     WeaponSwitch 
                     {
                         Delay 0 
@@ -8499,6 +8482,7 @@ WaveSchedule
             CharacterAttributes
             {
                 //"move speed bonus"	0.7
+                "displace touched enemies" 1
                 "damage force reduction" 0.4
                 "airblast vulnerability multiplier" 0.4
                 "cancel falling damage" 1
@@ -8900,7 +8884,7 @@ WaveSchedule
                         "mult projectile scale" 1.2
                         "damage bonus" 1.5
                         "mult dmg vs npc" 12
-                        "projectile speed increased" 0.3
+                        //"projectile speed increased" 0.3
                         //"projectile acceleration" 200
                         "disable buildings on hit" 4
                         "penetrate teammates" 1
@@ -8954,17 +8938,17 @@ WaveSchedule
                         Delay 0.5
                         Repeats 1
                     }
-                    // InterruptAction
-                    // {
-                    //     Target "438 -847 520" //"877 -830 559" //move target location
-                    //     Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
-                    //     Repeats 7 // How many times should bot do the task in total (Default: 0 - Infinite)
-                    //     Duration 1 // How long should the ai be interrupted
-                    //     Cooldown 0.1
-                    //     Distance 0
-                    //     //AddToQueue 1
-                    //     //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
-                    // }
+                    InterruptAction
+                    {
+                        Target "-13247 3809 -1032" //"877 -830 559" //move target location
+                        Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                        Repeats 7 // How many times should bot do the task in total (Default: 0 - Infinite)
+                        Duration 1 // How long should the ai be interrupted
+                        Cooldown 0.1
+                        Distance 0
+                        //AddToQueue 1
+                        //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
+                    }
                     CharacterAttributes
                     {
                         "increased jump height" -2.0
@@ -9055,19 +9039,19 @@ WaveSchedule
                     Attributes SuppressFire
                     WeaponRestrictions PrimaryOnly
                     //-42 -1420 512
-                    // InterruptAction
-                    // {
-                    //     Target "-42 -1420 512" //"877 -830 559" //move target location
-                    //     AimTarget "controlpanel_baseboss"
-                    //     //KillAimTarget 1
-                    //     Delay 0.1 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
-                    //     Repeats 1 // How many times should bot do the task in total (Default: 0 - Infinite)
-                    //     Duration 10 // How long should the ai be interrupted
-                    //     Cooldown 10
-                    //     Distance 0
-                    //     //AddToQueue 1
-                    //     //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
-                    // }
+                    InterruptAction
+                    {
+                        Target "-13369 3505 -1032" //"877 -830 559" //move target location
+                        AimTarget "ClosestPlayer" // Entity / bot / class name as an alternative. Also: RandomEnemy, ClosestPlayer //"controlpanel_baseboss"
+                        KillAimTarget 1 // Attack aim target (Default: 0)
+                        Delay 0.1 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                        Repeats 1 // How many times should bot do the task in total (Default: 0 - Infinite)
+                        Duration 10 // How long should the ai be interrupted
+                        Cooldown 10
+                        Distance 0
+                        //AddToQueue 1
+                        //WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
+                    }
                     CharacterAttributes
                     {
                         "increased jump height" 1.5
