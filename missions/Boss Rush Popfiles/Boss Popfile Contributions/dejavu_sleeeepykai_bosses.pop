@@ -178,6 +178,7 @@ WaveSchedule
             Attributes MiniBoss
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
 
             UseHumanAnimations 1
 
@@ -204,6 +205,7 @@ WaveSchedule
                 "voice pitch scale" 0
                 "override footstep sound set" 3
                 "always allow taunt" 1
+                "displace touched enemies" 1
             }
 
             ItemAttributes
@@ -598,6 +600,7 @@ WaveSchedule
             Attributes MiniBoss
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
 
             Item "The Dragon's Fury"
             Item "The Flare Gun"
@@ -615,6 +618,7 @@ WaveSchedule
                 "voice pitch scale" 0
 				"override footstep sound set" 6
                 "always allow taunt" 1
+                "displace touched enemies" 1
             }
 
             ItemAttributes
@@ -651,6 +655,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             Attributes HoldFireUntilFullReload
             WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
 
             Item "The Iron Bomber"
 
@@ -667,6 +672,7 @@ WaveSchedule
                 "voice pitch scale" 0
 				"override footstep sound set" 4
                 "always allow taunt" 1
+                "displace touched enemies" 1
             }
 
             ItemAttributes
@@ -693,6 +699,7 @@ WaveSchedule
             Attributes MiniBoss
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
 
             UseMeleeThreatPrioritization 1
 
@@ -718,6 +725,7 @@ WaveSchedule
                 "voice pitch scale" 0.75
                 "override footstep sound set" 6
                 "always allow taunt" 1
+                "displace touched enemies" 1
             }
 
             ItemAttributes // Backburner
@@ -804,6 +812,7 @@ WaveSchedule
             Attributes MiniBoss
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
+            ExtAttr IgnoreBuildings
 
             Item "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
 
@@ -818,6 +827,7 @@ WaveSchedule
                 "voice pitch scale" 0
                 "override footstep sound set" 3
                 "always allow taunt" 1
+                "displace touched enemies" 1
             }
 
             ItemAttributes

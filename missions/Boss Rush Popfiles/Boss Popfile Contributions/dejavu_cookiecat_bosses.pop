@@ -20,6 +20,7 @@ WaveSchedule
             Attributes DisableDodge
             WeaponRestrictions PrimaryOnly
             AimOffset "0 0 40" [$SIGSEGV]
+            ExtAttr IgnoreBuildings
             Tag pyro_boss
 
             ItemAttributes
@@ -42,6 +43,7 @@ WaveSchedule
                 "airblast vertical vulnerability multiplier" 0.1
                 "rage giving scale"	0.1
                 "override footstep sound set" 6
+                "displace touched enemies" 1
             }
         }
 

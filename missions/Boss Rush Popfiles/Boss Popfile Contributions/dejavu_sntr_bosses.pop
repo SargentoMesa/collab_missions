@@ -498,6 +498,7 @@ WaveSchedule
 			StripItemSlot 0 [$SIGSEGV]
 			StripItemSlot 1 [$SIGSEGV]
 			Action Mobber
+			ExtAttr IgnoreBuildings
 			ItemModel [$SIGSEGV]
 			{
 				ItemName "TF_WEAPON_CLUB"
@@ -530,6 +531,7 @@ WaveSchedule
 				"override footstep sound set" 7
 				"rage giving scale" 0.00001
 				"voice pitch scale" 0
+				"displace touched enemies" 1
 			}
 		}
 
@@ -818,6 +820,7 @@ WaveSchedule
 			UseMeleeThreatPrioritization 1 [$SIGSEGV]
 			RocketCustomModel "models/empty.mdl" [$SIGSEGV]
 			DeathSound crush\HEDDTH.wav
+			ExtAttr IgnoreBuildings
 			
 			ShootTemplate [$SIGSEGV]
 			{
@@ -854,6 +857,7 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0
 				"voice pitch scale" 0
 				"dmg taken mult from special damage type 1" 0.01
+				"displace touched enemies" 1
 			}
 		} 
 

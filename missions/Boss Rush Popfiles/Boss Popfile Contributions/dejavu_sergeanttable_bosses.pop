@@ -3196,6 +3196,7 @@ WaveSchedule
             WeaponRestrictions PrimaryOnly
             UseMeleeThreatPrioritization 1
             UseHumanAnimations 1
+            ExtAttr IgnoreBuildings
             Tag giant
             Item "War Head"
             Item "Taunt: Yeti Smash"
@@ -3246,6 +3247,7 @@ WaveSchedule
                 "rage giving scale"	0.1
                 "always allow taunt" 1
                 "cancel falling damage" 1
+                "displace touched enemies" 1
             }
             RemoveAttribute
             {
@@ -3443,6 +3445,7 @@ WaveSchedule
             WeaponRestrictions MeleeOnly
             Attributes MiniBoss
             Action Mobber
+            ExtAttr IgnoreBuildings
             ItemAttributes
             {
                 ItemName "The Unshaved Bear"
@@ -3457,6 +3460,7 @@ WaveSchedule
                 "cancel falling damage" 1
                 "always allow taunt" 1
                 "rage giving scale" 0.1
+                "displace touched enemies" 1
             }
             WeaponResist
             {
@@ -4483,6 +4487,7 @@ WaveSchedule
 			UseMeleeThreatPrioritization 1
 			UseCustomModel "models\bots\soldier_boss\bot_soldier_boss_gibby.mdl"
 			SpawnTemplate	bossattachments
+            ExtAttr IgnoreBuildings
 			CharacterAttributes
 			{
 				"move speed bonus"	0.55
@@ -4492,6 +4497,7 @@ WaveSchedule
 				"rage giving scale"	0.2
 				"override footstep sound set" 2
 				"cancel falling damage" 1
+                "displace touched enemies" 1
 			}
 			WeaponResist
 			{
@@ -5888,6 +5894,7 @@ WaveSchedule
             UseHumanAnimations 1
             AlwaysGlow 1
             HeadRotateSpeed 2000
+            ExtAttr IgnoreBuildings
             FireInput
 			{
 				Target "func_door"
@@ -5904,6 +5911,7 @@ WaveSchedule
                 "damage force reduction" 0.1
                 "move speed bonus" 0.5
                 "cannot pick up intelligence" 1
+                "displace touched enemies" 1
             }
             ItemAttributes
             {
@@ -6672,6 +6680,7 @@ WaveSchedule
             AlwaysGlow 1  
             Tag bot_giant
             SpawnTemplate hereturns  
+            ExtAttr IgnoreBuildings
             CharacterAttributes
             {
                 "cannot pick up intelligence" 1
@@ -6682,6 +6691,7 @@ WaveSchedule
                 "always allow taunt" 1
                 "head scale" 3.5
                 "torso scale" 0
+                "displace touched enemies" 1
             }
             ChangeAttributes  
             {
@@ -6934,6 +6944,7 @@ WaveSchedule
             ClassIcon heavy_head_driver_nys_lite
             Scale 1
             AddCond   {Name "TF_COND_HALLOWEEN_KART"}
+            ExtAttr IgnoreBuildings
             CharacterAttributes
             {
                 "damage bonus" 1.5
@@ -7046,6 +7057,7 @@ WaveSchedule
 			Attributes	MiniBoss
 			WeaponRestrictions	MeleeOnly
 			Name	"Private Mannpower"
+            ExtAttr IgnoreBuildings
 			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
 			{
 				Delay 0 //Time before the first bot attribute change (Default: 10)
@@ -7088,6 +7100,7 @@ WaveSchedule
 					{
 						"move speed bonus"	0.5
 						"rage giving scale" 0.2
+                        "displace touched enemies" 1
 					}
 				}
 				ShotgunHaste
@@ -7157,6 +7170,11 @@ WaveSchedule
             Item "The Spook Specs"
             Item "The Chaser"
             AimOffset "0 0 500"
+            ExtAttr IgnoreBuildings
+            CharacterAttributes
+            {
+                "displace touched enemies" 1
+            }
             ItemAttributes
             {
                 ItemName "tf_weapon_rocketlauncher"
@@ -7196,6 +7214,12 @@ WaveSchedule
             UseCustomModel	"models\bots\demo_boss\bot_demo_boss_gibby.mdl"
             Action Mobber
             Attributes DisableDodge
+            ExtAttr IgnoreBuildings
+
+            CharacterAttributes
+            {
+                "displace touched enemies" 1
+            }
         }
         T_TFBot_Heavy_PatrolChief
         {
@@ -7209,6 +7233,12 @@ WaveSchedule
             UseCustomModel "models/bots/heavy_boss/bot_heavy_boss_gibby.mdl"
             Tag giant
             Action Mobber
+            ExtAttr IgnoreBuildings
+
+            CharacterAttributes
+            {
+                "displace touched enemies" 1
+            }
         }
         T_TFBot_Pyro_PatrolChief
         {
@@ -7224,6 +7254,12 @@ WaveSchedule
             Attributes DisableDodge
             Tag giant
             SpawnTemplate boss_dead_pyro
+            ExtAttr IgnoreBuildings
+
+            CharacterAttributes
+            {
+                "displace touched enemies" 1
+            }
         }
 
         // The War Machines
@@ -7241,6 +7277,7 @@ WaveSchedule
             UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
             Attributes MiniBoss
             Item "The AWPer Hand"
+            ExtAttr IgnoreBuildings
             ItemAttributes
             {
                 ItemName "TF_WEAPON_CLUB"
@@ -7254,6 +7291,7 @@ WaveSchedule
                 "damage force reduction" 0.6
                 "airblast vulnerability multiplier" 0.6
                 "override footstep sound set" 6
+                "displace touched enemies" 1
             }
         }
         MiniBoss_EngineerWarMachine
@@ -7273,6 +7311,7 @@ WaveSchedule
             Item	"Hazard Handler"
             Item	"Cargo Constructor"
             Action Mobber
+            ExtAttr IgnoreBuildings
             ItemAttributes
             {
                 ItemName "the rescue ranger"
@@ -7293,8 +7332,9 @@ WaveSchedule
                 "engy building health bonus" 5
                 "engineer sentry build rate multiplier" 7
                 "engy disposable sentries" 5
+                "displace touched enemies" 1
             }
-             WeaponSwitch 
+            WeaponSwitch 
             {
                 Delay 14.9
                 Repeats 99
@@ -7338,7 +7378,8 @@ WaveSchedule
             Action Mobber
             Item "The Killing Gloves of Boxing"
             Item "Pugilist's Protector"
-            UseCustomModel "models/bots/heavy_boss/bot_heavy_gray_boss.mdl"  
+            UseCustomModel "models/bots/heavy_boss/bot_heavy_gray_boss.mdl"
+            ExtAttr IgnoreBuildings
             ItemAttributes
             {
                 ItemName "the killing gloves of boxing"
@@ -7352,6 +7393,7 @@ WaveSchedule
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
                 "override footstep sound set" 2
+                "displace touched enemies" 1
             }
             EventChangeAttributes
             {
@@ -7427,7 +7469,8 @@ WaveSchedule
             Item	"the flare gun"
             Item	"the degreaser"
             Item	"the axtinguisher"
-            UseCustomModel "models/bots/pyro_boss/bot_pyro_gray_boss.mdl" 
+            UseCustomModel "models/bots/pyro_boss/bot_pyro_gray_boss.mdl"
+            ExtAttr IgnoreBuildings
             ItemAttributes 
             {
                 ItemName "The Flare Gun"
@@ -7443,6 +7486,7 @@ WaveSchedule
                 "override footstep sound set" 6
                 "damage bonus" 1.5
                 "melee range multiplier" 2
+                "displace touched enemies" 1
             }
             ItemAttributes
             {

@@ -114,6 +114,7 @@ WaveSchedule
 				"rage giving scale" 0.1
 				"cancel falling damage" 1
 				"gesture speed increase" 1.5
+				"displace touched enemies" 1
 			}
 
 			EventChangeAttributes

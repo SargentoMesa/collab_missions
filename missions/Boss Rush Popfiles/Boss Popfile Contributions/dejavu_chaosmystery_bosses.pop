@@ -1449,6 +1449,9 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			SpawnTemplate chaos_logic
 			SpawnTemplate boss_surge_dead
+
+            ExtAttr IgnoreBuildings
+
 			WeaponResist
 			{
 				"tf_weapon_minigun" 0.8
@@ -1482,6 +1485,7 @@ WaveSchedule
 				"override footstep sound set" 3
 				"cancel falling damage" 1
 				"airblast disabled" 1
+                "displace touched enemies" 1
 			}
 			EventChangeAttributes
 			{
@@ -1728,6 +1732,7 @@ WaveSchedule
             Attributes HoldFireUntilFullReload
             SpawnTemplate conduit_logic
             SpawnTemplate chief_conduit_dead
+            ExtAttr IgnoreBuildings
             Item "Engineer Earmuffs"
             Item "Packable Provisions"
             Item "Sleuth Suit"
@@ -1757,6 +1762,7 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.1
                 "airblast vertical vulnerability multiplier" 0.1
                 "damage force reduction" 0.1
+                "displace touched enemies" 1
             }
             EventChangeAttributes
             {

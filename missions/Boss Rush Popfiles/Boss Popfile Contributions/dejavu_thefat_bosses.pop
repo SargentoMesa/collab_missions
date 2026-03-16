@@ -2,12 +2,6 @@ WaveSchedule
 {
     PrecacheModel "models/props_mvm/indicator/indicator_circle_long.mdl"
 
-	SpawnTemplate "MainRelays"
-	SpawnTemplate "SpawnParticles"
-	SpawnTemplate "IntroTexts"
-
-	SpawnTemplate "SpecialEffectsFat"
-
     CustomWeapon
 	{
         //// MAIN BOSSES ////
@@ -1822,6 +1816,8 @@ WaveSchedule
 
 				Action Mobber
 
+				ExtAttr IgnoreBuildings
+
 				Item "TF_WEAPON_FIREAXE"
 
 				FireInput
@@ -1831,13 +1827,6 @@ WaveSchedule
 					Delay 0.3
 					Param "1"	//sets UseBossHealthBar
 				}
-
-			//	FireInput
-			//	{
-			//		Target "volcano_relay_trigger"
-			//		Action "Enable"	
-			//		Delay 5
-			//	}
 
 				FireInput
 				{
@@ -1939,6 +1928,7 @@ WaveSchedule
 					"torso scale" 0.75
 					"head scale" 0.01
 					"hand scale" 1.25
+					"displace touched enemies" 1
 				}
 
 				//PHASE 1 (30000HP)
@@ -3419,8 +3409,14 @@ WaveSchedule
 			UseHumanAnimations 1
 		
 			RocketCustomModel "models/props_mvm/mvm_human_skull.mdl" [$SIGSEGV]
+			ExtAttr IgnoreBuildings
 
 			SpawnTemplate "SlaveKnightTemplate"
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 
 			FireInput
 			{
@@ -4095,12 +4091,18 @@ WaveSchedule
 			Item "The Killing Gloves of Boxing"
 			Item "Pugilist's Protector"
 			WeaponRestrictions MeleeOnly
+			ExtAttr IgnoreBuildings
 			
 			Attributes MiniBoss
 
 			Action Mobber
 
 			SpawnTemplate "BehemothPT"
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 
 			ChangeAttributes   
 			{
@@ -4281,8 +4283,15 @@ WaveSchedule
 			SpawnTemplate "ExplosiveSuprisePT"
 
 			Action Mobber
+
+			ExtAttr IgnoreBuildings
 			
 			Item "Batter's Helmet"
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 
 			ChangeAttributes   
 			{
@@ -4436,9 +4445,16 @@ WaveSchedule
 			UseHumanModel 1 
 			UseHumanAnimations 1
 
+			ExtAttr IgnoreBuildings
+
 			Action Mobber
 			
 			Skin 5 
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 			
 			SpawnTemplate "HeadlessPT" 
 
@@ -4673,6 +4689,13 @@ WaveSchedule
 			UseHumanAnimations 1
 
 			SpawnTemplate "BlackHolePT"
+
+			ExtAttr IgnoreBuildings
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 
 			ChangeAttributes   
 			{

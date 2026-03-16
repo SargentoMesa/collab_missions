@@ -15,6 +15,7 @@ WaveSchedule
 			Scale 1.75
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
+			ExtAttr IgnoreBuildings
 
 			EventChangeAttributes
 			{
@@ -37,6 +38,7 @@ WaveSchedule
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 						"Health regen" 150
+						"displace touched enemies" 1
                     }
 				}
 				ShortRange_Pyro
@@ -57,6 +59,7 @@ WaveSchedule
 						"health from healers reduced" 2
 						"increased jump height" 2
 						"cancel falling damage" 1
+						"displace touched enemies" 1
 					}
 				}
 				// phase 2

@@ -24,6 +24,7 @@ WaveSchedule
             DesiredAttackRange 300
             Attributes IgnoreFlag
             AlwaysGlow 1
+            ExtAttr IgnoreBuildings
             ItemAttributes
             {
                 ItemName "The Tank Top"
@@ -145,6 +146,7 @@ WaveSchedule
                         "rage giving scale" 0.15
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
+                        "displace touched enemies" 1
                     }
                     WeaponRestrictions PrimaryOnly
                     Message //Displays message in the chat
@@ -301,6 +303,8 @@ WaveSchedule
 			Item "The Concheror"
 			Item "Honcho's Headgear"
 			Item "Gentle Manne's Service Medal"
+
+            ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
@@ -320,6 +324,7 @@ WaveSchedule
 				"airblast vertical vulnerability multiplier" 0.1
 				"rage giving scale" 0.15
 				"increase buff duration"	50
+                "displace touched enemies" 1
 			}
 		}
     }

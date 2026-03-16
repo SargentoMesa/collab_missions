@@ -91,7 +91,8 @@ WaveSchedule
 			Attributes	"MiniBoss"
 			SpawnTemplate	"bossdeathsmoke" [$SIGSEGV]
 			AlwaysGlow	1 [$SIGSEGV]
-			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]  
+			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	"The Machina"
@@ -118,6 +119,7 @@ WaveSchedule
 				"damage force reduction"	0.3
 				"airblast vulnerability multiplier"	0.3
 				"override footstep sound set"	2
+				"displace touched enemies" 1
 			}
 			WeaponSwitch [$SIGSEGV]    //Periodically switches weapon
              {
@@ -326,6 +328,7 @@ WaveSchedule
 			AlwaysGlow	1 [$SIGSEGV]
 			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]  
 			UseHumanAnimations 1 [$SIGSEGV]   // Use normal class animations instead of a bot / custom model ones
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	"TF_WEAPON_ROCKETLAUNCHER"
@@ -367,6 +370,7 @@ WaveSchedule
 				"always allow taunt" 1
 				"use robot voice" 1
 				"rage giving scale" 0.5
+				"displace touched enemies" 1
 			}
 			FireInput [$SIGSEGV]
 			{
@@ -441,6 +445,7 @@ WaveSchedule
 			SpawnTemplate	"bossdeathsmoke" [$SIGSEGV]
 			Health			67500
 			Attributes	"MiniBoss"
+			ExtAttr IgnoreBuildings
 			ChangeAttributes [$SIGSEGV]    
 			{
 				Delay	0
@@ -516,6 +521,7 @@ WaveSchedule
 						"rage giving scale"	0.25
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
+						"displace touched enemies" 1
 					}
 				}
 				Soldier_Boss_Phase_2	// Burst Fire Shotgun Soldier
@@ -1032,6 +1038,7 @@ WaveSchedule
 			Attributes	"HoldFireUntilFullReload"
 			Attributes	"MiniBoss"
 			Attributes	"UseBossHealthBar"
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	"The Iron Bomber"
@@ -1050,6 +1057,7 @@ WaveSchedule
 				"override footstep sound set"	4
 				"airblast vertical vulnerability multiplier"	0.1
 				"rage giving scale"	0.1
+				"displace touched enemies" 1
 			}
 		}
 
@@ -1068,6 +1076,7 @@ WaveSchedule
 			Attributes	"MiniBoss"
 			Attributes	"UseBossHealthBar"
 			Attributes	"HoldFireUntilFullReload"
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	TF_WEAPON_GRENADELAUNCHER
@@ -1085,6 +1094,7 @@ WaveSchedule
 				"override footstep sound set" 4
 				"airblast vertical vulnerability multiplier" 0.1
 				"rage giving scale" 0.1
+				"displace touched enemies" 1
 			}
 		}
 
@@ -1105,6 +1115,7 @@ WaveSchedule
 			//Item	"Texas Tin-Gallon"
 			Item	"The Data Mining Light"
 			Item	"The Antarctic Researcher"
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	"The Rescue Ranger"
@@ -1122,6 +1133,7 @@ WaveSchedule
 				"damage force reduction"	0.4
 				"override footstep sound set"	3
 				"head scale"	0.75
+				"displace touched enemies" 1
 			}
 		}
 		T_TFBot_Chief_Mechonagher2
@@ -1139,6 +1151,7 @@ WaveSchedule
 			Item	"The Rescue Ranger"
 			Item	"Texas Tin-Gallon"
 			Item	"The Antarctic Researcher"
+			ExtAttr IgnoreBuildings
 			ItemAttributes
 			{
 				ItemName	"The Rescue Ranger"
@@ -1156,6 +1169,7 @@ WaveSchedule
 				"damage force reduction"	0.4
 				"override footstep sound set"	3
 				"head scale"	0.75
+				"displace touched enemies" 1
 			}
 		}
     }

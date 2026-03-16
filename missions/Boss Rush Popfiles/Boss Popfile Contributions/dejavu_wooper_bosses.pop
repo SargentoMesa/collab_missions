@@ -36,6 +36,7 @@ WaveSchedule
 			Item "The Loch-n-Load"
 			Item "Stickybomb Jumper"
 			Item "Magnanimous Monarch"
+			ExtAttr IgnoreBuildings
 			CharacterAttributes
 			{
 				"airblast vulnerability multiplier" 0.5
@@ -43,6 +44,7 @@ WaveSchedule
 				"damage force reduction" 0.60
 				"move speed bonus" 0.50
 				"cancel falling damage" 1
+				"displace touched enemies" 1
 			}
 			ItemAttributes
 			{
@@ -105,6 +107,7 @@ WaveSchedule
 				"move speed bonus" 0.50
 				"increased jump height" 2.5
 				"cancel falling damage" 1
+				"displace touched enemies" 1
 			}
 			WeaponSwitch
 			{
