@@ -34,6 +34,7 @@ WaveSchedule
     WaveStartCountdown 3
 
     ForceRedMoney 1
+    TextPrintTime 0
 
     //// DISABLED SOUNDS ////
 
@@ -7017,6 +7018,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
@@ -7060,6 +7062,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
@@ -7168,12 +7171,36 @@ WaveSchedule
                 Param "
                         EntFire(`arena_electricmine_barrier`, `Close`)
                         EntFire(`backupteleporting`, `Kill`)
+                        EntFire(`player,SetScriptOverlayMaterial,,5,-1`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_TheHeavies`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `forthesplashattack`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_TheHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
+            }
+        }
+
+        WaveSpawn // Support Heavies
+        {
+            Name "Wave19_TheHeavies"
+            WaitForAllSpawned "Wave19_PlannedObsolescence"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 6
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Heavy
+                Skill Hard
+                Action Mobber
             }
         }
 
@@ -7182,13 +7209,13 @@ WaveSchedule
             Name "disableformidboss"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 100
+            TotalCount 50
             MaxActive 10
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 100
+            TotalCurrency 50
             StartDisabled 1
 
             RandomChoice
@@ -7215,7 +7242,6 @@ WaveSchedule
                     }
                 }
             }
-
         }
 
         WaveSpawn // Support Neon Annihilator Pyros
@@ -7223,13 +7249,13 @@ WaveSchedule
             Name "forthesplashattack"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 100
+            TotalCount 50
             MaxActive 12
             SpawnCount 4
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 100
+            TotalCurrency 50
             StartDisabled 1
 
             TFBot

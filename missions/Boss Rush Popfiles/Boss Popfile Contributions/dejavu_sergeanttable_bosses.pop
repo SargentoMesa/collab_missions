@@ -1805,6 +1805,12 @@ WaveSchedule
 		bosswavelogic
 		{
             RemoveIfKilled backupteleporting
+            OnSpawnOutput
+            {
+                Target boss_intro
+                Action Trigger
+                Delay -1
+            }
 			OnSpawnOutput
 			{
 				Target "hhhhhhh"
@@ -4841,6 +4847,7 @@ WaveSchedule
                         "mod projectile heat aim error" 360
                         "mod projectile heat aim time" 0.9
 						"projectile trail particle" "halloween_rockettrail"
+                        "damage bonus" 2.5
 						"faster reload rate" -1
 						"fire rate bonus" 1.35
 					}
@@ -5086,7 +5093,7 @@ WaveSchedule
 					{ // this makes the bot move forward in the air
 						Target "!self"
 						Action "RunScriptCode"
-						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,2000))"
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,8000))"
 						Delay 5.2
 						Repeats 1
 						Cooldown 99
@@ -5122,6 +5129,7 @@ WaveSchedule
 					Item "The Neon Annihilator"
 					CharacterAttributes
 					{
+                        "damage bonus" 3
 						"displace touched enemies" 1
 						"move speed bonus" 0.8
 						"melee range multiplier" 1.75
