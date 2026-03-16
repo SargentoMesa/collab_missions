@@ -832,7 +832,7 @@ WaveSchedule
             TFBot
             {
                 Class Soldier
-                Skill Easy
+                Skill Normal
                 Action Mobber
             }
         }
@@ -1042,7 +1042,7 @@ WaveSchedule
             TFBot
             {
                 Class Demoman
-                Skill Easy
+                Skill Normal
                 Action Mobber
             }
         }
@@ -3055,6 +3055,7 @@ WaveSchedule
             TFBot
             {
                 Template T_TFBot_Soldier_RocketShotgun
+                Action Mobber
             }
         }
 
@@ -3132,7 +3133,7 @@ WaveSchedule
             SpawnCount 2
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 6
-            TotalCurrency 50
+            TotalCurrency 75
 
             TFBot
             {
@@ -3141,6 +3142,7 @@ WaveSchedule
                 Attributes AlwaysCrit 
                 ClassIcon scout_batsaber_nys 
                 Item "Batsaber"
+                Action Mobber
             }
         }
 
@@ -4726,7 +4728,7 @@ WaveSchedule
                                 [`medic_crossbow_bleed_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`spy_revolver_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`spy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
@@ -4762,7 +4764,7 @@ WaveSchedule
                                 [`medic_crossbow_bleed_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`spy_revolver_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_bicorne_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`ufo_bison_homing`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`spy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
@@ -4930,6 +4932,7 @@ WaveSchedule
             {
                 Class Demoman
                 Skill Normal
+                Action Mobber
             }
         }
         WaveSpawn // Boss 2 - Skull Magician
@@ -5192,7 +5195,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - Captain Punch the MDXXVIII & Major Catastrophe OR Soviet Tonka Weapons
+    Wave // Main Boss - The War Machines OR Soviet Tonka Weapons
     {
         InitWaveOutput
         {
@@ -5226,7 +5229,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_skeleheat_relay`, `Wave13_BazooksDuo`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave13_TerrorlictGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_meltdown_relay`, `Wave13_SovietTonkaWeapons`);
                     MindBloomRNG.InitRNGArena();
 
@@ -5238,13 +5241,17 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
+
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
@@ -5280,13 +5287,17 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
+
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
@@ -5319,32 +5330,6 @@ WaveSchedule
         CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
-        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-        {
-            ItemName "The Air Strike"
-            "special damage type" 1
-        }
-        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-        {
-            ItemName "The Beggar's Bazooka"
-            "special damage type" 2
-        }
-        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
-        {
-            ItemName "The Dragon's Fury"
-            "special damage type" 3
-        }
-        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-        {
-            ItemName "The Scottish Resistance"
-            "stickies detonate stickies" 0
-        }
-        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-        {
-            ItemName "The Quickiebomb Launcher"
-            "stickies detonate stickies" 0
-        }
-
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -5361,27 +5346,28 @@ WaveSchedule
             }
         }
 
-        //// Captain Punch the MDXXVIII & Major Catastrophe ////
+        //// The War Machines ////
         WaveSpawn
         {
-            Name "Wave13_BazooksDuo"
+            Name "Wave13_TerrorlictGauntlet"
             StartDisabled 1
         }
-        WaveSpawn // Captain Punch
+
+        WaveSpawn // Boss 1 - Sniper War Machine
         {
-            Name "Wave13_Boss-CaptainPunch"
-            WaitForAllSpawned "Wave13_BazooksDuo"
+            Name "Wave13_Boss1-SniperWarMachine"
+            WaitForAllSpawned "Wave13_TerrorlictGauntlet"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
-                Template T_TFBot_Heavy_CaptainPunchMDXXVIII
+                Template MiniBoss_SniperWarMachine
                 Action Mobber
             }
             FirstSpawnOutput
@@ -5389,90 +5375,221 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-CarbineSnipers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-CarbineSnipers`)
+                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
                       "
             }
         }
-        WaveSpawn // Major Catastrophe
+        WaveSpawn // Support Carbine Snipers
         {
-            Name "Wave13_Boss-MajorCatastrophe"
-            WaitForAllSpawned "Wave13_BazooksDuo"
+            Name "Wave13_Support-CarbineSnipers"
+            WaitForAllSpawned "Wave13_TerrorlictGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 2
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Carbine Sniper"
+                Class Sniper
+                ClassIcon sniper_carbine
+                WeaponRestrictions SecondaryOnly
+                Action Mobber
+
+                Item "The Cleaner's Carbine"
+            }
+        }
+
+        WaveSpawn // Boss 2 - Engineer War Machine
+        {
+            Name "Wave13_Boss2-EngineerWarMachine"
+            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 12.5
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template MiniBoss_EngineerWarMachine
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
+
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Support Deflector Heavies
+        {
+            Name "Wave13_Support-DeflectorHeavies"
+            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Deflector Heavy"
+                Class Heavy
+                ClassIcon heavy_deflector
+                Skill Easy
+                WeaponRestrictions PrimaryOnly
+                Action Mobber
+
+                Item "Deflector"
+
+                Item "The U-clank-a"
+
+                ItemAttributes 
+                {
+                    ItemName "Deflector"
+                    "attack projectiles" 1
+                }
+            }
+        }
+        WaveSpawn // Support Shotgun Heavies
+        {
+            Name "Wave13_Support-ShotgunHeavies"
+            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Shotgun Heavy"
+                Template T_TFBot_Heavyweapons_Shotgun
+                Action Mobber
+            }
+        }
+
+        WaveSpawn // Boss 3 - Heavy War Machine
+        {
+            Name "Wave13_Boss3-HeavyWarMachine"
+            WaitForAllDead "Wave13_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
             TotalCurrency 50
 
             TFBot
             {
-                Template T_TFBot_Demo_Catastrophe
+                Template MiniBoss_HeavyWarMachine
                 Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict1
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave13_Support-DeflectorHeavies`, 5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave13_Support-ShotgunHeavies`, 5)
+                      "
             }
         }
-
-        WaveSpawn // Support Baby Punches
+        WaveSpawn // Boss 3 - Pyro War Machine
         {
-            Name "Wave13_Support-BabyPunches"
-            WaitForAllSpawned "Wave13_BazooksDuo"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 4
+            Name "Wave13_Boss3-PyroWarMachine"
+            WaitForAllDead "Wave13_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 5
-            TotalCurrency 100
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
 
             TFBot
             {
-                Template T_TFBot_Baby_Punch
-            }
-        }
-        WaveSpawn // Support Little Bombers
-        {
-            Name "Wave13_Support-LittleBombers"
-            WaitForAllSpawned "Wave13_BazooksDuo"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 4
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 5
-            TotalCurrency 100
+                Template MiniBoss_PyroTrenchBurner
+                Action Mobber
 
-            TFBot
-            {
-                Template T_TFBot_MajorCatastrophe_Boss_Minion
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
             }
         }
 
         WaveSpawn
         {
-            Name "Wave13_BazooksDuoCheck"
-            WaitForAllDead "Wave13_Boss-CaptainPunch"
+            Name "Wave13_WarMachinesDead"
+            WaitForAllDead "Wave13_Boss3-HeavyWarMachine"
         }
         WaveSpawn
         {
-            Name "Wave13_BazooksDuoCheck"
-            WaitForAllDead "Wave13_Boss-MajorCatastrophe"
+            Name "Wave13_WarMachinesDead"
+            WaitForAllDead "Wave13_Boss3-PyroWarMachine"
         }
         WaveSpawn
         {
-            Name "Wave13_BazooksDuoComplete"
-            WaitForAllSpawned "Wave13_BazooksDuoCheck"
+            Name "Wave13_WarMachinesComplete"
+            WaitForAllSpawned "Wave13_WarMachinesDead"
 
             FirstSpawnOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-BabyPunches`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-LittleBombers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-BabyPunches`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-LittleBombers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -5703,7 +5820,19 @@ WaveSchedule
         {
             FirstSpawnWarningSound "mvm/ambient_mp3/mvm_siren.mp3"
             WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`w6sky`, `Trigger`, null, 0.2)
+                        EntFire(`itshere`, `Trigger`)
+                      "
+            }
         }
+
+        
 
         WaveSpawn // Ironstar Phase 1
         {
@@ -6442,7 +6571,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Boss Gauntlet - The Mechonagher Brothers, Larry, then Private Mannpower OR The War Machines
+    Wave // Boss Gauntlet - The Mechonagher Brothers, Larry, then Private Mannpower OR Captain Punch the MDXXVIII & Major Catastrophe
     {
         InitWaveOutput
         {
@@ -6469,7 +6598,7 @@ WaveSchedule
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_ElectricmineGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave18_TerrorlictGauntlet`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_skeleheat_relay`, `Wave18_BazooksDuo`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -6495,13 +6624,10 @@ WaveSchedule
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -6537,13 +6663,10 @@ WaveSchedule
                         case 1:
                         {
                             AlternateWaves.AddWaveIcons([
-                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -6562,6 +6685,32 @@ WaveSchedule
 
                     AlternateWaves.bTrackIcons = true;
                   "
+        }
+
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Air Strike"
+            "special damage type" 1
+        }
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Beggar's Bazooka"
+            "special damage type" 2
+        }
+        ItemAttributes [$SIGSEGV] //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
+        {
+            ItemName "The Dragon's Fury"
+            "special damage type" 3
+        }
+        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+        {
+            ItemName "The Scottish Resistance"
+            "stickies detonate stickies" 0
+        }
+        ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+        {
+            ItemName "The Quickiebomb Launcher"
+            "stickies detonate stickies" 0
         }
 
         CustomWaveNumber 17
@@ -6886,28 +7035,27 @@ WaveSchedule
             }
         }
 
-        //// The War Machines ////
+        //// Captain Punch the MDXXVIII & Major Catastrophe ////
         WaveSpawn
         {
-            Name "Wave18_TerrorlictGauntlet"
+            Name "Wave18_BazooksDuo"
             StartDisabled 1
         }
-
-        WaveSpawn // Boss 1 - Sniper War Machine
+        WaveSpawn // Captain Punch
         {
-            Name "Wave18_Boss1-SniperWarMachine"
-            WaitForAllSpawned "Wave18_TerrorlictGauntlet"
+            Name "Wave18_Boss-CaptainPunch"
+            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 25
+            TotalCurrency 50
 
             TFBot
             {
-                Template MiniBoss_SniperWarMachine
+                Template T_TFBot_Heavy_CaptainPunchMDXXVIII
                 Action Mobber
             }
             FirstSpawnOutput
@@ -6915,221 +7063,90 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
-                      "
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-CarbineSnipers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-CarbineSnipers`)
-                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
-        WaveSpawn // Support Carbine Snipers
+        WaveSpawn // Major Catastrophe
         {
-            Name "Wave18_Support-CarbineSnipers"
-            WaitForAllSpawned "Wave18_TerrorlictGauntlet"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 8
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 2
-            TotalCurrency 50
-
-            TFBot
-            {
-                Name "Carbine Sniper"
-                Class Sniper
-                ClassIcon sniper_carbine
-                WeaponRestrictions SecondaryOnly
-                Action Mobber
-
-                Item "The Cleaner's Carbine"
-            }
-        }
-
-        WaveSpawn // Boss 2 - Engineer War Machine
-        {
-            Name "Wave18_Boss2-EngineerWarMachine"
-            WaitForAllDead "Wave18_Boss1-SniperWarMachine"
+            Name "Wave18_Boss-MajorCatastrophe"
+            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 7.5
+            WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 25
+            TotalCurrency 50
 
             TFBot
             {
-                Template MiniBoss_EngineerWarMachine
+                Template T_TFBot_Demo_Catastrophe
                 Action Mobber
             }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
-
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
-                      "
-            }
         }
-        WaveSpawn // Support Deflector Heavies
+
+        WaveSpawn // Support Baby Punches
         {
-            Name "Wave18_Support-DeflectorHeavies"
-            WaitForAllDead "Wave18_Boss1-SniperWarMachine"
+            Name "Wave18_Support-BabyPunches"
+            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_support
             Support 1
-            TotalCount 50
+            TotalCount 100
             MaxActive 4
-            SpawnCount 2
+            SpawnCount 1
             WaitBeforeStarting 20
-            WaitBetweenSpawns 10
-            TotalCurrency 50
+            WaitBetweenSpawns 5
+            TotalCurrency 100
 
             TFBot
             {
-                Name "Deflector Heavy"
-                Class Heavy
-                ClassIcon heavy_deflector
-                Skill Easy
-                WeaponRestrictions PrimaryOnly
-                Action Mobber
-
-                Item "Deflector"
-
-                Item "The U-clank-a"
-
-                ItemAttributes 
-                {
-                    ItemName "Deflector"
-                    "attack projectiles" 1
-                }
+                Template T_TFBot_Baby_Punch
             }
         }
-        WaveSpawn // Support Shotgun Heavies
+        WaveSpawn // Support Little Bombers
         {
-            Name "Wave18_Support-ShotgunHeavies"
-            WaitForAllDead "Wave18_Boss1-SniperWarMachine"
+            Name "Wave18_Support-LittleBombers"
+            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_support
             Support 1
-            TotalCount 50
+            TotalCount 100
             MaxActive 4
-            SpawnCount 2
+            SpawnCount 1
             WaitBeforeStarting 20
-            WaitBetweenSpawns 10
-            TotalCurrency 50
+            WaitBetweenSpawns 5
+            TotalCurrency 100
 
             TFBot
             {
-                Name "Shotgun Heavy"
-                Template T_TFBot_Heavyweapons_Shotgun
-                Action Mobber
-            }
-        }
-
-        WaveSpawn // Boss 3 - Heavy War Machine
-        {
-            Name "Wave18_Boss3-HeavyWarMachine"
-            WaitForAllDead "Wave18_Boss2-EngineerWarMachine"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template MiniBoss_HeavyWarMachine
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_terrorlict1
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-DeflectorHeavies`, 5)
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-ShotgunHeavies`, 5)
-                      "
-            }
-        }
-        WaveSpawn // Boss 3 - Pyro War Machine
-        {
-            Name "Wave18_Boss3-PyroWarMachine"
-            WaitForAllDead "Wave18_Boss2-EngineerWarMachine"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template MiniBoss_PyroTrenchBurner
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_terrorlict2
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
+                Template T_TFBot_MajorCatastrophe_Boss_Minion
             }
         }
 
         WaveSpawn
         {
-            Name "Wave18_WarMachinesDead"
-            WaitForAllDead "Wave18_Boss3-HeavyWarMachine"
+            Name "Wave18_BazooksDuoCheck"
+            WaitForAllDead "Wave18_Boss-CaptainPunch"
         }
         WaveSpawn
         {
-            Name "Wave18_WarMachinesDead"
-            WaitForAllDead "Wave18_Boss3-PyroWarMachine"
+            Name "Wave18_BazooksDuoCheck"
+            WaitForAllDead "Wave18_Boss-MajorCatastrophe"
         }
         WaveSpawn
         {
-            Name "Wave18_WarMachinesComplete"
-            WaitForAllSpawned "Wave18_WarMachinesDead"
+            Name "Wave18_BazooksDuoComplete"
+            WaitForAllSpawned "Wave18_BazooksDuoCheck"
 
             FirstSpawnOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-BabyPunches`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-LittleBombers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-BabyPunches`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-LittleBombers`)
                         EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }

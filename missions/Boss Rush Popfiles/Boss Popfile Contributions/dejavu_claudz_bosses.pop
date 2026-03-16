@@ -5460,7 +5460,14 @@ WaveSchedule
                 }
                 contactNormal
                 {
-
+                    CharacterAttributes
+                    {
+                        "move speed bonus"	0.5
+                        "damage force reduction" 0.3
+                        "airblast vulnerability multiplier" 0.3
+                        "override footstep sound set" 2						
+                        "rage giving scale" 0.1
+                    }
                 }
                 phase2
                 {
@@ -5657,7 +5664,15 @@ WaveSchedule
                 }
                 contactNormal
                 {
-
+                    CharacterAttributes
+            {
+                "rage giving scale" 0.1
+                "move speed bonus"	0.5
+                "damage force reduction" 0.3
+                "airblast vulnerability multiplier" 0.3
+                "override footstep sound set" 2
+                "stun on hit no giants" 1
+            }
                 }
                 phase2
                 {
@@ -5842,7 +5857,13 @@ WaveSchedule
                 }
                 contactNormal
                 {
-
+                    CharacterAttributes
+                    {
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "override footstep sound set" 4
+                    }
                 }
             }
         }
@@ -5935,7 +5956,14 @@ WaveSchedule
                 }
                 contactNormal
                 {
-
+                    CharacterAttributes
+                    {
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.4
+                        "airblast vulnerability multiplier" 0.4
+                        "airblast vertical vulnerability multiplier" 0.1
+                        "override footstep sound set" 3
+                    }
                 }
             }
         }
