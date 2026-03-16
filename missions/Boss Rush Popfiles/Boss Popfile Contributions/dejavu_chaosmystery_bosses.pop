@@ -522,7 +522,7 @@ WaveSchedule
 		}
 
         //// COLONEL CONDUIT ////
-                //Boss Death Template
+        //Boss Death Template
         chief_conduit_dead
         {
             KeepAlive 1
@@ -539,8 +539,8 @@ WaveSchedule
             }
             OnParentKilledOutput
             {
-               Target conduit_cosmetic
-               Action TurnOn
+                Target conduit_cosmetic
+                Action TurnOn
             }
             OnParentKilledOutput
             {
@@ -560,8 +560,8 @@ WaveSchedule
                 "model" "models/player/items/engineer/engy_earphones.mdl"
                 "solid" "0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
-				"skin" "1"
+                "disableshadows" "1"
+                "skin" "1"
             }
             prop_dynamic_ornament
             {
@@ -570,8 +570,8 @@ WaveSchedule
                 "model" "models/workshop/player/items/engineer/dec16_packable_provisions/dec16_packable_provisions.mdl"
                 "solid" "0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
-				"skin" "1"
+                "disableshadows" "1"
+                "skin" "1"
             }
             prop_dynamic_ornament
             {
@@ -580,8 +580,8 @@ WaveSchedule
                 "model" "models/workshop/player/items/engineer/dec23_sleuth_suit/dec23_sleuth_suit.mdl"
                 "solid" "0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
-				"skin" "1"
+                "disableshadows" "1"
+                "skin" "1"
             }
             KeepAlive 1
             prop_dynamic
@@ -607,31 +607,31 @@ WaveSchedule
                 "OnTrigger" "conduit_is_dead1,stop,,6,-1"
                 "OnTrigger" "conduit_is_dead2,stop,,6,-1"
                 "OnTrigger" "player,$PlaySoundToSelf,npc/turret_floor/die.wav,3,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,mvm\mvm_tank_end.wav,3,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,mvm\mvm_tank_explode.wav,3,-1"
+                "OnTrigger" "player,$PlaySoundToSelf,mvm\mvm_tank_end.wav,3,-1"
+                "OnTrigger" "player,$PlaySoundToSelf,mvm\mvm_tank_explode.wav,3,-1"
             }
-			info_particle_system
-			{
-				"targetname" "conduit_is_dead1"
-				"origin" "0 0 0"
-				"angles" "-90 0 0"
-				"effect_name" "mvm_tank_destroy"
-			}
-			info_particle_system
-			{
-				"targetname" "conduit_is_dead2"
-				"origin" "0 0 0"
-				"angles" "-90 0 0"
-				"effect_name" "rd_robot_explosion"
-			}
+            info_particle_system
+            {
+                "targetname" "conduit_is_dead1"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "mvm_tank_destroy"
+            }
+            info_particle_system
+            {
+                "targetname" "conduit_is_dead2"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "rd_robot_explosion"
+            }
             env_shake
-			{
-				"targetname" "conduit_shake"
-				"spawnflag" "1"
-				"amplitude" "16"
-				"frequency" "9"
-				"duration" "3"
-			}
+            {
+                "targetname" "conduit_shake"
+                "spawnflag" "1"
+                "amplitude" "16"
+                "frequency" "9"
+                "duration" "3"
+            }
         }
         //Rotator Info Targets for Two Attacks
         RotatorSpawners
@@ -726,10 +726,10 @@ WaveSchedule
                 "defaultanim" "start"
                 "origin" "0 0 0"
                 "angles" "0 0 0"
-				"solid" "0"
-				"skin" "1"
-				"disablebonefollowers" "1"
-				"disableshadows" "1"
+                "solid" "0"
+                "skin" "1"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
             }
             prop_dynamic
             {
@@ -739,7 +739,7 @@ WaveSchedule
                 "origin" "0 0 700"
                 "angkes" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
             }
             env_beam
             {
@@ -771,9 +771,9 @@ WaveSchedule
                 "maxs" "50 50 80"
                 "damage" "350"
                 "damagetype" "2"
-                "filtername" "filter_redteam_nouber"
+                "filtername" "filter_is_red_not_ubered"
                 "StartDisabled" "1"
-				"spawnflags" "64"
+                "spawnflags" "64"
             }
             info_particle_system
             {
@@ -786,10 +786,10 @@ WaveSchedule
                 "targetname" "spam_sound"
                 "message" "weapons/cow_mangler_explosion_normal_03.wav"
                 "health" "4"
-				"pitch" "100"
-				"radius" "5000"
-				"spawnflags" "32"
-				"origin" "0 0 100"
+                "pitch" "100"
+                "radius" "5000"
+                "spawnflags" "32"
+                "origin" "0 0 100"
             }
             OnSpawnOutput
             {
@@ -831,7 +831,7 @@ WaveSchedule
                 "origin" "0 0 0"
                 "angles" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
             }
             OnSpawnOutput
             {
@@ -871,10 +871,10 @@ WaveSchedule
                 "mins" "-100 -100 -200"
                 "maxs" "100 100 200"
                 "damagetype" "2"
-				"damage" "300"
-				"startdisabled" "1"
-				"spawnflags" "64"
-                "filtername" "filter_redteam_nouber"
+                "damage" "300"
+                "startdisabled" "1"
+                "spawnflags" "64"
+                "filtername" "filter_is_red_not_ubered"
             }
             env_beam
             {
@@ -899,22 +899,22 @@ WaveSchedule
                 "origin" "0 0 1000"
                 "angles" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
             }
             prop_dynamic
-			{
-				"targetname" "bigbeam_end"
-				"parentname" "lasernuke"
-				"model" "models/props_mvm/indicator/indicator_circle.mdl"
+            {
+                "targetname" "bigbeam_end"
+                "parentname" "lasernuke"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "4"
-				"skin" "1"
-				"defaultanim" "start"
-				"origin" "0 0 0.3"
-				"angles" "0 0 0"
-				"solid" "0"
-				"disablebonefollowers" "1"
-				"disableshadows" "1"
-			}
+                "skin" "1"
+                "defaultanim" "start"
+                "origin" "0 0 0.3"
+                "angles" "0 0 0"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
             info_particle_system
             {
                 "targetname" "lasereffect"
@@ -926,10 +926,10 @@ WaveSchedule
                 "targetname" "lasersound"
                 "message" "weapons/cow_mangler_explosion_normal_03.wav"
                 "health" "5"
-				"pitch" "100"
-				"radius" "5000"
-				"spawnflags" "32"
-				"origin" "0 0 100"
+                "pitch" "100"
+                "radius" "5000"
+                "spawnflags" "32"
+                "origin" "0 0 100"
             }
             OnSpawnOutput
             {
@@ -990,7 +990,7 @@ WaveSchedule
                 "origin" "0 0 0"
                 "angles" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
             }
             OnSpawnOutput
             {
@@ -1000,17 +1000,9 @@ WaveSchedule
             logic_relay
             {
                 "targetname" "attack_spawning"
-                "OnTrigger" "attack_timer,Enable,,0,-1"
-                "OnTrigger" "attack_timer,Disable,,4.11,-1"
-                "OnTrigger" "beam_origin,kill,,4.2,-1"
-            }
-            logic_timer
-            {
-                "targetname" "attack_timer"
-                "startdisabled" "1"
-                "Refiretime" "0.2"
-                "OnTimer" "attack_spawn,$MoveRelative,75 0 0,0,-1"
-                "OnTimer" "StraightBeamAttack,ForceSpawnAtEntityOrigin,attack_spawn,0.1,-1"
+                "OnTrigger" "attack_spawn,$MoveRelative,75 0 0,0,-1"
+                "OnTrigger" "StraightBeamAttack,ForceSpawnAtEntityOrigin,attack_spawn,0.1,-1"
+                "OnTrigger" "attack_setup,kill,,0.2,-1"
             }
         }
         StraightBeamAttack
@@ -1029,25 +1021,26 @@ WaveSchedule
                 "defaultanim" "start"
                 "origin" "0 0 0"
                 "angles" "0 0 0"
-				"solid" "0"
-				"skin" "1"
-				"disablebonefollowers" "1"
-				"disableshadows" "1"
+                "solid" "0"
+                "skin" "1"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
             }
             prop_dynamic
             {
                 "targetname" "lightning_holder"
-                "parentname" "lightning_origin"
+                "parentname" "lightning_indicator"
                 "model" "models/empty.mdl"
                 "origin" "0 0 700"
                 "angkes" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
             }
             env_beam
             {
                 "targetname" "lightning_beam"
-                "life" "1"
+                "parentname" "lightning_indicator"
+                "life" "11"
                 "LightningStart" "lightning_indicator"
                 "LightningEnd" "lightning_holder"
                 "TouchType" "0"
@@ -1063,13 +1056,12 @@ WaveSchedule
             {
                 "targetname" "lightning_damage"
                 "parentname" "lightning_indicator"
-                "mins" "-50 -50 -80"
-                "maxs" "50 50 80"
+                "mins" "-60 -60 -700"
+                "maxs" "60 60 700"
                 "damage" "300"
                 "damagetype" "2"
-                "filtername" "filter_redteam_nouber"
-                "StartDisabled" "1"
-				"spawnflags" "64"
+                "filtername" "filter_is_red_not_ubered"
+                "spawnflags" "64"
             }
             info_particle_system
             {
@@ -1082,33 +1074,34 @@ WaveSchedule
                 "targetname" "lightning_sound"
                 "message" "weapons/cow_mangler_explosion_normal_03.wav"
                 "health" "2"
-				"pitch" "100"
-				"radius" "3000"
-				"spawnflags" "32"
-				"origin" "0 0 100"
+                "pitch" "100"
+                "radius" "3000"
+                "spawnflags" "32"
+                "origin" "0 0 100"
+            }
+            logic_timer
+            {
+                "targetname" "movethisforwardplz"
+                "refiretime" "0.1"
+                "startdisabled" "1"
+                "OnTimer" "lightning_indicator,$MoveRelative,10 0 0,0,-1"
+                "OnTimer" "lightning_indicator,$MoveRelative,10 0 0,0.1,-1"
             }
             OnSpawnOutput
             {
-                Target lightning_damage
-                Action SetOwner
-                Param @p@boss_thing
-            }
-            OnSpawnOutput
-            {
-                Target lightning_relay
-                Action Trigger
-                Delay 2.1
+                Target lightning_indicator
+                Action SetPlayBackRate
+                Param 0.5
             }
             logic_relay
             {
-                "targetname" "lightning_relay"
+                "targetname" "move_relay"
+                "OnTrigger" "movethisforwardplz,Enable,,0,-1"
                 "OnTrigger" "lightning_beam,StrikeOnce,,0,-1"
-                "OnTrigger" "lightning_effect,start,,0,-1"
-                "OnTrigger" "lightning_sound,playsound,,0,-1"
-                "OnTrigger" "lightning_damage,enable,,0.01,-1"
-                "OnTrigger" "lightning_damage,disable,,0.02,-1"
-                "OnTrigger" "lightning_effect,stop,,1,-1"
-                "OnTrigger" "lightning_origin,kill,,1,-1"
+                "OnTrigger" "movethisforwardplz,Disable,,10,-1"
+                "OnTrigger" "lightning_beam,TurnOff,,10,-1"
+                "OnTrigger" "lightning_beam,kill,,10.1,-1"
+                "OnTrigger" "lightning_origin,kill,,10.2,-1"
             }
         }
         //Conduit Logic
@@ -1198,7 +1191,7 @@ WaveSchedule
                 "origin" "0 0 50"
                 "angles" "0 0 0"
                 "disablebonefollowers" "1"
-				"disableshadows" "1"
+                "disableshadows" "1"
                 "$module" "aimfollow"
                 "$rotationfollow" "1"
             }
@@ -1224,8 +1217,8 @@ WaveSchedule
             {
                 "targetname" "super_release"
                 "effect_name" "powerup_supernova_explode_blue"
-				"start_active" "0"
-				"origin" "0 0 0.3"
+                "start_active" "0"
+                "origin" "0 0 0.3"
             }
             logic_relay
             {
@@ -1274,6 +1267,7 @@ WaveSchedule
                 "OnTrigger" "boss_sparky,TurnOff,,2.6,-1"
                 "OnTrigger" "super_release,Start,,2.5,-1"
                 "OnTrigger" "super_release,Stop,,2.6,-1"
+                "OnTrigger" "move_relay,Trigger,,2.6,-1"
                 "OnTrigger" "!activator,$AddPlayerAttribute,increased jump height|1,2.5,-1"
                 "OnTrigger" "!activator,$AddPlayerAttribute,no_jump|0,2.5,-1"
                 "OnTrigger" "!activator,$AddPlayerAttribute,no_attack|0,2.5,-1"
@@ -1283,7 +1277,7 @@ WaveSchedule
             logic_relay
             {
                 "targetname" "spam_attack_relay"
-                "OnTrigger" "!activator,interrupt_action -posent Enemy -lookposent RandomEnemy -duration 0.7,0,-1"
+                "OnTrigger" "!activator,$BotCommand,interrupt_action -posent Enemy -lookposent RandomEnemy -duration 0.7,0,-1"
                 "OnTrigger" "!activator,$AddPlayerAttribute,gesture speed increase|2,0,-1"
                 "OnTrigger" "!activator,$TauntFromItem,Replay Taunt,0.7,-1"
                 "OnTrigger" "beam_launcher,FireOnce,,1,-1"
@@ -1732,7 +1726,6 @@ WaveSchedule
             Attributes HoldFireUntilFullReload
             SpawnTemplate conduit_logic
             SpawnTemplate chief_conduit_dead
-            ExtAttr IgnoreBuildings
             Item "Engineer Earmuffs"
             Item "Packable Provisions"
             Item "Sleuth Suit"
@@ -1762,7 +1755,6 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.1
                 "airblast vertical vulnerability multiplier" 0.1
                 "damage force reduction" 0.1
-                "displace touched enemies" 1
             }
             EventChangeAttributes
             {

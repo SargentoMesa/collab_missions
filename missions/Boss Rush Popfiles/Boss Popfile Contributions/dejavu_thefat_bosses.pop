@@ -372,7 +372,7 @@ WaveSchedule
 				{
 					"effect_name" "eyeboss_tp_vortex" //spawns immediately
 					"targetname" "main_particle_body1"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -381,7 +381,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electricity_cloud_parent_WP"
 					"targetname" "main_particle_body2"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -390,7 +390,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electric_mist_parent" 
 					"targetname" "main_particle_body3"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -399,7 +399,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_poweraura_purple_lightning1" 
 					"targetname" "existing_particle1"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -408,7 +408,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_poweraura_purple_lightning2" 
 					"targetname" "existing_particle2"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -417,7 +417,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_lightning_bolt" //
 					"targetname" "spawn_sequence1"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -426,7 +426,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple1"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -435,7 +435,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple2"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -444,7 +444,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple3"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -453,7 +453,7 @@ WaveSchedule
 				{
 					"effect_name" "pomson_impact_electro" 
 					"targetname" "pomson_multiple4"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -462,7 +462,7 @@ WaveSchedule
 				{
 					"effect_name" "utaunt_electricity_purple_discharge" 
 					"targetname" "spawn_sequence3"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
@@ -471,7 +471,7 @@ WaveSchedule
 				{
 					"effect_name" "hammer_lock_vanish02" 
 					"targetname" "spawn_sequence4"
-					"origin" "-5487 8751 696"
+					"origin" "-5487 8751 -696"
 					"flag_as_weather" "0"
 					"start_active" "0"
 				}
