@@ -85,6 +85,16 @@ WaveSchedule
 		ItemName "The Dragon's Fury"
 		"special damage type" 3
 	}
+    ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+	{
+		ItemName "The Scottish Resistance"
+		"stickies detonate stickies" 0
+	}
+	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
+	{
+		ItemName "The Quickiebomb Launcher"
+		"stickies detonate stickies" 0
+	}
 
     //// POINT TEMPLATES ////
 
@@ -402,6 +412,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -497,7 +508,7 @@ WaveSchedule
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -517,7 +528,7 @@ WaveSchedule
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -574,6 +585,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -623,12 +635,12 @@ WaveSchedule
             Name "Wave2_Support-ShotgunHeavies"
             Where spawnbot_support
             Support 1
-            TotalCount 300
+            TotalCount 200
             MaxActive 8
             SpawnCount 4
             WaitBeforeStarting 20
             WaitBetweenSpawns 5
-            TotalCurrency 300
+            TotalCurrency 200
 
             TFBot
             {
@@ -750,6 +762,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -819,12 +832,12 @@ WaveSchedule
             WaitForAllSpawned "Wave3_ExplosiveSurprise"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 5
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -839,12 +852,12 @@ WaveSchedule
             WaitForAllSpawned "Wave3_ExplosiveSurprise"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -888,7 +901,6 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`arena_spyfactory_boss_spawn_relay`, `Disable`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_spyfactory6`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_spyfactory1`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_spyfactory5`)
@@ -1030,12 +1042,12 @@ WaveSchedule
             WaitForAllSpawned "Wave3_FallenPatrolChiefs"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1050,12 +1062,12 @@ WaveSchedule
             WaitForAllSpawned "Wave3_FallenPatrolChiefs"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 3
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1103,6 +1115,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1164,12 +1177,12 @@ WaveSchedule
             Name "Wave4_Support1-GRUHeavies"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1216,7 +1229,9 @@ WaveSchedule
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave4_Support1-GRUHeavies`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave4_Support2-Pyros`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave4_Support2-Pyros`)
-                        EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`, null, 2.5)
+                        
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant2`, 2.5)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant3`, 2.5)
                       "
             }
         }
@@ -1227,12 +1242,12 @@ WaveSchedule
             WaitForAllSpawned "Wave4_Boss2-TON618BlackHolePyro"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 5
             WaitBetweenSpawns 5
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1243,6 +1258,7 @@ WaveSchedule
         }
 
         // Boss 3 - General Bomber and King Burst
+
         WaveSpawn
         {
             Name "Wave4_Boss3-GeneralBomber"
@@ -1259,6 +1275,16 @@ WaveSchedule
             {
                 Template T_TFChief_General_Bomber
                 Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_bonkplant2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
             }
 
             FirstSpawnOutput
@@ -1287,6 +1313,16 @@ WaveSchedule
             {
                 Template T_TFChief_King_Burst
                 Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_bonkplant3
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
             }
         }
     }
@@ -1408,6 +1444,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1553,12 +1590,12 @@ WaveSchedule
             WaitForAllSpawned "Wave5_MiningSupervisor"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 10
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1573,12 +1610,12 @@ WaveSchedule
             WaitForAllSpawned "Wave5_MiningSupervisor"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1695,12 +1732,12 @@ WaveSchedule
             WaitForAllSpawned "Wave5_FieldMarshalMechanus"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 6
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -1715,12 +1752,12 @@ WaveSchedule
             WaitForAllSpawned "Wave5_FieldMarshalMechanus"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -1736,12 +1773,12 @@ WaveSchedule
             WaitForAllSpawned "Wave5_FieldMarshalMechanus"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1793,6 +1830,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1820,7 +1858,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 40
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry01.mp3"
             DoneWarningSound "vo/mvm/norm/heavy_mvm_paincrticialdeath02.mp3"
@@ -1867,12 +1905,12 @@ WaveSchedule
             WaitForAllDead "Wave6_Boss1-SingleDrunkenDriver"
             Where spawnbot_support
             Support 1
-            TotalCount 50
+            TotalCount 40
             MaxActive 5
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 3
-            TotalCurrency 50
+            TotalCurrency 40
 
             TFBot
             {
@@ -2055,7 +2093,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16
             WaitBetweenSpawns 0
-            TotalCurrency 40
+            TotalCurrency 20
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry06.mp3"
 
@@ -2076,7 +2114,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 40
+            TotalCurrency 20
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_battlecry05.mp3"
 
@@ -2097,7 +2135,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 40
+            TotalCurrency 20
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_domination16.mp3"
 
@@ -2118,7 +2156,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 16.5
             WaitBetweenSpawns 0
-            TotalCurrency 40
+            TotalCurrency 20
 
             FirstSpawnWarningSound "vo/mvm/norm/heavy_mvm_revenge02.mp3"
 
@@ -2234,6 +2272,7 @@ WaveSchedule
                   "
         }
     
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2303,12 +2342,12 @@ WaveSchedule
             WaitForAllSpawned "Wave7_SlaveKnightDael"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 7
             SpawnCount 5
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -2323,12 +2362,12 @@ WaveSchedule
             WaitForAllSpawned "Wave7_SlaveKnightDael"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -2388,12 +2427,12 @@ WaveSchedule
             WaitForAllSpawned "Wave7_DirectDisaster"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 6
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 5
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -2411,12 +2450,12 @@ WaveSchedule
             WaitForAllSpawned "Wave7_DirectDisaster"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -2524,6 +2563,7 @@ WaveSchedule
                   "
         }
     
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2558,7 +2598,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -2615,7 +2655,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -2722,7 +2762,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -2754,12 +2794,12 @@ WaveSchedule
             WaitForAllSpawned "Wave8_IndustrialGauntlet2"
             Where spawnbot_support
             Support 1
-            TotalCount 50
+            TotalCount 25
             MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 3
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -2779,7 +2819,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -2854,7 +2894,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -2946,7 +2986,7 @@ WaveSchedule
             SpawnCount 2
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             FirstSpawnWarningSound "vo\mvm\mght\heavy_mvm_m_painsharp04.mp3"
 
@@ -3163,6 +3203,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3234,12 +3275,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_Treadonator"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -3254,12 +3295,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_Treadonator"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -3279,12 +3320,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_Treadonator"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -3340,12 +3381,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_MagicianLord"
             Where spawnbot_support
             Support 1
-            TotalCount 300
+            TotalCount 200
             MaxActive 5
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 5
-            TotalCurrency 300
+            TotalCurrency 200
 
             TFBot
             {
@@ -3424,12 +3465,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_TimedDisaster"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 4
-            TotalCurrency 150
+            TotalCurrency 100
         
             TFBot
             { 
@@ -3443,12 +3484,12 @@ WaveSchedule
             WaitForAllSpawned "Wave9_TimedDisaster"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 3
             WaitBeforeStarting 20
             WaitBetweenSpawns 10
-            TotalCurrency 150
+            TotalCurrency 100
         
             TFBot
             { 
@@ -3618,6 +3659,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3699,7 +3741,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3732,7 +3774,7 @@ WaveSchedule
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3816,12 +3858,12 @@ WaveSchedule
             WaitForAllSpawned "Wave10_DistortedMessenger"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 6
             SpawnCount 3
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3837,12 +3879,12 @@ WaveSchedule
             WaitForAllSpawned "Wave10_DistortedMessenger"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3905,12 +3947,12 @@ WaveSchedule
             WaitForAllSpawned "Wave10_PrivateSeeker"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3930,12 +3972,12 @@ WaveSchedule
             WaitForAllSpawned "Wave10_PrivateSeeker"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 3
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -3964,7 +4006,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -3992,7 +4034,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4200,6 +4242,7 @@ WaveSchedule
                   "
         }
     
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -4268,12 +4311,12 @@ WaveSchedule
             WaitForAllSpawned "Wave11_ChaosSurge"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 5
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -4288,12 +4331,12 @@ WaveSchedule
             WaitForAllSpawned "Wave11_ChaosSurge"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 7
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -4356,12 +4399,12 @@ WaveSchedule
             WaitForAllSpawned "Wave11_ColonelConduit"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4376,12 +4419,12 @@ WaveSchedule
             WaitForAllSpawned "Wave11_ColonelConduit"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -4395,12 +4438,12 @@ WaveSchedule
             WaitForAllSpawned "Wave11_ColonelConduit"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 4
             SpawnCount 3
             WaitBeforeStarting 20
             WaitBetweenSpawns 12
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -4610,6 +4653,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -4645,7 +4689,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4684,7 +4728,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4881,12 +4925,12 @@ WaveSchedule
             WaitForAllSpawned "Wave12_RancherGauntlet"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 2
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 10
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -4921,12 +4965,12 @@ WaveSchedule
             Where spawnbot_extrspy1 [$SIGSEGV]
             Support 1
             RandomSpawn 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 5
             WaitBetweenSpawns 15
-            TotalCurrency 100
+            TotalCurrency 50
         
             Squad
             {
@@ -5114,6 +5158,7 @@ WaveSchedule
                   "
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5148,7 +5193,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -5174,7 +5219,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -5322,12 +5367,12 @@ WaveSchedule
             WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5342,12 +5387,12 @@ WaveSchedule
             WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 50
             MaxActive 4
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 6
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -5366,12 +5411,12 @@ WaveSchedule
             WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5447,6 +5492,7 @@ WaveSchedule
             "damage force reduction" 0.80
         }
 
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate finalwavesky
@@ -5584,7 +5630,7 @@ WaveSchedule
 
     //Wave // Main Boss - Major Shocks
     //{
-
+        CustomMaxWaveNumber 0
     //}
     Wave // Main Boss - Mercenary Matter
     {
@@ -5626,6 +5672,9 @@ WaveSchedule
                   "
         }
 
+
+        CustomWaveNumber 15
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate SpecialEffectsFat
@@ -5671,7 +5720,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5685,12 +5734,12 @@ WaveSchedule
             Name "Wave16_Support-Pyros"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 25
             WaitBetweenSpawns 10
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5704,12 +5753,12 @@ WaveSchedule
             Name "Wave16_Support-Soldiers"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 25
             WaitBetweenSpawns 10
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5723,12 +5772,12 @@ WaveSchedule
             Name "Wave16_Support-Heavies"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 25
             WaitBetweenSpawns 10
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -5848,6 +5897,8 @@ WaveSchedule
                   "
         }
 
+        CustomWaveNumber 16
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5897,7 +5948,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -5975,7 +6026,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -6105,12 +6156,12 @@ WaveSchedule
             WaitForAllSpawned "Wave17_OverclockedDave"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 3
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -6125,12 +6176,12 @@ WaveSchedule
             WaitForAllSpawned "Wave17_OverclockedDave"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 150
+            TotalCurrency 100
 
             TFBot
             {
@@ -6262,6 +6313,8 @@ WaveSchedule
                   "
         }
 
+        CustomWaveNumber 17
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -6330,7 +6383,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6366,7 +6419,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6459,7 +6512,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6534,7 +6587,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6599,7 +6652,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6660,7 +6713,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 7.5
             WaitBetweenSpawns 0
-            TotalCurrency 50
+            TotalCurrency 25
 
             TFBot
             {
@@ -6677,7 +6730,6 @@ WaveSchedule
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
 
-                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Disable`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
                       "
@@ -6689,12 +6741,12 @@ WaveSchedule
             WaitForAllDead "Wave18_Boss1-SniperWarMachine"
             Where spawnbot_support
             Support 1
-            TotalCount 75
+            TotalCount 50
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 10
-            TotalCurrency 75
+            TotalCurrency 50
 
             TFBot
             {
@@ -6722,12 +6774,12 @@ WaveSchedule
             WaitForAllDead "Wave18_Boss1-SniperWarMachine"
             Where spawnbot_support
             Support 1
-            TotalCount 75
+            TotalCount 50
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 10
-            TotalCurrency 75
+            TotalCurrency 50
 
             TFBot
             {
@@ -6957,6 +7009,8 @@ WaveSchedule
                   "
         }
 
+        CustomWaveNumber 18
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7043,13 +7097,13 @@ WaveSchedule
             Name "disableformidboss"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 150
+            TotalCount 100
             MaxActive 10
             SpawnCount 1
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 150
+            TotalCurrency 100
             StartDisabled 1
 
             RandomChoice
@@ -7084,13 +7138,13 @@ WaveSchedule
             Name "forthesplashattack"
             WaitForAllDead ""
             Where spawnbot_support
-            TotalCount 150
+            TotalCount 100
             MaxActive 12
             SpawnCount 4
             WaitBeforeStarting 0
             WaitBetweenSpawns 0
             Support 1
-            TotalCurrency 150
+            TotalCurrency 100
             StartDisabled 1
 
             TFBot
@@ -7159,12 +7213,12 @@ WaveSchedule
             WaitForAllSpawned "Wave19_TheForemann"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 75
             MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 8
-            TotalCurrency 100
+            TotalCurrency 75
 
             TFBot
             {
@@ -7197,12 +7251,12 @@ WaveSchedule
             WaitForAllSpawned "Wave19_TheForemann"
             Where spawnbot_support
             Support 1
-            TotalCount 100
+            TotalCount 25
             MaxActive 1
             SpawnCount 1
             WaitBeforeStarting 20
             WaitBetweenSpawns 20
-            TotalCurrency 100
+            TotalCurrency 25
 
             TFBot
             {
@@ -7252,6 +7306,8 @@ WaveSchedule
                   "
         }
 
+        CustomWaveNumber 19
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7300,12 +7356,12 @@ WaveSchedule
             Name "Wave19_Support-Soldiers"
             Where spawnbot_support
             Support 1
-            TotalCount 200
+            TotalCount 100
             MaxActive 8
             SpawnCount 2
             WaitBeforeStarting 20
             WaitBetweenSpawns 6
-            TotalCurrency 200
+            TotalCurrency 100
 
             TFBot
             {
@@ -7377,6 +7433,8 @@ WaveSchedule
 				  "
 		}
 
+        CustomWaveNumber 20
+        CustomMaxWaveNumber 0
 		RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7438,6 +7496,8 @@ WaveSchedule
 				  "
 		}
 
+        CustomWaveNumber 11111111
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn

@@ -2,17 +2,6 @@ WaveSchedule
 {
     LuaScriptFile "scripts/skangus_event_boss_fire_attempt2.lua"
 
-	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-	{
-		ItemName "The Scottish Resistance"
-		"stickies detonate stickies" 0
-	}
-	ItemAttributes [$SIGSEGV] //Prevents the boss' stickies from being destroyed as it is meant to be indestructible. There are no other bots with stickybomb launchers in this mission.
-	{
-		ItemName "The Quickiebomb Launcher"
-		"stickies detonate stickies" 0
-	}
-
     PointTemplates
     {
         //// CAPTAIN PUNCH THE MDXXVIII ////
