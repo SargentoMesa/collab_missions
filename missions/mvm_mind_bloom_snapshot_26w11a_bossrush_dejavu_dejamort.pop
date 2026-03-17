@@ -5462,24 +5462,18 @@ WaveSchedule
             }
         }
     }
-    Wave // Mixed Boss Wave - The War Machines OR Soviet Tonka Weapons
+    Wave // Main Boss - Soviet Tonka Weapons
     {
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
+					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
+
                     if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
                     if (!(`mvm_meltdown_red_world` in getroottable()))
                     {
@@ -5496,41 +5490,6 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave13_TerrorlictGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_meltdown_relay`, `Wave13_SovietTonkaWeapons`);
-                    MindBloomRNG.InitRNGArena();
-
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_accurate_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
-
                     Convars.SetValue(`tf_allow_sliding_taunt`, 1); // For Tonka Weapons's sandvich eating
                     RedWorld.BossPositions = [Vector(7987.0, -465.0, -1200.0)];
                     RedWorld.BossAngles = [QAngle(0.0, 180.0, 0.0)];
@@ -5546,38 +5505,6 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
-
-				    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_titanium`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_accurate_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
-
-                    MindBloomRNG.StartRNGArena();
                   "
         }
         DoneOutput
@@ -5588,8 +5515,6 @@ WaveSchedule
                     EntFire(`wave_finished_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
 
-                    AlternateWaves.bTrackIcons = true;
-
                     Convars.SetValue(`tf_allow_sliding_taunt`, 0);
                   "
         }
@@ -5597,7 +5522,7 @@ WaveSchedule
         CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
-        WaveSpawn
+		WaveSpawn
         {
             Name "teleporthotfix"
             WaitBeforeStarting 5.1
@@ -5613,274 +5538,9 @@ WaveSchedule
             }
         }
 
-        //// The War Machines ////
-        WaveSpawn
-        {
-            Name "Wave13_TerrorlictGauntlet"
-            StartDisabled 1
-        }
-
-        WaveSpawn // Boss 1 - Sniper War Machine
-        {
-            Name "Wave13_Boss1-SniperWarMachine"
-            WaitForAllSpawned "Wave13_TerrorlictGauntlet"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template MiniBoss_SniperWarMachine
-                Action Mobber
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
-                      "
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-CarbineSnipers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-CarbineSnipers`)
-                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
-                      "
-            }
-        }
-        WaveSpawn // Support Carbine Snipers
-        {
-            Name "Wave13_Support-CarbineSnipers"
-            WaitForAllSpawned "Wave13_TerrorlictGauntlet"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 8
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 2
-            TotalCurrency 50
-
-            TFBot
-            {
-                Name "Carbine Sniper"
-                Class Sniper
-                ClassIcon sniper_carbine
-                WeaponRestrictions SecondaryOnly
-                Action Mobber
-
-                Item "The Cleaner's Carbine"
-
-                FireWeapon
-                {
-                    Duration 0.1
-                    Type "Secondary"
-                    Delay 0
-                    Cooldown 0.01
-                    IfSeeTarget 1
-                }
-            }
-        }
-
-        WaveSpawn // Boss 2 - Engineer War Machine
-        {
-            Name "Wave13_Boss2-EngineerWarMachine"
-            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template MiniBoss_EngineerWarMachine
-                Action Mobber
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
-
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
-                      "
-            }
-        }
-        WaveSpawn // Support Deflector Heavies
-        {
-            Name "Wave13_Support-DeflectorHeavies"
-            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 4
-            SpawnCount 2
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 10
-            TotalCurrency 50
-
-            TFBot
-            {
-                Name "Deflector Heavy"
-                Class Heavy
-                ClassIcon heavy_deflector
-                Skill Easy
-                WeaponRestrictions PrimaryOnly
-                Action Mobber
-
-                Item "Deflector"
-
-                Item "The U-clank-a"
-
-                ItemAttributes 
-                {
-                    ItemName "Deflector"
-                    "attack projectiles" 1
-                }
-            }
-        }
-        WaveSpawn // Support Shotgun Heavies
-        {
-            Name "Wave13_Support-ShotgunHeavies"
-            WaitForAllDead "Wave13_Boss1-SniperWarMachine"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 4
-            SpawnCount 2
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 10
-            TotalCurrency 50
-
-            TFBot
-            {
-                Name "Shotgun Heavy"
-                Template T_TFBot_Heavyweapons_Shotgun
-                Action Mobber
-            }
-        }
-
-        WaveSpawn // Boss 3 - Heavy War Machine
-        {
-            Name "Wave13_Boss3-HeavyWarMachine"
-            WaitForAllDead "Wave13_Boss2-EngineerWarMachine"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template MiniBoss_HeavyWarMachine
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_terrorlict1
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave13_Support-DeflectorHeavies`, 5)
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave13_Support-ShotgunHeavies`, 5)
-                      "
-            }
-        }
-        WaveSpawn // Boss 3 - Pyro War Machine
-        {
-            Name "Wave13_Boss3-PyroWarMachine"
-            WaitForAllDead "Wave13_Boss2-EngineerWarMachine"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template MiniBoss_PyroTrenchBurner
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_terrorlict2
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
-            }
-        }
-
-        WaveSpawn
-        {
-            Name "Wave13_WarMachinesDead"
-            WaitForAllDead "Wave13_Boss3-HeavyWarMachine"
-        }
-        WaveSpawn
-        {
-            Name "Wave13_WarMachinesDead"
-            WaitForAllDead "Wave13_Boss3-PyroWarMachine"
-        }
-        WaveSpawn
-        {
-            Name "Wave13_WarMachinesComplete"
-            WaitForAllSpawned "Wave13_WarMachinesDead"
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-DeflectorHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
-                      "
-            }
-        }
-
-        //// Soviet Tonka Weapons ////
-        WaveSpawn
-        {
-            Name "Wave13_SovietTonkaWeapons"
-            StartDisabled 1
-        }
 
 		WaveSpawn // Start of music
 		{
-            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
 			WaitBeforeStarting 8.5
 			FirstSpawnOutput
 			{
@@ -5894,7 +5554,6 @@ WaveSchedule
         WaveSpawn // This is when the boss will do his intro
 		{
 			Name "Wave13_SovietTonkaWeaponsIntro"
-            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
 			WaitBeforeStarting 12.5
 			FirstSpawnOutput
 			{
@@ -5941,7 +5600,6 @@ WaveSchedule
         WaveSpawn // Support Soldiers
         {
             Name "Wave13_Support-Soldiers"
-            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
             TotalCount 75
@@ -5961,7 +5619,6 @@ WaveSchedule
         WaveSpawn // Support Tomislav Heavies
         {
             Name "Wave13_Support-TomislavHeavies"
-            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
             TotalCount 50
@@ -5985,7 +5642,6 @@ WaveSchedule
         WaveSpawn // Support Backburner Pyros
         {
             Name "Wave13_Support-BackburnerPyros"
-            WaitForAllSpawned "Wave13_SovietTonkaWeapons"
             Where spawnbot_support
             Support 1
             TotalCount 75
@@ -6443,7 +6099,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Mixed Boss Wave - Colonel Crackle, then Captain Capharnaum OR Overclocked Dave
+    Wave // Mixed Boss Wave - The Mechonagher Brothers, Larry, then Private Mannpower OR Colonel Crackle, then Captain Capharnaum OR The War Machines OR Overclocked Dave
     {
         InitWaveOutput
         {
@@ -6469,7 +6125,9 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
 
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave17_ElectricmineGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_redstone_relay`, `Wave17_RedstoneGauntlet`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave17_TerrorlictGauntlet`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave17_OverclockedDave`);
                     MindBloomRNG.InitRNGArena();
 
@@ -6479,6 +6137,21 @@ WaveSchedule
                     switch (MindBloomRNG.GlobalIndex)
                     {
                         case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -6491,7 +6164,21 @@ WaveSchedule
                             break;
                         }
 
-                        case 1:
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 3:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -6517,6 +6204,21 @@ WaveSchedule
                         case 0:
                         {
                             AlternateWaves.AddWaveIcons([
+                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 1:
+                        {
+                            AlternateWaves.AddWaveIcons([
                                 [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
@@ -6527,7 +6229,21 @@ WaveSchedule
                             break;
                         }
 
-                        case 1:
+                        case 2:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                            ])
+                            break;
+                        }
+
+                        case 3:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -6570,6 +6286,308 @@ WaveSchedule
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
+            }
+        }
+
+        //// Mechonagher Brothers, Larry & Private Mannpower ////
+        WaveSpawn
+        {
+            Name "Wave17_ElectricmineGauntlet"
+            StartDisabled 1
+        }
+
+        WaveSpawn
+        {
+            Name "Wave17_MechonagherSpawns"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            WaitBeforeStarting 5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_electricmine_boss_spawn_relay`, `Disable`)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave17_MechonagherSpawns"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_electricmine_boss_spawn_relay`, `Disable`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine5`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine6`)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 1 - Mechonagher
+        {
+            Name "Wave17_Boss1-MechonagherBrothers"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template T_TFBot_Chief_Mechonagher1
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_electricmine5
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                      "
+            }
+        }
+        WaveSpawn // Boss 1 - Mechonagher
+        {
+            Name "Wave17_Boss1-MechonagherBrothers"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template T_TFBot_Chief_Mechonagher2
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_electricmine6
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+        }
+        WaveSpawn // Support Direct Hit Soldiers
+        {
+            Name "Wave17_Support-DirectHitSoldiers"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Direct Hit Soldier"
+                Class Soldier
+                ClassIcon soldier_directhit_lite
+                Skill Easy
+                Action Mobber
+
+                Item "The Direct Hit"
+            }
+        }
+        WaveSpawn // Support Heavies
+        {
+            Name "Wave17_Support-Heavies"
+            WaitForAllSpawned "Wave17_ElectricmineGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 12
+            TotalCurrency 50
+
+            TFBot
+            {
+                Class Heavy
+                Skill Easy
+                Action Mobber
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave17_MechonaghersDead"
+            WaitForAllDead "Wave17_Boss1-MechonagherBrothers"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-Heavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Heavies`)
+                        EntFire(`arena_electricmine_boss_spawn_relay`, `Enable`)
+                        EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+
+        WaveSpawn // Boss 2 - Larry
+        {
+            Name "Wave17_Boss2-Larry"
+            WaitForAllDead "Wave17_MechonaghersDead"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template MiniBoss_Larry
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_electricmine_barrier`, `Close`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GBurstSoldier`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
+                        EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Support GBurst Soldiers
+        {
+            Name "Wave17_Support-GBurstSoldier"
+            WaitForAllDead "Wave17_MechonaghersDead"
+            Where spawnbot_support
+            Support 1
+            TotalCount 25
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 15
+            TotalCurrency 25
+
+            TFBot
+            {
+                Name "Hoe Harvester"
+                Template T_TFBot_Giant_Soldier_Spammer_Reload
+                Action Mobber
+            }
+        }
+        WaveSpawn // Support Super Steel Gauntlets
+        {
+            Name "Wave17_Support-GSteelGauntlet"
+            WaitForAllDead "Wave17_MechonaghersDead"
+            Where spawnbot_support
+            Support 1
+            TotalCount 25
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 25
+            TotalCurrency 25
+
+            TFBot
+            {
+                Name "Bitch Haver"
+                Template T_TFBot_Giant_Boxing_Heavy
+                ClassIcon heavy_steelfist_giant
+                Action Mobber
+
+                Item "Fists of Steel"
+            }
+        }
+
+        WaveSpawn // Boss 3 - Private Mannpower
+        {
+            Name "Wave17_Boss3-PrivateMannpower"
+            WaitForAllDead "Wave17_Boss2-Larry"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template GiantHasteHeavyMiniboss
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ConchPunchies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ConchPunchies`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+        WaveSpawn // Support Conch Punchies
+        {
+            Name "Wave17_Support-ConchPunchies"
+            WaitForAllDead "Wave17_Boss2-Larry"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 3
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template T_TFBot_Heavyweapons_Heavyweight_Champ
+                Item     "The Concheror"
+                Attributes      SpawnWithFullCharge
+                ClassIcon heavy_champ_conch2
+                Name "Extended Conch Punchie"
+                Attributes AlwaysCrit
+                Action Mobber
+
+                CharacterAttributes
+                {
+                    "increase buff duration"    141.0
+                }
             }
         }
 
@@ -6763,6 +6781,264 @@ WaveSchedule
             }
         }
 
+        //// The War Machines ////
+        WaveSpawn
+        {
+            Name "Wave17_TerrorlictGauntlet"
+            StartDisabled 1
+        }
+
+        WaveSpawn // Boss 1 - Sniper War Machine
+        {
+            Name "Wave17_Boss1-SniperWarMachine"
+            WaitForAllSpawned "Wave17_TerrorlictGauntlet"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template MiniBoss_SniperWarMachine
+                Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-CarbineSnipers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-CarbineSnipers`)
+                        EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Support Carbine Snipers
+        {
+            Name "Wave17_Support-CarbineSnipers"
+            WaitForAllSpawned "Wave17_TerrorlictGauntlet"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 8
+            SpawnCount 1
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 2
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Carbine Sniper"
+                Class Sniper
+                ClassIcon sniper_carbine
+                WeaponRestrictions SecondaryOnly
+                Action Mobber
+
+                Item "The Cleaner's Carbine"
+
+                FireWeapon
+                {
+                    Duration 0.1
+                    Type "Secondary"
+                    Delay 0
+                    Cooldown 0.01
+                    IfSeeTarget 1
+                }
+            }
+        }
+
+        WaveSpawn // Boss 2 - Engineer War Machine
+        {
+            Name "Wave17_Boss2-EngineerWarMachine"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 25
+
+            TFBot
+            {
+                Template MiniBoss_EngineerWarMachine
+                Action Mobber
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
+                      "
+            }
+        }
+        WaveSpawn // Support Deflector Heavies
+        {
+            Name "Wave17_Support-DeflectorHeavies"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Deflector Heavy"
+                Class Heavy
+                ClassIcon heavy_deflector
+                Skill Easy
+                WeaponRestrictions PrimaryOnly
+                Action Mobber
+
+                Item "Deflector"
+
+                Item "The U-clank-a"
+
+                ItemAttributes 
+                {
+                    ItemName "Deflector"
+                    "attack projectiles" 1
+                }
+            }
+        }
+        WaveSpawn // Support Shotgun Heavies
+        {
+            Name "Wave17_Support-ShotgunHeavies"
+            WaitForAllDead "Wave17_Boss1-SniperWarMachine"
+            Where spawnbot_support
+            Support 1
+            TotalCount 50
+            MaxActive 4
+            SpawnCount 2
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 10
+            TotalCurrency 50
+
+            TFBot
+            {
+                Name "Shotgun Heavy"
+                Template T_TFBot_Heavyweapons_Shotgun
+                Action Mobber
+            }
+        }
+
+        WaveSpawn // Boss 3 - Heavy War Machine
+        {
+            Name "Wave17_Boss3-HeavyWarMachine"
+            WaitForAllDead "Wave17_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_HeavyWarMachine
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict1
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-DeflectorHeavies`, 5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave17_Support-ShotgunHeavies`, 5)
+                      "
+            }
+        }
+        WaveSpawn // Boss 3 - Pyro War Machine
+        {
+            Name "Wave17_Boss3-PyroWarMachine"
+            WaitForAllDead "Wave17_Boss2-EngineerWarMachine"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 7.5
+            WaitBetweenSpawns 0
+            TotalCurrency 50
+
+            TFBot
+            {
+                Template MiniBoss_PyroTrenchBurner
+                Action Mobber
+
+                FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_terrorlict2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave17_WarMachinesDead"
+            WaitForAllDead "Wave17_Boss3-HeavyWarMachine"
+        }
+        WaveSpawn
+        {
+            Name "Wave17_WarMachinesDead"
+            WaitForAllDead "Wave17_Boss3-PyroWarMachine"
+        }
+        WaveSpawn
+        {
+            Name "Wave17_WarMachinesComplete"
+            WaitForAllSpawned "Wave17_WarMachinesDead"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
+
         //// Overclocked Dave ////
         WaveSpawn
         {
@@ -6847,24 +7123,18 @@ WaveSchedule
             }
         }
     }
-    Wave // Boss Gauntlet - The Mechonagher Brothers, Larry, then Private Mannpower OR Captain Punch the MDXXVIII & Major Catastrophe
+    Wave // Main Boss - Captain Punch the MDXXVIII & Major Catastrophe
     {
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
+					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
+
                     if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6872,42 +7142,6 @@ WaveSchedule
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
-
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave18_ElectricmineGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_skeleheat_relay`, `Wave18_BazooksDuo`);
-                    MindBloomRNG.InitRNGArena();
-
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
                   "
         }
         StartWaveOutput
@@ -6916,39 +7150,6 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
-
-                    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_bomber`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
-
-                    MindBloomRNG.StartRNGArena();
                   "
         }
         DoneOutput
@@ -6958,8 +7159,6 @@ WaveSchedule
             Param "
                     EntFire(`wave_finished_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
-
-                    AlternateWaves.bTrackIcons = true;
                   "
         }
 
@@ -7009,318 +7208,10 @@ WaveSchedule
             }
         }
 
-        //// Mechonagher Brothers, Larry & Private Mannpower ////
-        WaveSpawn
-        {
-            Name "Wave18_ElectricmineGauntlet"
-            StartDisabled 1
-        }
-
-        WaveSpawn
-        {
-            Name "Wave18_MechonagherSpawns"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            WaitBeforeStarting 5
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_electricmine_boss_spawn_relay`, `Disable`)
-                      "
-            }
-        }
-        WaveSpawn
-        {
-            Name "Wave18_MechonagherSpawns"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            WaitBeforeStarting 7.5
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_electricmine_boss_spawn_relay`, `Disable`)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine5`)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine6`)
-                      "
-            }
-        }
-
-        WaveSpawn // Boss 1 - Mechonagher
-        {
-            Name "Wave18_Boss1-MechonagherBrothers"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template T_TFBot_Chief_Mechonagher1
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_electricmine5
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
-                      "
-            }
-        }
-        WaveSpawn // Boss 1 - Mechonagher
-        {
-            Name "Wave18_Boss1-MechonagherBrothers"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template T_TFBot_Chief_Mechonagher2
-                Action Mobber
-
-                FireInput
-                {
-                    Target !self
-                    Action $TeleportToEntity
-                    Param spawnbot_target_electricmine6
-                    Delay 0.1
-                    Repeats 1
-                    Cooldown -1
-                }
-            }
-        }
-        WaveSpawn // Support Direct Hit Soldiers
-        {
-            Name "Wave18_Support-DirectHitSoldiers"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 4
-            SpawnCount 2
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 8
-            TotalCurrency 50
-
-            TFBot
-            {
-                Name "Direct Hit Soldier"
-                Class Soldier
-                ClassIcon soldier_directhit_lite
-                Skill Easy
-                Action Mobber
-
-                Item "The Direct Hit"
-            }
-        }
-        WaveSpawn // Support Heavies
-        {
-            Name "Wave18_Support-Heavies"
-            WaitForAllSpawned "Wave18_ElectricmineGauntlet"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 4
-            SpawnCount 2
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 12
-            TotalCurrency 50
-
-            TFBot
-            {
-                Class Heavy
-                Skill Easy
-                Action Mobber
-            }
-        }
-
-        WaveSpawn
-        {
-            Name "Wave18_MechonaghersDead"
-            WaitForAllDead "Wave18_Boss1-MechonagherBrothers"
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-Heavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DirectHitSoldiers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Heavies`)
-                        EntFire(`arena_electricmine_boss_spawn_relay`, `Enable`)
-                        EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
-                      "
-            }
-        }
-
-        WaveSpawn // Boss 2 - Larry
-        {
-            Name "Wave18_Boss2-Larry"
-            WaitForAllDead "Wave18_MechonaghersDead"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template MiniBoss_Larry
-                Action Mobber
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_electricmine_barrier`, `Close`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GBurstSoldier`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
-                        EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
-                      "
-            }
-        }
-        WaveSpawn // Support GBurst Soldiers
-        {
-            Name "Wave18_Support-GBurstSoldier"
-            WaitForAllDead "Wave18_MechonaghersDead"
-            Where spawnbot_support
-            Support 1
-            TotalCount 25
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 15
-            TotalCurrency 25
-
-            TFBot
-            {
-                Name "Hoe Harvester"
-                Template T_TFBot_Giant_Soldier_Spammer_Reload
-                Action Mobber
-            }
-        }
-        WaveSpawn // Support Super Steel Gauntlets
-        {
-            Name "Wave18_Support-GSteelGauntlet"
-            WaitForAllDead "Wave18_MechonaghersDead"
-            Where spawnbot_support
-            Support 1
-            TotalCount 25
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 25
-            TotalCurrency 25
-
-            TFBot
-            {
-                Name "Bitch Haver"
-                Template T_TFBot_Giant_Boxing_Heavy
-                ClassIcon heavy_steelfist_giant
-                Action Mobber
-
-                Item "Fists of Steel"
-            }
-        }
-
-        WaveSpawn // Boss 3 - Private Mannpower
-        {
-            Name "Wave18_Boss3-PrivateMannpower"
-            WaitForAllDead "Wave18_Boss2-Larry"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 7.5
-            WaitBetweenSpawns 0
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template GiantHasteHeavyMiniboss
-                Action Mobber
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ConchPunchies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ConchPunchies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
-                      "
-            }
-        }
-        WaveSpawn // Support Conch Punchies
-        {
-            Name "Wave18_Support-ConchPunchies"
-            WaitForAllDead "Wave18_Boss2-Larry"
-            Where spawnbot_support
-            Support 1
-            TotalCount 50
-            MaxActive 8
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 3
-            TotalCurrency 50
-
-            TFBot
-            {
-                Template T_TFBot_Heavyweapons_Heavyweight_Champ
-                Item     "The Concheror"
-                Attributes      SpawnWithFullCharge
-                ClassIcon heavy_champ_conch2
-                Name "Extended Conch Punchie"
-                Attributes AlwaysCrit
-                Action Mobber
-
-                CharacterAttributes
-                {
-                    "increase buff duration"    141.0
-                }
-            }
-        }
-
         //// Captain Punch the MDXXVIII & Major Catastrophe ////
-        WaveSpawn
-        {
-            Name "Wave18_BazooksDuo"
-            StartDisabled 1
-        }
         WaveSpawn // Captain Punch
         {
             Name "Wave18_Boss-CaptainPunch"
-            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -7346,7 +7237,7 @@ WaveSchedule
         WaveSpawn // Major Catastrophe
         {
             Name "Wave18_Boss-MajorCatastrophe"
-            WaitForAllSpawned "Wave18_BazooksDuo"
+
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -7365,7 +7256,6 @@ WaveSchedule
         WaveSpawn // Support Baby Punches
         {
             Name "Wave18_Support-BabyPunches"
-            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_support
             Support 1
             TotalCount 100
@@ -7383,7 +7273,6 @@ WaveSchedule
         WaveSpawn // Support Little Bombers
         {
             Name "Wave18_Support-LittleBombers"
-            WaitForAllSpawned "Wave18_BazooksDuo"
             Where spawnbot_support
             Support 1
             TotalCount 100
