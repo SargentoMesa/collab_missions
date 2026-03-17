@@ -356,10 +356,6 @@ WaveSchedule
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
                     if (!(`buddhamode` in getroottable()))
                     {
                         IncludeScript(`buddhamode`, getroottable())
@@ -403,7 +399,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -542,10 +538,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
 
                     if (!(`music_system_ment` in getroottable()))
 					{
@@ -577,7 +570,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -650,10 +643,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -759,7 +749,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1083,10 +1073,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
 						IncludeScript(`claudz_logic_v3`, getroottable());
@@ -1117,7 +1104,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1341,10 +1328,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1449,7 +1433,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1806,10 +1790,7 @@ WaveSchedule
             Param " 
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -1836,7 +1817,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2202,10 +2183,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2303,7 +2281,7 @@ WaveSchedule
                   "
         }
     
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2504,10 +2482,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2597,7 +2572,7 @@ WaveSchedule
                   "
         }
     
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3223,10 +3198,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -3345,7 +3317,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3674,10 +3646,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-					{
-						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-					}
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -3827,7 +3795,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -4284,10 +4252,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-					{
-						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-					}
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -4450,7 +4414,7 @@ WaveSchedule
                   "
         }
     
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5029,10 +4993,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5132,7 +5093,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5569,10 +5530,7 @@ WaveSchedule
             Param "
 					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`mvm_meltdown_red_world` in getroottable()))
                     {
                         IncludeScript(`mvm_meltdown_red_world`, getroottable());
@@ -5617,7 +5575,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
 		WaveSpawn
@@ -5775,10 +5733,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`music_system_ment` in getroottable()))
                     {
                         IncludeScript(`music_system_ment`, getroottable());
@@ -5830,7 +5785,7 @@ WaveSchedule
             "damage force reduction" 0.80
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate finalwavesky
@@ -5995,10 +5950,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6026,7 +5978,7 @@ WaveSchedule
                   "
         }
 
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -6054,10 +6006,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
 						IncludeScript(`claudz_logic_v3`, getroottable());
@@ -6088,10 +6037,7 @@ WaveSchedule
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
                   "
         }
-
-
-        CustomWaveNumber 15
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate SpecialEffectsFat
@@ -6219,10 +6165,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-					{
-						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-					}
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -6381,9 +6323,7 @@ WaveSchedule
                     AlternateWaves.bTrackIcons = true;
                   "
         }
-
-        CustomWaveNumber 16
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7251,10 +7191,7 @@ WaveSchedule
             Param "
 					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -7306,9 +7243,7 @@ WaveSchedule
             ItemName "The Quickiebomb Launcher"
             "stickies detonate stickies" 0
         }
-
-        CustomWaveNumber 17
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7444,10 +7379,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -7563,9 +7495,7 @@ WaveSchedule
                     AlternateWaves.bTrackIcons = true;
                   "
         }
-
-        CustomWaveNumber 18
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7853,10 +7783,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
 
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
+
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
                 	IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
@@ -7915,9 +7842,7 @@ WaveSchedule
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
                   "
         }
-
-        CustomWaveNumber 19
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -8065,11 +7990,6 @@ WaveSchedule
 			Param "
 					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
 
-					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-					{
-						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-					}
-
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -8096,8 +8016,6 @@ WaveSchedule
 				  "
 		}
 
-        CustomWaveNumber 20
-        CustomMaxWaveNumber 0
 		RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -8128,11 +8046,6 @@ WaveSchedule
 			Param "
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
 
-					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-					{
-						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-					}
-
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -8158,9 +8071,7 @@ WaveSchedule
 					EntFire(`wave_finished_relay`, `Trigger`)
 				  "
 		}
-
-        CustomWaveNumber 11111111
-        CustomMaxWaveNumber 0
+        
         RedTeamWipeCausesWaveLoss 1
 
 		SpawnTemplate OuroborosCoreAppearance
