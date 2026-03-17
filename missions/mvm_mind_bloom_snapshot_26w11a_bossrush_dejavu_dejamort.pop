@@ -6106,88 +6106,88 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-                    }
-                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
+					}
+					if (!(`alternatewaves` in getroottable()))
+					{
+						IncludeScript(`alternatewaves`, getroottable());
+					}
+					if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave17_ElectricmineGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_redstone_relay`, `Wave17_RedstoneGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave17_TerrorlictGauntlet`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave17_OverclockedDave`);
-                    MindBloomRNG.InitRNGArena();
+					MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave17_ElectricmineGauntlet`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_redstone_relay`, `Wave17_RedstoneGauntlet`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_terrorlict_relay`, `Wave17_TerrorlictGauntlet`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave17_OverclockedDave`);
+					MindBloomRNG.InitRNGArena();
 
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
+					AlternateWaves.bTrackIcons = false;
+					AlternateWaves.ClearWaveIcons();
 
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                                [`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+					switch (MindBloomRNG.GlobalIndex)
+					{
+						case 0:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`engineer_ranger_spammer_penetrate_hyper`, 2, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								[`heavy_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_directhit_lite`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_pistol_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`demoknight_persian_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+						case 1:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`soldier_barrage_mangler_rain`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demo_lochnload_sif`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_pistol_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`demoknight_persian_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+						case 2:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`sniper_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`engineer_ranger_electric_hyper_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`heavy_shotgun_champ`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`pyro_degreaser_flare`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`sniper_carbine`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy_deflector`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
 
-                        case 3:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
+						case 3:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`heavy_chief_homing_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+					}
                   "
         }
         StartWaveOutput
