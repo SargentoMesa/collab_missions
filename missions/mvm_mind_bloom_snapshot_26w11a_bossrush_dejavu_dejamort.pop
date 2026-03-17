@@ -8163,6 +8163,8 @@ WaveSchedule
         CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
+		SpawnTemplate OuroborosCoreAppearance
+
         WaveSpawn
 		{
 			Name "teleporthotfix"

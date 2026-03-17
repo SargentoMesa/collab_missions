@@ -135,6 +135,23 @@ WaveSchedule
             }
         }
 
+        //// OUROBOROS POINTTEMPLATES ////
+
+        OuroborosCoreAppearance
+        {
+            prop_dynamic
+            {
+                "targetname" "ouroboros_snake_test"
+                "origin" "-12925 -11049 1873"
+                "angles" "45 15 90"
+                "model" "models/workshop/player/items/heavy/hwn2023_bare_bear_bones/hwn2023_bare_bear_bones.mdl"
+                "modelscale" "5"
+                "solid" "0"
+                "disableshadows" "1"
+                "rendercolor" "32 32 32"
+            }
+        }
+
         //// MINI BOSSES ////
 
         //// DECIMATOR POINTTEMPLATES ////
