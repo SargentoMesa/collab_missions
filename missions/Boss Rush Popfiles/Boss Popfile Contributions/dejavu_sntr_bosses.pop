@@ -576,14 +576,6 @@ WaveSchedule
 					}
 					ItemAttributes
 					{
-						ItemName "The Chargin' Targe"
-					//	"is invisible" 1
-						"dmg taken from fire reduced" 1
-						"dmg taken from blast reduced" 1 // negate resistances since players can't see the shield
-						"attack not cancel charge" 1
-					}
-					ItemAttributes
-					{
 						ItemName TF_WEAPON_FLAMETHROWER
 						"single wep deploy time increased" 40 // no!!!!!!!
 						"custom item model" "models\weapons\c_models\c_w_chainsaw\c_w_chainsaw.mdl"
