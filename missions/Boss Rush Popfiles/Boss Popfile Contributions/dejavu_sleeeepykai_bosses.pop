@@ -948,7 +948,7 @@ WaveSchedule
             Item "Delldozer"
             Item "Hog Heels"
 
-            SpawnTemplate DecimatorRocketRain
+            SpawnTemplate "DecimatorRocketRain"
 
             CharacterAttributes
             {
@@ -1005,7 +1005,7 @@ WaveSchedule
                     {
                         Target "tf_gamerules"
                         Action "playvo"
-                        Param "weapons/buff_banner_horn_blue.wav"
+                        Param weapons/buff_banner_horn_blue.wav
                         Delay 1
                         Repeats 1
                         Cooldown -1
@@ -1015,7 +1015,7 @@ WaveSchedule
                     {
                         Target "tf_gamerules"
                         Action "playvo"
-                        Param "ui/rd_2base_alarm.wav"
+                        Param ui/rd_2base_alarm.wav
                         Delay 2
                         Repeats 1
                         Cooldown -1

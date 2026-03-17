@@ -1171,7 +1171,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave4_Support1-GRUHeavies`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave4_Support1-GRUHeavies`)
                         EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -1236,7 +1236,7 @@ WaveSchedule
                         
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant2`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant3`, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -2656,7 +2656,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -2716,7 +2716,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -2822,7 +2822,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support1-Soldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support1-Soldiers`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -2874,7 +2874,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-Pyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-AxtinguisherPyros`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -5319,7 +5319,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -5432,7 +5432,7 @@ WaveSchedule
 				Target BigNet
 				Action RunScriptCode
 				Param "
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
 					  "
 			}
         }
@@ -5479,7 +5479,7 @@ WaveSchedule
 				Target BigNet
 				Action RunScriptCode
 				Param "
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
 					  "
 			}
         }
@@ -5762,6 +5762,7 @@ WaveSchedule
                 ClassIcon pyro_backburner_nys
                 Skill Easy
                 Item "The Backburner"
+				Action Mobber
             }
         }
     }
@@ -6567,7 +6568,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Heavies`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Enable`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -6600,7 +6601,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -6762,7 +6763,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Demoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Soldiers`)
                         EntFire(`arena_redstone_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -6937,7 +6938,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-CarbineSnipers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-CarbineSnipers`)
                         EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -7004,7 +7005,7 @@ WaveSchedule
 
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
-						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
         }
@@ -7464,7 +7465,7 @@ WaveSchedule
 
                     //MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_PlannedObsolescence`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_Foremann`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TheForemann`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -7638,7 +7639,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_electricmine_barrier`, `Close`)
                         EntFire(`backupteleporting`, `Kill`)
-                        EntFire(`player,SetScriptOverlayMaterial,,5,-1`)
+                        EntFire(`player`, `SetScriptOverlayMaterial`, null, 5)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_TheHeavies`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `forthesplashattack`)
@@ -7759,7 +7760,6 @@ WaveSchedule
             TFBot
             {
                 Template ForeMann
-                Action Mobber
             }
             FirstSpawnOutput
             {

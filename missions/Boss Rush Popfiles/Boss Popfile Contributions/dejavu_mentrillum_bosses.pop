@@ -74,8 +74,7 @@ WaveSchedule
 			CustomEyeGlowColor "255 0 0"
 			Tag bot_giant
 			Skill Expert
-			//Health 90000
-			Health 50000
+			Health 40000
 			WeaponRestrictions MeleeOnly
 			Attributes MiniBoss
 			Attributes UseBossHealthBar

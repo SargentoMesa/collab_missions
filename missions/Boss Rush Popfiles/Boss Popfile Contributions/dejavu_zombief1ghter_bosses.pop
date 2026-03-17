@@ -1101,7 +1101,6 @@ WaveSchedule
         // Mechonagher Brothers
         T_TFBot_Chief_Mechonagher1
 		{
-			Action	FetchFlag [$SIGSEGV]
 			ClassIcon	engineer_ranger_spammer_penetrate_hyper
 			Health	30000
 			Name	Mechonagher
@@ -1138,7 +1137,6 @@ WaveSchedule
 		}
 		T_TFBot_Chief_Mechonagher2
 		{
-			Action	FetchFlag [$SIGSEGV]
 			ClassIcon	engineer_ranger_spammer_penetrate_hyper
 			Health	30000
 			Name	Mechonagher

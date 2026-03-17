@@ -6098,8 +6098,9 @@ WaveSchedule
         {
             SpawnTemplate boss
             SpawnTemplate boss_dead_pyro_foremann
-            Template T_TFBot_Giant_Pyro 
+            Class Pyro
             ClassIcon pyro_fireaxe_lite_armored
+            Attributes MiniBoss
             WeaponRestrictions MeleeOnly
             Attributes UseBossHealthBar
             UseMeleeThreatPrioritization 1
@@ -6130,12 +6131,14 @@ WaveSchedule
                 "charge time increased" 2
                 "damage force reduction" 0.1
                 "move speed bonus" 0.5
+                "airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
                 "cannot pick up intelligence" 1
                 "displace touched enemies" 1
             }
             ItemAttributes
             {
-                ItemName tf_weapon_fireaxe
+                ItemName TF_WEAPON_FIREAXE
             }
             Item "The Bird-Man of Aberdeen"
             ItemModel
@@ -7186,7 +7189,7 @@ WaveSchedule
             ClassIcon 	soldier_gib_jumper_lite
             Class	Soldier
             Name	"Larry" 
-            Health 10000
+            Health 25000
             Attributes UseBossHealthBar
             Skill	Expert
             MaxVisionRange	1300
