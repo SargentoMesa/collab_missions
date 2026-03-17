@@ -7274,15 +7274,30 @@ WaveSchedule
         // Private Mannpower
         GiantHasteHeavyMiniboss
 		{
-			Template	T_TFBot_Giant_Heavyweapons
+			Class Heavy
 			ClassIcon	heavy_hyper
 			Health	40000
 			Scale	1.8
 			Attributes	UseBossHealthBar
+            Skill Expert
+            MaxVisionRange 1200
 			Attributes	MiniBoss
 			WeaponRestrictions	MeleeOnly
 			Name	"Private Mannpower"
             ExtAttr IgnoreBuildings
+
+            CharacterAttributes
+			{
+				"move speed penalty" 0.5
+				"damage force reduction" 0.3
+				"airblast vulnerability multiplier" 0.3
+				"override footstep sound set" 2
+			}
+            ItemAttributes
+			{
+				ItemName "TF_WEAPON_MINIGUN"
+				"damage bonus"	1.5
+			}
 			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
 			{
 				Delay 0 //Time before the first bot attribute change (Default: 10)
@@ -7388,8 +7403,12 @@ WaveSchedule
         {
             Name	"Private Seeker"
             Health	40000
-            Template	T_TFBot_Giant_Soldier_SlowBarrage
+            Class Soldier
             ClassIcon 	soldier_barrage_homing_nys_giant
+            Skill Expert
+			Attributes MiniBoss
+			Attributes HoldFireUntilFullReload
+			WeaponRestrictions PrimaryOnly
             Attributes	UseBossHealthBar
             UseHumanAnimations 1
             Item "The Spook Specs"
@@ -7398,14 +7417,24 @@ WaveSchedule
             ExtAttr IgnoreBuildings
             CharacterAttributes
             {
+                "move speed penalty" 0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"airblast vertical vulnerability multiplier" 0.1
+				"override footstep sound set" 3
                 "displace touched enemies" 1
             }
             ItemAttributes
             {
-                ItemName "tf_weapon_rocketlauncher"
+                ItemName "TF_WEAPON_ROCKETLAUNCHER"
                 "projectile spread angle penalty" 60
                 "projectile trail particle" eyeboss_projectile
                 "damage bonus" 1.5
+                "fire rate bonus" 0.2
+				"faster reload rate" 0.22
+				"clip size upgrade atomic" 26.0
+				"projectile speed decreased" 0.4
+				"projectile spread angle penalty" 5
             }
             AddCond
             {
@@ -7434,7 +7463,10 @@ WaveSchedule
             ClassIcon		demo_robot_nys
             Health	12000
             Name	"Fallen Demo Patrol Chief"
-            Template	T_TFBot_Giant_Demo_Burst
+            Class Demoman
+            Attributes MiniBoss
+			Attributes HoldFireUntilFullReload
+			WeaponRestrictions PrimaryOnly
             Attributes	"UseBossHealthBar"
             UseCustomModel	"models\bots\demo_boss\bot_demo_boss_gibby.mdl"
             Action Mobber
@@ -7443,8 +7475,21 @@ WaveSchedule
 
             CharacterAttributes
             {
+                "move speed penalty" 0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 4
                 "displace touched enemies" 1
             }
+            ItemAttributes
+			{
+				ItemName "TF_WEAPON_GRENADELAUNCHER"
+				"faster reload rate" 0.65
+				"fire rate bonus" 0.1
+				"clip size upgrade atomic" 7.0
+				"projectile spread angle penalty" 5
+				"projectile speed increased"	1.1
+			}
         }
         T_TFBot_Heavy_PatrolChief
         {
@@ -7452,18 +7497,32 @@ WaveSchedule
             ClassIcon	heavy_robot_nys
             Health	15000
             Name	"Fallen Heavy Patrol Chief"
+            Skill Expert
+            Attributes MiniBoss
+			WeaponRestrictions PrimaryOnly
             Attributes UseBossHealthBar
-            Template	T_TFBot_Giant_Heavyweapons
+            Class Heavy
             Attributes DisableDodge
             UseCustomModel "models/bots/heavy_boss/bot_heavy_boss_gibby.mdl"
             Tag giant
             Action Mobber
             ExtAttr IgnoreBuildings
+            MaxVisionRange 1200
 
             CharacterAttributes
             {
+                "move speed penalty" 0.5
+				"damage force reduction" 0.3
+				"airblast vulnerability multiplier" 0.3
+				"override footstep sound set" 2
                 "displace touched enemies" 1
             }
+            
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_MINIGUN"
+				"damage bonus"	1.5
+			}
         }
         T_TFBot_Pyro_PatrolChief
         {
@@ -7471,7 +7530,10 @@ WaveSchedule
             Health	12000
             Name	"Fallen Pyro Patrol Chief"
             Scale	2
-            Template	T_TFBot_Giant_Pyro
+            Class Pyro
+            Skill Expert
+            Attributes MiniBoss
+			WeaponRestrictions PrimaryOnly
             Attributes	"UseBossHealthBar"
             UseCustomModel "models\bots\pyro_boss\bot_pyro_boss_gibby.mdl"
             UseBestWeapon 1
@@ -7483,6 +7545,10 @@ WaveSchedule
 
             CharacterAttributes
             {
+                "move speed penalty" 0.5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
                 "displace touched enemies" 1
             }
         }
@@ -7491,7 +7557,8 @@ WaveSchedule
         MiniBoss_SniperWarMachine
         {
             Scale 1.7
-            Template T_TFBot_Sniper
+            Class Sniper
+            MaxVisionRange 2500
             ClassIcon sniper_armored
             Health 20000
             Name "R1-SL War Machine"
