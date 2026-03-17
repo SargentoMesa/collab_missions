@@ -199,13 +199,70 @@ WaveSchedule
                 "displace touched enemies" 1
             }
 
+            // Intro Taunt
             Addcond
             {
                 Index 51
-                Duration 5
+                Duration 3.5
             }
-            EventChangeAttributes
+            Taunt
+            {
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
 
+            // Begin Attack Patterns (This will be the main relay that's called upon for initiating a phase or changing attacks in a phase)
+            FireInput
+            {
+                Target "MasterMechanic_AttackInit"
+                Action Trigger
+                Delay 3.5
+                Repeats 1
+                Cooldown -1
+            }
+
+            EventChangeAttributes
+            {
+                // General EventChangeAttributes
+                MasterMechanic_TankPowered // When he calls a tank in, he gains a vac bubble and becomes highly resistant to damage
+                {
+                    CharacterAttributes
+                    {
+                        "dmg from ranged reduced" 0.1
+                        "dmg from melee increased" 0.1
+                    }
+                }
+                MasterMechanic_Stun // He becomes stunned for 5 seconds when a tank is killed; after this, the attack init is called
+                {
+                    CharacterAttributes
+                    {
+                        "dmg from ranged reduced" 1
+                        "dmg from melee increased" 1
+                    }
+                    Addcond
+                    {
+                        Index 71
+                        Duration 5
+                    }
+                }
+
+                Phase1_RescueRangerShotgun
+                {
+                    Attributes HoldFireUntilFullReload
+                    Item "The Rescue Ranger"
+
+                    ItemAttributes
+                    {
+                        ItemName "The Rescue Ranger"
+
+                        "damage bonus" 1.5
+                        "faster reload rate" 0.6
+                        "projectile spread angle penalty" 5
+                        "mult projectile count" 9
+                    }
+                }
+            }
         }
 
         //// MINI BOSSES ////

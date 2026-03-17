@@ -4264,29 +4264,29 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
+					if (!(`mvm_mind_bloom_playerattributes` in getroottable()))
 					{
 						IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
-                    }
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-                    }
-                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					}
+					if (!(`alternatewaves` in getroottable()))
+					{
+						IncludeScript(`alternatewaves`, getroottable());
+					}
+					if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    if (!(`rangescript_v2` in getroottable()))
-                    {
-                        IncludeScript(`rangescript_v2`, getroottable());
-                    }
+					if (!(`rangescript_v2` in getroottable()))
+					{
+						IncludeScript(`rangescript_v2`, getroottable());
+					}
 
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
@@ -4295,14 +4295,22 @@ WaveSchedule
 					IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
                 	IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
 
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
-                    MindBloomRNG.InitRNGArena();
+                    TankExt.CreateLoopPaths({
+                        tank_mechanic = [
+                            Vector(4769 8431 -483)
+                            Vector(4563 8431 -483)
+                            Vector(4769 8431 -483)
+                        ]
+                    })
 
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
+					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_cliffside_relay`, `Wave11_NemesisMimicry`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_MasterMechanic`);
+					MindBloomRNG.InitRNGArena();
+
+					AlternateWaves.bTrackIcons = false;
+					AlternateWaves.ClearWaveIcons();
 
                     switch (MindBloomRNG.GlobalIndex)
                     {
@@ -4660,7 +4668,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn
+		WaveSpawn // Boss Rocket Tank
 		{
 			Name "Wave11_Boss-RocketTank"
 			WaitForAllSpawned "Wave11_MasterMechanic"
@@ -4670,6 +4678,7 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 25
+			StartDisabled 1
 
 			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
             LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
@@ -4677,8 +4686,82 @@ WaveSchedule
 			Tank
 			{
 				Name "combattank|rocketpod|rocketpod$pingsound|npc/combine_gunship/ping_search.wav"
-				Health 30000
+				Health 20000
 				Speed 0
+				ClassIcon tank_combat_rocket_dual_kai
+				StartingPathTrackNode "tank_mechanic_1"
+			}
+		}
+		WaveSpawn // Boss Minigun Tank
+		{
+			Name "Wave11_Boss-MinigunTank"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+			StartDisabled 1
+
+			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
+            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
+
+			Tank
+			{
+				Name "combattank|minigun|minigun$pingsound|npc/combine_gunship/ping_search.wav"
+				Health 20000
+				Speed 0
+				ClassIcon tank_combat_minigun_dual_kai
+				StartingPathTrackNode "tank_mechanic_1"
+			}
+		}
+		WaveSpawn // Boss Dragon's Fury Tank
+		{
+			Name "Wave11_Boss-DragonFuryTank"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+			StartDisabled 1
+
+			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
+            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
+
+			Tank
+			{
+				Name "combattank|fireball|fireball$pingsound|npc/combine_gunship/ping_search.wav"
+				Health 20000
+				Speed 0
+				ClassIcon tank_combat_dragon_fury_dual_kai
+				StartingPathTrackNode "tank_mechanic_1"
+			}
+		}
+		WaveSpawn // Boss Railgun Tank
+		{
+			Name "Wave11_Boss-RailgunTank"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+			StartDisabled 1
+
+			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
+            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
+
+			Tank
+			{
+				Name "combattank|railgun|railgun$pingsound|npc/combine_gunship/ping_search.wav"
+				Health 20000
+				Speed 0
+				ClassIcon tank_combat_railgun_dual_kai
+				StartingPathTrackNode "tank_mechanic_1"
 			}
 		}
 
