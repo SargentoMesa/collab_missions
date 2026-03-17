@@ -2,6 +2,141 @@ WaveSchedule
 {
     PointTemplates
     {
+        //// MAIN BOSSES ////
+
+        //// MASTER MECHANIC POINTTEMPLATES ////
+        MasterMechanicCoreLogic
+        {
+            // Main Boss Phases
+            logic_relay // Attack Initialiser
+            {
+                "targetname" "MasterMechanic_AttackInit"
+
+                "OnTrigger" "MasterMechanic_Phase1AttackPoolRelay,Trigger,,0,-1"
+                "OnTrigger" "MasterMechanic_Phase2AttackPoolRelay,Trigger,,0,-1"
+                "OnTrigger" "MasterMechanic_Phase3AttackPoolRelay,Trigger,,0,-1"
+            }
+
+            logic_relay // Phase 1 Relay
+            {
+                "targetname" "MasterMechanic_Phase1AttackPoolRelay"
+                "spawnflags" "2"
+
+                "OnTrigger" "MasterMechanic_Phase1AttackPool,PickRandomShuffle,,0,-1"
+            }
+            logic_relay // Phase 2 Relay
+            {
+                "targetname" "MasterMechanic_Phase2AttackPoolRelay"
+                "spawnflags" "2"
+                "startdisabled" "1"
+
+                "OnTrigger" "MasterMechanic_Phase2AttackPool,PickRandomShuffle,,0,-1"
+            }
+            logic_relay // Phase 3 Relay
+            {
+                "targetname" "MasterMechanic_Phase3AttackPoolRelay"
+                "spawnflags" "2"
+                "startdisabled" "1"
+
+                "OnTrigger" "MasterMechanic_Phase3AttackPool,PickRandomShuffle,,0,-1"
+            }
+
+            logic_case // Phase 1 Attack Pool
+            {
+                "targetname" "MasterMechanic_Phase1AttackPool"
+                "OnCase01" "pop_interface,ChangeBotAttributes,MasterMechanic_RescueRangerShotgun,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,MasterMechanic_Capper,0,-1"
+            }
+
+            logic_case // Phase 2 Attack Pool
+            {
+                "targetname" "MasterMechanic_Phase2AttackPool"
+                "OnCase01" "pop_interface,ChangeBotAttributes,MasterMechanic_Pomson,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,MasterMechanic_RescueRangerShotgun,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,MasterMechanic_ShortCircuit,0,-1"
+            }
+
+            logic_case // Phase 3 Attack Pool
+            {
+                "targetname" "MasterMechanic_Phase3AttackPool"
+                "OnCase01" "pop_interface,ChangeBotAttributes,MasterMechanic_Pomson,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,MasterMechanic_ShortCircuit,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,MasterMechanic_NuclearShotgun,0,-1"
+            }
+
+            // Tank Phases
+            logic_relay // Rocket Tank
+            {
+                "targetname" "MasterMechanic_RocketTankPhase"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-RocketTank,0,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
+                "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
+                "OnTrigger" "!activator,$TeleportToEntity,tank_rodeo_target,0.55,-1"
+            }
+
+            logic_relay // Minigun Tank
+            {
+                "targetname" "MasterMechanic_MinigunTankPhase"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-MinigunTank,0,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
+                "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
+                "OnTrigger" "!activator,$TeleportToEntity,tank_rodeo_target,0.55,-1"
+            }
+
+            logic_relay // Railgun Tank
+            {
+                "targetname" "MasterMechanic_RailgunTankPhase"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-RailgunTank,0,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
+                "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
+                "OnTrigger" "!activator,$TeleportToEntity,tank_rodeo_target,0.55,-1"
+            }
+        }
+        MasterMechanicCoreEffects
+        {
+            OnSpawnOutput
+            {
+                Target "MasterMechanic_Shield"
+                Action "SetAttached"
+                Param !self
+            }
+            prop_dynamic_ornament
+            {
+                "targetname" "MasterMechanic_Shield"
+                "model" "models/effects/resist_shield/resist_shield.mdl"
+                "modelscale" "1.5"
+                "skin" "1"
+                "solid" "0"
+
+                "startdisabled" "1"
+            }
+        }
+        MasterMechanicArenaEffects
+        {
+            point_clientcommand
+            {
+                "targetname" "clientcommand"
+            }
+            info_target
+            {
+                "targetname" "tank_rodeo_target"
+                "origin" "-6143 -5249 -512"
+            }
+            env_fade
+            {
+                "targetname" "MasterMechanic_TankSummonFade"
+                "rendercolor" "0 128 255"
+                "renderamt" "192"
+                "duration" "0.5"
+                "spawnflags" "1"
+            }
+        }
+
+        //// MINI BOSSES ////
+
         //// DECIMATOR POINTTEMPLATES ////
         DecimatorRocketRain
         {
@@ -181,9 +316,8 @@ WaveSchedule
 
             UseHumanAnimations 1
 
-            Item "The Rescue Ranger"
-            Item "The Wrangler"
-            Item "The Eureka Effect"
+            SpawnTemplate MasterMechanicCoreLogic
+            SpawnTemplate MasterMechanicCoreEffects
 
             Item "Beep Man"
             Item "The Beep Boy"
@@ -203,10 +337,19 @@ WaveSchedule
             Addcond
             {
                 Index 51
-                Duration 3.5
+                Duration 5
             }
             Taunt
             {
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            FireInput
+            {
+                Target tf_gamerules
+                Action PlayVO
+                Param vo/mvm/norm/engineer_mvm_gunslingertriplepunchfinal01.mp3
                 Delay 0.1
                 Repeats 1
                 Cooldown -1
@@ -222,15 +365,272 @@ WaveSchedule
                 Cooldown -1
             }
 
+            // Rocket Tank
+            ChangeAttributes
+            {
+                Name "MasterMechanic_RocketTankSummonBegin"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 35001
+            }
+
+            // Minigun Tank
+            ChangeAttributes
+            {
+                Name "MasterMechanic_MinigunTankSummonBegin"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 25001
+            }
+
+            // Phase 2 Init
+            FireInput
+            {
+                Target "MasterMechanic_Phase1AttackPoolRelay"
+                Action "Disable"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 25001
+            }
+            FireInput
+            {
+                Target "MasterMechanic_Phase2AttackPoolRelay"
+                Action "Enable"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 25001
+            }
+
+            // Railgun Tank
+            ChangeAttributes
+            {
+                Name "MasterMechanic_RailgunTankSummonBegin"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 15001
+            }
+
+            // Phase 3 Init
+            FireInput
+            {
+                Target "MasterMechanic_Phase2AttackPoolRelay"
+                Action "Disable"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 15001
+            }
+            FireInput
+            {
+                Target "MasterMechanic_Phase3AttackPoolRelay"
+                Action "Enable"
+                Delay -1
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 15001
+            }
+
             EventChangeAttributes
             {
                 // General EventChangeAttributes
+                MasterMechanic_RocketTankSummonBegin // Interrupt actions to the middle of the arena while having some damage resistance
+                {
+                    Item "The Eureka Effect"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 2
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-6143 -5249 -712"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                        Distance 64
+                        Duration 0.1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "MasterMechanic_RocketTankSummonReal"
+                    }
+                }
+                MasterMechanic_RocketTankSummonReal
+                {
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 0.001
+                        "no_attack" 1
+                        "no_jump" 1
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    ClientCommand
+                    {
+                        Name "eureka_teleport 1"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_RocketTankPhase"
+                        Action "Trigger"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                MasterMechanic_MinigunTankSummonBegin // Interrupt actions to the middle of the arena while having some damage resistance
+                {
+                    Item "The Eureka Effect"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 2
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-6143 -5249 -712"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                        Distance 64
+                        Duration 0.1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "MasterMechanic_MinigunTankSummonReal"
+                    }
+                }
+                MasterMechanic_MinigunTankSummonReal
+                {
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 0.001
+                        "no_attack" 1
+                        "no_jump" 1
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    ClientCommand
+                    {
+                        Name "eureka_teleport 1"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_MinigunTankPhase"
+                        Action "Trigger"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                MasterMechanic_RailgunTankSummonBegin // Interrupt actions to the middle of the arena while having some damage resistance
+                {
+                    Item "The Eureka Effect"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 2
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-6143 -5249 -712"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                        Distance 64
+                        Duration 0.1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "MasterMechanic_RailgunTankSummonReal"
+                    }
+                }
+                MasterMechanic_RailgunTankSummonReal
+                {
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed bonus" 0.001
+                        "no_attack" 1
+                        "no_jump" 1
+                        "dmg from ranged reduced" 0.25
+                        "dmg from melee increased" 0.25
+                    }
+
+                    ClientCommand
+                    {
+                        Name "eureka_teleport 1"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_RailgunTankPhase"
+                        Action "Trigger"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
                 MasterMechanic_TankPowered // When he calls a tank in, he gains a vac bubble and becomes highly resistant to damage
                 {
+                    Item "The Wrangler"
+                    WeaponRestrictions SecondaryOnly
+
                     CharacterAttributes
                     {
                         "dmg from ranged reduced" 0.1
                         "dmg from melee increased" 0.1
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-6143 -5249 -712"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_Shield"
+                        Action "Enable"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
                     }
                 }
                 MasterMechanic_Stun // He becomes stunned for 5 seconds when a tank is killed; after this, the attack init is called
@@ -245,12 +645,32 @@ WaveSchedule
                         Index 71
                         Duration 5
                     }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_Shield"
+                        Action "Disable"
+                        Delay 0.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action Trigger
+                        Delay 6
+                        Repeats 1
+                        Cooldown -1
+                    }
                 }
 
-                Phase1_RescueRangerShotgun
+                // Phase 1 Attack Pool
+                MasterMechanic_RescueRangerShotgun
                 {
-                    Attributes HoldFireUntilFullReload
                     Item "The Rescue Ranger"
+                    Attributes HoldFireUntilFullReload
+                    WeaponRestrictions PrimaryOnly
 
                     ItemAttributes
                     {
@@ -260,6 +680,222 @@ WaveSchedule
                         "faster reload rate" 0.6
                         "projectile spread angle penalty" 5
                         "mult projectile count" 9
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action "Trigger"
+                        Delay 8
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                MasterMechanic_Capper
+                {
+                    Item "The C.A.P.P.E.R"
+                    WeaponRestrictions SecondaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The C.A.P.P.E.R"
+
+                        "damage bonus" 1.25
+                        "fire rate bonus" 1.25
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action "Trigger"
+                        Delay 8
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                // Phase 2 Attack Pool
+                MasterMechanic_Pomson
+                {
+                    Item "The Pomson 6000"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Pomson 6000"
+
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.8
+                        "faster reload rate" -1
+                        "clip size bonus upgrade" 50
+                    }
+
+                    ChangeAttributes
+                    {
+                        Name "MasterMechanic_PomsonStage2"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                MasterMechanic_PomsonStage2
+                {
+                    Item "The Pomson 6000"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Pomson 6000"
+
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.6
+                        "faster reload rate" -1
+                        "projectile speed increased" 1.2
+                        "particle color rgb" 33023
+                        "clip size bonus upgrade" 50
+                    }
+
+                    ChangeAttributes
+                    {
+                        Name "MasterMechanic_PomsonStage3"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                MasterMechanic_PomsonStage3
+                {
+                    Item "The Pomson 6000"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Pomson 6000"
+
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.4
+                        "faster reload rate" -1
+                        "projectile speed increased" 1.4
+                        "particle color rgb" 16744448
+                        "clip size bonus upgrade" 50
+                    }
+
+                    ChangeAttributes
+                    {
+                        Name "MasterMechanic_PomsonStage4"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                MasterMechanic_PomsonStage4
+                {
+                    Item "The Pomson 6000"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Pomson 6000"
+
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.2
+                        "faster reload rate" -1
+                        "projectile speed increased" 1.6
+                        "particle color rgb" 16776960
+                        "clip size bonus upgrade" 50
+                    }
+
+                    ChangeAttributes
+                    {
+                        Name "MasterMechanic_PomsonStage5"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                MasterMechanic_PomsonStage5
+                {
+                    Item "The Pomson 6000"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Pomson 6000"
+
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.1
+                        "faster reload rate" -1
+                        "projectile speed increased" 2
+                        "particle color rgb" 16777215
+                        "clip size bonus upgrade" 50
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action Trigger
+                        Delay 4
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                MasterMechanic_ShortCircuit
+                {
+                    Item "TF_WEAPON_PISTOL"
+                    WeaponRestrictions SecondaryOnly
+                    Attributes AlwaysFireWeapon
+
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_PISTOL"
+                        "custom item model" "models/weapons/c_models/c_dex_arm/c_dex_arm.mdl"
+                        "custom weapon fire sound" "Weapon_BarretsArm.Shot"
+                        "damage bonus" 1.25
+                        "clip size bonus" 50
+                        "override projectile type extra" "mechanicalarmorb"
+                        "spread angle pattern" "0 0 0 | 0 15 0 | 0 30 0 | 0 45 0 | 0 60 0 | 0 75 0 | 0 90 0 | 0 105 0 | 0 120 0 | 0 135 0 | 0 150 0 | 0 165 0 | 0 180 0 | 0 195 0 | 0 210 0 | 0 225 0 | 0 240 0 | 0 255 0 | 0 270 0 | 0 285 0 | 0 300 0 | 0 315 0 | 0 330 0 | 0 345 0"
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action Trigger
+                        Delay 8
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                // Phase 3 Attack Pool
+                MasterMechanic_NuclearShotgun
+                {
+                    Item "Panic Attack Shotgun"
+                    WeaponRestrictions PrimaryOnly
+                    Attributes HoldFireUntilFullReload
+
+                    ItemAttributes
+                    {
+                        ItemName "Panic Attack Shotgun"
+
+                        "damage bonus" 15
+                        "fire rate bonus" 2
+                        "faster reload rate" 0.2
+                        "override projectile type" 12
+                        "mult projectile count" 15
+                        "ignores other projectiles" 1
+                        "projectile spread angle penalty" 3
+                        "projectile acceleration" 50000
+                        "projectile acceleration start time" 2
+                    }
+
+                    FireInput
+                    {
+                        Target "MasterMechanic_AttackInit"
+                        Action Trigger
+                        Delay 8
+                        Repeats 1
+                        Cooldown -1
                     }
                 }
             }

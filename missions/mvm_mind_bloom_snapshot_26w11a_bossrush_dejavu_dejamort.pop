@@ -56,6 +56,8 @@ WaveSchedule
 
     // Sound Precaches 
     PrecacheSound "mainbosstheme1.mp3"
+	PrecacheSound "expert_boss_theme.mp3"
+	PrecacheSound "boss_incoming.wav"
 
     PrecacheSound "mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/internal_struggle.wav"
@@ -369,6 +371,7 @@ WaveSchedule
                     }
 					
 					PrecacheSound(`#mainbosstheme1.mp3`);
+					PrecacheSound(`#expert_boss_theme.mp3`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
@@ -414,6 +417,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -587,6 +591,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -768,6 +773,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -1023,7 +1029,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support-Demoknights`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Demomen`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Demoknights`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
         }
@@ -1125,6 +1131,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -1164,6 +1171,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave4_Support1-GRUHeavies`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave4_Support1-GRUHeavies`)
                         EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -1228,6 +1236,7 @@ WaveSchedule
                         
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant2`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant3`, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -1454,6 +1463,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -1841,6 +1851,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -2307,6 +2318,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -2600,6 +2612,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -2643,6 +2656,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -2702,6 +2716,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -2807,6 +2822,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support1-Soldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support1-Soldiers`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -2858,6 +2874,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-Pyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-AxtinguisherPyros`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -3057,6 +3074,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BlackBoxes`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave8_Support-BlackBoxes`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -3342,6 +3360,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -3388,7 +3407,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-Heavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-BackScratcherPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-ConchSoldiers`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 5)
                       "
             }
         }
@@ -3823,6 +3842,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -4290,18 +4310,23 @@ WaveSchedule
 
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
-					IncludeScript(`tankextensions/combattank_weapons/fireball`, getroottable())
 					IncludeScript(`tankextensions/combattank_weapons/minigun`, getroottable())
 					IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
-                	IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
+					IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
 
-                    TankExt.CreateLoopPaths({
-                        tank_mechanic = [
-                            Vector(4769 8431 -483)
-                            Vector(4563 8431 -483)
-                            Vector(4769 8431 -483)
-                        ]
-                    })
+					TankExt.CreateLoopPaths({
+						tank_mechanic = [
+							Vector(-6143, -5249, -612)
+							Vector(-6400, -5249, -612)
+							Vector(-7000, -5249, -612)
+							Vector(-6143, -5249, -612)
+						]
+					})
+
+					TankExt.SetValueOverrides({
+						COMBATTANK_ROTATE_SPEED_DEFAULT = 0.8   // default: 0.8
+						COMBATTANK_MAX_RANGE = 2000            // default: 1400
+					})
 
 					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave11_ChaosSurge`);
 					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave11_ColonelConduit`);
@@ -4312,44 +4337,49 @@ WaveSchedule
 					AlternateWaves.bTrackIcons = false;
 					AlternateWaves.ClearWaveIcons();
 
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`pyro_hyper_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }                     
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_stun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                        case 2:
-                        {
-                           AlternateWaves.AddWaveIcons([
-                                [`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS],
+					switch (MindBloomRNG.GlobalIndex)
+					{
+						case 0:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`pyro_hyper_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demo`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}                     
+						case 1:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`engineer_hyper`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_stun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+						case 2:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`tf2_lite_shadeless`, 1, MVM_CLASS_FLAG_MINIBOSS],
 								[`soldier_mangler_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
 								[`sniper_bow`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                        case 3:
-                        {
-                           	AlternateWaves.AddWaveIcons([
-                                [`engineer_beepboy`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                            ])
-                            break;
-                        }
-                    }
+							])
+							break;
+						}
+						case 3:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`engineer_beepboy`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_rocket_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_minigun_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_railgun_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_bison`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`engineer_pomson_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+					}
                   "
         }
         StartWaveOutput
@@ -4382,8 +4412,6 @@ WaveSchedule
                             ])
                             break;
                         }
-                        //case 2:
-                        //{
                         case 2:
                         {
                            AlternateWaves.AddWaveIcons([
@@ -4393,13 +4421,18 @@ WaveSchedule
                             ])
                             break;
                         }
-                        //case 3:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //        [``, 1, MVM_CLASS_FLAG_MINIBOSS]
-                        //    ])
-                        //    break;
-                        //}
+						case 3:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`engineer_beepboy`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_rocket_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_minigun_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`tank_combat_railgun_dual_kai`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_bison`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`engineer_pomson_v2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
                     }
 
                     MindBloomRNG.StartRNGArena();
@@ -4432,6 +4465,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -4476,7 +4510,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Heavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Heavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 6)
                       "
             }
         }
@@ -4564,7 +4598,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Soldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Sandmen`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 3)
                       "
             }
         }
@@ -4644,7 +4678,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.5
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 75
 
 			TFBot
 			{
@@ -4656,6 +4690,8 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
+						EntFire(`mastermechanicarenaeffects`, `ForceSpawn`);
+						EntFire(`arena_spyfactory_boss_teleporter_relay`, `Disable`, 3)
                       "
             }
 			DoneOutput
@@ -4663,6 +4699,10 @@ WaveSchedule
 				Target BigNet
 				Action RunScriptCode
 				Param "
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-BisonSoldiers`)
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-PomsonEngineers`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-BisonSoldiers`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-PomsonEngineers`)
 						EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
 					  "
 			}
@@ -4681,7 +4721,6 @@ WaveSchedule
 			StartDisabled 1
 
 			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
-            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
 
 			Tank
 			{
@@ -4690,6 +4729,12 @@ WaveSchedule
 				Speed 0
 				ClassIcon tank_combat_rocket_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
+			}
+			DoneOutput
+			{
+				Target pop_interface
+				Action ChangeBotAttributes
+				Param MasterMechanic_Stun
 			}
 		}
 		WaveSpawn // Boss Minigun Tank
@@ -4705,7 +4750,6 @@ WaveSchedule
 			StartDisabled 1
 
 			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
-            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
 
 			Tank
 			{
@@ -4715,29 +4759,11 @@ WaveSchedule
 				ClassIcon tank_combat_minigun_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
 			}
-		}
-		WaveSpawn // Boss Dragon's Fury Tank
-		{
-			Name "Wave11_Boss-DragonFuryTank"
-			WaitForAllSpawned "Wave11_MasterMechanic"
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 25
-			StartDisabled 1
-
-			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
-            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
-
-			Tank
+			DoneOutput
 			{
-				Name "combattank|fireball|fireball$pingsound|npc/combine_gunship/ping_search.wav"
-				Health 20000
-				Speed 0
-				ClassIcon tank_combat_dragon_fury_dual_kai
-				StartingPathTrackNode "tank_mechanic_1"
+				Target pop_interface
+				Action ChangeBotAttributes
+				Param MasterMechanic_Stun
 			}
 		}
 		WaveSpawn // Boss Railgun Tank
@@ -4753,7 +4779,6 @@ WaveSchedule
 			StartDisabled 1
 
 			FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
-            LastSpawnWarningSound "ambient/alarms/manhack_alert_pass1.wav"
 
 			Tank
 			{
@@ -4762,6 +4787,61 @@ WaveSchedule
 				Speed 0
 				ClassIcon tank_combat_railgun_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
+			}
+			DoneOutput
+			{
+				Target pop_interface
+				Action ChangeBotAttributes
+				Param MasterMechanic_Stun
+			}
+		}
+
+		WaveSpawn // Support Bison Soldiers
+		{
+			Name "Wave11_Support-BisonSoldiers"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			Where spawnbot_support
+			Support 1
+			TotalCount 75
+			MaxActive 5
+			SpawnCount 2
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 8
+			TotalCurrency 75
+
+			TFBot
+			{
+				Name "Bison Soldier"
+				Class Soldier
+				Skill Normal
+				ClassIcon soldier_bison
+				Item "The Righteous Bison"
+				WeaponRestrictions SecondaryOnly
+				Action Mobber
+			}
+		}
+		WaveSpawn // Support Pomson Engineers
+		{
+			Name "Wave11_Support-PomsonEngineers"
+			WaitForAllSpawned "Wave11_MasterMechanic"
+			Where spawnbot_support
+			Support 1
+			TotalCount 75
+			MaxActive 3
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 3
+			TotalCurrency 75
+
+			TFBot
+			{
+				Name "Pomson Engineer"
+				Class Engineer
+				Skill Normal
+				ClassIcon engineer_pomson_v2
+				Item "The Pomson 6000"
+				WeaponRestrictions PrimaryOnly
+				Action Mobber
 			}
 		}
 
@@ -4953,7 +5033,6 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_playerattributes`, getroottable())
                     }
-                    //IncludeScript(`contact_logic_bossrush`, getroottable())
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5068,6 +5147,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -5115,6 +5195,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -5238,6 +5319,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`arena_industrial_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -5345,6 +5427,14 @@ WaveSchedule
                 Target "w7_loop"
                 Action "trigger"
             }
+			DoneOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+					  "
+			}
         }
 
         WaveSpawn // Support Lil UFOs
@@ -5384,6 +5474,14 @@ WaveSchedule
             {
                 Template T_TFBot_Contact_Spy_Miniboss
             }
+			DoneOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
+					  "
+			}
         }
 
         WaveSpawn // Support Subspace Agents
@@ -5534,6 +5632,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -5585,17 +5684,22 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(``);
-
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-Soldiers`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-TomislavHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-BackburnerPyros`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-Soldiers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-TomislavHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-BackburnerPyros`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-Soldiers`)
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-TomislavHeavies`)
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave13_Support-BackburnerPyros`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-Soldiers`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-TomislavHeavies`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave13_Support-BackburnerPyros`)
                       "
             }
         }
+
+		WaveSpawn
+		{
+			Name "Wave13_TonkaDeathAnim"
+			WaitForAllDead "Wave13_Boss-SovietTonkaWeapons"
+			WaitBeforeStarting 5
+		}
 
         WaveSpawn // Support Soldiers
         {
@@ -5743,6 +5847,7 @@ WaveSchedule
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         EntFire(`arena_rancher_boss_spawn_relay`, `Disable`)
                         EntFire(`arena_rancher_boss_teleporter_relay`, `Disable`)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -5869,6 +5974,13 @@ WaveSchedule
                 Template T_TFBot_Contact_Ironstar_Phase2
             }
         }
+
+		WaveSpawn
+		{
+			Name "Wave13_IronStarDeathAnim"
+			WaitForAllDead "Wave14_Boss-IronstarPhase2"
+			WaitBeforeStarting 5
+		}
     }
 
     // EXPERT GAUNTLET //
@@ -6285,6 +6397,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -6454,6 +6567,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Heavies`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Enable`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -6486,6 +6600,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GBurstSoldier`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GSteelGauntlet`)
                         EntFire(`arena_electricmine_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -6647,6 +6762,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Demoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-Soldiers`)
                         EntFire(`arena_redstone_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -6821,6 +6937,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-CarbineSnipers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-CarbineSnipers`)
                         EntFire(`arena_terrorlict_boss_spawn_relay`, `Trigger`, null, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -6887,6 +7004,7 @@ WaveSchedule
 
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, null, 2.5)
                       "
             }
         }
@@ -7067,7 +7185,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
                       "
             }
             DoneOutput
@@ -7077,7 +7195,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesSoldiers`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
         }
@@ -7204,6 +7322,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -7230,7 +7349,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
                       "
             }
         }
@@ -7460,6 +7579,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -7508,7 +7628,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
                       "
             }
             DoneOutput
@@ -7525,7 +7645,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_TheHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 10)
                       "
             }
         }
@@ -7646,7 +7766,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
                       "
             }
             DoneOutput
@@ -7660,7 +7780,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SteelGauntlets`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SuperScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 6)
                       "
             }
         }
@@ -7812,6 +7932,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -7837,9 +7958,20 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
                       "
             }
+			DoneOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-Soldiers`)
+						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-Soldiers`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
+					  "
+			}
         }
         WaveSpawn // Tank # HP
         {
@@ -7875,6 +8007,13 @@ WaveSchedule
                 }
             }
         }
+
+		WaveSpawn
+		{
+			Name "Wave20_DaveDead"
+			WaitForAllDead "Wave19_Boss-OverclockedDaveReborn"
+			WaitBeforeStarting 10
+		}
         WaveSpawn // Support Soldiers
         {
             Name "Wave19_Support-Soldiers"
