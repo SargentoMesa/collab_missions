@@ -6212,6 +6212,7 @@ WaveSchedule
 		{
 			Name "Wave15_Support-Demomen"
 			Where spawnbot_support
+			Support 1
 			TotalCount 50
 			MaxActive 2
 			SpawnCount 1
@@ -6234,7 +6235,7 @@ WaveSchedule
 			TotalCount 25
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 25
+			WaitBeforeStarting 30
 			WaitBetweenSpawns 20
 			TotalCurrency 25
 
@@ -6251,7 +6252,7 @@ WaveSchedule
 			TotalCount 25
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 25
+			WaitBeforeStarting 30
 			WaitBetweenSpawns 20
 			TotalCurrency 25
 

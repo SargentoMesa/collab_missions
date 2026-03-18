@@ -3596,7 +3596,7 @@ WaveSchedule
 				"solid" "6"
                 "angles" "0 -70 0"
 				"origin" "-6205 -5305 -424"
-                "modelscale" 1.75
+                "modelscale" "1.75"
                 "startdisabled" "1"
 			}
             logic_relay
