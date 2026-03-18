@@ -350,6 +350,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
+                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
 
@@ -533,9 +534,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
-
-
 
                     if (!(`music_system_ment` in getroottable()))
 					{
@@ -640,6 +640,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -806,7 +807,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support-BatScouts`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Soldiers`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-BatScouts`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -1015,7 +1016,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support-Demoknights`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Demomen`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Demoknights`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 2)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
         }
@@ -1067,8 +1068,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
-
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -1324,7 +1325,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1547,7 +1548,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -1708,7 +1709,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -1784,8 +1785,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param " 
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
-
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -2179,7 +2180,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2337,7 +2338,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave7_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-Scouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-FlarePyros`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -2422,7 +2423,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave7_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-ClaymoreKnights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-Demomen`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -2478,7 +2479,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2749,7 +2750,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -2920,7 +2921,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support3-BurstDemos`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support3-Demoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support3-BurstDemos`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -3182,7 +3183,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BlackBoxes`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BatsaberScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BatsaberScouts`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -3194,7 +3195,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -3375,7 +3376,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-Heavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-BackScratcherPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-ConchSoldiers`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 5)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 5)
                       "
             }
         }
@@ -3506,7 +3507,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -3590,7 +3591,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave9_Support-GRUHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-Scouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-GRUHeavies`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -3642,6 +3643,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -3858,7 +3860,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DeflectorHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -3980,7 +3982,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BackburnerPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BatScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BackburnerPyros`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -4069,7 +4071,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-WidowmakerEngineers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -4193,7 +4195,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-KGBHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-SodaScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-KGBHeavies`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -4248,6 +4250,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -4470,7 +4473,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Heavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Heavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 6)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 6)
                       "
             }
         }
@@ -4558,7 +4561,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Soldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Sandmen`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 3)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 3)
                       "
             }
         }
@@ -4663,7 +4666,7 @@ WaveSchedule
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-PomsonEngineers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-BisonSoldiers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-PomsonEngineers`)
-						`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+						EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
 					  "
 			}
 		}
@@ -4934,7 +4937,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Bowmen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-ManglerSoldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Bowmen`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -4989,7 +4992,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5315,7 +5318,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-Demomen`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -5512,7 +5515,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-LilUFOs`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-SubspaceAgents`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-SubspaceAgents`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -5524,8 +5527,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
-
 
                     if (!(`mvm_meltdown_red_world` in getroottable()))
                     {
@@ -5727,8 +5730,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
-
 
                     if (!(`music_system_ment` in getroottable()))
                     {
@@ -5944,9 +5947,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
-
-
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6000,8 +6002,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
-
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -6161,6 +6163,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -6609,7 +6612,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ConchPunchies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ConchPunchies`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -6769,7 +6772,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-PersianDemoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GlockDemos`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-PersianDemoknights`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -7089,7 +7092,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
@@ -7132,7 +7135,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesSoldiers`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 2)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
         }
@@ -7185,8 +7188,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
-
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -7338,35 +7341,6 @@ WaveSchedule
                 Template T_TFBot_MajorCatastrophe_Boss_Minion
             }
         }
-
-        WaveSpawn
-        {
-            Name "Wave18_BazooksDuoCheck"
-            WaitForAllDead "Wave18_Boss-CaptainPunch"
-        }
-        WaveSpawn
-        {
-            Name "Wave18_BazooksDuoCheck"
-            WaitForAllDead "Wave18_Boss-MajorCatastrophe"
-        }
-        WaveSpawn
-        {
-            Name "Wave18_BazooksDuoComplete"
-            WaitForAllSpawned "Wave18_BazooksDuoCheck"
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-BabyPunches`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-LittleBombers`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-BabyPunches`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-LittleBombers`)
-                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
-                      "
-            }
-        }
     }
     Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence OR The Foremann
     {
@@ -7375,7 +7349,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -7572,7 +7546,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_TheHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 10)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 10)
                       "
             }
         }
@@ -7706,7 +7680,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SteelGauntlets`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SuperScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`, null, 6)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 6)
                       "
             }
         }
@@ -7777,8 +7751,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
-
 
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
@@ -7891,6 +7865,7 @@ WaveSchedule
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-Soldiers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 12)
 					  "
 			}
         }
@@ -7984,6 +7959,7 @@ WaveSchedule
 			Target BigNet
 			Action RunScriptCode
 			Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -8040,6 +8016,7 @@ WaveSchedule
 			Target BigNet
 			Action RunScriptCode
 			Param "
+					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
