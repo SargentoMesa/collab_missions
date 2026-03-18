@@ -5264,7 +5264,7 @@ WaveSchedule
                     FireInput
 					{ // this makes the bot move forward in the air
 						Target "pit_hurt_waterfall"
-						Action "disable"
+						Action "enable"
 						Delay 11
 						Repeats 1
 						Cooldown 99
@@ -5300,7 +5300,7 @@ WaveSchedule
 					{ // this makes the bot move forward in the air
 						Target "!self"
 						Action "RunScriptCode"
-						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,8000))"
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,12000))"
 						Delay 5.2
 						Repeats 1
 						Cooldown 99

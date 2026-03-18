@@ -310,6 +310,21 @@ WaveSchedule
 				targetname rider_soundsource
 			}
 		}
+
+		// Obsolescence Extra Trigger Hurt
+		ObsolescenceTriggerHurt
+		{
+			trigger_hurt
+			{
+				"targetname" "pit_hurt_player_waterfall"
+				"origin" "8384 -5184 -1096"
+				"mins" "-1800 -1800 -168"
+				"maxs" "1800 1800 168"
+				"filtername" "filter_redteam"
+				"damage" "999999"
+				"damagetype" "32"
+			}
+		}
     }
 
     //// SPAWNED POINTTEMPLATES ////
@@ -7467,6 +7482,8 @@ WaveSchedule
         }
         
         RedTeamWipeCausesWaveLoss 1
+		
+		SpawnTemplate ObsolescenceTriggerHurt
 
         WaveSpawn
         {
