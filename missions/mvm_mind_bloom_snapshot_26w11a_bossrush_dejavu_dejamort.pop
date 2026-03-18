@@ -28,9 +28,6 @@ WaveSchedule
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
 
-    BonusRatioHalf 2 [$SIGSEGV]
-    BonusRatioFull 2 [$SIGSEGV]
-
     WaveStartCountdown 3
 
     ForceRedMoney 1
@@ -643,7 +640,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -810,7 +806,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave3_Support-BatScouts`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-Soldiers`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave3_Support-BatScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -1551,7 +1547,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -1712,7 +1708,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -2341,7 +2337,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave7_Support-FlarePyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-Scouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-FlarePyros`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -2426,7 +2422,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave7_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-ClaymoreKnights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave7_Support-Demomen`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -2753,7 +2749,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support1-Gauntlet1Pyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support2-Gauntlet1SunScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -2924,7 +2920,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support3-BurstDemos`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support3-Demoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support3-BurstDemos`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -3186,7 +3182,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BlackBoxes`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave8_Support-BatsaberScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave8_Support-BatsaberScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -3510,7 +3506,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -3594,7 +3590,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave9_Support-GRUHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-Scouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-GRUHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -3862,7 +3858,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DeflectorHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BazookaSoldiers`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -3984,7 +3980,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-BackburnerPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BatScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-BackburnerPyros`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -4073,7 +4069,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-WidowmakerEngineers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-DragonFuryPyros`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -4197,7 +4193,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave10_Support-KGBHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-SodaScouts`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave10_Support-KGBHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -4667,7 +4663,7 @@ WaveSchedule
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-PomsonEngineers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-BisonSoldiers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-PomsonEngineers`)
-						EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+						`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
 					  "
 			}
 		}
@@ -4938,7 +4934,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave11_Support-Bowmen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-ManglerSoldiers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave11_Support-Bowmen`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -5319,7 +5315,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-MiniBones`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-Demomen`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-Demomen`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -5516,7 +5512,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-LilUFOs`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-SubspaceAgents`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-SubspaceAgents`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -6613,7 +6609,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ConchPunchies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ConchPunchies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -6773,7 +6769,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-PersianDemoknights`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-GlockDemos`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-PersianDemoknights`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -7093,7 +7089,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DeflectorHeavies`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
@@ -7367,7 +7363,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-LittleBombers`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-BabyPunches`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-LittleBombers`)
-                        EntFire(`pop_interface`, `$FinishWaveNoUnspawnedMoney`)
+                        `tf_gamerules`, `$FinishWaveNoUnspawnedMoney`
                       "
             }
         }
