@@ -3329,10 +3329,624 @@ WaveSchedule
                 "targetname" "shake_boss"
             }
         }
+
+        //// THE FAKE ONE (Shocks I mean) ////
+        bossstuffs
+        {
+            OnSpawnOutput
+            {
+                Target "timetokill*"
+                Delay 5
+                Action TurnOn
+            }
+            OnSpawnOutput
+            {
+                Target "ray*"
+                Delay 10
+                Action TurnOn
+            }
+            prop_dynamic
+            {
+                "targetname" "boss_flavor"
+                "modelscale" "0.3"
+                "angles" "-90 0 -50"
+                "model" "models/props_spytech/raygun003.mdl"
+                "origin" "-10 25 125"
+                "solid" "0"
+            }
+            prop_dynamic
+            {
+                "targetname" "boss_flavor"
+                "modelscale" "0.3"
+                "angles" "-90 0 50"
+                "model" "models/props_spytech/raygun003.mdl"
+                "origin" "-10 -25 125"
+                "solid" "0"
+            }
+            
+            point_tesla
+            {
+                "targetname" "timetokill"
+                "beamcount_max" "3"
+                "beamcount_min" "3"
+                "interval_max" "0.01"
+                "interval_min" "0.01"
+                "lifetime_max" "0.1"
+                "lifetime_min" "0.1"
+                "m_Color" "255 255 255"
+                "m_flRadius" "50"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "-27 -65 240"
+                "parentname" "boss_flavor"
+            }
+            point_tesla
+            {
+                "targetname" "timetokill"
+                "beamcount_max" "3"
+                "beamcount_min" "3"
+                "interval_max" "0.01"
+                "interval_min" "0.01"
+                "lifetime_max" "0.1"
+                "lifetime_min" "0.1"
+                "m_Color" "255 255 255"
+                "m_flRadius" "50"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "-27 65 240"
+                "parentname" "boss_flavor"
+            }
+            point_tesla
+            {
+                "targetname" "phase2transition"
+                "beamcount_max" "3"
+                "beamcount_min" "3"
+                "interval_max" "0.01"
+                "interval_min" "0.01"
+                "lifetime_max" "0.1"
+                "lifetime_min" "0.1"
+                "m_Color" "255 255 255"
+                "m_flRadius" "50"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "-27 -65 240"
+                "parentname" "boss_flavor"
+            }
+            point_tesla
+            {
+                "targetname" "phase2transition"
+                "beamcount_max" "3"
+                "beamcount_min" "3"
+                "interval_max" "0.01"
+                "interval_min" "0.01"
+                "lifetime_max" "0.1"
+                "lifetime_min" "0.1"
+                "m_Color" "255 255 255"
+                "m_flRadius" "50"
+                "m_SoundName" "DoSpark"
+                "texture" "sprites/physbeam.vmt"
+                "thick_max" "10"
+                "thick_min" "4"
+                "origin" "-27 65 240"
+                "parentname" "boss_flavor"
+            }
+
+            logic_case
+            {
+                "targetname" "TemuAttackPool"
+                "OnCase01" "!activator,$ChangeAttributes,TemuBarrage,0,-1"
+                "OnCase02" "!activator,$ChangeAttributes,TemuHoming,0,-1"
+                "OnCase03" "!activator,$ChangeAttributes,TemuNuke,0,-1"
+                "OnCase04" "!activator,$ChangeAttributes,TemuShotty,0,-1"
+                "OnCase05" "!activator,$ChangeAttributes,TemuGroundPound,0,-1"
+            }
+
+            logic_relay
+			{
+				"targetname" "TemuGroundPoundAttack"
+				"OnTrigger"	"!activator,$TauntFromItem,Taunt: Yeti Smash,2,-1"
+				"Ontrigger" "boss_attack_incoming_ground,trigger,,0,-1"
+				"OnTrigger" "haha_boom,enable,,6,-1"
+				"OnTrigger" "haha_boom,disable,,6.1,-1"
+				"OnTrigger" "player,$PlaySoundToSelf,misc\doomsday_missile_explosion.wav,6,-1"
+				"onTrigger"	"die,Start,,6,-1"
+				"onTrigger"	"die,Stop,,6.1,-1"
+				"OnTrigger" "attack_explosion,start,,6,-1"
+				"OnTrigger" "attack_explosion,stop,,8,-1"
+				"OnTrigger"	"getthefuckaway,enable,,2,-1"
+				"OnTrigger"	"getthefuckaway,disable,,6,-1"
+				"OnTrigger" "tf_taunt_prop*,kill,,2,-1"
+				"OnTrigger" "tf_taunt_prop*,kill,,2.1,-1"
+				"OnTrigger" "tf_taunt_prop*,kill,,2.2,-1"
+				"OnTrigger" "tf_taunt_prop*,kill,,2.3,-1"
+				"OnTrigger" "abrawlissurelybrewing,StartShake,,6,-1"
+				"OnTrigger" "popscript,$CreateShockwave,,6,-1"
+				"OnTrigger" "!activator,$AddPlayerAttribute,gesture speed increase|1.35,0,-1"
+			}
+
+            logic_relay
+			{
+				"targetname" "boss_attack_incoming_ground"
+				"OnTrigger" "player,$PlaySoundToSelf,=150|weapons\rescue_ranger_teleport_receive_02.wav,0.5,-1"
+				"OnTrigger" "warning_boss_attack_blue,start,,0.5,-1"
+				"OnTrigger" "warning_boss_attack_blue,stop,,1.5,-1"
+				"Ontrigger" "player,$PlaySoundToSelf,=150|vo\mvm\mght\taunts\soldier_mvm_m_taunts17.mp3,0,-1"
+			}
+
+            info_particle_system
+			{
+				"targetname" "die"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"effect_name" "hammer_bell_ring_shockwave"
+			}
+            info_particle_system
+			{
+				"targetname" "attack_explosion"
+				"origin" "0 0 90"
+				"angles" "0 0 0"
+				"effect_name" "cinefx_goldrush"
+			}
+
+            env_shake
+			{
+				"spawnflags" "1" 
+				"amplitude" "16"
+				"duration" "3"
+				"frequency" "9"
+				"targetname" "abrawlissurelybrewing"
+			}
+
+            prop_dynamic
+			{
+				"model" "models/props_gameplay/cap_square_512.mdl"
+				"targetname" "getthefuckaway"
+				"solid" "6"
+				"skin" "2" //set to 0 for neutral, 1 for red, 2 for blu
+				"origin" "0 0 30"
+				"StartDisabled" 1
+				"modelscale" 2.25
+			}
+
+            trigger_hurt
+			{
+				"targetname" "haha_boom"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"mins" "-600 -600 -8000"
+				"maxs" "600 600 8000"
+				"damagetype" "64"
+				"damage" "2000"
+				"StartDisabled" "1"
+				"spawnflags" "64"
+				"filtername" "redteam"
+			}
+
+            logic_relay
+            {
+                "targetname" "NEEDTHETOILET"
+                
+                "OnTrigger" "pop_interface,$KillWaveSpawn,Wave15_Support-Scouts,0,-1"
+                "OnTrigger" "pop_interface,$KillWaveSpawn,Wave15_Support-DirectHitSoldiers,0,-1"
+                "OnTrigger" "pop_interface,$KillWaveSpawn,Wave15_Support-Demomen,0,-1"
+                "OnTrigger" "pop_interface,$KillWaveSpawn,Wave15_Support-GSoldier,0,-1"
+                "OnTrigger" "pop_interface,$KillWaveSpawn,Wave15_Support-GPyro,0,-1"
+                "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-Scouts,0,-1"
+                "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-DirectHitSoldiers,0,-1"
+                "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-Demomen,0,-1"
+                "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-GSoldier,0,-1"
+                "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-GPyro,0,-1"
+                "OnTrigger" "!activator,$ChangeAttributes,TemuPassive1,0,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_negative_vocalization04.mp3,3,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_jeers10.mp3,6,-1"
+
+                "OnTrigger" "offtothecrystalyougobuddy,Trigger,,10,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_jeers03.mp3,12,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsharp06.mp3,15,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap1.wav,15,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsharp04.mp3,16,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap2.wav,16,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsevere06.mp3,17,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,17,-1"
+                "OnTrigger" "phase2transition,TurnOn,,17,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_paincrticialdeath02.mp3,20,-1"
+                "OnTrigger" "pop_interface,$KillWavespawn,Wave15_Boss-FakeShocks,25,-1"
+            }
+        }
+        yeanobuddynotnow /// Shocks Fakeout
+        {
+            RemoveIfKilled iceshield
+            OnSpawnOutput
+            {
+                Target the_funny_man_3
+                Action "TurnOff"
+            }
+            OnSpawnOutput
+            {
+                Target soldiermdl*
+                Action "TurnOff"
+            }
+            OnSpawnOutput
+            {
+                Target fake_boss_flavor*
+                Action "TurnOff"
+            }
+            info_particle_system
+            {
+                "targetname"   "byebyerussia"
+                "origin"       "-6205 -5305 -424"
+                "effect_name"  "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            prop_dynamic
+			{
+				"TargetName" "iceshield"
+                "parentname" "thecrystalboy"
+				"model" "models\props_moonbase\moon_cube_crystal07.mdl"
+				"renderamt" "200"
+				"rendermode" "1"
+				"solid" "6"
+                "angles" "0 -70 0"
+				"origin" "-6205 -5305 -424"
+                "modelscale" 1.75
+                "startdisabled" "1"
+			}
+            logic_relay
+            {
+                "targetname" "offtothecrystalyougobuddy"
+                "OnTrigger"  "tf_gamerules,playvo,music\hl2_song25_teleporter.mp3,0,1"
+                "OnTrigger"  "iceshield,enable,,25,1"
+                "OnTrigger"  "thecrystalboy,enable,,15,1"
+                "OnTrigger"  "the_funny_man_3,enable,,15,1"
+                "OnTrigger"  "soldiermdl*,turnon,,15,1"
+                "OnTrigger"  "fake_boss_flavor*,turnon,,15,1"
+                "OnTrigger"  "thecrystalboy,disable,,25,1"
+                "OnTrigger"  "iceshield,kill,,37,1"
+                "OnTrigger"  "byebyerussia,start,,29,1"
+                "OnTrigger"  "tf_gamerules,$FinishWave,,36.9,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_10.wav,27,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_09.wav,27,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_07.wav,25,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_10.wav,17,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_09.wav,12,1"
+                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 16, 50000, 0, true)151"
+                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 16, 50000, 0, true)291"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 100, 0.6, 0.1, 1)5-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 100, 0.6, 0.1, 1)8-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 100, 0.6, 0.1, 1)8.8-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 160, 0.6, 0.1, 1)15-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 160, 0.6, 0.1, 1)25-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 160, 0.6, 0.1, 1)36.9-1"
+            }
+            func_rotating
+            {
+                "targetname" "thecrystalboy"
+                "maxspeed"   "90"
+                "origin"     "-6205 -5305 -524"
+                "spawnflags" "81"
+                "fanfriction" "100"
+                "startdisabled" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "the_funny_man_3"
+                "parentname" "thecrystalboy"
+                "origin" "-6205 -5305 -524"
+                "angles" "0 -180 0"
+                "color" "255 255 255"
+                "model" "models\bots\soldier_boss\bot_soldier_boss_gibby.mdl"
+                "modelscale" "2.5"
+                "defaultanim" "dieviolent"
+                "disablebonefollowers" "1"
+                "onanimationbegun" "!self,setanimation,dieviolent,0,-1"
+                "onanimationbegun" "!self,setplaybackrate,0.2,0.1,-1"
+                "OnAnimationBegun" "!selfRunScriptCodeNetProps.SetPropBool(self, `m_bClientSideAnimation`, false); self.SetCycle(0.7)-1-1"
+                "skin" "1"
+            }
+            prop_dynamic_ornament
+            {
+                "targetname" "soldiermdl1"
+                "model" "models\workshop\player\items\soldier\hwn2015_hellmet\hwn2015_hellmet.mdl"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+                "skin" "1"
+                "initialowner" "the_funny_man_3"
+            }
+            prop_dynamic_ornament
+            {
+                "targetname" "soldiermdl3"
+                "model" "models\player\items\heavy\big_jaw.mdl"
+                "StartDisabled" "1"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+                "skin" "1"
+                "initialowner" "the_funny_man_3"
+            }
+            prop_dynamic
+            {
+                "targetname" "fake_boss_flavor"
+                "modelscale" "0.3"
+                "angles" "-270 10 -50"
+                "model" "models/props_spytech/raygun003.mdl"
+                "origin" "-6185 -5285 -338"
+                "solid" "0"
+                "parentname" "the_funny_man_3"
+            }
+            prop_dynamic
+            {
+                "targetname" "fake_boss_flavor"
+                "modelscale" "0.3"
+                "angles" "-210 -10 50"
+                "model" "models/props_spytech/raygun003.mdl"
+                "origin" "-6185 -5325 -408"
+                "solid" "0"
+                "parentname" "the_funny_man_3"
+            }		
+        }
     }
     Templates
     {
         //// MAIN BOSSES ////
+
+        // Major Shocks (from temu)
+        T_TFBot_Shocks_Realnt
+        {
+            Name "Major Shocks (from temu)"
+            Class Soldier
+            ClassIcon soldier_hellmet_lite
+            Skill Expert
+            Health 100000
+            Scale 2.5
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Attributes HoldFireUntilFullReload
+            Attributes DisableDodge
+            Attributes AlwaysCrit
+            ExtAttr IgnoreBuildings
+            Action Mobber
+
+            UseHumanAnimations 1
+            UseMeleeThreatPrioritization 1
+
+            Item "The Direct Hit"
+            Item "The Hellmet"
+            Item "Big Steel Jaw of Summer Fun"
+            Item "Taunt: Yeti Smash"
+
+            SpawnTemplate
+            {
+                Name "bossstuffs"
+                Bone bip_pelvis_0
+            }
+
+            CharacterAttributes
+            {
+                "move speed bonus"	0.5
+                "damage force reduction" 0.4
+                "airblast vulnerability multiplier" 0.4
+                "override footstep sound set" 3
+                "airblast vertical vulnerability multiplier" 0.1
+                "rage giving scale" 0.1
+                "cancel falling damage" 1
+                "always allow taunt" 1
+                "displace touched enemies" 1
+            }
+
+            AddCond
+            {
+                Index 51
+                Duration 3
+            }
+            Taunt
+            {
+                Name "Primary"
+                Delay 1
+                Repeats 1
+                Cooldown -1
+            }
+
+            FireInput
+            {
+                Target "TemuAttackPool"
+                Action PickRandomShuffle
+                Delay 3
+                Repeats 1
+                Cooldown -1
+            }
+
+            FireInput
+            {
+                Target "NEEDTHETOILET"
+                Action Trigger
+                Delay 30
+                Repeats 1
+                Cooldown -1
+            }
+
+            EventChangeAttributes
+            {
+                TemuBarrage
+                {
+                    Item "TF_WEAPON_ROCKETLAUNCHER"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+                        "damage bonus" 1.5
+                        "fire rate bonus" 0.2
+                        "faster reload rate" 0.001
+                        "clip size upgrade atomic" 26
+                        "projectile speed decreased" 0.4
+                        "projectile spread angle penalty" 5
+                    }
+
+                    FireInput
+                    {
+                        Target "TemuAttackPool"
+                        Action PickRandomShuffle
+                        Delay 6
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuHoming
+                {
+                    Item "The Liberty Launcher"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Liberty Launcher"
+
+                        "damage bonus" 1.25
+                        "fire rate bonus" 0.002
+                        "faster reload rate" 0.1
+                        "clip size upgrade atomic" 12
+                        "projectile speed decreased" 0.75
+                        "projectile spread angle penalty" 120
+                        "add cond when active" 36
+                    }
+
+                    HomingRockets
+                    {
+                        IgnoreDisguisedSpies	1
+                        IgnoreStealthedSpies	1
+                        RocketSpeed	0.01
+                        TurnPower	105
+                        MaxAimError	150
+                        AimTime	1.5
+                        Acceleration	30000
+                        AccelerationTime	0.1
+                        AccelerationStartTime	1.5
+                        Gravity	0
+                        FollowCrosshair	0
+                    }
+
+                    FireInput
+                    {
+                        Target "TemuAttackPool"
+                        Action PickRandomShuffle
+                        Delay 6
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuNuke
+                {
+                    Item "The Black Box"
+                    WeaponRestrictions PrimaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "The Black Box"
+                        "damage bonus" 3
+                        "blast radius increased" 2
+                        "fire rate bonus" 2.5
+                        "faster reload rate" 0.001
+                    }
+
+                    FireInput
+                    {
+                        Target "TemuAttackPool"
+                        Action PickRandomShuffle
+                        Delay 6
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuShotty
+                {
+                    Item "TF_WEAPON_SHOTGUN_SOLDIER"
+                    WeaponRestrictions SecondaryOnly
+
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                        "fire rate bonus" 0.1
+                        "faster reload rate" 0.2
+                        "clip size bonus" 2
+                        "auto fires when full" 1
+                        "auto fires full clip" 1
+                    }
+
+                    FireInput
+                    {
+                        Target "TemuAttackPool"
+                        Action PickRandomShuffle
+                        Delay 6
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuGroundPound
+                {
+                    FireInput
+                    {
+                        Target "TemuGroundPoundAttack"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "TemuAttackPool"
+                        Action PickRandomShuffle
+                        Delay 10
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuPassive1
+                {
+                    Attributes IgnoreEnemies
+
+                    Addcond 14
+
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+                    }
+                }
+                TemuPassive2
+                {
+                    Attributes IgnoreEnemies
+
+                    Addcond 14
+
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-6143 -5249 -712"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+                }
+            }
+        }
+
+        // Major Shocks (real)
 
         // Overclocked Dave
         T_TFBot_Heavy_Dave

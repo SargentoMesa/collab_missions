@@ -6132,6 +6132,8 @@ WaveSchedule
         CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
+		SpawnTemplate yeanobuddynotnow
+
         WaveSpawn
         {
             Name "teleporthotfix"
@@ -6147,6 +6149,124 @@ WaveSchedule
                       "
             }
         }
+
+		WaveSpawn // Boss
+		{
+			Name "Wave15_Boss-FakeShocks"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.5
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+
+			TFBot
+			{
+				Template T_TFBot_Shocks_Realnt
+			}
+		}
+
+		WaveSpawn // Support Scouts
+		{
+			Name "Wave15_Support-Scouts"
+			Where spawnbot_support
+			Support 1
+			TotalCount 50
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 4
+			TotalCurrency 50
+			
+			TFBot
+			{
+				Class Scout
+				Skill Normal
+				Action Mobber
+			}
+		}
+		WaveSpawn // Support Direct Hit Soldiers
+		{
+			Name "Wave15_Support-DirectHitSoldiers"
+			Where spawnbot_support
+			Support 1
+			TotalCount 50
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 6
+			TotalCurrency 50
+			
+			TFBot
+			{
+				Name "Direct Hit Soldier"
+				Class Soldier
+				Skill Normal
+				ClassIcon soldier_directhit_lite
+				Item "The Direct Hit"
+				Action Mobber
+			}
+		}
+		WaveSpawn // Support Demomen
+		{
+			Name "Wave15_Support-Demomen"
+			Where spawnbot_support
+			TotalCount 50
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 8
+			TotalCurrency 50
+
+			TFBot
+			{
+				Class Demoman
+				Skill Normal
+				Action Mobber
+			}
+		}
+		WaveSpawn // Support GSoldiers
+		{
+			Name "Wave15_Support-GSoldier"
+			Where spawnbot_support
+			Support 1
+			TotalCount 25
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 25
+			WaitBetweenSpawns 20
+			TotalCurrency 25
+
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier
+			}
+		}
+		WaveSpawn // Support GPyro
+		{
+			Name "Wave15_Support-GPyro"
+			Where spawnbot_support
+			Support 1
+			TotalCount 25
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 25
+			WaitBetweenSpawns 20
+			TotalCurrency 25
+
+			TFBot
+			{
+				Template T_TFBot_Giant_Pyro
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "Wave15_FakeShocksCutscene"
+			WaitForAllSpawned "Wave15_Boss-FakeShocks"
+			WaitBeforeStarting 30
+		}
     }
     Wave // Main Boss - Mercenary Matter
     {
