@@ -28,7 +28,7 @@ WaveSchedule
             "max pipebombs decreased"    -5
             "projectile detonate time" 3.74
             "mult projectile scale" 2
-            "projectile spread angle penalty" 9
+            "projectile spread angle penalty" 10
             "custom kill icon" "megaton"
             "projectile trail particle" "spell_fireball_small_red"
         }
@@ -1141,7 +1141,7 @@ WaveSchedule
             {
                 "targetname" "carreroblancoreferencia"
                 "origin"     "0 0 0"
-                "angles"     "0 0 -180"
+                "angles"     "-180 0 0"
                 "teamnum"    "3"
                 "$weaponname" "drop_the_car"
             }
@@ -3638,11 +3638,11 @@ WaveSchedule
             }
             InterruptAction
             {
-                Target "1052 -25 -97" //"1044 -573 643"  //move target location
-                Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                Target "12384 4807 -1199" //"1044 -573 643"  //move target location
+                Delay 3 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
                 Repeats 0 // How many times should bot do the task in total (Default: 0 - Infinite)
-                Duration 20 // How long should the ai be interrupted
-                Cooldown 20
+                Duration 15 // How long should the ai be interrupted
+                Cooldown 15
                 Distance 0
                 WaitUntilDone 0 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
             }
@@ -4317,8 +4317,8 @@ WaveSchedule
                         Target "carreroblancoreferencia"
                         Action "fireonce"
                         Delay  12.3
-                        Cooldown 0.4
-                        Repeats 2
+                        Cooldown 0.6
+                        Repeats 3
                     }
                     FireInput
                     { // this makes the bot move forward in the air
@@ -4343,7 +4343,7 @@ WaveSchedule
                         Target "player"
                         Action "$PlaySoundToSelf"
                         Param "=140|misc\halloween\spell_meteor_cast.wav"
-                        Delay 5
+                        Delay 11.4
                         Repeats 1
                         Cooldown 99
                     }
@@ -6904,6 +6904,16 @@ WaveSchedule
             Tag bot_giant
             SpawnTemplate hereturns  
             ExtAttr IgnoreBuildings
+            InterruptAction
+            {
+                Target "3558 4183 -815" //"1044 -573 643"  //move target location
+                Delay 5 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
+                Repeats 0 // How many times should bot do the task in total (Default: 0 - Infinite)
+                Duration 15 // How long should the ai be interrupted
+                Cooldown 15
+                Distance 0
+                WaitUntilDone 0 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
+            }
             CharacterAttributes
             {
                 "cannot pick up intelligence" 1

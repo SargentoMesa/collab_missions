@@ -54,7 +54,11 @@ WaveSchedule
     // Sound Precaches 
     PrecacheSound "mainbosstheme1.mp3"
 	PrecacheSound "expert_boss_theme.mp3"
+	PrecacheSound "overprodshowdownv2.mp3"
+	PrecacheSound "launch_sequence_v2.mp3"
 	PrecacheSound "boss_incoming.wav"
+
+	PrecacheSound "combattankphasestart.mp3"
 
     PrecacheSound "mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/internal_struggle.wav"
@@ -365,7 +369,6 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
-                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
 
@@ -381,6 +384,8 @@ WaveSchedule
 					
 					PrecacheSound(`#mainbosstheme1.mp3`);
 					PrecacheSound(`#expert_boss_theme.mp3`);
+					PrecacheSound(`#overprodshowdownv2.mp3`);
+					PrecacheSound(`#launch_sequence_v2.mp3`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
@@ -412,7 +417,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -504,7 +509,7 @@ WaveSchedule
             Name "Wave1_Support-Scouts"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
@@ -524,7 +529,7 @@ WaveSchedule
             Name "Wave1_Support-Pyros"
             Where spawnbot_support
             Support 1
-            TotalCount 150
+            TotalCount 100
             MaxActive 5
             SpawnCount 2
             WaitBeforeStarting 20
@@ -549,7 +554,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
 
                     if (!(`music_system_ment` in getroottable()))
@@ -582,7 +586,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -655,7 +659,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -761,7 +764,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1083,7 +1086,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
 
                     if (!(`claudz_logic_v3` in getroottable()))
@@ -1116,7 +1118,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1340,7 +1342,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1445,7 +1446,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -1799,8 +1800,7 @@ WaveSchedule
         {
             Target BigNet
             Action RunScriptCode
-            Param " 
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
+            Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -1829,7 +1829,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2195,7 +2195,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2293,7 +2292,7 @@ WaveSchedule
                   "
         }
     
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -2494,7 +2493,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2584,7 +2582,7 @@ WaveSchedule
                   "
         }
     
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3210,7 +3208,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -3329,7 +3326,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -3658,7 +3655,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -3808,7 +3804,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -4265,7 +4261,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -4428,7 +4423,7 @@ WaveSchedule
                   "
         }
     
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5007,7 +5002,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5107,7 +5101,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -5542,7 +5536,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
 
                     if (!(`mvm_meltdown_red_world` in getroottable()))
@@ -5589,7 +5582,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
 		WaveSpawn
@@ -5745,7 +5738,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
 
                     if (!(`music_system_ment` in getroottable()))
@@ -5799,7 +5791,7 @@ WaveSchedule
             "damage force reduction" 0.80
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate finalwavesky
@@ -5962,7 +5954,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -5991,7 +5982,7 @@ WaveSchedule
                   "
         }
 
-        
+        CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -6017,7 +6008,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
 
                     if (!(`claudz_logic_v3` in getroottable()))
@@ -6051,6 +6041,8 @@ WaveSchedule
                   "
         }
         
+		CustomWaveNumber 15
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         SpawnTemplate SpecialEffectsFat
@@ -6178,7 +6170,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -6338,6 +6329,8 @@ WaveSchedule
                   "
         }
         
+		CustomWaveNumber 16
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7203,7 +7196,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -7258,6 +7250,8 @@ WaveSchedule
             "stickies detonate stickies" 0
         }
         
+		CustomWaveNumber 17
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7364,7 +7358,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -7483,6 +7476,8 @@ WaveSchedule
                   "
         }
         
+		CustomWaveNumber 18
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 		
 		SpawnTemplate ObsolescenceTriggerHurt
@@ -7679,13 +7674,23 @@ WaveSchedule
             TFBot
             {
                 Template ForeMann
+
+				InterruptAction
+				{
+					Target "8407 -5731 -902"
+					Delay 0
+					Repeats 99999
+					Distance 32
+					Duration 5
+					Cooldown 5
+				}
             }
             FirstSpawnOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
+                        MusicSystemMent.SetMusicTrack(`#overprodshowdownv2.mp3`);
                       "
             }
             DoneOutput
@@ -7770,7 +7775,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
                     EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
 
 					IncludeScript(`tankextensions_main`, getroottable())
@@ -7832,6 +7836,8 @@ WaveSchedule
                   "
         }
         
+		CustomWaveNumber 19
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -7872,7 +7878,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
+                        MusicSystemMent.SetMusicTrack(`#launch_sequence_v2.mp3`);
                       "
             }
 			DoneOutput
@@ -7978,7 +7984,6 @@ WaveSchedule
 			Target BigNet
 			Action RunScriptCode
 			Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -8007,6 +8012,8 @@ WaveSchedule
 				  "
 		}
 
+		CustomWaveNumber 20
+		CustomMaxWaveNumber 0
 		RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
@@ -8028,14 +8035,13 @@ WaveSchedule
 
     // MASTER GAUNTLET //
 
-    Wave // Final Boss - Ouroboros, then Fallen Shocks
+    Wave // Final Boss - Fallen Shocks
     {
 		InitWaveOutput
 		{
 			Target BigNet
 			Action RunScriptCode
 			Param "
-					NetProps.SetPropInt(Entities.FindByClassName(null, `tf_gamerules`), `m_flRestartRoundTime`, 60)
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -8064,9 +8070,9 @@ WaveSchedule
 				  "
 		}
         
+		CustomWaveNumber 0
+		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
-
-		SpawnTemplate OuroborosCoreAppearance
 
         WaveSpawn
 		{
