@@ -1027,7 +1027,7 @@ WaveSchedule
         T_TFChief_General_Bomber
 		{
 			ClassIcon	demo_ibomber
-			Health	20000
+			Health	15000
 			Name	"General Bomber"
 			Class	Demoman
 			Skill	Expert
@@ -1068,7 +1068,7 @@ WaveSchedule
 			ClassIcon	burst_demo_boss
 			Name	"King Burst"
 			Skill	Expert
-			Health	20000
+			Health	15000
 			Item	"The Warsworn Helmet"
 			Item	"The King of Scotland Cape"
 			//Attributes	"AlwaysCrit"

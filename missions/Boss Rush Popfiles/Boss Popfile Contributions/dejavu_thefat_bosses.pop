@@ -584,6 +584,7 @@ WaveSchedule
 
 					"OnTrigger" "music_player_loop,CancelPending,,0,-1"
 					"OnTrigger" "tf_gamerules,$StopVO,tmc_fat_boss_loop.mp3,0,-1"
+					"OnTrigger" "tf_gamerules,$StopVO,tmc_fat_boss_loop.mp3,0.2,-1"
 				}
 		}
 		RocketRocket
@@ -1023,6 +1024,7 @@ WaveSchedule
 
 				"OnTrigger" "@p@behemoth_targetRunScriptCodeCzUtil.KirbyBoss(self, function(){}, `bossbar1.wav`, 1)0.2-1"
 				"OnTrigger" "fat_miniboss2_introtext1,Display,,1,-1"
+				"OnTrigger" "fat_miniboss2_introtext2,Display,,2,-1"
 			}
 		}
 		BehemothPT

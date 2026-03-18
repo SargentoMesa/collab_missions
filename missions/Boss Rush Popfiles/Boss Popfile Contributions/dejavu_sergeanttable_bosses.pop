@@ -1,5 +1,7 @@
 WaveSchedule
 {
+    LuaScriptFile "scripts/shockwave_shields.lua"
+
     CustomWeapon 
     {
         //// MAIN BOSSES ////
@@ -1227,7 +1229,7 @@ WaveSchedule
                 "OnCase02" "pop_interface,ChangeBotAttributes,minigunattack1,0.0,-1"	
                 "OnCase03" "pop_interface,ChangeBotAttributes,kgbphase,0.0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,specialattackjump,0,-1"
-                "OnCase05" "pop_interface,ChangeBotAttributes,fastphase,0,-1"
+                "OnCase05" "pop_interface,ChangeBotAttributes,beepbeepmotherfucker,0,-1"
                 "OnCase06" "pop_interface,ChangeBotAttributes,minigunattack2,0,-1"
                 "OnCase07" "pop_interface,ChangeBotAttributes,beepbeepmotherfucker,0,-1"
             }
@@ -1241,7 +1243,7 @@ WaveSchedule
                 "OnCase05" "pop_interface,ChangeBotAttributes,iwillbombyoulilbro,0,-1"
                 "OnCase06" "pop_interface,ChangeBotAttributes,minigunattack2,0,-1"
                 "OnCase07" "pop_interface,ChangeBotAttributes,ogdaveattack,0,-1"
-                "OnCase08" "pop_interface,ChangeBotAttributes,specialattackjumpphase2,0,-1"
+                "OnCase08" "pop_interface,ChangeBotAttributes,beepbeepmotherfucker,0,-1"
                 "OnCase09" "pop_interface,ChangeBotAttributes,beepbeepmotherfucker,0,-1"
 
             }
@@ -1255,9 +1257,10 @@ WaveSchedule
                 "OnTrigger"  "tf_gamerules,PlayVO,combattankphasestart.mp3,6,1"
                 "OnTrigger"  "tf_gamerules,PlayVO,combattankphasestart.mp3,6,1"
                 "OnTrigger"  "pop_interface,$ResumeWavespawn,getdisablednoob,10,1"
-                "OnTrigger" "tf_gamerules,PlayVO,physics\metal\metal_large_debris2.wav,7.5,1"
-                "OnTrigger" "tf_gamerules,PlayVO,player/fall_damage_indicator.wav,6,1"
-                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 1, 50000, 0, true)7.4-1"
+                "OnTrigger" "tf_gamerules,PlayVO,physics\metal\metal_large_debris2.wav,11.5,1"
+                "OnTrigger" "tf_gamerules,PlayVO,physics\metal\metal_large_debris2.wav,11.5,1"
+                "OnTrigger" "tf_gamerules,PlayVO,player/fall_damage_indicator.wav,10,1"
+                "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 1, 50000, 0, true)11.4-1"
                 "OnTrigger"  "!activator,$AddCond,51,0,1"
                 "OnTrigger"  "!activator,$AddCond,71,0,1"
                 "OnTrigger"  "!activator,$RemoveCond,71,5.1,1"
@@ -2494,12 +2497,12 @@ WaveSchedule
             }
 			logic_relay
 			{
-				"targetname" "justtodisable"
+				"targetname" "thisisfortheforeman"
 				"OnTrigger" "bossattacks,pickrandomshuffle,,0,-1"
 			}
 			logic_relay
 			{
-				"targetname" "justtodisable2"
+				"targetname" "thisisfortheforeman2"
 				"OnTrigger" "bossattacks2,pickrandomshuffle,,0,-1"
 				"startdisabled" "1"
 			}
@@ -2512,9 +2515,9 @@ WaveSchedule
 				"OnTrigger"	"tf_gamerules,PlayVO,vo\mvm\mght\pyro_mvm_m_paincrticialdeath03.mp3,1.8,-1"
 				"OnTrigger"	"tf_gamerules,PlayVO,ambient\explosions\explode_3.wav,0,-1"
 				
-				"OnTrigger" "justtodisable,disable,,0,-1"
-				"OnTrigger" "justtodisable2,enable,,8,-1"
-				"OnTrigger" "justtodisable2,trigger,,10.1,-1"
+				"OnTrigger" "thisisfortheforeman,disable,,0,-1"
+				"OnTrigger" "thisisfortheforeman2,enable,,8,-1"
+				"OnTrigger" "thisisfortheforeman2,trigger,,10.1,-1"
 				"OnTrigger"	"pop_interface,ChangeBotAttributes,intermission,0,-1"
 				"OnTrigger" "@p@boss_thingy,$AddPlayerAttribute,no_attack|1,0.2,-1"
                 "OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_attack,10,-1"
@@ -6316,7 +6319,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6324,7 +6327,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6473,7 +6476,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6481,7 +6484,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6521,7 +6524,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6529,7 +6532,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6584,7 +6587,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6592,7 +6595,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6635,7 +6638,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 3
                         Repeats 99
@@ -6643,7 +6646,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 3
                         Repeats 99
@@ -6719,7 +6722,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6727,7 +6730,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 7
                         Repeats 99
@@ -6792,7 +6795,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 6
                         Repeats 99
@@ -6800,7 +6803,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 6
                         Repeats 99
@@ -6846,7 +6849,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable"
+                        Target "thisisfortheforeman"
                         Action "trigger"
                         Delay 5.1
                         Repeats 99
@@ -6854,7 +6857,7 @@ WaveSchedule
                     }
                     FireInput   
                     {
-                        Target "justtodisable2"
+                        Target "thisisfortheforeman2"
                         Action "trigger"
                         Delay 5.1
                         Repeats 99

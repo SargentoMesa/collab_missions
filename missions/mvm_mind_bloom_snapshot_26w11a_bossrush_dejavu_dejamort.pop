@@ -30,6 +30,8 @@ WaveSchedule
 
     WaveStartCountdown 3
 
+    BodyPartScaleSpeed 10
+
     ForceRedMoney 1
     TextPrintTime 0
 
@@ -174,6 +176,146 @@ WaveSchedule
                 "Filter05"   "filter_is_player"
             }
 
+			func_nobuild
+			{
+				"targetname" "NobuildBogland"
+				"origin" "-3350 4936 -1064"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildBonkplant"
+				"origin" "-676 7856 -576"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildCliffside"
+				"origin" "-4896 9344 -579"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildCoastrock"
+				"origin" "-8224 4880 -1056"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildDesert"
+				"origin" "-288 4528 -688"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildDoppler"
+				"origin" "-12448 8688 -448"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildElectricmine"
+				"origin" "7872 -4544 -764"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildFrostwynd"
+				"origin" "11884 -2176 -919"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildIndustrial"
+				"origin" "3760 8432 -360"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildMeltdown"
+				"origin" "7072 -196 -928"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildNebula"
+				"origin" "192 -8000 -1180"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildRancher"
+				"origin" "-12072 3984 -896"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildRedstone"
+				"origin" "2376 934 -912"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildSaxford"
+				"origin" "4700 4846 -796"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildScallops"
+				"origin" "-4608 416 -352"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildShank"
+				"origin" "12244 9416 -1024"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildSkeleheat"
+				"origin" "-8744 -552 -1188"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildSpyfactory"
+				"origin" "-7144 -6248 -478"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildTerrorlict"
+				"origin" "12480 4032 -868"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
+			func_nobuild
+			{
+				"targetname" "NobuildUnderground"
+				"origin" "-13904 592 -1224"
+				"maxs" "-32 -32 -16"
+				"mins" "32 32 16"
+			}
         }
         BossRushSpecialSpawnLocation
         {
@@ -2723,6 +2865,7 @@ WaveSchedule
                 Name "Sun-Stick Scout"
                 Template T_TFBot_Scout_Melee
                 ClassIcon scout_sunstick_swordstone
+				Action Mobber
 
                 Item "Sun-on-a-Stick"
             }
@@ -3625,6 +3768,7 @@ WaveSchedule
             { 
                 Class Scout
                 Skill Easy
+				Action Mobber
             }
         }
         WaveSpawn // Support GRU Heavies
@@ -3645,6 +3789,7 @@ WaveSchedule
                 Name "Lightweight Champ"
                 Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
                 Skill Hard
+				Action Mobber
             }
         }
     }
@@ -4231,6 +4376,7 @@ WaveSchedule
                 ClassIcon scout_popper2_giant
                 Skill Easy
                 Item "The Soda Popper"
+				Action Mobber
             }
         }
         WaveSpawn // Support KGB Heavies
@@ -4251,6 +4397,7 @@ WaveSchedule
                 Template T_TFBot_Heavyweapons_Heavyweight_Champ
                 Skill Hard
                 Attributes AlwaysCrit
+				Action Mobber
             }
         }
     }
@@ -7271,6 +7418,36 @@ WaveSchedule
             }
         }
 
+		WaveSpawn
+        {
+            Name "Wave18_BazooksDuoSpawns"
+            WaitBeforeStarting 5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_skeleheat_boss_spawn_relay`, `Disable`)
+                      "
+            }
+        }
+        WaveSpawn
+        {
+            Name "Wave18_BazooksDuoSpawns"
+            WaitBeforeStarting 7.5
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_skeleheat5`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_skeleheat2`)
+                      "
+            }
+        }
+
         //// Captain Punch the MDXXVIII & Major Catastrophe ////
         WaveSpawn // Captain Punch
         {
@@ -7287,6 +7464,26 @@ WaveSchedule
             {
                 Template T_TFBot_Heavy_CaptainPunchMDXXVIII
                 Action Mobber
+
+				FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_skeleheat5
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+
+				InterruptAction
+				{
+					Target "-7971 -1926 -1478"
+					Delay 0
+					Repeats 99999
+					Distance 32
+					Duration 5
+					Cooldown 5
+				}
             }
             FirstSpawnOutput
             {
@@ -7313,6 +7510,25 @@ WaveSchedule
             {
                 Template T_TFBot_Demo_Catastrophe
                 Action Mobber
+
+				FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_skeleheat2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+				InterruptAction
+				{
+					Target "-7391 -641 -1482"
+					Delay 0
+					Repeats 99999
+					Distance 32
+					Duration 5
+					Cooldown 5
+				}
             }
         }
 
@@ -7698,12 +7914,12 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-SteelGauntlets`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-FlarePyros`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave18_Support-SuperScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SteelGauntlets`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-FlarePyros`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave18_Support-SuperScouts`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-SteelGauntlets`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-FlarePyros`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-SuperScouts`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-SteelGauntlets`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-FlarePyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-SuperScouts`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 6)
                       "
             }
@@ -7890,7 +8106,7 @@ WaveSchedule
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-Soldiers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
-                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 12)
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 15)
 					  "
 			}
         }
