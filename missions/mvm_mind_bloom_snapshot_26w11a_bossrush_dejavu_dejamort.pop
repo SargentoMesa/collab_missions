@@ -6242,6 +6242,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier
+				Action Mobber
 			}
 		}
 		WaveSpawn // Support GPyro
@@ -6259,6 +6260,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Pyro
+				Action Mobber
 			}
 		}
 
