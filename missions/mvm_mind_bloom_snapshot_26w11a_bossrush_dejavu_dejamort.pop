@@ -7393,7 +7393,9 @@ WaveSchedule
                         //case 0:
                         //{
                         //    AlternateWaves.AddWaveIcons([
-                        //        [`soldier_gib_jumper_lite`, 3, MVM_CLASS_FLAG_MINIBOSS],
+                        //        [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+						//		  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+						//		  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                         //    ])
                         //    break;
                         //}
