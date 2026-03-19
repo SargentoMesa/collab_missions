@@ -3234,23 +3234,24 @@ WaveSchedule
 			{
 				"targetname" "LarryBigShoeStomp"
 
-				"OnTrigger" "BigShoeParticle,Start,,0.5,-1"
-				"OnTrigger" "BigShoeParticle,Stop,,1,-1"
-				"OnTrigger" "BigShoeSound,PlaySound,,0.5,-1"
-				"OnTrigger" "BigShoeSound,StopSound,,1,-1"
-				"OnTrigger" "BigShoeShake,StartShake,,0.5,-1"
-				"OnTrigger" "BigShoeDamage,Enable,,0.51,-1"
-				"OnTrigger" "BigShoeDamage,Disable,,0.52,-1"
-				"OnTrigger" "BigShoeFling,ApplyImpulse,,0.5,-1"
-				"OnTrigger" "larrybigshoelmao,Disable,,1,-1"
-				"OnTrigger" "TheLarryDetector,Disable,,1,-1"
+				"OnTrigger" "BigShoeParticle,Start,,0.25,-1"
+				"OnTrigger" "BigShoeParticle,Stop,,0.5,-1"
+				"OnTrigger" "BigShoeSound,PlaySound,,0.25,-1"
+				"OnTrigger" "BigShoeSound,StopSound,,0.5,-1"
+				"OnTrigger" "BigShoeShake,StartShake,,0.25,-1"
+				"OnTrigger" "BigShoeDamage,Enable,,0.25,-1"
+				"OnTrigger" "BigShoeDamage,Disable,,0.26,-1"
+				"OnTrigger" "BigShoeFling,ApplyImpulse,,0.25,-1"
+				"OnTrigger" "larrybigshoelmao,Disable,,0.5,-1"
+				"OnTrigger" "TheLarryDetector,Disable,,0.5,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Larry_DefaultTrolldier,0.5,-1"
 			}
 			prop_dynamic_ornament
 			{
 				"targetname" "larrybigshoelmao"
 
 				"model" "models/workshop/player/items/soldier/mantreads/mantreads.mdl"
-				"modelscale" "5"
+				"modelscale" "3"
 				"solid" "0"
 				"disablebonefollowers" "1"
 				"disableshadows" "1"
@@ -8166,20 +8167,19 @@ WaveSchedule
 			Addcond
 			{
 				Index 51
-				Duration 5
+				Duration 2.5
 			}
-			Taunt
+			Sequence
 			{
+				Name "taunt01"
 				Delay 0.1
 				Repeats 1
 				Cooldown -1
 			}
-			FireInput
+			Sequence
 			{
-				Target tf_gamerules
-				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_battlecry01.mp3
-				Delay 0.1
+				Name "run_PRIMARY"
+				Delay 2.5
 				Repeats 1
 				Cooldown -1
 			}
@@ -8188,8 +8188,8 @@ WaveSchedule
 			{
 				Target tf_gamerules
 				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_battlecry05.mp3
-				Delay 5
+				Param vo/mvm/norm/soldier_mvm_battlecry01.mp3
+				Delay 0.5
 				Repeats 1
 				Cooldown -1
 			}
@@ -8199,194 +8199,27 @@ WaveSchedule
 				Target !activator
 				Action $ChangeAttributes
 				Param Barry_DefaultTrolldier
-				Delay 5
-				Repeats 1
-				Cooldown -1
-			}
-
-			EventChangeAttributes
-			{
-				Barry_DefaultTrolldier
-				{
-					Item "The Mantreads"
-					Item "The Market Gardener"
-
-					ItemAttributes
-					{
-						ItemName "TF_WEAPON_ROCKETLAUNCHER"
-						"fire rate bonus" 1.2
-						"faster reload rate" 0.001
-						"clip size bonus" 5
-						"projectile speed increased HIDDEN" 2
-						"projectile no deflect" 1
-						"override projectile type" 3
-						"fuse bonus" 0.295
-						"apply look velocity on damage" 1300
-						"apply z velocity on damage" 250
-					}
-					ItemAttributes
-					{
-						ItemName "The Mantreads"
-						"increased air control" 4
-					}
-					ItemAttributes
-					{
-						ItemName "The Market Gardener"
-						"damage bonus" 1.5
-						"dmg dmg bonus vs buildings" 5
-						"deploy time decreased" 0.01
-					}
-
-					WeaponSwitch
-					{
-						Type "Melee"
-						MaxTargetRange 200
-						MinTargetRange 1
-						Delay 0.1
-						Repeats 0
-						Cooldown 0
-						IfSeeTarget 1
-					}
-					WeaponSwitch
-					{
-						Type "Primary"
-						MaxTargetRange 9999
-						MinTargetRange 301
-						Delay 0.1
-						Repeats 0
-						Cooldown 0
-						IfSeeTarget 1
-					}
-
-					FireInput
-					{
-						Target "Barry_AttackPoolInit"
-						Action Trigger
-						Delay 10
-						Repeats 1
-						Cooldown -1
-					}
-				}
-			}
-		}
-		MainBoss_Larry
-		{
-			Name "Larry"
-			Class Soldier
-			ClassIcon soldier_gib_jumper_lite
-			Skill Expert
-			Health 25000
-			Attributes UseBossHealthBar
-			Attributes AutoJump
-				AutoJumpMin 1
-				AutoJumpMax 1
-			Attributes DisableDodge
-			ExtAttr IgnoreBuildings
-			Action Mobber
-
-			UseHumanAnimations 1
-			AlwaysGlow 1
-
-			Tag itslarry
-
-			Item "The Mantreads"
-			Item "The Market Gardener"
-
-			SpawnTemplate "MainBoss_LarryLogic"
-
-			CharacterAttributes
-			{
-				"damage force reduction" 0.1
-				"blast dmg to self increased" 0.2
-				"increased jump height" 0.9
-				"cannot be backstabbed" 1
-				"attach particle effect" 3042
-			}
-
-			ItemAttributes
-			{
-				ItemName "TF_WEAPON_ROCKETLAUNCHER"
-				"fire rate bonus" 1.2
-				"faster reload rate" 0.001
-				"clip size bonus" 5
-				"projectile speed increased HIDDEN" 2
-				"projectile no deflect" 1
-				"override projectile type" 3
-				"fuse bonus" 0.295
-				"apply look velocity on damage" 1300
-				"apply z velocity on damage" 250
-			}
-			ItemAttributes
-			{
-				ItemName "The Mantreads"
-				"increased air control" 4
-			}
-			ItemAttributes
-			{
-				ItemName "The Market Gardener"
-				"damage bonus" 1.5
-				"dmg dmg bonus vs buildings" 5
-				"deploy time decreased" 0.01
-			}
-
-			Addcond
-			{
-				Index 51
-				Duration 5
-			}
-			Taunt
-			{
-				Delay 0.1
-				Repeats 1
-				Cooldown -1
-			}
-			FireInput
-			{
-				Target tf_gamerules
-				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_dominationsniper13.mp3
-				Delay 1.5
-				Repeats 1
-				Cooldown -1
-			}
-
-			FireInput
-			{
-				Target tf_gamerules
-				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_battlecry05.mp3
-				Delay 5
-				Repeats 1
-				Cooldown -1
-			}
-
-			FireInput
-			{
-				Target !activator
-				Action $ChangeAttributes
-				Param Larry_DefaultTrolldier
-				Delay 5
+				Delay 2.5
 				Repeats 1
 				Cooldown -1
 			}
 
 		 	EventChangeAttributes
 			{
-				Larry_DefaultTrolldier
+				Barry_DefaultTrolldier
 				{
 					Item "The Mantreads"
 					Item "The Market Gardener"
 
-					Attributes AutoJump
-						AutoJumpMin 1
-						AutoJumpMax 1
-
 					CharacterAttributes
 					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
-						"self dmg push force increased" 1
 						"increased jump height" 0.9
+						"cancel falling damage" 0
 						"displace touched enemies" 0
 						"cannot be backstabbed" 1
 						"attach particle effect" 3042
@@ -8439,6 +8272,201 @@ WaveSchedule
 						IfSeeTarget 1
 					}
 
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
+					}
+
+					FireInput
+					{
+						Target "Barry_AttackPoolInit"
+						Action Trigger
+						Delay 10
+						Repeats 1
+						Cooldown -1
+					}
+				}
+			}
+		}
+		MainBoss_Larry
+		{
+			Name "Larry"
+			Class Soldier
+			ClassIcon soldier_gib_jumper_lite
+			Skill Expert
+			Health 25000
+			Attributes UseBossHealthBar
+			Attributes DisableDodge
+			ExtAttr IgnoreBuildings
+			Action Mobber
+
+			UseHumanAnimations 1
+			AlwaysGlow 1
+
+			Tag itslarry
+
+			Item "The Mantreads"
+			Item "The Market Gardener"
+
+			SpawnTemplate "MainBoss_LarryLogic"
+
+			CharacterAttributes
+			{
+				"no_jump" 1
+				"no_attack" 1
+				"move speed bonus" 0
+				"damage force reduction" 0.1
+				"blast dmg to self increased" 0.2
+				"increased jump height" 0.9
+				"cannot be backstabbed" 1
+				"attach particle effect" 3042
+			}
+
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"fire rate bonus" 1.2
+				"faster reload rate" 0.001
+				"clip size bonus" 5
+				"projectile speed increased HIDDEN" 2
+				"projectile no deflect" 1
+				"override projectile type" 3
+				"fuse bonus" 0.295
+				"apply look velocity on damage" 1300
+				"apply z velocity on damage" 250
+			}
+			ItemAttributes
+			{
+				ItemName "The Mantreads"
+				"increased air control" 4
+			}
+			ItemAttributes
+			{
+				ItemName "The Market Gardener"
+				"damage bonus" 1.5
+				"dmg dmg bonus vs buildings" 5
+				"deploy time decreased" 0.01
+			}
+
+			Addcond
+			{
+				Index 51
+				Duration 2.5
+			}
+			Sequence
+			{
+				Name "taunt01"
+				Delay 0.1
+				Repeats 1
+				Cooldown -1
+			}
+			Sequence
+			{
+				Name "run_PRIMARY"
+				Delay 2.5
+				Repeats 1
+				Cooldown -1
+			}
+
+			FireInput
+			{
+				Target tf_gamerules
+				Action PlayVO
+				Param vo/mvm/norm/soldier_mvm_dominationsniper13.mp3
+				Delay 1.5
+				Repeats 1
+				Cooldown -1
+			}
+
+			FireInput
+			{
+				Target !activator
+				Action $ChangeAttributes
+				Param Larry_DefaultTrolldier
+				Delay 2.5
+				Repeats 1
+				Cooldown -1
+			}
+
+		 	EventChangeAttributes
+			{
+				Larry_DefaultTrolldier
+				{
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 0
+						"displace touched enemies" 0
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"fire rate bonus" 1.2
+						"faster reload rate" 0.001
+						"clip size bonus" 5
+						"projectile speed increased HIDDEN" 2
+						"projectile no deflect" 1
+						"override projectile type" 3
+						"fuse bonus" 0.295
+						"apply look velocity on damage" 1300
+						"apply z velocity on damage" 250
+					}
+					ItemAttributes
+					{
+						ItemName "The Mantreads"
+						"increased air control" 4
+					}
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"damage bonus" 1.5
+						"dmg dmg bonus vs buildings" 5
+						"deploy time decreased" 0.01
+					}
+
+					WeaponSwitch
+					{
+						Type "Melee"
+						MaxTargetRange 200
+						MinTargetRange 1
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+					WeaponSwitch
+					{
+						Type "Primary"
+						MaxTargetRange 9999
+						MinTargetRange 301
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
+					}
+
 					FireInput
 					{
 						Target "Larry_AttackPoolInit"
@@ -8451,27 +8479,27 @@ WaveSchedule
 
 				Larry_BigShoeLmao // he jumps up into the air and slams the ground with a big kaboom
 				{
-					Attributes SuppressFire
 					Item "The Escape Plan"
+					Attributes SuppressFire
 					WeaponRestrictions MeleeOnly
-
-					Attributes AutoJump
-						AutoJumpMin 9999
-						AutoJumpMax 9999
 
 					CharacterAttributes
 					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
-						"self dmg push force increased" 1.5
 						"increased jump height" 0.9
+						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"cannot be backstabbed" 1
 						"attach particle effect" 3042
 					}
 
-					Taunt
+					Sequence
 					{
+						Name "taunt05"
 						Delay 0.1
 						Repeats 1
 						Cooldown -1
@@ -8496,6 +8524,24 @@ WaveSchedule
 						Repeats 1
 						Cooldown -1
 					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,3500))"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,1500))"
+						Delay 4
+						Repeats 1
+						Cooldown -1
+					}
 
 					FireInput
 					{
@@ -8515,6 +8561,14 @@ WaveSchedule
 						Repeats 1
 						Cooldown -1
 					}
+					FireInput
+					{
+						Target TheLarryDetector
+						Action Enable
+						Delay 4.5
+						Repeats 1
+						Cooldown -1
+					}
 
 					FireInput
 					{
@@ -8528,32 +8582,21 @@ WaveSchedule
 
 					FireInput
 					{
-						Target BigNet
+						Target !self
 						Action RunScriptCode
-						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,-1600))"
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 20000, eyes.y * 20000, -5000)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
 						Delay 5.5
-						Repeats 1
-						Cooldown -1
-					}
-					FireInput
-					{
-						Target TheLarryDetector
-						Action Enable
-						Delay 5.5
-						Repeats 1
-						Cooldown -1
-					}
-
-					FireInput
-					{
-						Target !activator
-						Action $ChangeAttributes
-						Param Larry_DefaultTrolldier
-						Delay 7
 						Repeats 1
 						Cooldown -1
 					}
 				}
+                Barry_LaunchUpAndCrater
+                {
+                    
+                }
 			}
 		}
 		MainBoss_Harry
@@ -8618,24 +8661,22 @@ WaveSchedule
 				"deploy time decreased" 0.01
 			}
 
-			// Logic time
 			Addcond
 			{
 				Index 51
-				Duration 5
+				Duration 2.5
 			}
-			Taunt
+			Sequence
 			{
+				Name "taunt01"
 				Delay 0.1
 				Repeats 1
 				Cooldown -1
 			}
-			FireInput
+			Sequence
 			{
-				Target tf_gamerules
-				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_battlecry06.mp3
-				Delay 0.5
+				Name "run_PRIMARY"
+				Delay 2.5
 				Repeats 1
 				Cooldown -1
 			}
@@ -8644,8 +8685,8 @@ WaveSchedule
 			{
 				Target tf_gamerules
 				Action PlayVO
-				Param vo/mvm/norm/soldier_mvm_battlecry05.mp3
-				Delay 5
+				Param vo/mvm/norm/soldier_mvm_battlecry06.mp3
+				Delay 0.1
 				Repeats 1
 				Cooldown -1
 			}
@@ -8655,7 +8696,7 @@ WaveSchedule
 				Target !activator
 				Action $ChangeAttributes
 				Param Harry_DefaultTrolldier
-				Delay 5
+				Delay 2.5
 				Repeats 1
 				Cooldown -1
 			}
@@ -8666,6 +8707,20 @@ WaveSchedule
 				{
 					Item "The Mantreads"
 					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 0
+						"displace touched enemies" 0
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
 
 					ItemAttributes
 					{
@@ -8712,6 +8767,14 @@ WaveSchedule
 						Repeats 0
 						Cooldown 0
 						IfSeeTarget 1
+					}
+
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
 					}
 
 					FireInput

@@ -7871,6 +7871,7 @@ WaveSchedule
 		{
 			Name "Wave19_TrolldierTrioSetup"
 			WaitForAllSpawned "Wave19_TrolldierTrio"
+			WaitBeforeStarting 5
 
 			FirstSpawnOutput
 			{
@@ -7895,7 +7896,6 @@ WaveSchedule
 						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine1`)
 						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine2`)
 						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine3`)
-						EntFire(`arena_electricmine_barrier`, `Open`)
 					  "
 			}
 		}
