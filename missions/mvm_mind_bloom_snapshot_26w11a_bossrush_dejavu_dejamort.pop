@@ -2645,6 +2645,10 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
+                    if(!(`contact_logic` in getroottable()))
+                    {
+                        IncludeScript(`contact_logic`, getroottable())
+                    }
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -4129,6 +4133,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`yan_spawn`, `ForceSpawn`)
                       "
             }
             DoneOutput
@@ -4314,6 +4319,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`nothingthere_spawn`, `ForceSpawn`)
                       "
             }
         }
@@ -5085,6 +5091,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
+                        EntFire(`nobodyis_spawn`, `ForceSpawn`)
                       "
             }
             DoneOutput
@@ -5158,6 +5165,10 @@ WaveSchedule
                     if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+                    }
+                    if(!(`contact_logic_bossrush` in getroottable()))
+                    {
+                        IncludeScript(`contact_logic_bossrush`, getroottable())
                     }
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -5900,7 +5911,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    //IncludeScript(`contact_logic`, getroottable())
+                    IncludeScript(`contact_logic`, getroottable())
 
                     CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
                     ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
@@ -5910,7 +5921,7 @@ WaveSchedule
 
                     EntFire(`engi_intro`, `Trigger`, null, 0.4)
 
-                    //Contact.SetLowGravity(true)
+                    Contact.SetLowGravity(true)
                   "
         }
         StartWaveOutput
@@ -7721,7 +7732,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
 
-                    //MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
+                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_PlannedObsolescence`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TheForemann`);
                     MindBloomRNG.InitRNGArena();
@@ -7731,17 +7742,17 @@ WaveSchedule
 
                     switch (MindBloomRNG.GlobalIndex)
                     {
-                        //case 0:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //        [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-						//		  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-						//		  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                        //    ])
-                        //    break;
-                        //}
-
                         case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                            ])
+                            break;
+                        }
+
+                        case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -7753,7 +7764,7 @@ WaveSchedule
                             break;
                         }
 
-                        case 1:
+                        case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -7777,15 +7788,17 @@ WaveSchedule
 
                     switch (MindBloomRNG.GlobalIndex)
                     {
-                        //case 0:
-                        //{
-                        //    AlternateWaves.AddWaveIcons([
-                        //        [`soldier_gib_jumper_lite`, 3, MVM_CLASS_FLAG_MINIBOSS],
-                        //    ])
-                        //    break;
-                        //}
-
                         case 0:
+                        {
+                            AlternateWaves.AddWaveIcons([
+                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+                            ])
+                            break;
+                        }
+
+                        case 1:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -7797,7 +7810,7 @@ WaveSchedule
                             break;
                         }
 
-                        case 1:
+                        case 2:
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
@@ -7829,6 +7842,7 @@ WaveSchedule
         RedTeamWipeCausesWaveLoss 1
 		
 		SpawnTemplate ObsolescenceTriggerHurt
+		SpawnTemplate MainBoss_TripleTrolldierArena
 
         WaveSpawn
         {
@@ -7848,6 +7862,125 @@ WaveSchedule
         }
 
         //// The Three Trolldiers ////
+		WaveSpawn
+		{
+			Name "Wave19_TrolldierTrio"
+			StartDisabled 1
+		}
+		WaveSpawn
+		{
+			Name "Wave19_TrolldierTrioSetup"
+			WaitForAllSpawned "Wave19_TrolldierTrio"
+
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`arena_electricmine_boss_spawn_relay`, `Disable`)
+					  "
+			}
+		}
+		WaveSpawn
+		{
+			Name "Wave19_TrolldierTrioSetup2"
+			WaitForAllSpawned "Wave19_TrolldierTrio"
+			WaitBeforeStarting 7.5
+
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "
+						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine1`)
+						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine2`)
+						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_electricmine3`)
+						EntFire(`arena_electricmine_barrier`, `Open`)
+					  "
+			}
+		}
+
+		WaveSpawn // Boss - Barry
+		{
+			Name "Wave19_Boss-Barry"
+			WaitForAllSpawned "Wave19_TrolldierTrio"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.5
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+			StartDisabled 1
+
+			TFBot
+			{
+				Template MainBoss_Barry
+				FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_electricmine3
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+			}
+			
+		}
+		WaveSpawn // Boss - Larry
+		{
+			Name "Wave19_Boss-Larry"
+			WaitForAllSpawned "Wave19_TrolldierTrio"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.6
+			WaitBetweenSpawns 0
+			TotalCurrency 50
+
+			TFBot
+			{
+				Template MainBoss_Larry
+				FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_electricmine2
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+			}
+		}
+		WaveSpawn // Boss - Harry
+		{
+			Name "Wave19_Boss-Harry"
+			WaitForAllSpawned "Wave19_TrolldierTrio"
+			Where spawnbot_boss
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 12.7
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+			StartDisabled 1
+
+			TFBot
+			{
+				Template MainBoss_Harry
+				FireInput
+                {
+                    Target !self
+                    Action $TeleportToEntity
+                    Param spawnbot_target_electricmine1
+                    Delay 0.1
+                    Repeats 1
+                    Cooldown -1
+                }
+			}
+		}
 
         //// Planned Obsolescence ////
         WaveSpawn

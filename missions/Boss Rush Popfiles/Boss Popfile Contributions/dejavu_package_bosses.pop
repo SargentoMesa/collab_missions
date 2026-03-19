@@ -1,5 +1,328 @@
 WaveSchedule
 {
+	PointTemplates
+	{
+		Yan_Spawn
+		{
+			OnSpawnOutput
+			{
+				Target "upper_text"
+				Action "Display"
+				Delay 0
+			}
+
+			OnSpawnOutput
+			{
+				Target "middle_text"
+				Action "Display"
+				Delay 1
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text"
+				Action "Display"
+				Delay 10
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text2"
+				Action "Display"
+				Delay 12
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "upper_text"
+				"message" "Corrupted Dissident, Pager of the Distortion"
+				"x" "-1"
+				"y" "0.35"
+				"spawnflags" "1"
+				//"effect" "2"
+				"channel" "2"
+				"color" "255 255 255"
+				//"fxtime" "0.2"
+				"fadeout" "1"
+				"fadein" "0.2"
+				"holdtime" "5"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "middle_text"
+				"message" "DISTORTED MESSENGER"
+				"x" "-1"
+				"y" "0.45"
+				"channel" "1"
+				"spawnflags" "1"
+				//"fxtime" "0.1"
+				//"effect" "1"
+				"color" "255 255 255"
+				"fadein" "0.2"
+				"fadeout" "1"
+				"holdtime" "4"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text"
+				"message" "I can"
+				"x" "-0.8"
+				"y" "0.2"
+				"channel" "3"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text2"
+				"message" "see?"
+				"x" "0.8"
+				"y" "0.75"
+				"channel" "4"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+		}
+		NothingThere_Spawn
+		{
+			OnSpawnOutput
+			{
+				Target "upper_text"
+				Action "Display"
+				Delay 0
+			}
+
+			OnSpawnOutput
+			{
+				Target "middle_text"
+				Action "Display"
+				Delay 1
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text"
+				Action "Display"
+				Delay 10
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text2"
+				Action "Display"
+				Delay 12
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "upper_text"
+				"message" "Early Stage Self Learning Model, Repeating Rival"
+				"x" "-1"
+				"y" "0.35"
+				"spawnflags" "1"
+				//"effect" "2"
+				"channel" "2"
+				"color" "255 255 255"
+				"fxtime" "0.2"
+				"fadeout" "1"
+				"fadein" "0.2"
+				"holdtime" "5"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "middle_text"
+				"message" "NEMESIS PROGRAM: SHELL"
+				"x" "-1"
+				"y" "0.45"
+				"channel" "1"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0.2"
+				"fadeout" "1"
+				"holdtime" "5"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text"
+				"message" "How"
+				"x" "0.7"
+				"y" "0.75"
+				"channel" "3"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text2"
+				"message" "Interesting."
+				"x" "0.8"
+				"y" "0.65"
+				"channel" "4"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+		}
+		NobodyIs_Spawn
+		{
+			OnSpawnOutput
+			{
+				Target "upper_text"
+				Action "Display"
+				Delay 0
+			}
+
+			OnSpawnOutput
+			{
+				Target "middle_text"
+				Action "Display"
+				Delay 1
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text"
+				Action "Display"
+				Delay 10
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text2"
+				Action "Display"
+				Delay 11
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text3"
+				Action "Display"
+				Delay 15
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text4"
+				Action "Display"
+				Delay 16
+			}
+			OnSpawnOutput
+			{
+				Target "bottom_text5"
+				Action "Display"
+				Delay 17
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "upper_text"
+				"message" "Middle Stage Self Learning Model, Repeating Rival"
+				"x" "-1"
+				"y" "0.35"
+				"spawnflags" "1"
+				//"effect" "2"
+				"channel" "2"
+				"color" "255 255 255"
+				"fxtime" "0.2"
+				"fadeout" "1"
+				"fadein" "0.2"
+				"holdtime" "5"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "middle_text"
+				"message" "NEMESIS PROGRAM: MIMICRY"
+				"x" "-1"
+				"y" "0.45"
+				"channel" "1"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0.2"
+				"fadeout" "1"
+				"holdtime" "5"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text"
+				"message" "Unfortunate..."
+				"x" "-0.4"
+				"y" "-0.8"
+				"channel" "3"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text2"
+				"message" "They aren't ready yet."
+				"x" "0.5"
+				"y" "0.7"
+				"channel" "4"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text3"
+				"message" "But soon..."
+				"x" "-0.6"
+				"y" "0.75"
+				"channel" "5"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text4"
+				"message" "I..."
+				"x" "0.1"
+				"y" "0.75"
+				"channel" "6"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "bottom_text5"
+				"message" "will be."
+				"x" "0.6"
+				"y" "0.75"
+				"channel" "7"
+				"spawnflags" "1"
+				"color" "255 255 255"
+				"fadein" "0"
+				"fadeout" "0"
+				"holdtime" "0.1"
+			}
+		}
+	}
     Templates
     {
         //// MAIN BOSSES ////
