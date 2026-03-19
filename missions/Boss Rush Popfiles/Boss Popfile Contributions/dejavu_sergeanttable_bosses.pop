@@ -229,6 +229,8 @@ WaveSchedule
 			"no damage falloff" 1
 			"damage bonus" 1.5
 			"dmg bonus vs buildings" 5
+            "clip size bonus" 50
+            "fire rate penalty" 1.25
 			"faster reload rate" 0.2
 
 			"add damage type" 128
@@ -1049,7 +1051,7 @@ WaveSchedule
 				"holdtime" "2.8"
 			}
             game_text
-			 {
+			{
 				"origin" "1984 1984 99999"
 				"targetname" "layer_text"
 				"message" "OVERCLOCKED DAVE REBORN"
@@ -1061,7 +1063,7 @@ WaveSchedule
 				"fadein" "0.2"
 				"fadeout" "1"
 				"holdtime" "3"
-			 }
+			}
             info_particle_system
             {
                 "targetname"   "jumpattackdust"
@@ -3142,6 +3144,7 @@ WaveSchedule
                 "targetname" "axe1"
                 "parentname" "rot"
                 "model" "models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"
+				"modelscale" "3"
                 "angles" "0 0 0"
             }
             func_rotating
@@ -3162,17 +3165,146 @@ WaveSchedule
 
 				"OnTimer" "TrolldierComboAttackPool,PickRandomShuffle,,0,-1"
 			}
-			logic_timer
+			logic_case
 			{
 				"targetname" "TrolldierComboAttackPool"
 
-				"OnCase01" "TrolldierGigaShockwave,Trigger,,0,-1"
-				"OnCase02" "TrolldierBigSpoons,Trigger,,0,-1"
+				"OnCase01" "TrolldierGigaShockwaveInit,Trigger,,0,-1"
+				"OnCase02" "TrolldierBigSpoonsInit,Trigger,,0,-1"
 			}
-			// The Barry Detector
+
+			logic_relay
+			{
+				"targetname" "TrolldierGigaShockwaveInit"
+
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_Combo_Init,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Larry_Combo_Init,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Harry_RSpecBarrage,0,-1"
+				"OnTrigger" "GigaShockwaveComboTracker,Enable,,0,-1"
+				"OnTrigger" "ComboBarryDetector,Enable,,0,-1"
+				"OnTrigger" "ComboLarryDetector,Enable,,0,-1"
+			}
+			logic_relay
+			{
+				"targetname" "TrolldierBigSpoonsInit"
+
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_Combo_Init,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Harry_Combo_Init,0,-1"
+				"OnTrigger" "BigSpoonsComboTracker,Enable,,0,-1"
+				"OnTrigger" "ComboBarryDetector,Enable,,0,-1"
+				"OnTrigger" "ComboHarryDetector,Enable,,0,-1"
+			}
+
 			trigger_multiple
 			{
-				"targetname" "TheBarryDetector"
+				"targetname" "ComboBarryDetector"
+				"origin" "8387 -5185 -806"
+				"mins" "-32 -32 -32"
+				"maxs" "32 32 32"
+
+				"wait" "0.5"
+				"filtername" "TheBarryFilter"
+				"spawnflags" "1"
+				"startdisabled" "1"
+
+				"OnStartTouch" "GigaShockwaveComboTracker,Add,1,0,-1"
+				"OnEndTouch" "GigaShockwaveComboTracker,Subtract,1,0,-1"
+				"OnStartTouch" "BigSpoonsComboTracker,Add,1,0,-1"
+				"OnEndTouch" "BigSpoonsComboTracker,Subtract,1,0,-1"
+			}
+			trigger_multiple
+			{
+				"targetname" "ComboLarryDetector"
+				"origin" "8387 -5185 -806"
+				"mins" "-32 -32 -32"
+				"maxs" "32 32 32"
+
+				"wait" "0.5"
+				"filtername" "TheLarryFilter"
+				"spawnflags" "1"
+				"startdisabled" "1"
+
+				"OnStartTouch" "GigaShockwaveComboTracker,Add,1,0,-1"
+				"OnEndTouch" "GigaShockwaveComboTracker,Subtract,1,0,-1"
+			}
+			trigger_multiple
+			{
+				"targetname" "ComboHarryDetector"
+				"origin" "8387 -5185 -806"
+				"mins" "-32 -32 -32"
+				"maxs" "32 32 32"
+
+				"wait" "0.5"
+				"filtername" "TheHarryFilter"
+				"spawnflags" "1"
+				"startdisabled" "1"
+
+				"OnStartTouch" "BigSpoonsComboTracker,Add,1,0,-1"
+				"OnEndTouch" "BigSpoonsComboTracker,Subtract,1,0,-1"
+			}
+
+			// Big Spoons Combo Move
+			math_counter
+			{
+				"targetname" "BigSpoonsComboTracker"
+				"startvalue" "0"
+				"min" "0"
+				"max" "2"
+				"startdisabled" "1"
+
+				"OnHitMax" "TrolldierBigSpoonsCombo,Trigger,,0,-1"
+			}
+
+			logic_relay
+			{
+				"targetname" "TrolldierBigSpoonsCombo"
+
+				"OnTrigger" "BigSpoonsComboTracker,SetValue,0,0,-1"
+				"OnTrigger" "BigSpoonsComboTracker,Disable,,0.1,-1"
+				"OnTrigger" "ComboBarryDetector,Disable,,0,-1"
+				"OnTrigger" "ComboHarryDetector,Disable,,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_Combo_BigSpoons,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Harry_Combo_BigSpoons,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_moveup03.mp3,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_yes03,1,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_positivevocalization01.mp3,3.5,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_specialcompleted04.mp3,4,-1"
+			}
+			// Giga Shockwave Combo Move
+			math_counter
+			{
+				"targetname" "GigaShockwaveComboTracker"
+				"startvalue" "0"
+				"min" "0"
+				"max" "2"
+				"startdisabled" "1"
+
+				"OnHitMax" "TrolldierGigaShockwaveCombo,Trigger,,0,-1"
+			}
+
+			logic_relay
+			{
+				"targetname" "TrolldierGigaShockwaveCombo"
+
+				"OnTrigger" "GigaShockwaveComboTracker,SetValue,0,0,-1"
+				"OnTrigger" "GigaShockwaveComboTracker,Disable,,0.1,-1"
+				"OnTrigger" "ComboBarryDetector,Disable,,0,-1"
+				"OnTrigger" "ComboLarryDetector,Disable,,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_Combo_GigaShockwave,0.1,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Larry_Combo_GigaShockwave,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_helpme02.mp3,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_yes04.mp3,2,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_moveup02.mp3,3.5,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_moveup02.mp3,3.65,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_directhittaunt02.mp3,5,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,vo/mvm/norm/soldier_mvm_directhittaunt02.mp3,5.1,-1"
+				"OnTrigger" "GigaStompBarryDetector,Enable,,5,-1"
+				"OnTrigger" "GigaStompLarryDetector,Enable,,5,-1"
+			}
+
+			trigger_multiple
+			{
+				"targetname" "GigaStompBarryDetector"
 				"origin" "8384 -5184 -760"
 				"mins" "-1800 -1800 -118"
 				"maxs" "1800 1800 118"
@@ -3181,7 +3313,86 @@ WaveSchedule
 				"filtername" "TheBarryFilter"
 				"spawnflags" "1"
 				"startdisabled" "1"
+
+				"OnStartTouch" "GigaStompComboTracker,Add,1,0,-1"
+				"OnEndTouch" "GigaStompComboTracker,Subtract,1,0,-1"
 			}
+			trigger_multiple
+			{
+				"targetname" "GigaStompLarryDetector"
+				"origin" "8384 -5184 -760"
+				"mins" "-1800 -1800 -118"
+				"maxs" "1800 1800 118"
+
+				"wait" "0.5"
+				"filtername" "TheLarryFilter"
+				"spawnflags" "1"
+				"startdisabled" "1"
+
+				"OnStartTouch" "GigaStompComboTracker,Add,1,0,-1"
+				"OnEndTouch" "GigaStompComboTracker,Subtract,1,0,-1"
+			}
+			math_counter
+			{
+				"targetname" "GigaStompComboTracker"
+				"startvalue" "0"
+				"min" "0"
+				"max" "2"
+
+				"OnHitMax" "TrolldierGigaStomp,Trigger,,0,-1"
+			}
+
+			logic_relay
+			{
+				"targetname" "TrolldierGigaStomp"
+
+				"OnTrigger" "GigaStompComboTracker,SetValue,0,0,-1"
+				"OnTrigger" "GigaShockwaveComboTracker,Disable,0,-1"
+				"OnTrigger" "GigaStompBarryDetector,Disable,,0,-1"
+				"OnTrigger" "GigaStompLarryDetector,Disable,,0,-1"
+				"OnTrigger" "BarryBigShoeParticle,Start,,0.25,-1"
+				"OnTrigger" "LarryBigShoeParticle,Start,,0.25,-1"
+				"OnTrigger" "BarryBigShoeParticle,Stop,,0.50,-1"
+				"OnTrigger" "LarryBigShoeParticle,Stop,,0.50,-1"
+				"OnTrigger" "GigaStompParticle,Start,,0.25,-1"
+				"OnTrigger" "GigaStompParticle,Stop,,4.25,-1"
+				"OnTrigger" "GigaStompDamage,Enable,,0.25,-1"
+				"OnTrigger" "GigaStompDamage,Disable,,0.26,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,0.25,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_1.wav,0.25,-1"
+				"OnTrigger" "larrybigshoelmao,Disable,,0.25,-1"
+				"OnTrigger" "barrybigshoelmao,Disable,,0.25,-1"
+				"OnTrigger" "ring_maker,Forcespawn,,0.25,-1"
+				"OnTrigger" "ring_maker,Forcespawn,,1.25,-1"
+				"OnTrigger" "ring_maker,Forcespawn,,2.25,-1"
+				"OnTrigger" "ring_maker,Forcespawn,,3.25,-1"
+				"OnTrigger" "ring_maker,Forcespawn,,4.25,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_DefaultTrolldier,5,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Larry_DefaultTrolldier,5,-1"
+			}
+
+			info_particle_system
+			{
+				"targetname" "GigaStompParticle"
+				"origin" "8387 -5185 -806"
+				"effect_name" "massive_fire_explosion"
+				"start_active" "0"
+			}
+			trigger_hurt
+			{
+				"targetname" "GigaStompDamage"
+				"origin" "8387 -5185 -806"
+				"angles" "0 0 0"
+				"mins" "-300 -300 -300"
+				"maxs" "300 300 300"
+				"damagetype" "64"
+				"damage" "1400"
+                "filtername" "filter_redteam_nouber"
+				"StartDisabled" "1"
+				"spawnflags" "64"
+			}
+
+			// The Barry Detector
 			filter_tf_bot_has_tag
 			{
 				"targetname" "TheBarryFilter"
@@ -3210,23 +3421,50 @@ WaveSchedule
 			}
 
 			// The Harry Detector
-			trigger_multiple
-			{
-				"targetname" "TheHarryDetector"
-				"origin" "8384 -5184 -760"
-				"mins" "-1800 -1800 -118"
-				"maxs" "1800 1800 118"
-
-				"wait" "0.5"
-				"filtername" "TheHarryFilter"
-				"spawnflags" "1"
-				"startdisabled" "1"
-			}
 			filter_tf_bot_has_tag
 			{
 				"targetname" "TheHarryFilter"
 				"tags" "itsharry"
 			}
+		}
+		MainBoss_BarryLogic
+		{
+			OnSpawnOutput
+			{
+				Target barrybigshoelmao
+				Action SetAttached
+				Param !self
+			}
+			info_target
+			{
+				"targetname" "barry_target"
+			}
+			prop_dynamic_ornament
+			{
+				"targetname" "barrybigshoelmao"
+
+				"model" "models/workshop/player/items/soldier/mantreads/mantreads.mdl"
+				"modelscale" "3"
+				"solid" "0"
+				"disablebonefollowers" "1"
+				"disableshadows" "1"
+				"startdisabled" "1"
+			}
+
+			info_particle_system
+            {
+                "targetname"   "BarryBigShoeParticle"
+                "origin"       "0 0 0"
+                "effect_name"  "hammer_impact_button"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname"   "BarryBigShoeParticle"
+                "origin"       "0 0 0"
+                "effect_name"  "hammer_impact_button_dust2"
+                "start_active" "0"
+            }
 		}
 		MainBoss_LarryLogic
 		{
@@ -3236,14 +3474,26 @@ WaveSchedule
 				Action SetAttached
 				Param !self
 			}
+			OnSpawnOutput
+            {
+                Target "tf_gamerules"
+                Action RunScriptCode
+                Param "
+                IncludeScript(`claudz_logic`)
+                "
+            }
+			info_target
+			{
+				"targetname" "larry_target"
+			}
 
 			// Big Shoe Attack
 			logic_relay
 			{
 				"targetname" "LarryBigShoeStomp"
 
-				"OnTrigger" "BigShoeParticle,Start,,0.25,-1"
-				"OnTrigger" "BigShoeParticle,Stop,,0.5,-1"
+				"OnTrigger" "LarryBigShoeParticle,Start,,0.25,-1"
+				"OnTrigger" "LarryBigShoeParticle,Stop,,0.5,-1"
 				"OnTrigger" "BigShoeSound,PlaySound,,0.25,-1"
 				"OnTrigger" "BigShoeSound,StopSound,,0.5,-1"
 				"OnTrigger" "BigShoeShake,StartShake,,0.25,-1"
@@ -3268,14 +3518,14 @@ WaveSchedule
 
 			info_particle_system
             {
-                "targetname"   "BigShoeParticle"
+                "targetname"   "LarryBigShoeParticle"
                 "origin"       "0 0 0"
                 "effect_name"  "hammer_impact_button"
                 "start_active" "0"
             }
             info_particle_system
             {
-                "targetname"   "BigShoeParticle"
+                "targetname"   "LarryBigShoeParticle"
                 "origin"       "0 0 0"
                 "effect_name"  "hammer_impact_button_dust2"
                 "start_active" "0"
@@ -3336,6 +3586,10 @@ WaveSchedule
 		}
 		MainBoss_HarryLogic
 		{
+			info_target
+			{
+				"targetname" "harry_target"
+			}
 		}
 
         //// MINI BOSSES ////
@@ -3977,6 +4231,51 @@ WaveSchedule
                 "solid" "0"
                 "parentname" "the_funny_man_3"
             }		
+        }
+
+		//// THE LONE SWORDSMAN ////
+        loneswordmanlogic /// LONE SWORDMAN
+        {
+            func_rotating
+            {
+                "targetname" "boss_is_spinning_that_shit"
+                "maxspeed"   "90"
+                "origin"     "0 0 32"
+                "spawnflags" "84"
+                "fanfriction" "100"
+            }
+            prop_dynamic
+            {
+                "targetname" "boss_spinne"
+                "parentname" "boss_is_spinning_that_shit"
+                "model"      "models/bots/demo_boss/bot_demo_boss.mdl"
+                "origin"     "0 0 0"
+                "disableshadows" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "boss_spinne"
+                "parentname" "boss_is_spinning_that_shit"
+                "model"      "models/weapons/c_models/c_shogun_katana/c_shogun_katana.mdl"
+                "modelscale" "1.6"
+                "origin"     "2 6 36"
+                "disableshadows" "1"
+            }
+            trigger_hurt
+            {
+                "targetname" "triggername"
+                "parentname" ""
+                "origin"     "0 0 0"
+                "mins"       "-100 -100 -100"
+                "maxs"       "100 100 100"
+                "spawnflags" "64" //1: players; 64 everything
+                "damage"     "50"
+                "damagetype" "8"
+                "StartDisabled" "1"
+                "filtername" "filter_is_red_not_ubered"
+                "OnHurtPlayer" "!activator,$igniteplayerduration,8,0,-1"
+                "$killicon"  "firedeath"
+            }
         }
     }
     Templates
@@ -8094,9 +8393,6 @@ WaveSchedule
 			Skill Expert
 			Health 25000
 			Attributes UseBossHealthBar
-			Attributes AutoJump
-				AutoJumpMin 1
-				AutoJumpMax 1
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
 			Action Mobber
@@ -8115,14 +8411,14 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"no_attack" 1
-				"no_jump" 0
+				"no_jump" 1
 				"move speed bonus" 0.01
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
 				"cannot be backstabbed" 1
 				"always allow taunt" 1
-				"attach particle effect" 3042
+				
 			}
 
 			ItemAttributes
@@ -8151,7 +8447,6 @@ WaveSchedule
 				"deploy time decreased" 0.01
 			}
 
-			// Logic time
 			Addcond
 			{
 				Index 51
@@ -8196,6 +8491,7 @@ WaveSchedule
 			{
 				Barry_DefaultTrolldier
 				{
+                    Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
 					Item "The Market Gardener"
 
@@ -8207,10 +8503,10 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cancel falling damage" 0
+						"cancel falling damage" 1
 						"displace touched enemies" 0
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						"hand scale" 1
 					}
 
 					ItemAttributes
@@ -8293,7 +8589,7 @@ WaveSchedule
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
 					}
                     ItemAttributes
                     {
@@ -8323,7 +8619,7 @@ WaveSchedule
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
 					}
                     FireInput
 					{
@@ -8366,23 +8662,217 @@ WaveSchedule
 					}
                 }
 
+				Barry_Combo_Init
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_attack" 1
+						"no_jump" 0
+						"move speed bonus" 2
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"always allow taunt" 1
+						
+					}
+
+                    FireWeapon
+                    {
+                        Type Jump
+                        Delay 5
+                        Repeats 0
+                        Cooldown 2
+                    }
+
+					InterruptAction
+					{
+						Target "8387 -5185 -806"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+				}
+				Barry_Combo_GigaShockwave
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 1
+						"cannot be backstabbed" 1
+						
+					}
+
+					Sequence
+					{
+						Name "taunt_flip_success_receiver"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+					Sequence
+					{
+						Name "run_MELEE"
+						Delay 5.65
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,3500))"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,1500))"
+						Delay 4
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target "barrybigshoelmao"
+						Action Enable
+						Delay 4.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param weapons/vaccinator_toggle.wav
+						Delay 4.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,-5000))"
+						Delay 5.4
+						Repeats 1
+						Cooldown -1
+					}
+				}
+				Barry_Combo_BigSpoons
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_attack" 1
+						"no_jump" 0
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"always allow taunt" 1
+					}
+
+					InterruptAction
+					{
+						Target "8387 -5185 -806"
+						AimTarget "harry_target"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+
+					Sequence
+					{
+						Name "taunt_flip_success_receiver"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,3500))"
+						Delay 4.8
+						Repeats 1
+						Cooldown -1
+					}
+
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,1500))"
+						Delay 5.3
+						Repeats 1
+						Cooldown -1
+					}
+
+					Sequence
+					{
+						Name "run_MELEE"
+						Delay 5.4
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_Combo_SpoonRain
+						Delay 6
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
 				Barry_Combo_SpoonRain
 				{
-					Item "Spoon Gun" [$SIGSEGV]
+					Item "SpoonGun" [$SIGSEGV]
 					Item "The Market Gardener"
 					WeaponRestrictions PrimaryOnly
 					Attributes HoldFireUntilFullReload
 
 					CharacterAttributes
 					{
+                        "no_attack" 0
 						"move speed bonus" 1
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cancel falling damage" 0
+						"cancel falling damage" 1
 						"displace touched enemies" 0
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						"hand scale" 3
 					}
 
 					ItemAttributes
@@ -8395,7 +8885,7 @@ WaveSchedule
 					{
 						Name Trolldier_BigSpoon
 						AttachToProjectile 1
-						ItemName "Spoon Gun"
+						ItemName "SpoonGun"
 					}
 
 					FireInput
@@ -8431,6 +8921,7 @@ WaveSchedule
 			Item "The Market Gardener"
 
 			SpawnTemplate "MainBoss_LarryLogic"
+			SpawnTemplate "ringOwner"
 
 			CharacterAttributes
 			{
@@ -8440,8 +8931,8 @@ WaveSchedule
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
+				"cancel falling damage" 1
 				"cannot be backstabbed" 1
-				"attach particle effect" 3042
 			}
 
 			ItemAttributes
@@ -8525,10 +9016,10 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cancel falling damage" 0
+						"cancel falling damage" 1
 						"displace touched enemies" 0
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
 					}
 
 					ItemAttributes
@@ -8598,7 +9089,7 @@ WaveSchedule
 					}
 				}
 
-				Larry_BigShoeLmao // he jumps up into the air and slams the ground with a big kaboom
+				Larry_BigShoeLmao
 				{
 					Item "The Escape Plan"
 					Attributes SuppressFire
@@ -8615,7 +9106,7 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
 					}
 
 					Sequence
@@ -8706,7 +9197,7 @@ WaveSchedule
 						Target !self
 						Action RunScriptCode
 						Param "local eyes = self.EyeAngles().Forward()
-							   local velocity = Vector(eyes.x * 20000, eyes.y * 20000, -5000)
+							   local velocity = Vector(eyes.x * 10000, eyes.y * 10000, -5000)
 							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
 							  "
 						Delay 5.5
@@ -8715,8 +9206,48 @@ WaveSchedule
 					}
 				}
 
+				Larry_Combo_Init
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_attack" 1
+						"no_jump" 0
+						"move speed bonus" 2
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"always allow taunt" 1
+						
+					}
+
+                    FireWeapon
+                    {
+                        Type Jump
+                        Delay 5
+                        Repeats 0
+                        Cooldown 2
+                    }
+
+					InterruptAction
+					{
+						Target "8387 -5185 -806"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+				}
+
 				Larry_Combo_GigaShockwave
 				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
 					CharacterAttributes
 					{
 						"no_jump" 1
@@ -8728,7 +9259,70 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
+					}
+
+					Sequence
+					{
+						Name "taunt_flip_success_receiver"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+					Sequence
+					{
+						Name "run_MELEE"
+						Delay 5.65
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,3500))"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,1500))"
+						Delay 4
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target "larrybigshoelmao"
+						Action Enable
+						Delay 4.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param weapons/vaccinator_toggle.wav
+						Delay 4.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,-5000))"
+						Delay 5.5
+						Repeats 1
+						Cooldown -1
 					}
 				}
 			}
@@ -8741,9 +9335,6 @@ WaveSchedule
 			Skill Expert
 			Health 25000
 			Attributes UseBossHealthBar
-			Attributes AutoJump
-				AutoJumpMin 1
-				AutoJumpMax 1
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
 			Action Mobber
@@ -8769,7 +9360,7 @@ WaveSchedule
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
 				"cannot be backstabbed" 1
-				"attach particle effect" 3042
+				
 			}
 
 			ItemAttributes
@@ -8842,8 +9433,10 @@ WaveSchedule
 			{
 				Harry_DefaultTrolldier
 				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
 					Item "The Market Gardener"
+                    WeaponRestrictions PrimaryOnly
 
 					CharacterAttributes
 					{
@@ -8853,10 +9446,10 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cancel falling damage" 0
+						"cancel falling damage" 1
 						"displace touched enemies" 0
 						"cannot be backstabbed" 1
-						"attach particle effect" 3042
+						
 					}
 
 					ItemAttributes
@@ -8916,9 +9509,168 @@ WaveSchedule
 
 					FireInput
 					{
-						Target "Harry_AttackPoolInit"
-						Action Trigger
+						Target !self
+						Action $ChangeAttributes
+						Param Harry_RSpecBarrage
 						Delay 15
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
+				Harry_RSpecBarrage
+				{
+					Item "Rocket Jumper"
+					WeaponRestrictions PrimaryOnly
+					Attributes HoldFireUntilFullReload
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"cannot be backstabbed" 1
+					}
+					
+					ItemAttributes
+					{
+						ItemName "Rocket Jumper"
+                        "rocket specialist" 1
+                        "fire rate bonus" 0.2
+                        "faster reload rate" 0.22
+                        "clip size upgrade atomic" 26
+                        "projectile speed decreased" 0.4
+                        "projectile spread angle penalty" 5
+						"projectile trail particle" eyeboss_projectile
+						"add cond when active" 36
+					}
+
+					HomingRockets  
+					{
+						IgnoreDisguisedSpies	1
+						IgnoreStealthedSpies	1
+						RocketSpeed	0.4
+						TurnPower	80
+						MaxAimError	360
+						AimTime	2
+						Acceleration	0
+						AccelerationTime	0
+						AccelerationStartTime	0
+						Gravity	0
+						FollowCrosshair	0
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Harry_DefaultTrolldier
+						Delay 10
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
+				Harry_Combo_Init
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_attack" 1
+						"no_jump" 0
+						"move speed bonus" 2
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"always allow taunt" 1
+						
+					}
+
+                    FireWeapon
+                    {
+                        Type Jump
+                        Delay 5
+                        Repeats 0
+                        Cooldown 2
+                    }
+
+					InterruptAction
+					{
+						Target "8387 -5185 -806"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+				}
+
+				Harry_Combo_BigSpoons
+				{
+					Item "The Market Gardener"
+					WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_attack" 1
+						"no_jump" 0
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"always allow taunt" 1
+					}
+
+					InterruptAction
+					{
+						Target "8387 -5185 -806"
+						AimTarget "barry_target"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+
+					Sequence
+					{
+						Name "taunt_flip_start"
+						Delay 0.1
+						Repeats 1
+						Cooldown -1
+					}
+
+					Sequence
+					{
+						Name "taunt_flip_success_initiator"
+						Delay 3.5
+						Repeats 1
+						Cooldown -1
+					}
+
+					Sequence
+					{
+						Name "run_PRIMARY"
+						Delay 4.66
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Harry_DefaultTrolldier
+						Delay 5
 						Repeats 1
 						Cooldown -1
 					}
@@ -9030,7 +9782,7 @@ WaveSchedule
             }
             CharacterAttributes
             {
-                "attach particle effect" 3042
+                
                 "blast dmg to self increased" 0.2
                 "cancel falling damage" 1
                 "melee range multiplier" 2.5

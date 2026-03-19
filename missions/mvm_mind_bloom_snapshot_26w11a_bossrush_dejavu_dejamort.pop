@@ -60,6 +60,7 @@ WaveSchedule
 	PrecacheSound "expert_boss_theme.mp3"
 	PrecacheSound "overprodshowdownv2.mp3"
 	PrecacheSound "launch_sequence_v2.mp3"
+    PrecacheSound "triple_threat_trolldier_boss_theme.mp3"
 
 	PrecacheSound "combattankphasestart.mp3"
 
@@ -530,6 +531,7 @@ WaveSchedule
 					PrecacheSound(`#expert_boss_theme.mp3`);
 					PrecacheSound(`#overprodshowdownv2.mp3`);
 					PrecacheSound(`#launch_sequence_v2.mp3`);
+                    PrecacheSound(`#triple_threat_trolldier_boss_theme.mp3`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
@@ -7923,7 +7925,6 @@ WaveSchedule
 			WaitBeforeStarting 12.5
 			WaitBetweenSpawns 0
 			TotalCurrency 25
-			StartDisabled 1
 
 			TFBot
 			{
@@ -7938,7 +7939,15 @@ WaveSchedule
                     Cooldown -1
                 }
 			}
-			
+			DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`TrolldierGigaShockwaveInit`, `Disable`)
+                        EntFire(`TrolldierBigSpoonsInit`, `Disable`)
+                      "
+            }
 		}
 		WaveSpawn // Boss - Larry
 		{
@@ -7965,6 +7974,23 @@ WaveSchedule
                     Cooldown -1
                 }
 			}
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#triple_threat_trolldier_boss_theme.mp3`);
+                      "
+            }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`TrolldierGigaShockwaveInit`, `Disable`)
+                      "
+            }
 		}
 		WaveSpawn // Boss - Harry
 		{
@@ -7977,7 +8003,6 @@ WaveSchedule
 			WaitBeforeStarting 12.7
 			WaitBetweenSpawns 0
 			TotalCurrency 25
-			StartDisabled 1
 
 			TFBot
 			{
@@ -7992,7 +8017,46 @@ WaveSchedule
                     Cooldown -1
                 }
 			}
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`TrolldierBigSpoonsInit`, `Disable`)
+                      "
+            }
 		}
+
+        WaveSpawn
+        {
+            Name "Wave19_TrolldierCheck"
+            WaitForAllDead "Wave19_Boss-Barry"
+        }
+        WaveSpawn
+        {
+            Name "Wave19_TrolldierCheck"
+            WaitForAllDead "Wave19_Boss-Larry"
+        }
+        WaveSpawn
+        {
+            Name "Wave19_TrolldierCheck"
+            WaitForAllDead "Wave19_Boss-Harry"
+        }
+
+        WaveSpawn
+        {
+            Name "Wave19_TrolldierComplete"
+            WaitForAllSpawned "Wave19_TrolldierCheck"
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
+                      "
+            }
+        }
 
         //// Planned Obsolescence ////
         WaveSpawn
