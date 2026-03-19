@@ -53,12 +53,13 @@ WaveSchedule
 
     //// PRECACHES ////
 
-    // Sound Precaches 
+    // Sound Precaches
+	PrecacheSound "boss_incoming.wav"
     PrecacheSound "mainbosstheme1.mp3"
+	PrecacheSound "first_phase_supercharged.mp3"
 	PrecacheSound "expert_boss_theme.mp3"
 	PrecacheSound "overprodshowdownv2.mp3"
 	PrecacheSound "launch_sequence_v2.mp3"
-	PrecacheSound "boss_incoming.wav"
 
 	PrecacheSound "combattankphasestart.mp3"
 
@@ -525,6 +526,7 @@ WaveSchedule
                     }
 					
 					PrecacheSound(`#mainbosstheme1.mp3`);
+					PrecacheSound(`#first_phase_supercharged.mp3`)
 					PrecacheSound(`#expert_boss_theme.mp3`);
 					PrecacheSound(`#overprodshowdownv2.mp3`);
 					PrecacheSound(`#launch_sequence_v2.mp3`);
@@ -6125,7 +6127,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_finished_relay`, `Trigger`)
-                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
+                    EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`)
                   "
         }
 
@@ -6146,6 +6148,7 @@ WaveSchedule
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
                       "
             }
         }
@@ -6164,6 +6167,12 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Shocks_Realnt
+			}
+			FirstSpawnOutput
+			{
+				Target BigNet
+				Action RunScriptCode
+				Param "MusicSystemMent.SetMusicTrack(`#first_phase_supercharged.mp3`);"
 			}
 		}
 
@@ -6267,7 +6276,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name "Wave15_FakeShocksCutscene"
-			WaitForAllSpawned "Wave15_Boss-FakeShocks"
+			WaitForAllDead "Wave15_Boss-FakeShocks"
 			WaitBeforeStarting 30
 		}
     }

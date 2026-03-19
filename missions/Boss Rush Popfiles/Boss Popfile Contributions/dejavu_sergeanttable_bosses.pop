@@ -3345,6 +3345,25 @@ WaveSchedule
                 Delay 10
                 Action TurnOn
             }
+            OnSpawnOutput
+            {
+                Target boss_thingy
+				Action SetParent
+				Param "!activator"
+				Delay 0.05
+            }
+			OnSpawnOutput
+            {
+                Target temporary_solution
+                Action $SetOwner
+                Param "@p@boss_thingy"
+                Delay 2
+            }
+            info_target
+            {
+                "TargetName" "boss_thingy"
+                "origin" "0 0 0"
+            }
             prop_dynamic
             {
                 "targetname" "boss_flavor"
@@ -3450,7 +3469,7 @@ WaveSchedule
             logic_relay
 			{
 				"targetname" "TemuGroundPoundAttack"
-				"OnTrigger"	"!activator,$TauntFromItem,Taunt: Yeti Smash,2,-1"
+				"OnTrigger"	"@p@boss_thingy,$TauntFromItem,Taunt: Yeti Smash,2,-1"
 				"Ontrigger" "boss_attack_incoming_ground,trigger,,0,-1"
 				"OnTrigger" "haha_boom,enable,,6,-1"
 				"OnTrigger" "haha_boom,disable,,6.1,-1"
@@ -3467,7 +3486,7 @@ WaveSchedule
 				"OnTrigger" "tf_taunt_prop*,kill,,2.3,-1"
 				"OnTrigger" "abrawlissurelybrewing,StartShake,,6,-1"
 				"OnTrigger" "popscript,$CreateShockwave,,6,-1"
-				"OnTrigger" "!activator,$AddPlayerAttribute,gesture speed increase|1.35,0,-1"
+				"OnTrigger" "@p@boss_thingy,$AddPlayerAttribute,gesture speed increase|1.35,0,-1"
 			}
 
             logic_relay
@@ -3544,7 +3563,9 @@ WaveSchedule
                 "OnTrigger" "pop_interface,$FinishWaveSpawn,Wave15_Support-GPyro,0,-1"
                 "OnTrigger" "!activator,$ChangeAttributes,TemuPassive1,0,-1"
 
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_negative_vocalization04.mp3,3,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_negativevocalization04.mp3,3,-1"
+
+                "OnTrigger" "!activator,$ChangeAttributes,TemuPassive2,5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_jeers10.mp3,6,-1"
 
                 "OnTrigger" "offtothecrystalyougobuddy,Trigger,,10,-1"
@@ -3557,7 +3578,14 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,17,-1"
                 "OnTrigger" "phase2transition,TurnOn,,17,-1"
 
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_paincrticialdeath02.mp3,20,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap1.wav,19,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,20,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap2.wav,21.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap1.wav,22,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap3.wav,22.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/whiteflash.wav,23,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_paincrticialdeath02.mp3,23,-1"
+                "OnTrigger" "!activator,$PlaySequence,dieviolent,23,-1"
                 "OnTrigger" "pop_interface,$KillWavespawn,Wave15_Boss-FakeShocks,25,-1"
             }
         }
@@ -3581,8 +3609,29 @@ WaveSchedule
             }
             info_particle_system
             {
+                "targetname"   "thebobisgone"
+                "origin"       "-6205 -5305 -424"
+                "effect_name"  "hammer_bell_ring_shockwave"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
                 "targetname"   "byebyerussia"
                 "origin"       "-6205 -5305 -424"
+                "effect_name"  "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname"   "byebyerussia"
+                "origin"       "-6205 -5305 -494"
+                "effect_name"  "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname"   "byebyerussia"
+                "origin"       "-6205 -5305 -364"
                 "effect_name"  "eyeboss_tp_vortex"
                 "start_active" "0"
             }
@@ -3611,12 +3660,14 @@ WaveSchedule
                 "OnTrigger"  "thecrystalboy,disable,,25,1"
                 "OnTrigger"  "iceshield,kill,,37,1"
                 "OnTrigger"  "byebyerussia,start,,29,1"
-                "OnTrigger"  "tf_gamerules,$FinishWave,,36.9,1"
-                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_10.wav,27,1"
-                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_09.wav,27,1"
-                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_07.wav,25,1"
-                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_10.wav,17,1"
-                "OnTrigger"  "tf_gamerules,playvo,ambient\halloween\thunder_09.wav,12,1"
+                "OnTrigger"  "thebobisgone,start,,36.9,1"
+                "OnTrigger"  "tf_gamerules,PlayVO,ambient/halloween/thunder_01.wav,36.9,1"
+                "OnTrigger"  "tf_gamerules,$FinishWave,,40.9,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient/halloween/thunder_10.wav,27,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient/halloween/thunder_09.wav,27,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient/halloween/thunder_07.wav,25,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient/halloween/thunder_10.wav,17,1"
+                "OnTrigger"  "tf_gamerules,playvo,ambient/halloween/thunder_09.wav,12,1"
                 "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 16, 50000, 0, true)151"
                 "OnTrigger"  "playerrunscriptcodeScreenShake(self.GetOrigin(), 5, 8, 16, 50000, 0, true)291"
                 "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 100, 0.6, 0.1, 1)5-1"
@@ -3646,9 +3697,8 @@ WaveSchedule
                 "modelscale" "2.5"
                 "defaultanim" "dieviolent"
                 "disablebonefollowers" "1"
-                "onanimationbegun" "!self,setanimation,dieviolent,0,-1"
-                "onanimationbegun" "!self,setplaybackrate,0.2,0.1,-1"
-                "OnAnimationBegun" "!selfRunScriptCodeNetProps.SetPropBool(self, `m_bClientSideAnimation`, false); self.SetCycle(0.7)-1-1"
+                "onanimationbegun" "!self,setplaybackrate,0.2,0.01,-1"
+                "OnAnimationBegun" "!selfRunScriptCodeNetProps.SetPropBool(self, `m_bClientSideAnimation`, false); self.SetCycle(0.7)0.1-1"
                 "skin" "1"
             }
             prop_dynamic_ornament
@@ -3665,7 +3715,6 @@ WaveSchedule
             {
                 "targetname" "soldiermdl3"
                 "model" "models\player\items\heavy\big_jaw.mdl"
-                "StartDisabled" "1"
                 "solid" "0"
                 "disablebonefollowers" "1"
                 "disableshadows" "1"
@@ -3745,12 +3794,21 @@ WaveSchedule
             AddCond
             {
                 Index 51
-                Duration 3
+                Duration 4
             }
             Taunt
             {
                 Name "Primary"
-                Delay 1
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+            FireInput
+            {
+                Target "tf_gamerules"
+                Action PlayVO
+                Param vo/mvm/mght/soldier_mvm_m_directhittaunt02
+                Delay 0.5
                 Repeats 1
                 Cooldown -1
             }
@@ -3768,6 +3826,16 @@ WaveSchedule
             {
                 Target "NEEDTHETOILET"
                 Action Trigger
+                Delay 30
+                Repeats 1
+                Cooldown -1
+            }
+
+            FireInput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);"
                 Delay 30
                 Repeats 1
                 Cooldown -1
