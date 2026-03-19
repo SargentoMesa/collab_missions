@@ -216,6 +216,31 @@ WaveSchedule
             "mod projectile heat no predict target speed" 1
             "projectile trail particle" eyeboss_projectile
         }
+
+		//// TRIPLE TROLLDIERS ////
+		"SpoonGun"
+		{
+			OriginalItemName "The Rescue Ranger"
+			"projectile gravity" -1
+			"projectile speed decreased" 0.5
+
+			"penetrate teammates" 1
+			
+			"no damage falloff" 1
+			"damage bonus" 1.5
+			"dmg bonus vs buildings" 5
+			"faster reload rate" 0.2
+
+			"add damage type" 128
+			"remove damage type" 2
+
+			"custom projectile model" "models/weapons/w_models/w_drg_ball.mdl"
+			"custom item model" "models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"
+			"custom weapon fire sound" "common/null.wav"
+			"custom kill icon" "marketgardener"
+
+			"add attributes when active" "no clip|0.001"
+		}
     }
 
     PointTemplates
@@ -3103,8 +3128,47 @@ WaveSchedule
         }
 
 		//// TRIPLE TROLLDIERS ////
+		Trolldier_BigSpoon
+        {
+            OnSpawnOutput
+            {
+                Target "!activator"
+                Action "AddOutput"
+                Param "rendermode 10"
+                Delay 0.01
+            }
+            prop_dynamic
+            {
+                "targetname" "axe1"
+                "parentname" "rot"
+                "model" "models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"
+                "angles" "0 0 0"
+            }
+            func_rotating
+            {
+                "targetname" "rot"
+                "spawnflags" 73 //not solid, spin on Y, start active
+                "fanfriction" 100
+                "maxspeed" 400
+            }
+        }
 		MainBoss_TripleTrolldierArena
 		{
+			// Combo Attack Logic
+			logic_timer
+			{
+				"targetname" "TrolldierComboTimer"
+				"RefireTime" "90"
+
+				"OnTimer" "TrolldierComboAttackPool,PickRandomShuffle,,0,-1"
+			}
+			logic_timer
+			{
+				"targetname" "TrolldierComboAttackPool"
+
+				"OnCase01" "TrolldierGigaShockwave,Trigger,,0,-1"
+				"OnCase02" "TrolldierBigSpoons,Trigger,,0,-1"
+			}
 			// The Barry Detector
 			trigger_multiple
 			{
@@ -3145,7 +3209,7 @@ WaveSchedule
 				"tags" "itslarry"
 			}
 
-			// The Larry Detector
+			// The Harry Detector
 			trigger_multiple
 			{
 				"targetname" "TheHarryDetector"
@@ -3164,32 +3228,6 @@ WaveSchedule
 				"tags" "itsharry"
 			}
 		}
-		MainBoss_BarryLogic
-		{
-			logic_relay
-			{
-				"targetname" "Barry_AttackPoolInit"
-				
-				"OnTrigger" "Barry_Phase1AttackPoolRelay,Trigger,,0,-1"
-				"OnTrigger" "Barry_Phase2AttackPoolRelay,Trigger,,0,-1"
-			}
-
-			logic_relay
-			{
-				"targetname" "Barry_Phase1AttackPoolRelay"
-				"spawnflags" "2"
-
-				"OnTrigger" "Barry_Phase1AttackPool,PickRandomShuffle,,0,-1"
-			}
-			logic_relay
-			{
-				"targetname" "Barry_Phase2AttackPoolRelay"
-				"spawnflags" "2"
-				"startdisabled" "1"
-
-				"OnTrigger" "Barry_Phase2AttackPool,PickRandomShuffle,,0,-1"
-			}
-		}
 		MainBoss_LarryLogic
 		{
 			OnSpawnOutput
@@ -3197,36 +3235,6 @@ WaveSchedule
 				Target larrybigshoelmao
 				Action SetAttached
 				Param !self
-			}
-			logic_relay
-			{
-				"targetname" "Larry_AttackPoolInit"
-				
-				"OnTrigger" "Larry_Phase1AttackPoolRelay,Trigger,,0,-1"
-				"OnTrigger" "Larry_Phase2AttackPoolRelay,Trigger,,0,-1"
-			}
-
-			logic_relay
-			{
-				"targetname" "Larry_Phase1AttackPoolRelay"
-				"spawnflags" "2"
-
-				"OnTrigger" "Larry_Phase1AttackPool,PickRandomShuffle,,0,-1"
-			}
-			logic_relay
-			{
-				"targetname" "Larry_Phase2AttackPoolRelay"
-				"spawnflags" "2"
-				"startdisabled" "1"
-
-				"OnTrigger" "Larry_Phase2AttackPool,PickRandomShuffle,,0,-1"
-			}
-
-			logic_case
-			{
-				"targetname" "Larry_Phase1AttackPool"
-
-				"OnCase01" "pop_interface,ChangeBotAttributes,Larry_BigShoeLmao,0,-1"
 			}
 
 			// Big Shoe Attack
@@ -3328,29 +3336,6 @@ WaveSchedule
 		}
 		MainBoss_HarryLogic
 		{
-			logic_relay
-			{
-				"targetname" "Harry_AttackPoolInit"
-				
-				"OnTrigger" "Harry_Phase1AttackPoolRelay,Trigger,,0,-1"
-				"OnTrigger" "Harry_Phase2AttackPoolRelay,Trigger,,0,-1"
-			}
-
-			logic_relay
-			{
-				"targetname" "Harry_Phase1AttackPoolRelay"
-				"spawnflags" "2"
-
-				"OnTrigger" "Harry_Phase1AttackPool,PickRandomShuffle,,0,-1"
-			}
-			logic_relay
-			{
-				"targetname" "Harry_Phase2AttackPoolRelay"
-				"spawnflags" "2"
-				"startdisabled" "1"
-
-				"OnTrigger" "Harry_Phase2AttackPool,PickRandomShuffle,,0,-1"
-			}
 		}
 
         //// MINI BOSSES ////
@@ -8129,6 +8114,9 @@ WaveSchedule
 
 			CharacterAttributes
 			{
+				"no_attack" 1
+				"no_jump" 0
+				"move speed bonus" 0.01
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
@@ -8159,7 +8147,7 @@ WaveSchedule
 			{
 				ItemName "The Market Gardener"
 				"damage bonus" 1.5
-				"dmg dmg bonus vs buildings" 5
+				"dmg bonus vs buildings" 5
 				"deploy time decreased" 0.01
 			}
 
@@ -8247,7 +8235,7 @@ WaveSchedule
 					{
 						ItemName "The Market Gardener"
 						"damage bonus" 1.5
-						"dmg dmg bonus vs buildings" 5
+						"dmg bonus vs buildings" 5
 						"deploy time decreased" 0.01
 					}
 
@@ -8282,8 +8270,139 @@ WaveSchedule
 
 					FireInput
 					{
-						Target "Barry_AttackPoolInit"
-						Action Trigger
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_LaunchUpAndCrater
+						Delay 12.5
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
+				Barry_LaunchUpAndCrater
+                {
+                    Item "The Market Gardener"
+                    WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
+                    ItemAttributes
+                    {
+                        ItemName "The Market Gardener"
+						"damage bonus" 1.5
+						"dmg bonus vs buildings" 5
+						"melee range multiplier" 2.5
+						"deploy time decreased" 0.01
+                        "apply z velocity on damage" 850
+                        "apply look velocity on damage" -584
+                        "damage causes airblast" 1
+                        "fire input on hit" "!activator^$ChangeAttributes^Barry_CraterHisAss"
+                    }
+                }
+                Barry_CraterHisAss
+                {
+                    Item "The Market Gardener"
+                    WeaponRestrictions MeleeOnly
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"cancel falling damage" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,5500))"
+						Delay 0.3
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,0,1500))"
+						Delay 0.6
+						Repeats 1
+						Cooldown -1
+					}
+                    ItemAttributes
+                    {
+                        ItemName "The Market Gardener"
+						"damage bonus" 1.5
+						"dmg bonus vs buildings" 5
+						"melee range multiplier" 4.5
+						"deploy time decreased" 0.01
+                        "hand scale" 2
+                        "apply z velocity on damage" -2000
+                        "fire input on hit" "tf_gamerules^playvo^player\pl_impact_stun_range.wav"
+                    }
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_DefaultTrolldier
+						Delay 5
+						Repeats 1
+						Cooldown -1
+					}
+                }
+
+				Barry_Combo_SpoonRain
+				{
+					Item "Spoon Gun" [$SIGSEGV]
+					Item "The Market Gardener"
+					WeaponRestrictions PrimaryOnly
+					Attributes HoldFireUntilFullReload
+
+					CharacterAttributes
+					{
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 0
+						"displace touched enemies" 0
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
+
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"is_passive_weapon" 1
+					}
+
+					ShootTemplate
+					{
+						Name Trolldier_BigSpoon
+						AttachToProjectile 1
+						ItemName "Spoon Gun"
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_DefaultTrolldier
 						Delay 10
 						Repeats 1
 						Cooldown -1
@@ -8347,7 +8466,7 @@ WaveSchedule
 			{
 				ItemName "The Market Gardener"
 				"damage bonus" 1.5
-				"dmg dmg bonus vs buildings" 5
+				"dmg bonus vs buildings" 5
 				"deploy time decreased" 0.01
 			}
 
@@ -8434,7 +8553,8 @@ WaveSchedule
 					{
 						ItemName "The Market Gardener"
 						"damage bonus" 1.5
-						"dmg dmg bonus vs buildings" 5
+						"dmg bonus vs buildings" 5
+						"melee range multiplier" 2.5
 						"deploy time decreased" 0.01
 					}
 
@@ -8469,8 +8589,9 @@ WaveSchedule
 
 					FireInput
 					{
-						Target "Larry_AttackPoolInit"
-						Action Trigger
+						Target !self
+						Action $ChangeAttributes
+						Param Larry_BigShoeLmao
 						Delay 10
 						Repeats 1
 						Cooldown -1
@@ -8593,10 +8714,23 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
-                Barry_LaunchUpAndCrater
-                {
-                    
-                }
+
+				Larry_Combo_GigaShockwave
+				{
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 1
+						"cannot be backstabbed" 1
+						"attach particle effect" 3042
+					}
+				}
 			}
 		}
 		MainBoss_Harry
@@ -8628,6 +8762,9 @@ WaveSchedule
 
 			CharacterAttributes
 			{
+				"no_jump" 1
+				"no_attack" 1
+				"move speed bonus" 0.01
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
@@ -8657,7 +8794,7 @@ WaveSchedule
 			{
 				ItemName "The Market Gardener"
 				"damage bonus" 1.5
-				"dmg dmg bonus vs buildings" 5
+				"dmg bonus vs buildings" 5
 				"deploy time decreased" 0.01
 			}
 
@@ -8744,7 +8881,7 @@ WaveSchedule
 					{
 						ItemName "The Market Gardener"
 						"damage bonus" 1.5
-						"dmg dmg bonus vs buildings" 5
+						"dmg bonus vs buildings" 5
 						"deploy time decreased" 0.01
 					}
 
@@ -8781,7 +8918,7 @@ WaveSchedule
 					{
 						Target "Harry_AttackPoolInit"
 						Action Trigger
-						Delay 10
+						Delay 15
 						Repeats 1
 						Cooldown -1
 					}

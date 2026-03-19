@@ -5991,8 +5991,6 @@ WaveSchedule
             }
         }
 
-        
-
         WaveSpawn // Ironstar Phase 1
         {
             Name "Wave14_Boss-IronstarPhase1"
@@ -6098,11 +6096,25 @@ WaveSchedule
         }
 
 		WaveSpawn
-		{
-			Name "Wave13_IronStarDeathAnim"
-			WaitForAllDead "Wave14_Boss-IronstarPhase2"
-			WaitBeforeStarting 5
-		}
+        {
+            WaitForAllDead "Wave14_Boss-IronstarPhase2"
+            FirstSpawnOutput
+            {
+                Target "tf_gamerules"
+                Action "RunScriptCode"
+                Param "
+                ClientPrint(null,3,`Till next time fellas...`);
+                EntFire(`engishake`,`startshake`,0.1)
+                EntFire(`killmothership`,`trigger`,0.1)
+                "
+                Delay 0.0
+            }
+        }
+        WaveSpawn
+        {
+            WaitForAllDead "Wave14_Boss-IronstarPhase2"
+            WaitBeforeStarting 5
+        }
     }
 
     // EXPERT GAUNTLET //
