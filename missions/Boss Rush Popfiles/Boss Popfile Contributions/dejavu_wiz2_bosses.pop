@@ -25,6 +25,7 @@ WaveSchedule
             Attributes IgnoreFlag
             AlwaysGlow 1
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             ItemAttributes
             {
                 ItemName "The Tank Top"
@@ -305,6 +306,7 @@ WaveSchedule
 			Item "Gentle Manne's Service Medal"
 
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"

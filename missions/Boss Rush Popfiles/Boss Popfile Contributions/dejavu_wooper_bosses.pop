@@ -37,6 +37,7 @@ WaveSchedule
 			Item "Stickybomb Jumper"
 			Item "Magnanimous Monarch"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			CharacterAttributes
 			{
 				"airblast vulnerability multiplier" 0.5
@@ -97,6 +98,7 @@ WaveSchedule
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			Item "Crackle Mangler"
 			Item "Crackle Shotgun"
 			CharacterAttributes

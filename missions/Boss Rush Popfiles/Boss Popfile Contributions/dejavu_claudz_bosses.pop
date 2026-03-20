@@ -5763,6 +5763,7 @@ WaveSchedule
             Item "The Loch-n-Load"
             Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
             WeaponRestrictions SecondaryOnly
+            UseMeleeThreatPrioritization 1
             CustomEyeGlowColor "13 229 229" 
             Attributes SuppressFire
             Action Mobber
@@ -5877,6 +5878,7 @@ WaveSchedule
             Health 18000
             Action Mobber
             Attributes UseBossHealthBar
+            UseMeleeThreatPrioritization 1
             Name "Otherworldly Barrage"
             AddCond
             {
@@ -6849,6 +6851,7 @@ WaveSchedule
             MaxVisionRange 2000
             Action Mobber
             UseHumanModel 1
+            UseMeleeThreatPrioritization 1
             Item "Breadcrab"
             Item "Emerald Jarate"
             Item "Herzensbrecher"
@@ -7206,6 +7209,7 @@ WaveSchedule
             Attributes MiniBoss
             Action Mobber
             UseHumanModel 1
+            UseMeleeThreatPrioritization 1
             Item "The Buccaneer's Bicorne"
             Item "The Alien Cranium"
             Item "The Biomech Backpack"
@@ -7388,6 +7392,7 @@ WaveSchedule
             NoBombUpgrades 1
             CustomEyeGlowColor "0 0 0"
             CustomEyeParticle ""
+            UseMeleeThreatPrioritization 1
             Action Mobber
             Attributes MiniBoss
 
@@ -8456,6 +8461,7 @@ WaveSchedule
             Tag engiboss
             UseHumanAnimations 1
             UseHumanModel 1
+            UseMeleeThreatPrioritization 1
             Health 75000
             MaxVisionRange 2000
 

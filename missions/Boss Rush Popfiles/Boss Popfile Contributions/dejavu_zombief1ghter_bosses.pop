@@ -93,6 +93,7 @@ WaveSchedule
 			AlwaysGlow	1 [$SIGSEGV]
 			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	"The Machina"
@@ -329,6 +330,7 @@ WaveSchedule
 			AddCond "TF_COND_PREVENT_DEATH" [$SIGSEGV]  
 			UseHumanAnimations 1 [$SIGSEGV]   // Use normal class animations instead of a bot / custom model ones
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	"TF_WEAPON_ROCKETLAUNCHER"
@@ -446,6 +448,7 @@ WaveSchedule
 			Health			67500
 			Attributes	"MiniBoss"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ChangeAttributes [$SIGSEGV]    
 			{
 				Delay	0
@@ -1039,6 +1042,7 @@ WaveSchedule
 			Attributes	"MiniBoss"
 			Attributes	"UseBossHealthBar"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	"The Iron Bomber"
@@ -1077,6 +1081,7 @@ WaveSchedule
 			Attributes	"UseBossHealthBar"
 			Attributes	"HoldFireUntilFullReload"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	TF_WEAPON_GRENADELAUNCHER
@@ -1115,6 +1120,7 @@ WaveSchedule
 			Item	"The Data Mining Light"
 			Item	"The Antarctic Researcher"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	"The Rescue Ranger"
@@ -1150,6 +1156,7 @@ WaveSchedule
 			Item	"Texas Tin-Gallon"
 			Item	"The Antarctic Researcher"
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName	"The Rescue Ranger"

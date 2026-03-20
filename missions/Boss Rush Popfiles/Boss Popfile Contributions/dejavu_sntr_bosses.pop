@@ -430,6 +430,7 @@ WaveSchedule
 			StripItemSlot 1 [$SIGSEGV]
 			Action Mobber
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemModel [$SIGSEGV]
 			{
 				ItemName "TF_WEAPON_CLUB"
@@ -481,6 +482,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			Item "The Conscientious Objector"
 			UseCustomModel "models\bots\soldier\bot_soldier.mdl"
 			UseHumanAnimations 1
@@ -679,7 +681,8 @@ WaveSchedule
 			Scale 1.8
 			NoIdleSound 1 			 
 			UseHumanAnimations 1 	 
-			AimTrackingInterval 1.5   
+			AimTrackingInterval 1.5 
+			UseMeleeThreatPrioritization 1 
 			FastUpdate 1 			 
 			UseCustomModel "models/bots/skeleton_sniper_boss/skeleton_sniper_boss.mdl"  
 			SpawnTemplate  

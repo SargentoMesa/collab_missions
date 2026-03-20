@@ -1741,6 +1741,7 @@ WaveSchedule
 				Action Mobber
 
 				ExtAttr IgnoreBuildings
+				UseMeleeThreatPrioritization 1
 
 				Item "TF_WEAPON_FIREAXE"
 
@@ -3334,6 +3335,7 @@ WaveSchedule
 		
 			RocketCustomModel "models/props_mvm/mvm_human_skull.mdl" [$SIGSEGV]
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 
 			SpawnTemplate "SlaveKnightTemplate"
 			SpawnTemplate "SlaveKnightIntroTexts"
@@ -4027,6 +4029,7 @@ WaveSchedule
 			Item "Pugilist's Protector"
 			WeaponRestrictions MeleeOnly
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			
 			Attributes MiniBoss
 
@@ -4233,6 +4236,7 @@ WaveSchedule
 			Action Mobber
 
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			
 			Item "Batter's Helmet"
 
@@ -4403,6 +4407,7 @@ WaveSchedule
 			UseHumanAnimations 1
 
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 
 			Action Mobber
 			
@@ -4661,6 +4666,7 @@ WaveSchedule
 			SpawnTemplate "BlackHoleMainRelays"
 
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1s
 
 			CharacterAttributes
 			{

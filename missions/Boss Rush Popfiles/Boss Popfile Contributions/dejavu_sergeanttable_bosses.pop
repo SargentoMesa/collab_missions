@@ -4114,6 +4114,7 @@ WaveSchedule
                 "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
                 //"OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_SpinningBeamsInit,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
             }
 
             //// Phase 1 Attacks ////
@@ -4449,11 +4450,20 @@ WaveSchedule
             {
                 "targetname" "spinningbeamsattack"
                 "OnTrigger"  "!activator,$TauntFromItem,Taunt: True Scotsman's Call,0,-1"
-                "OnTrigger"  "beam_spinner_1,start,,1,-1"
-                "OnTrigger"  "beam_spinner_2,start,,1,-1"
-                "OnTrigger"  "beam_spinner_1,stop,,10,-1"
-                "OnTrigger"  "beam_spinner_2,stop,,10,-1"
+                "OnTrigger"  "beam_spinner_1,start,,3.5,-1"
+                "OnTrigger"  "beam_spinner_2,start,,3.5,-1"
+                "OnTrigger"  "beam_spinner_1,stop,,13.5,-1"
+                "OnTrigger"  "beam_spinner_2,stop,,13.5,-1"
                 "OnTrigger"  "weregonnatouchu,strikeonce,,1,-1"
+                "OnTrigger"  "weregonnatouchu1,strikeonce,,1.3,-1"
+                "OnTrigger"  "weregonnatouchu2,strikeonce,,1.4,-1"
+                "OnTrigger"  "weregonnatouchu3,strikeonce,,1.9,-1"
+                "OnTrigger"  "weregonnatouchu4,strikeonce,,2,-1"
+                "OnTrigger"  "weregonnatouchu5,strikeonce,,2,-1"
+                "OnTrigger"  "weregonnatouchu6,strikeonce,,2.4,-1"
+                "OnTrigger"  "weregonnatouchu7,strikeonce,,2.5,-1"
+                "OnTrigger"  "weregonnatouchu8,strikeonce,,2.6,-1"
+                "OnTrigger"  "weregonnatouchu9,strikeonce,,2.6,-1"
             }
             func_rotating
             {
@@ -4505,12 +4515,12 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "12.5"
 				"spawnflags" "96"
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu1"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart2"
                 "LightningEnd" "kill_me_if_you_dare1"
@@ -4523,12 +4533,12 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "12.2"
 				"spawnflags" "96"
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu2"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart1"
                 "LightningEnd" "kill_me_if_you_dare2"
@@ -4546,7 +4556,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu3"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart2"
                 "LightningEnd" "kill_me_if_you_dare3"
@@ -4564,7 +4574,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu4"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart1"
                 "LightningEnd" "kill_me_if_you_dare4"
@@ -4582,7 +4592,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu5"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart2"
                 "LightningEnd" "kill_me_if_you_dare5"
@@ -4600,7 +4610,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu6"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart1"
                 "LightningEnd" "kill_me_if_you_dare6"
@@ -4618,7 +4628,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu7"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart2"
                 "LightningEnd" "kill_me_if_you_dare7"
@@ -4636,7 +4646,7 @@ WaveSchedule
             }
             env_beam
             {
-                "targetname" "weregonnatouchu"
+                "targetname" "weregonnatouchu9"
                 "BoltWidth" "25"
                 "LightningStart" "beamstart1"
                 "LightningEnd" "kill_me_if_you_dare8"
@@ -5506,6 +5516,7 @@ WaveSchedule
             Attributes DisableDodge
             Attributes AlwaysCrit
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             Action Mobber
 
             UseHumanAnimations 1
@@ -9354,6 +9365,7 @@ WaveSchedule
             Tag bot_giant
             SpawnTemplate hereturns  
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             InterruptAction
             {
                 Target "3558 4183 -815" //"1044 -573 643"  //move target location
@@ -9627,6 +9639,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             Attributes DisableDodge
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             WeaponRestrictions MeleeOnly
             Action Mobber
 
@@ -10028,6 +10041,50 @@ WaveSchedule
                         Cooldown -1
                     }
                 }
+
+                Swordsman_SwordBeams
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "Festive Eyelander"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "increased jump height" 3
+                        "bot custom jump particle" 1
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                        "attack not cancel charge" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "Festive Eyelander"
+                        "max health additive penalty" 0
+                    }
+
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_Default
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
             }
         }
 
@@ -10042,6 +10099,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 			Action Mobber
 
 			UseHumanAnimations 1
@@ -10553,6 +10611,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 			Action Mobber
 
 			UseHumanAnimations 1
@@ -10978,6 +11037,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 			Action Mobber
 
 			Tag itsharry
@@ -11333,6 +11393,8 @@ WaveSchedule
             Scale 1
             AddCond   {Name "TF_COND_HALLOWEEN_KART"}
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
+            
             CharacterAttributes
             {
                 "damage bonus" 1.5
@@ -11361,6 +11423,7 @@ WaveSchedule
             Attributes Autojump
             Attributes DisableDodge
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             Autojumpmax 1
             Autojumpmin 1
             Action Mobber
@@ -11447,6 +11510,7 @@ WaveSchedule
 			WeaponRestrictions	MeleeOnly
 			Name	"Private Mannpower"
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             CharacterAttributes
 			{
@@ -11577,6 +11641,7 @@ WaveSchedule
             Item "The Chaser"
             AimOffset "0 0 500"
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             CharacterAttributes
             {
                 "move speed penalty" 0.5
@@ -11634,6 +11699,7 @@ WaveSchedule
             Action Mobber
             Attributes DisableDodge
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             CharacterAttributes
             {
@@ -11669,6 +11735,7 @@ WaveSchedule
             Tag giant
             Action Mobber
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             MaxVisionRange 1200
 
             CharacterAttributes
@@ -11704,6 +11771,7 @@ WaveSchedule
             Tag giant
             SpawnTemplate boss_dead_pyro
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             CharacterAttributes
             {
@@ -11732,6 +11800,7 @@ WaveSchedule
             Attributes MiniBoss
             Item "The AWPer Hand"
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             ItemAttributes
             {
                 ItemName "TF_WEAPON_CLUB"
@@ -11766,6 +11835,7 @@ WaveSchedule
             Item	"Cargo Constructor"
             Action Mobber
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             ItemAttributes
             {
                 ItemName "the rescue ranger"
@@ -11834,6 +11904,7 @@ WaveSchedule
             Item "Pugilist's Protector"
             UseCustomModel "models/bots/heavy_boss/bot_heavy_gray_boss.mdl"
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             ItemAttributes
             {
                 ItemName "the killing gloves of boxing"
@@ -11925,6 +11996,7 @@ WaveSchedule
             Item	"the axtinguisher"
             UseCustomModel "models/bots/pyro_boss/bot_pyro_gray_boss.mdl"
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
             ItemAttributes 
             {
                 ItemName "The Flare Gun"

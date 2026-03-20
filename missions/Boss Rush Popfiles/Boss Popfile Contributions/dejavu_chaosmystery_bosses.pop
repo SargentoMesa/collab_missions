@@ -1443,6 +1443,7 @@ WaveSchedule
 			Attributes UseBossHealthBar
 			SpawnTemplate chaos_logic
 			SpawnTemplate boss_surge_dead
+            UseMeleeThreatPrioritization 1
 
             ExtAttr IgnoreBuildings
 
@@ -1731,6 +1732,8 @@ WaveSchedule
             Item "Sleuth Suit"
             PreferClass Medic
             Item "Replay Taunt"
+
+            UseMeleeThreatPrioritization 1
             ChangeAttributes
             {
                 Name BurstFrontier

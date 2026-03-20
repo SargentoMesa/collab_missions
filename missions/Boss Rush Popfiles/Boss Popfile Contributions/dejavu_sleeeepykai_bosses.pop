@@ -330,6 +330,7 @@ WaveSchedule
             Action Mobber
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             UseHumanAnimations 1
 
@@ -932,6 +933,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             UseHumanAnimations 1
 
@@ -1354,6 +1356,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             Item "The Dragon's Fury"
             Item "The Flare Gun"
@@ -1409,6 +1412,7 @@ WaveSchedule
             Attributes HoldFireUntilFullReload
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             Item "The Iron Bomber"
 
@@ -1453,6 +1457,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             UseMeleeThreatPrioritization 1
 
@@ -1566,6 +1571,7 @@ WaveSchedule
             Attributes UseBossHealthBar
             WeaponRestrictions PrimaryOnly
             ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
 
             Item "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
 

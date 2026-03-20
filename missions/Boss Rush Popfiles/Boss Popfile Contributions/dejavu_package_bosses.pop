@@ -339,6 +339,12 @@ WaveSchedule
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
 			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
+
+			CharacterAttributes
+			{
+				"displace touched enemies" 1
+			}
 
 			EventChangeAttributes
 			{
@@ -478,6 +484,8 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			Attributes UseBossHealthBar
 			Attributes AlwaysCrit
+			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			Item "The Loose Cannon"
 			Item "The Eyelander"
 			Item "The King of Scotland Cape"
@@ -529,6 +537,7 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.01
 				"airblast vertical vulnerability multiplier" 0.01
 				"override footstep sound set" 4
+				"displace touched enemies" 1
 			}
 			Item "Hero's Hachimaki"
 			ItemAttributes
@@ -552,6 +561,8 @@ WaveSchedule
 	    	Tag bot_sentrybuster
 	        Tag  "kill_dst_abc"
 			Item "The Data Mining Light"
+			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			ItemAttributes
 			{
 				ItemName "gentlemanne_shotgun_coffinnail"
@@ -582,6 +593,7 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.01
 				"building cost reduction" 20
 				"increased jump height" 1.5
+				"displace touched enemies" 1
 			}
 		}
 		T_TFBot_Miniboss_DistortedMessenger_RightHand_Package
@@ -596,6 +608,8 @@ WaveSchedule
 			Skill Expert
 			Attributes MiniBoss
 			Attributes AlwaysCrit
+			ExtAttr IgnoreBuildings
+			UseMeleeThreatPrioritization 1
 			Tag bot_giant
 			Tag bot_sentrybuster
 			Tag  "kill_dst_abc"
@@ -645,6 +659,7 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.01
 				"building cost reduction" 20
 				"increased jump height" 1.5
+				"displace touched enemies" 1
 			}
         }
 
@@ -660,6 +675,8 @@ WaveSchedule
 			WeaponRestrictions MeleeOnly
 			Attributes MiniBoss
 			Item "Fists of Steel"
+			UseMeleeThreatPrioritization 1
+			ExtAttr IgnoreBuildings
 			Scale 1.8
 			CharacterAttributes
 			{
@@ -668,6 +685,7 @@ WaveSchedule
 				"damage force reduction" 0.001
 				"airblast vulnerability multiplier" 0.001
 				"override footstep sound set" 5
+				"displace touched enemies" 1
 			}
 			Attributes UseBossHealthBar
 		}
@@ -683,6 +701,8 @@ WaveSchedule
 			WeaponRestrictions PrimaryOnly
 			Attributes MiniBoss
 			Attributes HoldFireUntilFullReload
+			UseMeleeThreatPrioritization 1
+			ExtAttr IgnoreBuildings
 			Scale 1.8
 			ItemAttributes
 			{
@@ -704,6 +724,7 @@ WaveSchedule
 				"damage force reduction"	0.001
 				"airblast vulnerability multiplier"	0.001
 				"override footstep sound set"	3
+				"displace touched enemies" 1
 			}
 			Attributes UseBossHealthBar
 		}
