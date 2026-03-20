@@ -7760,7 +7760,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_front_lite`, 1, MVM_CLASS_FLAG_NORMAL],
 								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                             ])
                             break;
@@ -7806,7 +7806,7 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
+								  [`soldier_gib_jumper_front_lite`, 1, MVM_CLASS_FLAG_NORMAL],
 								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
                             ])
                             break;

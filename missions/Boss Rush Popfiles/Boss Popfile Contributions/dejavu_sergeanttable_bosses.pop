@@ -6527,8 +6527,17 @@ WaveSchedule
 					{ // this makes the bot move forward in the air
 						Target "!self"
 						Action "RunScriptCode"
-						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,12000))"
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,5000))"
 						Delay 5.2
+						Repeats 1
+						Cooldown 99
+					}
+                    FireInput
+					{ // this makes the bot move forward in the air
+						Target "!self"
+						Action "RunScriptCode"
+						Param "self.ApplyAbsVelocityImpulse(Vector(0,700,5000))"
+						Delay 5.45
 						Repeats 1
 						Cooldown 99
 					}
@@ -9035,7 +9044,7 @@ WaveSchedule
 		{
 			Name "Larry"
 			Class Soldier
-			ClassIcon soldier_gib_jumper_lite
+			ClassIcon soldier_gib_jumper_front_lite
 			Skill Expert
 			Health 25000
 			Attributes UseBossHealthBar
