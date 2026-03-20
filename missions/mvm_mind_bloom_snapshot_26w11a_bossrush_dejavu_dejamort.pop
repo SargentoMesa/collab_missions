@@ -7924,7 +7924,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.5
 			WaitBetweenSpawns 0
-			TotalCurrency 25
+			TotalCurrency 100
 
 			TFBot
 			{
@@ -7959,7 +7959,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.6
 			WaitBetweenSpawns 0
-			TotalCurrency 50
+			TotalCurrency 100
 
 			TFBot
 			{
@@ -8002,7 +8002,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.7
 			WaitBetweenSpawns 0
-			TotalCurrency 25
+			TotalCurrency 100
 
 			TFBot
 			{
@@ -8585,9 +8585,27 @@ WaveSchedule
 				Param "
 						EntFire(`arena_teleport_relay`, `Trigger`)
 						MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                        EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
 					  "
 			}
 		}
+
+        WaveSpawn // Boss
+        {
+            Name "Wave20_Boss-TheLoneSwordsman"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template MainBoss_LoneSwordsman
+            }
+        }
     }
 
     // MASTER GAUNTLET //

@@ -3592,234 +3592,6 @@ WaveSchedule
 			}
 		}
 
-        //// MINI BOSSES ////
-
-        //// PRIVATE MANNPOWER ////
-        removepowerup // Kill on boss death with a delay of 0.1
-        {
-            RemoveIfKilled mannpower_kill
-            logic_timer
-            {
-                "targetname" "mannpower_kill"
-                "RefireTime" "0.01"
-                "spawnflags" "0"
-                "UseRandomTime" "0"
-                "OnTimer" "item_powerup_rune,kill,,0,-1"
-            }
-        }
-
-        //// THE FALLEN PATROL CHIEFS ////
-        boss_dead_pyro
-        {
-            OnParentKilledOutput
-            {
-                Target "chief_pyro_down"
-                Action "Enable"
-            }
-            OnParentKilledOutput
-            {
-                Target "chief_pyro_down"
-                Action "SetPlaybackRate"
-                Param "0.75"
-                Delay 0.02
-            }
-            prop_dynamic
-            {
-                "targetname" "chief_pyro_down"
-                "origin" "0 0 0"
-                "angles" "0 0 0"
-                "color" "255 255 255"
-                "model" "models\bots\pyro_boss\bot_pyro_boss_gibby.mdl"
-                "modelscale" "2"
-                "defaultanim" "primary_death_headshot"
-                "disablebonefollowers" "1"
-                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "bossdeath1,trigger,0,-1"
-                "OnAnimationDone" "!self,Kill,,0,-1"
-                "startdisabled" "1"
-                "skin" "1"
-            }
-            KeepAlive 1
-            logic_relay
-            {
-                "targetname" "bossdeath1"
-                "OnTrigger"	"boss_is_dead,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
-                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
-                "OnTrigger" "shake_boss,StartShake,,0,-1"
-                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "mvm_tank_destroy"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead1"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "rd_robot_explosion"
-            }
-            KeepAlive 1
-            env_shake
-            {
-                "spawnflags" "1" 
-                "amplitude" "16"
-                "duration" "3"
-                "frequency" "9"
-                "targetname" "shake_boss"
-            }
-        }
-        boss_dead_heavy
-        {
-            OnParentKilledOutput
-            {
-                Target "chief_heavy_down"
-                Action "Enable"
-            }
-            OnParentKilledOutput
-            {
-                Target "chief_heavy_down"
-                Action "SetPlaybackRate"
-                Param "1.1"
-                Delay 0.02
-            }
-            prop_dynamic
-            {
-                "targetname" "chief_heavy_down"
-                "origin" "0 0 0"
-                "angles" "0 0 0"
-                "color" "255 255 255"
-                "model" "models\bots\heavy_boss\bot_heavy_boss_gibby.mdl"
-                "modelscale" "2"
-                "defaultanim" "PRIMARY_death_burning"
-                "disablebonefollowers" "1"
-                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "bossdeath1,trigger,0,-1"
-                "OnAnimationDone" "!self,Kill,,0,-1"
-                "startdisabled" "1"
-                "skin" "1"
-            }
-            KeepAlive 1
-            logic_relay
-            {
-                "targetname" "bossdeath1"
-                "OnTrigger"	"boss_is_dead,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
-                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
-                "OnTrigger" "shake_boss,StartShake,,0,-1"
-                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "mvm_tank_destroy"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead1"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "rd_robot_explosion"
-            }
-            KeepAlive 1
-            env_shake
-            {
-                "spawnflags" "1" 
-                "amplitude" "16"
-                "duration" "3"
-                "frequency" "9"
-                "targetname" "shake_boss"
-            }
-        }
-        boss_dead_demo
-        {
-            OnParentKilledOutput
-            {
-                Target "chief_demo_down"
-                Action "Enable"
-            }
-            OnParentKilledOutput
-            {
-                Target "chief_demo_down"
-                Action "SetPlaybackRate"
-                Param "0.75"
-                Delay 0.02
-            }
-            prop_dynamic
-            {
-                "targetname" "chief_demo_down"
-                "origin" "0 0 0"
-                "angles" "0 0 0"
-                "color" "255 255 255"
-                "model" "models\bots\demo_boss\bot_demo_boss_gibby.mdl"
-                "modelscale" "2"
-                "defaultanim" "primary_death_backstab"
-                "disablebonefollowers" "1"
-                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
-                "OnAnimationDone" "bossdeath1,trigger,0,-1"
-                "OnAnimationDone" "!self,Kill,,0,-1"
-                "startdisabled" "1"
-                "skin" "1"
-            }
-            KeepAlive 1
-            logic_relay
-            {
-                "targetname" "bossdeath1"
-                "OnTrigger"	"boss_is_dead,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
-                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
-                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
-                "OnTrigger" "shake_boss,StartShake,,0,-1"
-                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
-                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "mvm_tank_destroy"
-            }
-            KeepAlive 1
-            info_particle_system
-            {
-                "targetname" "boss_is_dead1"
-                "origin" "0 0 0"
-                "angles" "-90 0 0"
-                "effect_name" "rd_robot_explosion"
-            }
-            KeepAlive 1
-            env_shake
-            {
-                "spawnflags" "1" 
-                "amplitude" "16"
-                "duration" "3"
-                "frequency" "9"
-                "targetname" "shake_boss"
-            }
-        }
-
         //// THE FAKE ONE (Shocks I mean) ////
         bossstuffs
         {
@@ -4233,9 +4005,16 @@ WaveSchedule
             }		
         }
 
-		//// THE LONE SWORDSMAN ////
-        loneswordmanlogic /// LONE SWORDMAN
+        //// THE LONE SWORDSMAN ////
+        SwordsmanLogic
         {
+            logic_relay
+            {
+                "targetname" "SwordsmanIntroRelay"
+
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_laughevil03.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_eyelandertaunt01.mp3,2,-1"
+            }
             func_rotating
             {
                 "targetname" "boss_is_spinning_that_shit"
@@ -4275,6 +4054,234 @@ WaveSchedule
                 "filtername" "filter_is_red_not_ubered"
                 "OnHurtPlayer" "!activator,$igniteplayerduration,8,0,-1"
                 "$killicon"  "firedeath"
+            }
+        }
+
+        //// MINI BOSSES ////
+
+        //// PRIVATE MANNPOWER ////
+        removepowerup // Kill on boss death with a delay of 0.1
+        {
+            RemoveIfKilled mannpower_kill
+            logic_timer
+            {
+                "targetname" "mannpower_kill"
+                "RefireTime" "0.01"
+                "spawnflags" "0"
+                "UseRandomTime" "0"
+                "OnTimer" "item_powerup_rune,kill,,0,-1"
+            }
+        }
+
+        //// THE FALLEN PATROL CHIEFS ////
+        boss_dead_pyro
+        {
+            OnParentKilledOutput
+            {
+                Target "chief_pyro_down"
+                Action "Enable"
+            }
+            OnParentKilledOutput
+            {
+                Target "chief_pyro_down"
+                Action "SetPlaybackRate"
+                Param "0.75"
+                Delay 0.02
+            }
+            prop_dynamic
+            {
+                "targetname" "chief_pyro_down"
+                "origin" "0 0 0"
+                "angles" "0 0 0"
+                "color" "255 255 255"
+                "model" "models\bots\pyro_boss\bot_pyro_boss_gibby.mdl"
+                "modelscale" "2"
+                "defaultanim" "primary_death_headshot"
+                "disablebonefollowers" "1"
+                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "bossdeath1,trigger,0,-1"
+                "OnAnimationDone" "!self,Kill,,0,-1"
+                "startdisabled" "1"
+                "skin" "1"
+            }
+            KeepAlive 1
+            logic_relay
+            {
+                "targetname" "bossdeath1"
+                "OnTrigger"	"boss_is_dead,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
+                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
+                "OnTrigger" "shake_boss,StartShake,,0,-1"
+                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "mvm_tank_destroy"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead1"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "rd_robot_explosion"
+            }
+            KeepAlive 1
+            env_shake
+            {
+                "spawnflags" "1" 
+                "amplitude" "16"
+                "duration" "3"
+                "frequency" "9"
+                "targetname" "shake_boss"
+            }
+        }
+        boss_dead_heavy
+        {
+            OnParentKilledOutput
+            {
+                Target "chief_heavy_down"
+                Action "Enable"
+            }
+            OnParentKilledOutput
+            {
+                Target "chief_heavy_down"
+                Action "SetPlaybackRate"
+                Param "1.1"
+                Delay 0.02
+            }
+            prop_dynamic
+            {
+                "targetname" "chief_heavy_down"
+                "origin" "0 0 0"
+                "angles" "0 0 0"
+                "color" "255 255 255"
+                "model" "models\bots\heavy_boss\bot_heavy_boss_gibby.mdl"
+                "modelscale" "2"
+                "defaultanim" "PRIMARY_death_burning"
+                "disablebonefollowers" "1"
+                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "bossdeath1,trigger,0,-1"
+                "OnAnimationDone" "!self,Kill,,0,-1"
+                "startdisabled" "1"
+                "skin" "1"
+            }
+            KeepAlive 1
+            logic_relay
+            {
+                "targetname" "bossdeath1"
+                "OnTrigger"	"boss_is_dead,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
+                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
+                "OnTrigger" "shake_boss,StartShake,,0,-1"
+                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "mvm_tank_destroy"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead1"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "rd_robot_explosion"
+            }
+            KeepAlive 1
+            env_shake
+            {
+                "spawnflags" "1" 
+                "amplitude" "16"
+                "duration" "3"
+                "frequency" "9"
+                "targetname" "shake_boss"
+            }
+        }
+        boss_dead_demo
+        {
+            OnParentKilledOutput
+            {
+                Target "chief_demo_down"
+                Action "Enable"
+            }
+            OnParentKilledOutput
+            {
+                Target "chief_demo_down"
+                Action "SetPlaybackRate"
+                Param "0.75"
+                Delay 0.02
+            }
+            prop_dynamic
+            {
+                "targetname" "chief_demo_down"
+                "origin" "0 0 0"
+                "angles" "0 0 0"
+                "color" "255 255 255"
+                "model" "models\bots\demo_boss\bot_demo_boss_gibby.mdl"
+                "modelscale" "2"
+                "defaultanim" "primary_death_backstab"
+                "disablebonefollowers" "1"
+                "OnAnimationBegun" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "!self,SetPlaybackRate,0,,-1"
+                "OnAnimationDone" "bossdeath1,trigger,0,-1"
+                "OnAnimationDone" "!self,Kill,,0,-1"
+                "startdisabled" "1"
+                "skin" "1"
+            }
+            KeepAlive 1
+            logic_relay
+            {
+                "targetname" "bossdeath1"
+                "OnTrigger"	"boss_is_dead,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead,Stop,,2.5,-1"
+                "OnTrigger"	"boss_is_dead1,Start,,0,-1"
+                "OnTrigger"	"boss_is_dead1,Stop,,2.5,-1"
+                "OnTrigger" "shake_boss,StartShake,,0,-1"
+                "ontrigger" "player,$playsoundtoself,npc/turret_floor/die.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_end.wav,0,-1"
+                "ontrigger" "player,$playsoundtoself,mvm\mvm_tank_explode.wav,0,-1"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "mvm_tank_destroy"
+            }
+            KeepAlive 1
+            info_particle_system
+            {
+                "targetname" "boss_is_dead1"
+                "origin" "0 0 0"
+                "angles" "-90 0 0"
+                "effect_name" "rd_robot_explosion"
+            }
+            KeepAlive 1
+            env_shake
+            {
+                "spawnflags" "1" 
+                "amplitude" "16"
+                "duration" "3"
+                "frequency" "9"
+                "targetname" "shake_boss"
             }
         }
     }
@@ -8379,6 +8386,130 @@ WaveSchedule
                         Action "trigger"
                         Delay  6
                         Repeats 99
+                    }
+                }
+            }
+        }
+
+        // The Lone Swordsman
+        MainBoss_LoneSwordsman
+        {
+            Name "The Lone Swordsman"
+            Class Demoman
+            ClassIcon demoknight_boss_tavish
+            Skill Expert
+            Health 140000
+            Scale 2.5
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Attributes DisableDodge
+            ExtAttr IgnoreBuildings
+            WeaponRestrictions MeleeOnly
+            Action Mobber
+
+            UseHumanAnimations 1
+            AlwaysGlow 1
+
+            SpawnTemplate "SwordsmanLogic"
+
+            Item "Ali Baba's Wee Booties"
+            Item "The Chargin' Targe"
+            Item "The Half-Zatoichi"
+
+            Item "Prince Tavish's Crown"
+            Item "The King of Scotland Cape"
+            Item "Forgotten King's Pauldrons"
+
+            CharacterAttributes
+            {
+                "move speed penalty" 0.5
+                "damage force reduction" 0.5
+                "airblast airblast vulnerability multiplier" 0.5
+                "override footstep sound set" 4
+                "cancel falling damage" 1
+                "displace touched enemies" 1
+            }
+
+            ItemAttributes
+            {
+                ItemName "Ali Baba's Wee Booties"
+                "max health additive bonus" 0
+            }
+
+            ItemAttributes
+            {
+                ItemName "The Chargin' Targe"
+                "dmg taken from blast reduced" 1
+                "dmg taken from fire reduced" 1
+            }
+
+            ItemAttributes
+            {
+                ItemName "The Half-Zatoichi"
+                "damage bonus" 2
+                "critboost on kill" 10
+                "restore health on kill" 0
+            }
+
+            EventChangeAttributes
+            {
+                Swordsman_Intro
+                {
+                    Addcond 51
+
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "no_attack" 1
+                        "move speed penalty" 0.01
+                    }
+
+                    FireInput
+                    {
+                        Target SwordsmanIntroRelay
+                        Action Trigger
+                        Delay 2
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                Swordsman_Default
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Half-Zatoichi"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.5
+                        "airblast airblast vulnerability multiplier" 0.5
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "Ali Baba's Wee Booties"
+                        "max health additive bonus" 0
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Half-Zatoichi"
+                        "critboost on kill" 10
+                        "damage bonus" 2
+                        "restore health on kill" 0
                     }
                 }
             }
