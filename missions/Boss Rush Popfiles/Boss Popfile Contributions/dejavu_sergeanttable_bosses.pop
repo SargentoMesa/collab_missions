@@ -244,9 +244,15 @@ WaveSchedule
 		}
 
         //// THE LONE SWORDSMAN ////
+        "BeamDamage"
+        {
+            OriginalItemName "The Cow Mangler 5000"
+            "damage bonus" 3
+        }
         "GroundSwordWeapon1"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
             "projectile gravity" "900"
@@ -257,6 +263,7 @@ WaveSchedule
         "GroundSwordWeapon2"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
             "projectile gravity" "900"
@@ -267,6 +274,7 @@ WaveSchedule
         "GroundSwordWeapon3"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
             "projectile gravity" "900"
@@ -277,6 +285,7 @@ WaveSchedule
         "GroundSwordWeapon4"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
             "projectile gravity" "900"
@@ -287,6 +296,7 @@ WaveSchedule
         "GroundSwordWeapon5"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
             "projectile gravity" "900"
@@ -4068,8 +4078,8 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_dominationdemoman01.mp3,5.5,-1"
 
                 "OnTrigger" "pop_interface,ChangeBotAttributes,Swordsman_Samurai,9.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,10.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,11,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,11,-1"
             }
 
             logic_relay
@@ -4113,8 +4123,8 @@ WaveSchedule
 
                 "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
                 //"OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
-                "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_SpinningBeamsInit,0,-1"
-                "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningBeamsInit,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
             }
 
             //// Phase 1 Attacks ////
@@ -4240,7 +4250,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,4,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp1,Enable,,4,-1"
                 "OnTrigger" "Swordsman_GroundSwordDust1,Start,,4,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake1,Shake,,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake1,StartShake,,4,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage1,Enable,,4,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage1,Disable,,4.1,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp1,Kill,,7,-1"
@@ -4248,7 +4258,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.25,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp2,Enable,,4.25,-1"
                 "OnTrigger" "Swordsman_GroundSwordDust2,Start,,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake2,Shake,,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake2,StartShake,,4.25,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage2,Enable,,4.25,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage2,Disable,,4.35,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp2,Kill,,7.25,-1"
@@ -4256,7 +4266,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_02.wav,4.5,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp3,Enable,,4.5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDust3,Start,,4.5,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake3,Shake,,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake3,StartShake,,4.5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage3,Enable,,4.5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage3,Disable,,4.6,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp3,Kill,,7.5,-1"
@@ -4264,7 +4274,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.75,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp4,Enable,,4.75,-1"
                 "OnTrigger" "Swordsman_GroundSwordDust4,Start,,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake4,Shake,,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake4,StartShake,,4.75,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage4,Enable,,4.75,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage4,Disable,,4.85,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp4,Kill,,7.75,-1"
@@ -4272,7 +4282,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,5,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp5,Enable,,5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDust5,Start,,5,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake5,Shake,,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake5,StartShake,,5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage5,Enable,,5,-1"
                 "OnTrigger" "Swordsman_GroundSwordDamage5,Disable,,5.1,-1"
                 "OnTrigger" "Swordsman_GroundSwordProp5,Kill,,8,-1"
@@ -4464,6 +4474,8 @@ WaveSchedule
                 "OnTrigger"  "weregonnatouchu7,strikeonce,,2.5,-1"
                 "OnTrigger"  "weregonnatouchu8,strikeonce,,2.6,-1"
                 "OnTrigger"  "weregonnatouchu9,strikeonce,,2.6,-1"
+                "OnTrigger"  "beamdmg*,$startfiring,,3.5,-1"
+                "OnTrigger"  "beamdmg*,$stopfiring,,14.5,-1"
             }
             func_rotating
             {
@@ -4551,7 +4563,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "12.1"
 				"spawnflags" "96"
             }
             env_beam
@@ -4569,7 +4581,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "11.6"
 				"spawnflags" "96"
             }
             env_beam
@@ -4587,7 +4599,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "11.5"
 				"spawnflags" "96"
             }
             env_beam
@@ -4605,7 +4617,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "11.5"
 				"spawnflags" "96"
             }
             env_beam
@@ -4617,6 +4629,24 @@ WaveSchedule
                 "origin" "0 0 800"
                 "renderamt" "200"
                 "angles" "0 0 0"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "11.1"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu7"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart2"
+                "LightningEnd" "kill_me_if_you_dare7"
+                "origin" "0 0 800"
+                "angles" "0 0 0"
+                "renderamt" "200"
                 "rendercolor" "200 200 255"
                 "damage" "0"
                 "NoiseAmplitude" "1"
@@ -4641,7 +4671,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "10.9"
 				"spawnflags" "96"
             }
             env_beam
@@ -4659,7 +4689,7 @@ WaveSchedule
                 "dissolvetype" "1"
                 "texture" "sprites/laserbeam.spr"
                 "TouchType" "1"
-				"life" "11"
+				"life" "10.8"
 				"spawnflags" "96"
             }
             prop_dynamic
@@ -4671,6 +4701,17 @@ WaveSchedule
                 "origin" "150 0 0"
                 "angles" "0 0 0"                
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "150 0 30"
+                "parentname" "beam_spinner_2"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare1"
@@ -4679,6 +4720,17 @@ WaveSchedule
                 "solid" "0"
                 "origin" "350 0 0"
                 "angles" "0 0 0"                
+            }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "350 0 30"
+                "parentname" "beam_spinner1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
             }
             prop_dynamic
             {
@@ -4689,6 +4741,17 @@ WaveSchedule
                 "origin" "650 0 0"
                 "angles" "0 0 0"              
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "650 0 30"
+                "parentname" "beam_spinner_2"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare3"
@@ -4697,6 +4760,17 @@ WaveSchedule
                 "solid" "0"
                 "origin" "950 0 0"
                 "angles" "0 0 0"              
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "950 0 30"
+                "parentname" "beam_spinner_1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
             }
             prop_dynamic
             {
@@ -4707,6 +4781,17 @@ WaveSchedule
                 "origin" "1250 0 0"
                 "angles" "0 0 0"                
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "1250 0 30"
+                "parentname" "beam_spinner_2"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare5"
@@ -4715,6 +4800,17 @@ WaveSchedule
                 "solid" "0"
                 "origin" "-50 0 0"
                 "angles" "0 0 0"            
+            }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-50 0 30"
+                "parentname" "beam_spinner_1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
             }
             prop_dynamic
             {
@@ -4725,6 +4821,17 @@ WaveSchedule
                 "origin" "-200 0 0"
                 "angles" "0 0 0"                
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-200 0 30"
+                "parentname" "beam_spinner_2"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare7"
@@ -4733,6 +4840,17 @@ WaveSchedule
                 "solid" "0"
                 "origin" "-500 0 0"
                 "angles" "0 0 0"              
+            }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-500 0 30"
+                "parentname" "beam_spinner_1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
             }
             prop_dynamic
             {
@@ -4743,6 +4861,17 @@ WaveSchedule
                 "origin" "-800 0 0"
                 "angles" "0 0 0"                
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-800 0 30"
+                "parentname" "beam_spinner_2"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare8"
@@ -4752,6 +4881,17 @@ WaveSchedule
                 "origin" "-1100 0 0"
                 "angles" "0 0 0"               
             }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-1100 0 30"
+                "parentname" "beam_spinner_1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
             prop_dynamic
             {
                 "targetname" "kill_me_if_you_dare8"
@@ -4760,6 +4900,17 @@ WaveSchedule
                 "solid" "0"
                 "origin" "-1400 0 0"
                 "angles" "0 0 0"               
+            }
+             tf_point_weapon_mimic
+            {
+                "targetname"       "beamdmg"
+                "origin"           "-1400 0 30"
+                "parentname" "beam_spinner_1"
+                "angles"           "-270 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
             }
         }
 
@@ -4935,7 +5086,7 @@ WaveSchedule
             prop_dynamic
             {
                 "targetname" "Swordsman_GroundSwordIndicator1"
-                "origin" "0 0 12"
+                "origin" "0 0 20"
                 "angles" "0 0 0"
                 "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "2"
@@ -5009,7 +5160,7 @@ WaveSchedule
             prop_dynamic
             {
                 "targetname" "Swordsman_GroundSwordIndicator2"
-                "origin" "0 0 12"
+                "origin" "0 0 20"
                 "angles" "0 0 0"
                 "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "2"
@@ -5083,7 +5234,7 @@ WaveSchedule
             prop_dynamic
             {
                 "targetname" "Swordsman_GroundSwordIndicator3"
-                "origin" "0 0 12"
+                "origin" "0 0 20"
                 "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "2"
                 "skin" "1"
@@ -5156,7 +5307,7 @@ WaveSchedule
             prop_dynamic
             {
                 "targetname" "Swordsman_GroundSwordIndicator4"
-                "origin" "0 0 12"
+                "origin" "0 0 20"
                 "angles" "0 0 0"
                 "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "2"
@@ -5230,7 +5381,7 @@ WaveSchedule
             prop_dynamic
             {
                 "targetname" "Swordsman_GroundSwordIndicator5"
-                "origin" "0 0 12"
+                "origin" "0 0 20"
                 "angles" "0 0 0"
                 "model" "models/props_mvm/indicator/indicator_circle.mdl"
                 "modelscale" "2"
@@ -5520,7 +5671,6 @@ WaveSchedule
             Action Mobber
 
             UseHumanAnimations 1
-            UseMeleeThreatPrioritization 1
 
             Item "The Direct Hit"
             Item "The Hellmet"
@@ -5782,6 +5932,44 @@ WaveSchedule
         }
 
         // Major Shocks (real)
+        T_TFBot_Shocks_Final
+        {
+            Name "Fallen Shocks"
+            Class Soldier
+            ClassIcon soldier_shocks_lite
+            Health 500000
+            Scale 5
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Attributes HoldFireUntilFullReload
+            Attributes DisableDodge
+            Attributes AlwaysCrit
+
+            ExtAttr IgnoreBuildings
+            UseMeleeThreatPrioritization 1
+            Action Mobber
+
+            AlwaysGlow 1
+            UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks.mdl"
+
+            Item "The Direct Hit"
+            Item "The Hellmet"
+            Item "Big Steel Jaw of Summer Fun"
+
+            CharacterAttributes
+            {
+                "move speed penalty"	0.4
+                "damage force reduction" 0.01
+                "airblast vulnerability multiplier" 0.01
+                "airblast vertical vulnerability multiplier" 0.01
+                "override footstep sound set" 3
+                "rage giving scale" 0.1
+                "cancel falling damage" 1
+                "always allow taunt" 1
+                "displace touched enemies" 1
+                "attach particle effect" 3200
+            }
+        }
 
         // Overclocked Dave
         T_TFBot_Heavy_Dave
@@ -9691,6 +9879,45 @@ WaveSchedule
                 Cooldown -1
             }
 
+            FireInput
+            {
+                Target "SwordsmanPhase1AttackPoolRelay"
+                Action Disable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 70001
+            }
+            FireInput
+            {
+                Target "SwordsmanPhase1AttackPoolRelay"
+                Action Enable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 70001
+            }
+            FireInput
+            {
+                Target tf_gamerules
+                Action PlayVO
+                Param vo/mvm/mght/demoman_mvm_m_dominationsniper04.mp3
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 70001
+            }
+            FireInput
+            {
+                Target tf_gamerules
+                Action PlayVO
+                Param vo/mvm/mght/taunts/demoman_mvm_m_taunts14.mp3
+                Delay 3
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 70001
+            }
+
             EventChangeAttributes
             {
                 Swordsman_Intro
@@ -9984,6 +10211,16 @@ WaveSchedule
                         "attack not cancel charge" 1
                     }
 
+                    InterruptAction
+					{
+						Target "13000 -3104 -1180"
+						Delay 0
+						Repeats 99999
+						Distance 16
+						Duration 4
+						Cooldown 0.5
+					}
+
                     FireInput
                     {
                         Target !self
@@ -10006,6 +10243,7 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "move speed penalty" 0.01
+                        "no_jump" 1
                         "damage force reduction" 0.5
                         "airblast vulnerability multiplier" 0.5
                         "override footstep sound set" 4
@@ -10036,7 +10274,7 @@ WaveSchedule
                         Target !self
                         Action $ChangeAttributes
                         Param Swordsman_Default
-                        Delay 11
+                        Delay 15
                         Repeats 1
                         Cooldown -1
                     }

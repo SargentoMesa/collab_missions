@@ -28,7 +28,7 @@ WaveSchedule
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
 
-    WaveStartCountdown 3
+    WaveStartCountdown 7
 
     BodyPartScaleSpeed 10
 
@@ -8523,18 +8523,37 @@ WaveSchedule
         RedTeamWipeCausesWaveLoss 1
 
         WaveSpawn
-		{
-			Name "teleporthotfix"
-			WaitBeforeStarting 5.1
+        {
+            Name "teleporthotfix"
+            WaitBeforeStarting 5.1
 
-			FirstSpawnOutput
-			{
-				Target BigNet
-				Action RunScriptCode
-				Param "
-						EntFire(`arena_teleport_relay`, `Trigger`)
-					  "
-			}
-		}
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`arena_teleport_relay`, `Trigger`)
+                        MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+						EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.4)
+                      "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "FinalWave_Boss-FallenShocks"
+            Where spawnbot_boss
+            TotalCount 1
+            MaxActive 1
+            SpawnCount 1
+            WaitBeforeStarting 12.5
+            WaitBetweenSpawns 0
+            TotalCurrency 100
+
+            TFBot
+            {
+                Template T_TFBot_Shocks_Final
+            }
+        }
     }
 }
