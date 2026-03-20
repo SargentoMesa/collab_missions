@@ -2647,9 +2647,9 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
-                    if(!(`contact_logic` in getroottable()))
+                    if(!(`contact_logic_bossrush` in getroottable()))
                     {
-                        IncludeScript(`contact_logic`, getroottable())
+                        IncludeScript(`contact_logic_bossrush`, getroottable())
                     }
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -5913,7 +5913,10 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    IncludeScript(`contact_logic`, getroottable())
+                    if(!(`contact_logic_bossrush` in getroottable()))
+                    {
+                        IncludeScript(`contact_logic_bossrush`, getroottable())
+                    }
 
                     CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
                     ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
@@ -6863,7 +6866,7 @@ WaveSchedule
             Where spawnbot_support
             Support 1
             TotalCount 25
-            MaxActive 1
+            MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 15
@@ -6883,10 +6886,10 @@ WaveSchedule
             Where spawnbot_support
             Support 1
             TotalCount 25
-            MaxActive 1
+            MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 12.5
-            WaitBetweenSpawns 25
+            WaitBetweenSpawns 20
             TotalCurrency 25
 
             TFBot
@@ -8490,7 +8493,7 @@ WaveSchedule
 		{
 			Name "Wave20_DaveDead"
 			WaitForAllDead "Wave19_Boss-OverclockedDaveReborn"
-			WaitBeforeStarting 10
+			WaitBeforeStarting 12
 		}
         WaveSpawn // Support Soldiers
         {

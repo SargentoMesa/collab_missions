@@ -243,6 +243,58 @@ WaveSchedule
 
 			"add attributes when active" "no clip|0.001"
 		}
+
+        //// THE LONE SWORDSMAN ////
+        "GroundSwordWeapon1"
+        {
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "projectile spread angle penalty" "90"
+            "projectile speed increased" "0.75"
+            "projectile gravity" "900"
+            "no explosion particles" "1"
+            "projectile trail particle" "~"
+            "custom projectile model" "models/empty.mdl"
+        }
+        "GroundSwordWeapon2"
+        {
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "projectile spread angle penalty" "90"
+            "projectile speed increased" "0.75"
+            "projectile gravity" "900"
+            "no explosion particles" "1"
+            "projectile trail particle" "~"
+            "custom projectile model" "models/empty.mdl"
+        }
+        "GroundSwordWeapon3"
+        {
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "projectile spread angle penalty" "90"
+            "projectile speed increased" "0.75"
+            "projectile gravity" "900"
+            "no explosion particles" "1"
+            "projectile trail particle" "~"
+            "custom projectile model" "models/empty.mdl"
+        }
+        "GroundSwordWeapon4"
+        {
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "projectile spread angle penalty" "90"
+            "projectile speed increased" "0.75"
+            "projectile gravity" "900"
+            "no explosion particles" "1"
+            "projectile trail particle" "~"
+            "custom projectile model" "models/empty.mdl"
+        }
+        "GroundSwordWeapon5"
+        {
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "projectile spread angle penalty" "90"
+            "projectile speed increased" "0.75"
+            "projectile gravity" "900"
+            "no explosion particles" "1"
+            "projectile trail particle" "~"
+            "custom projectile model" "models/empty.mdl"
+        }
     }
 
     PointTemplates
@@ -2555,7 +2607,7 @@ WaveSchedule
 				"OnTrigger" "bosspyroexplosion,stop,,1,-1"
 				
 			}
-			 tf_point_weapon_mimic // the most rudest way to die from this shit
+			tf_point_weapon_mimic // the most rudest way to die from this shit
             {
                 "targetname" "killyourself"
                 "origin" "500 0 20"
@@ -2572,7 +2624,7 @@ WaveSchedule
                 "teamnum" "3"
                 "$weaponname" "no_you_cannot_have_this_weapon_either"
             }
-			 tf_point_weapon_mimic // the most rudest way to die from this shit
+			tf_point_weapon_mimic // the most rudest way to die from this shit
             {
                 "targetname" "destruccion"
                 "origin" "0 0 150"
@@ -2580,7 +2632,7 @@ WaveSchedule
                 "teamnum" "3"
                 "$weaponname" "not_this_one"
             }
-			 tf_point_weapon_mimic // the most rudest way to die from this shit
+			tf_point_weapon_mimic // the most rudest way to die from this shit
             {
                 "targetname" "killyourse"
                 "origin" "0 0 20"
@@ -3161,7 +3213,7 @@ WaveSchedule
 			logic_timer
 			{
 				"targetname" "TrolldierComboTimer"
-				"RefireTime" "90"
+				"RefireTime" "60"
 
 				"OnTimer" "TrolldierComboAttackPool,PickRandomShuffle,,0,-1"
 			}
@@ -3806,7 +3858,7 @@ WaveSchedule
 				"damage" "2000"
 				"StartDisabled" "1"
 				"spawnflags" "64"
-				"filtername" "redteam"
+				"filtername" "filter_redteam"
 			}
 
             logic_relay
@@ -4013,7 +4065,338 @@ WaveSchedule
                 "targetname" "SwordsmanIntroRelay"
 
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_laughevil03.mp3,0,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_eyelandertaunt01.mp3,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/taunts/demoman_mvm_m_taunts11.mp3,2.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_dominationdemoman01.mp3,5.5,-1"
+
+                "OnTrigger" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,9.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,10.5,-1"
+            }
+
+            logic_relay
+            {
+                "targetname" "SwordsmanAttackInit"
+
+                "OnTrigger" "SwordsmanPhase1AttackPoolRelay,Trigger,,0,-1"
+                "OnTrigger" "SwordsmanPhase2AttackPoolRelay,Trigger,,0,-1"
+            }
+
+            logic_relay
+            {
+                "targetname" "SwordsmanPhase1AttackPoolRelay"
+                "spawnflags" "2"
+
+                "OnTrigger" "SwordsmanPhase1AttackPool,PickRandomShuffle,,0,-1"
+            }
+
+            logic_relay
+            {
+                "targetname" "SwordsmanPhase2AttackPoolRelay"
+                "spawnflags" "2"
+                "startdisabled" "1"
+
+                "OnTrigger" "SwordsmanPhase2AttackPool,PickRandomShuffle,,0,-1"
+            }
+
+            logic_case
+            {
+                "targetname" "SwordsmanPhase1AttackPool"
+
+                "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_Samurai,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_Skullcutter,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
+            }
+
+            logic_case
+            {
+                "targetname" "SwordsmanPhase2AttackPool"
+
+                "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
+            }
+
+            //// Phase 1 Attacks ////
+
+            // Skullcutter Slam Attack
+            logic_relay
+            {
+                "targetname" "SkullcutterSlamAttack"
+
+                "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_deploy_giant.wav,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_sword_swing1.wav,3.1,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,3.4,-1"
+
+                "OnTrigger" "SkullcutterSlamShake,StartShake,,3.4,-1"
+                "OnTrigger" "SkullcutterSlamDamage*,FireOnce,,3.4,-1"
+            }
+
+            env_shake
+			{
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+				"targetname" "SkullcutterSlamShake"
+			}
+
+            tf_point_weapon_mimic
+			{
+				"targetname" "SkullcutterSlamDamage"
+
+				"spawnflags" "1"
+				"angles" "0 0 0"
+				"origin" "400 0 20"
+				"teamnum" "3"
+				"Crits" "0"
+				"Damage" "300"
+				"ModelScale" "1"
+				"SpeedMax" "0"
+				"SpeedMin" "0"
+				"SplashRadius" "350"
+				"SpreadAngle" "0"
+				"WeaponType" "3"
+
+				"OnUser4" "!self,DetonateStickies,,0.1,-1"
+			}
+			tf_point_weapon_mimic
+			{
+				"targetname" "SkullcutterSlamDamage"
+
+				"spawnflags" "1"
+				"angles" "0 0 0"
+				"origin" "300 0 20"
+				"teamnum" "3"
+				"Crits" "0"
+				"Damage" "300"
+				"ModelScale" "1"
+				"SpeedMax" "0"
+				"SpeedMin" "0"
+				"SplashRadius" "350"
+				"SpreadAngle" "0"
+				"WeaponType" "3"
+
+				"OnUser4" "!self,DetonateStickies,,0.1,-1"
+			}
+			tf_point_weapon_mimic
+			{
+				"targetname" "SkullcutterSlamDamage"
+
+				"spawnflags" "1"
+				"angles" "0 0 0"
+				"origin" "200 0 20"
+				"teamnum" "3"
+				"Crits" "0"
+				"Damage" "300"
+				"ModelScale" "1"
+				"SpeedMax" "0"
+				"SpeedMin" "0"
+				"SplashRadius" "350"
+				"SpreadAngle" "0"
+				"WeaponType" "3"
+
+				"OnUser4" "!self,DetonateStickies,,0.1,-1"
+			}
+			tf_point_weapon_mimic
+			{
+				"targetname" "SkullcutterSlamDamage"
+
+				"spawnflags" "1"
+				"angles" "0 0 0"
+				"origin" "100 0 20"
+				"teamnum" "3"
+				"Crits" "0"
+				"Damage" "300"
+				"ModelScale" "1"
+				"SpeedMax" "0"
+				"SpeedMin" "0"
+				"SplashRadius" "350"
+				"SpreadAngle" "0"
+				"WeaponType" "3"
+
+				"OnUser4" "!self,DetonateStickies,,0.1,-1"
+			}
+
+            // Ground Swords Attack
+            logic_relay
+            {
+                "targetname" "GroundSwordsAttack"
+                "spawnflags" "2"
+
+                "OnTrigger" "!activator,$TauntFromItem,Taunt: Roar O'War,0,-1"
+                "OnTrigger" "GroundSwordLauncher1,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher2,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher3,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher4,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher5,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher1,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher2,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher3,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher4,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher5,$StopFiring,,1.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_eyelandertaunt02.mp3,1.5,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp1,AddOutput,Modelscale 7,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust1,Start,,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake1,Shake,,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage1,Enable,,4,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage1,Disable,,4.1,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp1,Kill,,8,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp2,AddOutput,Modelscale 7,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust2,Start,,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake2,Shake,,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage2,Enable,,4.25,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage2,Disable,,4.35,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp2,Kill,,8.25,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_02.wav,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp3,AddOutput,Modelscale 7,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust3,Start,,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake3,Shake,,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage3,Enable,,4.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage3,Disable,,4.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp3,Kill,,8.5,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp4,AddOutput,Modelscale 7,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust4,Start,,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake4,Shake,,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage4,Enable,,4.75,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage4,Disable,,4.85,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp4,Kill,,8.75,-1"
+
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp5,AddOutput,Modelscale 7,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust5,Start,,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake5,Shake,,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage5,Enable,,5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage5,Disable,,5.1,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp5,Kill,,9,-1"
+            }
+            
+            tf_point_weapon_mimic
+            {
+                "targetname" "GroundSwordLauncher1"
+                "origin" "0 0 100"
+                "angles" "270 0 0"
+                "speedmin" "10"
+                "speedmax" "10"
+                "teamnum" "3"
+                "damage" "0"
+                "$weaponname" "GroundSwordWeapon1"
+                "$firetime" "0.5"
+                "$weaponnosound" "1"
+                "$preventshootparent" "1"
+
+                "$OnFire" "SwordTargetSpawner1,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "GroundSwordLauncher2"
+                "origin" "0 0 100"
+                "angles" "270 0 0"
+                "speedmin" "10"
+                "speedmax" "10"
+                "teamnum" "3"
+                "damage" "0"
+                "$weaponname" "GroundSwordWeapon2"
+                "$firetime" "0.5"
+                "$weaponnosound" "1"
+                "$preventshootparent" "1"
+
+                "$OnFire" "SwordTargetSpawner2,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "GroundSwordLauncher3"
+                "origin" "0 0 100"
+                "angles" "270 0 0"
+                "speedmin" "10"
+                "speedmax" "10"
+                "teamnum" "3"
+                "damage" "0"
+                "$weaponname" "GroundSwordWeapon3"
+                "$firetime" "0.5"
+                "$weaponnosound" "1"
+                "$preventshootparent" "1"
+
+                "$OnFire" "SwordTargetSpawner3,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "GroundSwordLauncher4"
+                "origin" "0 0 100"
+                "angles" "270 0 0"
+                "speedmin" "10"
+                "speedmax" "10"
+                "teamnum" "3"
+                "damage" "0"
+                "$weaponname" "GroundSwordWeapon4"
+                "$firetime" "0.5"
+                "$weaponnosound" "1"
+                "$preventshootparent" "1"
+
+                "$OnFire" "SwordTargetSpawner4,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "GroundSwordLauncher5"
+                "origin" "0 0 100"
+                "angles" "270 0 0"
+                "speedmin" "10"
+                "speedmax" "10"
+                "teamnum" "3"
+                "damage" "0"
+                "$weaponname" "GroundSwordWeapon5"
+                "$firetime" "0.5"
+                "$weaponnosound" "1"
+                "$preventshootparent" "1"
+
+                "$OnFire" "SwordTargetSpawner5,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+            env_entity_maker
+            {
+                "targetname" "SwordTargetSpawner1"
+                "entitytemplate" "SwordsmanSwordTarget1"
+                "$autoparent" "1"
+            }
+            env_entity_maker
+            {
+                "targetname" "SwordTargetSpawner2"
+                "entitytemplate" "SwordsmanSwordTarget2"
+                "$autoparent" "1"
+            }
+            env_entity_maker
+            {
+                "targetname" "SwordTargetSpawner3"
+                "entitytemplate" "SwordsmanSwordTarget3"
+                "$autoparent" "1"
+            }
+            env_entity_maker
+            {
+                "targetname" "SwordTargetSpawner4"
+                "entitytemplate" "SwordsmanSwordTarget4"
+                "$autoparent" "1"
+            }
+            env_entity_maker
+            {
+                "targetname" "SwordTargetSpawner5"
+                "entitytemplate" "SwordsmanSwordTarget5"
+                "$autoparent" "1"
+            }
+
+            // He Spins and he Jumps and he Destroys everyone because he's so cool
+            // For this spinning attack I think we can use a human anim trick on the robot model to make it
+            // do the sword taunt-kill, and then freeze it at frame 74 so the sword stays stuck out
+            // and then rotate the model so it's spinning with the sword stuck out
+
+            logic_relay
+            {
+                "targetname" "SpinningSwordAttack"
             }
             func_rotating
             {
@@ -4028,17 +4411,21 @@ WaveSchedule
                 "targetname" "boss_spinne"
                 "parentname" "boss_is_spinning_that_shit"
                 "model"      "models/bots/demo_boss/bot_demo_boss.mdl"
+                "modelscale" "1.5"
+                "skin" "1"
                 "origin"     "0 0 0"
                 "disableshadows" "1"
+                "startdisabled" "1"
             }
             prop_dynamic
             {
                 "targetname" "boss_spinne"
                 "parentname" "boss_is_spinning_that_shit"
                 "model"      "models/weapons/c_models/c_shogun_katana/c_shogun_katana.mdl"
-                "modelscale" "1.6"
+                "modelscale" "3"
                 "origin"     "2 6 36"
                 "disableshadows" "1"
+                "startdisabled" "1"
             }
             trigger_hurt
             {
@@ -4054,6 +4441,782 @@ WaveSchedule
                 "filtername" "filter_is_red_not_ubered"
                 "OnHurtPlayer" "!activator,$igniteplayerduration,8,0,-1"
                 "$killicon"  "firedeath"
+            }
+
+            //// Phase 2 Attacks ////
+            logic_relay
+            {
+                "targetname" "spinningbeamsattack"
+                "OnTrigger"  "beam_spinner_1,start,,0,-1"
+                "OnTrigger"  "beam_spinner_2,start,,0,-1"
+                "OnTrigger"  "beam_spinner_1,stop,,8,-1"
+                "OnTrigger"  "beam_spinner_2,stop,,8,-1"
+                "OnTrigger"  "weregonnatouchu,strikeonce,,0,-1"
+            }
+            func_rotating
+            {
+                "targetname" "beam_spinner_1"
+            
+                "maxspeed"   "90"
+                "origin"     "0 0 0"
+                "spawnflags" "74"
+                "fanfriction" "100"
+            }
+            func_rotating
+            {
+                "targetname" "beam_spinner_2"
+                "maxspeed"   "90"
+                "origin"     "0 0 0"
+                "spawnflags" "72"
+                "fanfriction" "100"
+            }
+            prop_dynamic
+            {
+                "targetname" "beamstart1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "0 0 800"                
+            }
+            prop_dynamic
+            {
+                "targetname" "beamstart2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "0 0 800"                
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart1"
+                "LightningEnd" "kill_me_if_you_dare"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart1"
+                "LightningEnd" "kill_me_if_you_dare1"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart1"
+                "LightningEnd" "kill_me_if_you_dare2"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart1"
+                "LightningEnd" "kill_me_if_you_dare3"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart1"
+                "LightningEnd" "kill_me_if_you_dare4"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart2"
+                "LightningEnd" "kill_me_if_you_dare5"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart2"
+                "LightningEnd" "kill_me_if_you_dare6"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart2"
+                "LightningEnd" "kill_me_if_you_dare7"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            env_beam
+            {
+                "targetname" "weregonnatouchu"
+                "BoltWidth" "25"
+                "LightningStart" "beamstart2"
+                "LightningEnd" "kill_me_if_you_dare8"
+                "origin" "0 0 800"
+                "renderamt" "200"
+                "rendercolor" "200 200 255"
+                "damage" "0"
+                "NoiseAmplitude" "1"
+                "dissolvetype" "1"
+                "texture" "sprites/laserbeam.spr"
+                "TouchType" "1"
+				"life" "10"
+				"spawnflags" "96"
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare"
+                "parentname" "beam_spinner_1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "100 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare1"
+                "parentname" "beam_spinner_1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "275 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare2"
+                "parentname" "beam_spinner_1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "450 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare3"
+                "parentname" "beam_spinner_1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "625 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare4"
+                "parentname" "beam_spinner_1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "800 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare5"
+                "parentname" "beam_spinner_2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "-50 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare6"
+                "parentname" "beam_spinner_2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "-125 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare7"
+                "parentname" "beam_spinner_2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "-300 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare7"
+                "parentname" "beam_spinner_2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "-475 0 0"                
+            }
+            prop_dynamic
+            {
+                "targetname" "kill_me_if_you_dare8"
+                "parentname" "beam_spinner_2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "-650 0 0"                
+            }
+        }
+
+        // Swordsman Ground Sword Attack
+        SwordsmanSwordTarget1
+        {
+            RemoveIfKilled "GroundSwordTarget1"
+            KeepAlive 1
+
+            info_target
+            {
+                "targetname" "GroundSwordTarget1"
+            }
+            OnParentKilledOutput
+            {
+                Target "SwordsmanGroundSword1"
+                Action "ForceSpawnAtEntityOrigin"
+                Param "GroundSwordTarget1"
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "GroundSwordTarget1"
+                Action Kill
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+        }
+        SwordsmanSwordTarget2
+        {
+            RemoveIfKilled "GroundSwordTarget2"
+            KeepAlive 1
+
+            info_target
+            {
+                "targetname" "GroundSwordTarget2"
+            }
+            OnParentKilledOutput
+            {
+                Target "SwordsmanGroundSword2"
+                Action "ForceSpawnAtEntityOrigin"
+                Param "GroundSwordTarget2"
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "GroundSwordTarget2"
+                Action Kill
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+        }
+        SwordsmanSwordTarget3
+        {
+            RemoveIfKilled "GroundSwordTarget3"
+            KeepAlive 1
+
+            info_target
+            {
+                "targetname" "GroundSwordTarget3"
+            }
+            OnParentKilledOutput
+            {
+                Target "SwordsmanGroundSword3"
+                Action "ForceSpawnAtEntityOrigin"
+                Param "GroundSwordTarget3"
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "GroundSwordTarget3"
+                Action Kill
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+        }
+        SwordsmanSwordTarget4
+        {
+            RemoveIfKilled "GroundSwordTarget4"
+            KeepAlive 1
+
+            info_target
+            {
+                "targetname" "GroundSwordTarget4"
+            }
+            OnParentKilledOutput
+            {
+                Target "SwordsmanGroundSword4"
+                Action "ForceSpawnAtEntityOrigin"
+                Param "GroundSwordTarget4"
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "GroundSwordTarget4"
+                Action Kill
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+        }
+        SwordsmanSwordTarget5
+        {
+            RemoveIfKilled "GroundSwordTarget5"
+            KeepAlive 1
+
+            info_target
+            {
+                "targetname" "GroundSwordTarget5"
+            }
+            OnParentKilledOutput
+            {
+                Target "SwordsmanGroundSword5"
+                Action "ForceSpawnAtEntityOrigin"
+                Param "GroundSwordTarget5"
+                Delay 0.1
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "GroundSwordTarget5"
+                Action Kill
+                Delay 0.5
+                Repeats 1
+                Cooldown -1
+            }
+        }
+        SwordsmanGroundSword1
+        {
+            KeepAlive 1
+            RemoveIfKilled "Swordsman_GroundSwordProp1"
+            NoFixup 1
+
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordProp1"
+                Action "$setkey$angles"
+                Param "90 0 0"
+                Delay 0.1
+            }
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordIndicator1"
+                Action "$setkey$angles"
+                Param "180 0 0"
+                Delay 0.1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordProp1"
+                "origin" "0 0 -64"
+                "model" "models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl"
+                "modelscale" "0.1"
+                "skin" "2"
+                "solid" "0"
+                "disableshadows" "1"
+                "disablebonefollowers" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordIndicator1"
+                "origin" "0 0 8"
+                "angles" "0 0 0"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
+                "modelscale" "2"
+                "skin" "1"
+                "defaultanim" "start"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
+            info_particle_system
+            {
+                "targetname" "Swordsman_GroundSwordDust1"
+                "effect_name" "hammer_dust_kickup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+            }
+            env_shake
+			{
+                "targetname" "Swordsman_GroundSwordShake1"
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+			}
+            trigger_hurt
+            {
+                "targetname" "Swordsman_GroundSwordDamage1"
+                "origin" "0 0 0"
+                "mins" "-32 -32 0"
+                "maxs" "32 32 96"
+                "damagetype" "128"
+                "damage" "100"
+                "spawnflags" "64"
+                "startdisabled" "1"
+                "filtername" "filter_redteam_nouber"
+            }
+        }
+        SwordsmanGroundSword2
+        {
+            KeepAlive 1
+            RemoveIfKilled "Swordsman_GroundSwordProp2"
+            NoFixup 1
+
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordProp2"
+                Action "$setkey$angles"
+                Param "90 0 0"
+                Delay 0.1
+            }
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordIndicator2"
+                Action "$setkey$angles"
+                Param "180 0 0"
+                Delay 0.1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordProp2"
+                "origin" "0 0 -64"
+                "model" "models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl"
+                "modelscale" "0.1"
+                "skin" "2"
+                "solid" "0"
+                "disableshadows" "1"
+                "disablebonefollowers" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordIndicator2"
+                "origin" "0 0 8"
+                "angles" "0 0 0"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
+                "modelscale" "2"
+                "skin" "1"
+                "defaultanim" "start"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
+            info_particle_system
+            {
+                "targetname" "Swordsman_GroundSwordDust2"
+                "effect_name" "hammer_dust_kickup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+            }
+            env_shake
+			{
+                "targetname" "Swordsman_GroundSwordShake2"
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+			}
+            trigger_hurt
+            {
+                "targetname" "Swordsman_GroundSwordDamage2"
+                "origin" "0 0 0"
+                "mins" "-32 -32 0"
+                "maxs" "32 32 96"
+                "damagetype" "128"
+                "damage" "100"
+                "spawnflags" "64"
+                "startdisabled" "1"
+                "filtername" "filter_redteam_nouber"
+            }
+        }
+        SwordsmanGroundSword3
+        {
+            KeepAlive 1
+            RemoveIfKilled "Swordsman_GroundSwordProp3"
+            NoFixup 1
+
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordProp3"
+                Action "$setkey$angles"
+                Param "90 0 0"
+                Delay 0.1
+            }
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordIndicator3"
+                Action "$setkey$angles"
+                Param "180 0 0"
+                Delay 0.1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordProp3"
+                "origin" "0 0 -64"
+                "model" "models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl"
+                "modelscale" "0.1"
+                "skin" "2"
+                "solid" "0"
+                "disableshadows" "1"
+                "disablebonefollowers" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordIndicator3"
+                "origin" "0 0 8"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
+                "modelscale" "2"
+                "skin" "1"
+                "defaultanim" "1"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
+            info_particle_system
+            {
+                "targetname" "Swordsman_GroundSwordDust3"
+                "effect_name" "hammer_dust_kickup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+            }
+            env_shake
+			{
+                "targetname" "Swordsman_GroundSwordShake3"
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+			}
+            trigger_hurt
+            {
+                "targetname" "Swordsman_GroundSwordDamage3"
+                "origin" "0 0 0"
+                "mins" "-32 -32 0"
+                "maxs" "32 32 96"
+                "damagetype" "128"
+                "damage" "100"
+                "spawnflags" "64"
+                "startdisabled" "1"
+                "filtername" "filter_redteam_nouber"
+            }
+        }
+        SwordsmanGroundSword4
+        {
+            KeepAlive 1
+            RemoveIfKilled "Swordsman_GroundSwordProp4"
+            NoFixup 1
+
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordProp4"
+                Action "$setkey$angles"
+                Param "90 0 0"
+                Delay 0.1
+            }
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordIndicator4"
+                Action "$setkey$angles"
+                Param "180 0 0"
+                Delay 0.1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordProp4"
+                "origin" "0 0 -64"
+                "model" "models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl"
+                "modelscale" "0.1"
+                "skin" "2"
+                "solid" "0"
+                "disableshadows" "1"
+                "disablebonefollowers" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordIndicator4"
+                "origin" "0 0 8"
+                "angles" "0 0 0"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
+                "modelscale" "2"
+                "skin" "1"
+                "defaultanim" "start"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
+            info_particle_system
+            {
+                "targetname" "Swordsman_GroundSwordDust4"
+                "effect_name" "hammer_dust_kickup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+            }
+            env_shake
+			{
+                "targetname" "Swordsman_GroundSwordShake4"
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+			}
+            trigger_hurt
+            {
+                "targetname" "Swordsman_GroundSwordDamage4"
+                "origin" "0 0 0"
+                "mins" "-32 -32 0"
+                "maxs" "32 32 96"
+                "damagetype" "128"
+                "damage" "100"
+                "spawnflags" "64"
+                "startdisabled" "1"
+                "filtername" "filter_redteam_nouber"
+            }
+        }
+        SwordsmanGroundSword5
+        {
+            KeepAlive 1
+            RemoveIfKilled "Swordsman_GroundSwordProp5"
+            NoFixup 1
+
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordProp5"
+                Action "$setkey$angles"
+                Param "90 0 0"
+                Delay 0.1
+            }
+            OnSpawnOutput
+            {
+                Target "Swordsman_GroundSwordIndicator5"
+                Action "$setkey$angles"
+                Param "180 0 0"
+                Delay 0.1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordProp5"
+                "origin" "0 0 -64"
+                "model" "models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl"
+                "modelscale" "0.1"
+                "skin" "2"
+                "solid" "0"
+                "disableshadows" "1"
+                "disablebonefollowers" "1"
+            }
+            prop_dynamic
+            {
+                "targetname" "Swordsman_GroundSwordIndicator5"
+                "origin" "0 0 8"
+                "angles" "0 0 0"
+                "model" "models/props_mvm/indicator/indicator_circle.mdl"
+                "modelscale" "2"
+                "skin" "1"
+                "defaultanim" "start"
+                "solid" "0"
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+            }
+            info_particle_system
+            {
+                "targetname" "Swordsman_GroundSwordDust5"
+                "effect_name" "hammer_dust_kickup"
+                "start_active" "0"
+                "flag_as_weather" "0"
+            }
+            env_shake
+			{
+                "targetname" "Swordsman_GroundSwordShake5"
+                "spawnflags" "4"
+				"amplitude" "3000"
+				"duration" "3"
+				"frequency" "100"
+			}
+            trigger_hurt
+            {
+                "targetname" "Swordsman_GroundSwordDamage5"
+                "origin" "0 0 0"
+                "mins" "-32 -32 0"
+                "maxs" "32 32 96"
+                "damagetype" "128"
+                "damage" "100"
+                "spawnflags" "64"
+                "startdisabled" "1"
+                "filtername" "filter_redteam_nouber"
             }
         }
 
@@ -4510,6 +5673,18 @@ WaveSchedule
                         Cooldown -1
                     }
 
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param TemuGroundPoundIdle
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                TemuGroundPoundIdle
+                {
                     FireInput
                     {
                         Target "TemuAttackPool"
@@ -8407,8 +9582,8 @@ WaveSchedule
             Class Demoman
             ClassIcon demoknight_boss_tavish
             Skill Expert
-            Health 140000
-            Scale 2.5
+            Health 139975
+            Scale 1.5
             Attributes MiniBoss
             Attributes UseBossHealthBar
             Attributes DisableDodge
@@ -8433,16 +9608,10 @@ WaveSchedule
             {
                 "move speed penalty" 0.5
                 "damage force reduction" 0.5
-                "airblast airblast vulnerability multiplier" 0.5
+                "airblast vulnerability multiplier" 0.5
                 "override footstep sound set" 4
                 "cancel falling damage" 1
                 "displace touched enemies" 1
-            }
-
-            ItemAttributes
-            {
-                ItemName "Ali Baba's Wee Booties"
-                "max health additive bonus" 0
             }
 
             ItemAttributes
@@ -8460,11 +9629,25 @@ WaveSchedule
                 "restore health on kill" 0
             }
 
+            FireInput
+            {
+                Target !self
+                Action $ChangeAttributes
+                Param Swordsman_Intro
+                Delay 0
+                Repeats 1
+                Cooldown -1
+            }
+
             EventChangeAttributes
             {
                 Swordsman_Intro
                 {
-                    Addcond 51
+                    Addcond
+                    {
+                        Index 51
+                        Duration 10.5
+                    }
 
                     CharacterAttributes
                     {
@@ -8477,7 +9660,7 @@ WaveSchedule
                     {
                         Target SwordsmanIntroRelay
                         Action Trigger
-                        Delay 2
+                        Delay 0
                         Repeats 1
                         Cooldown -1
                     }
@@ -8492,18 +9675,14 @@ WaveSchedule
 
                     CharacterAttributes
                     {
+                        "no_jump" 0
+                        "no_attack" 0
                         "move speed penalty" 0.5
                         "damage force reduction" 0.5
-                        "airblast airblast vulnerability multiplier" 0.5
+                        "airblast vulnerability multiplier" 0.5
                         "override footstep sound set" 4
                         "cancel falling damage" 1
                         "displace touched enemies" 1
-                    }
-
-                    ItemAttributes
-                    {
-                        ItemName "Ali Baba's Wee Booties"
-                        "max health additive bonus" 0
                     }
 
                     ItemAttributes
@@ -8520,7 +9699,209 @@ WaveSchedule
                         "damage bonus" 2
                         "restore health on kill" 0
                     }
+
+                    FireInput
+                    {
+                        Target "SwordsmanAttackInit"
+                        Action Trigger
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
                 }
+
+                // Phase 1 Attacks
+                Swordsman_Samurai
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Splendid Screen"
+                    Item "The Half-Zatoichi"
+                    Attributes AirChargeOnly
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "increased jump height" 3
+                        "bot custom jump particle" 1
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Splendid Screen"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                        "charge time increased" 2
+                        "charge recharge rate increased" 10
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Half-Zatoichi"
+                        "critboost on kill" 10
+                        "damage bonus" 2
+                        "restore health on kill" 0
+                    }
+
+                    FireWeapon
+                    {
+                        Type "Jump"
+                        Delay 1
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_Default
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                Swordsman_Skullcutter
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Scotsman's Skullcutter"
+
+                    Attributes SuppressFire
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "move speed penalty" 0.3
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "hand scale" 4
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "always allow taunt" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                    }
+
+                    FireWeapon
+                    {
+                        Type "Primary"
+                        Delay 3
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target "SkullcutterSlamAttack"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_Default
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                Swordsman_GroundSwords
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Claidheamohmor"
+                    Item "Taunt: Roar O'War"
+
+                    Attributes SuppressFire
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "move speed penalty" 0.3
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "always allow taunt" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                    }
+
+                    FireInput
+                    {
+                        Target "GroundSwordsAttack"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_Default
+                        Delay 6.5
+                    }
+                }
+
+                Swordsman_SpinningSword
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Half-Zatoichi"
+
+                    Attributes SuppressFire
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "no_jump" 1
+                        "no_attack" 1
+                        "move speed penalty" 0.01
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "always allow taunt" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                    }
+                }
+
+                // Phase 2 Attacks
             }
         }
 
