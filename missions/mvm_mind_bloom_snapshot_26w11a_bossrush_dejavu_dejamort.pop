@@ -7727,7 +7727,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence OR The Foremann
+    Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence
     {
         InitWaveOutput
         {
@@ -7751,7 +7751,6 @@ WaveSchedule
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_PlannedObsolescence`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TheForemann`);
                     MindBloomRNG.InitRNGArena();
 
                     AlternateWaves.bTrackIcons = false;
@@ -7777,17 +7776,6 @@ WaveSchedule
                                 [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -7823,17 +7811,6 @@ WaveSchedule
                                 [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 2:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`pyro_fireaxe_lite_armored`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_steelfist`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_flare`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_giant_fast`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -8212,121 +8189,6 @@ WaveSchedule
                 Action Mobber
             }
         }
-
-        //// The Foremann ////
-        WaveSpawn
-        {
-            Name "Wave19_TheForemann"
-            StartDisabled 1
-        }
-        WaveSpawn // Boss
-        {
-            Name "Wave19_Boss-TheForemann"
-            WaitForAllSpawned "Wave19_TheForemann"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 100
-
-            TFBot
-            {
-                Template ForeMann
-
-				InterruptAction
-				{
-					Target "8407 -5731 -902"
-					Delay 0
-					Repeats 99999
-					Distance 32
-					Duration 5
-					Cooldown 5
-				}
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        MusicSystemMent.SetMusicTrack(`#overprodshowdownv2.mp3`);
-                      "
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-SteelGauntlets`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-FlarePyros`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-SuperScouts`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-SteelGauntlets`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-FlarePyros`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-SuperScouts`)
-                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 6)
-                      "
-            }
-        }
-
-        WaveSpawn // Support Steel Gauntlets
-        {
-            Name "Wave19_Support-SteelGauntlets"
-            WaitForAllSpawned "Wave19_TheForemann"
-            Where spawnbot_support
-            Support 1
-            TotalCount 75
-            MaxActive 3
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 8
-            TotalCurrency 75
-
-            TFBot
-            {
-                Template T_TFBot_Heavyweapons_Fist
-                Action Mobber
-            }
-        }
-        WaveSpawn // Support Flare Pyros
-        {
-            Name "Wave19_Support-FlarePyros"
-            WaitForAllSpawned "Wave19_TheForemann"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 7
-            SpawnCount 3
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 12
-            TotalCurrency 100
-
-            TFBot
-            {
-                Template T_TFBot_Pyro_Flaregun
-                Action Mobber
-            }
-        }
-        WaveSpawn // Support Super Scouts
-        {
-            Name "Wave19_Support-SuperScouts"
-            WaitForAllSpawned "Wave19_TheForemann"
-            Where spawnbot_support
-            Support 1
-            TotalCount 25
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 20
-            TotalCurrency 25
-
-            TFBot
-            {
-                Template T_TFBot_Giant_Scout_Fast
-                Attributes AlwaysCrit
-                Action Mobber
-            }
-        }
     }
     Wave // Main Boss - Overclocked Dave Reborn
     {
@@ -8607,6 +8469,14 @@ WaveSchedule
             TFBot
             {
                 Template MainBoss_LoneSwordsman
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
+                    "
             }
         }
     }
