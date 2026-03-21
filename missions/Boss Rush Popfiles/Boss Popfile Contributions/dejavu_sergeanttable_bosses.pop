@@ -9917,6 +9917,16 @@ WaveSchedule
                 Cooldown -1
                 IfHealthBelow 70001
             }
+            FireInput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);"
+                Delay 3
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 70001
+            }
 
             EventChangeAttributes
             {
