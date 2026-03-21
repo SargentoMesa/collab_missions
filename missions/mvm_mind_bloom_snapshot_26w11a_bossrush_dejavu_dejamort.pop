@@ -515,12 +515,12 @@ WaveSchedule
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`buddhamode` in getroottable()))
                     {
                         IncludeScript(`buddhamode`, getroottable())
                     }
-
                     if (!(`music_system_ment` in getroottable()))
                     {
                         IncludeScript(`music_system_ment`, getroottable())
@@ -701,6 +701,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`music_system_ment` in getroottable()))
 					{
@@ -805,6 +806,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1233,6 +1235,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -1488,6 +1491,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1948,6 +1952,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -2341,6 +2346,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2639,6 +2645,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2657,8 +2664,6 @@ WaveSchedule
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
-
-                    //IncludeScript(`contact_logic`, getroottable())
 
                     EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
 
@@ -3359,6 +3364,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -3808,6 +3814,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -4171,6 +4178,7 @@ WaveSchedule
                 Template T_TFBot_Scout_Melee
                 ClassIcon scout_bat_nys
                 Attributes AlwaysCrit
+                Action Mobber
             }
         }
         WaveSpawn // Support Backburner Pyros
@@ -4193,6 +4201,7 @@ WaveSchedule
                 ClassIcon pyro_backburner_nys
                 Skill Easy
                 Item "The Backburner"
+                Action Mobber
             }
         }
 
@@ -4418,6 +4427,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -5160,6 +5170,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5698,6 +5709,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
 
                     if (!(`mvm_meltdown_red_world` in getroottable()))
@@ -5901,6 +5913,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`music_system_ment` in getroottable()))
                     {
@@ -6132,6 +6145,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6316,6 +6330,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -6477,6 +6492,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -7450,6 +7466,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesSoldiers`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_Support-DavesHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DavesSoldiers`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_Support-DavesHeavies`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
@@ -7503,6 +7521,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -7734,6 +7753,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -8198,6 +8218,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
@@ -8312,7 +8333,6 @@ WaveSchedule
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-Soldiers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave19_Support-ArmoredBatScouts`)
-                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 15)
 					  "
 			}
         }
@@ -8407,6 +8427,7 @@ WaveSchedule
 			Action RunScriptCode
 			Param "
 					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -8491,6 +8512,7 @@ WaveSchedule
 			Action RunScriptCode
 			Param "
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
+                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{

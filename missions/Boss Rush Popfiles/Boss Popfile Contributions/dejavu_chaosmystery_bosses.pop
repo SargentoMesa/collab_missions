@@ -1754,7 +1754,7 @@ WaveSchedule
             {
                 "move speed bonus" 0.7
                 "override footstep sound set" 3
-                "rage giving scale" 0.15
+                "rage giving scale" 0.2
                 "airblast vulnerability multiplier" 0.1
                 "airblast vertical vulnerability multiplier" 0.1
                 "damage force reduction" 0.1

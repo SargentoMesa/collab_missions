@@ -1555,7 +1555,7 @@ WaveSchedule
                             "airblast vulnerability multiplier" 0.0001
                             "override footstep sound set" 2
                             "airblast vertical vulnerability multiplier" 0.0001
-                            "rage giving scale" 0.4
+                            "rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 1.8
                             "dmg taken mult from special damage type 1" 0.7754
                             "dmg taken mult from special damage type 2" 0.6449
@@ -1609,7 +1609,7 @@ WaveSchedule
                             "airblast vulnerability multiplier" 0.0001
                             "override footstep sound set" 2
                             "airblast vertical vulnerability multiplier" 0.0001
-                            "rage giving scale" 0.4
+                            "rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 1.8
                             "dmg taken mult from special damage type 1" 0.7728
                             "dmg taken mult from special damage type 2" 0.5332
@@ -1676,7 +1676,7 @@ WaveSchedule
                             "airblast vulnerability multiplier" 0.0001
                             "override footstep sound set" 2
                             "airblast vertical vulnerability multiplier" 0.0001
-                            "rage giving scale" 0.4
+                            "rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 1.8
                             "dmg taken mult from special damage type 1" 0.7728
                             "dmg taken mult from special damage type 2" 0.5332
@@ -1741,7 +1741,7 @@ WaveSchedule
                             "airblast vulnerability multiplier" 0.0001
                             "override footstep sound set" 2
                             "airblast vertical vulnerability multiplier" 0.0001
-                            "rage giving scale" 0.4
+                            "rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 1.8
                             "dmg taken mult from special damage type 1" 0.7728
                             "dmg taken mult from special damage type 2" 0.5332
@@ -2034,7 +2034,7 @@ WaveSchedule
 							"override footstep sound set" 3
 							"gesture speed increase" 0.5
 							"voice pitch scale" 0
-							"rage giving scale" 0.4
+							"rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 3
                             "dmg taken mult from special damage type 1" 0.7754
                             "dmg taken mult from special damage type 2" 0.6449
@@ -2081,7 +2081,7 @@ WaveSchedule
 							"override footstep sound set" 3
 							"gesture speed increase" 2
 							"voice pitch scale" 0
-							"rage giving scale" 0.4
+							"rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 3
                             "dmg taken mult from special damage type 1" 0.7754
                             "dmg taken mult from special damage type 2" 0.6449
@@ -2136,7 +2136,7 @@ WaveSchedule
 							"override footstep sound set" 3
 							"gesture speed increase" 2
 							"voice pitch scale" 0
-							"rage giving scale" 0.4
+							"rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 3
                             "dmg taken mult from special damage type 1" 0.7754
                             "dmg taken mult from special damage type 2" 0.6449
@@ -2207,7 +2207,7 @@ WaveSchedule
 							"override footstep sound set" 3
 							"gesture speed increase" 2
 							"voice pitch scale" 0
-							"rage giving scale" 0.4
+							"rage giving scale" 0.2
                             "SET BONUS: dmg from sentry reduced" 3
                             "dmg taken mult from special damage type 1" 0.7754
                             "dmg taken mult from special damage type 2" 0.6449

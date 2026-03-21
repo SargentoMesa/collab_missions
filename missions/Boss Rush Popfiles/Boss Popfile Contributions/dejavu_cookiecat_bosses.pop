@@ -42,7 +42,7 @@ WaveSchedule
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.2
                 "airblast vertical vulnerability multiplier" 0.1
-                "rage giving scale"	0.1
+                "rage giving scale"	0.2
                 "override footstep sound set" 6
                 "displace touched enemies" 1
             }

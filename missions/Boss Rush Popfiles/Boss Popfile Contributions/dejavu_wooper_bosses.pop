@@ -41,6 +41,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"airblast vulnerability multiplier" 0.5
+				"rage giving scale" 0.2
 				"override footstep sound set" 6.0
 				"damage force reduction" 0.60
 				"move speed bonus" 0.50
@@ -104,6 +105,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"airblast vulnerability multiplier" 0.5
+				"rage giving scale" 0.2
 				"override footstep sound set" 6.0
 				"damage force reduction" 0.60
 				"move speed bonus" 0.50

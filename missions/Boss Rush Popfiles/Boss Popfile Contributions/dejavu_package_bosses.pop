@@ -90,6 +90,19 @@ WaveSchedule
 				"holdtime" "0.1"
 			}
 		}
+		Yan_DeathTracker
+		{
+			KeepAlive 1
+			OnParentKilledOutput
+			{
+				Target pop_interface
+				Action ChangeBotAttributes
+				Param Hand_Death
+				Delay 0.1
+				Repeats 1
+				Cooldown -1
+			}
+		}
 		NothingThere_Spawn
 		{
 			OnSpawnOutput
@@ -363,7 +376,7 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.1
+						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 						"Health regen" 150
@@ -384,7 +397,7 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
 						"airblast disabled" 1
-						"rage giving scale" 0.1
+						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 2
 						"cancel falling damage" 1
@@ -405,7 +418,7 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.1
+						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 					}
@@ -424,7 +437,7 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.1
+						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 2
 						"cancel falling damage" 1
@@ -457,7 +470,7 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.1
+						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 1.5
 						"cancel falling damage" 1
@@ -584,7 +597,7 @@ WaveSchedule
 			}
 			CharacterAttributes
 			{
-				"rage giving scale" 0
+				"rage giving scale" 0.2
 				"ragdolls become ash" 1
 				"bombinomicon effect on death" 1
 				"hand scale" 2.5
@@ -594,6 +607,20 @@ WaveSchedule
 				"building cost reduction" 20
 				"increased jump height" 1.5
 				"displace touched enemies" 1
+			}
+			EventChangeAttributes
+			{
+				Hand_Death
+				{
+					FireInput
+					{
+						Target !self
+						Action $Suicide
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+				}
 			}
 		}
 		T_TFBot_Miniboss_DistortedMessenger_RightHand_Package
@@ -650,7 +677,7 @@ WaveSchedule
 			}
 			CharacterAttributes
 			{
-				"rage giving scale" 0
+				"rage giving scale" 0.2
 				"ragdolls become ash" 1
 				"bombinomicon effect on death" 1
 				"hand scale" 2.5
@@ -660,6 +687,20 @@ WaveSchedule
 				"building cost reduction" 20
 				"increased jump height" 1.5
 				"displace touched enemies" 1
+			}
+			EventChangeAttributes
+			{
+				Hand_Death
+				{
+					FireInput
+					{
+						Target !self
+						Action $Suicide
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+				}
 			}
         }
 
@@ -682,6 +723,7 @@ WaveSchedule
 			{
 				"Damage Bonus" 4
 				"move speed bonus"	0.5
+				"rage giving scale" 0.2
 				"damage force reduction" 0.001
 				"airblast vulnerability multiplier" 0.001
 				"override footstep sound set" 5
@@ -721,6 +763,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
+				"rage giving scale" 0.2
 				"damage force reduction"	0.001
 				"airblast vulnerability multiplier"	0.001
 				"override footstep sound set"	3

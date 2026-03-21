@@ -1845,6 +1845,7 @@ WaveSchedule
 				CharacterAttributes
 				{
 					"move speed bonus" 0.5
+					"rage giving scale" 0.2
 					"damage force reduction" 0.01
 					"airblast vulnerability multiplier" 0.01
 					"override footstep sound set" 1
@@ -3681,7 +3682,7 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.4
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"mult stun resistance" 0
 						"increased jump height" 0.01
 						"damage force reduction" 0.01
@@ -3728,7 +3729,7 @@ WaveSchedule
 						"move speed bonus"	0.8
 						"mult stun resistance" 0
 						"increased jump height" 0.01
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"override footstep sound set" 3
@@ -3771,7 +3772,7 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.4
-						"rage giving scale" 0.25
+						"rage giving scale" 0.2
 						"increased jump height" 0.01
 						"damage force reduction" 0.01
 						"mult stun resistance" 0
@@ -3804,7 +3805,7 @@ WaveSchedule
 					{
 						"move speed bonus"	0.01
 						"increased jump height" 0.01
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"dmg taken increased" 0.1
 						"damage force reduction" 0.01
 						"mult stun resistance" 0
@@ -3850,7 +3851,7 @@ WaveSchedule
 					{
 						"move speed bonus"	0.01
 						"increased jump height" 0.01
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"dmg taken increased" 1
 						"damage force reduction" 0.01
 						"mult stun resistance" 0
@@ -3925,7 +3926,7 @@ WaveSchedule
 					{
 						"move speed bonus"	0.5
 						"increased jump height" 0.01
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"damage force reduction" 0.01
 						"mult stun resistance" 0
 						"airblast vulnerability multiplier" 0.01
@@ -4003,7 +4004,7 @@ WaveSchedule
 					{
 						"move speed bonus"	1.2
 						"increased jump height" 0.01
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"damage force reduction" 0.01
 						"mult stun resistance" 0
 						"airblast vulnerability multiplier" 0.01
@@ -4021,7 +4022,7 @@ WaveSchedule
         T_TFBot_Fat_Boss_Heavy_Champ
 		{
 			Class Heavyweapons
-			Health 25000
+			Health 17500
 			Skill Expert
 			Name "Bigheaded Behemoth"
 			ClassIcon heavy_champ
@@ -4150,7 +4151,7 @@ WaveSchedule
 						"damage force reduction" 0.4
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.4
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"override footstep sound set" 2
 						"head scale" 8
 						"hand scale" 2
@@ -4175,7 +4176,7 @@ WaveSchedule
 						"damage force reduction" 0.4
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.4
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"override footstep sound set" 2
 						"head scale" 8
 						"hand scale" 2
@@ -4208,7 +4209,7 @@ WaveSchedule
 						"damage force reduction" 0.4
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.4
-						"rage giving scale" 0.5
+						"rage giving scale" 0.2
 						"override footstep sound set" 2
 						"head scale" 8
 						"hand scale" 4
@@ -4486,7 +4487,7 @@ WaveSchedule
 						"dmg taken increased" 0
 						"head scale" 0.0
 						"mult stun resistance" 0
-						"rage giving scale" 0.4
+						"rage giving scale" 0.2
 						"zombiezombiezombiezombie" 1
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -4531,7 +4532,7 @@ WaveSchedule
 						"move speed bonus"	0.6
 						"head scale" 0.0
 						"mult stun resistance" 0
-						"rage giving scale" 0.4
+						"rage giving scale" 0.2
 						"zombiezombiezombiezombie" 1
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -4566,7 +4567,7 @@ WaveSchedule
 						"move speed bonus"	4
 						"head scale" 0.0
 						"mult stun resistance" 0
-						"rage giving scale" 0.4
+						"rage giving scale" 0.2
 						"zombiezombiezombiezombie" 1
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -4595,7 +4596,7 @@ WaveSchedule
 						"move speed bonus"	0.01
 						"head scale" 0.0
 						"mult stun resistance" 0
-						"rage giving scale" 0.4
+						"rage giving scale" 0.2
 						"zombiezombiezombiezombie" 1
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -4631,7 +4632,7 @@ WaveSchedule
 						"move speed bonus"	0.3
 						"head scale" 0.0
 						"mult stun resistance" 0
-						"rage giving scale" 0.4
+						"rage giving scale" 0.2
 						"zombiezombiezombiezombie" 1
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -4649,7 +4650,7 @@ WaveSchedule
         T_TFBot_Fat_Boss_Pyro_BlackHole
 		{
 			Class Pyro
-			Health 22500
+			Health 17500
 			Name "TON 618 Black Hole Pyro"
 			ClassIcon pyro_snare
 			Skill Expert
@@ -4806,7 +4807,7 @@ WaveSchedule
 						"damage force reduction" 0.2
 						"airblast vulnerability multiplier" 0.2
 						"override footstep sound set" 3
-						"rage giving scale" 0.75
+						"rage giving scale" 0.2
 						"gesture speed increase" 1
 						"dmg taken increased" 1
 					}	
@@ -4832,7 +4833,7 @@ WaveSchedule
 						"damage force reduction" 0.2
 						"airblast vulnerability multiplier" 0.2
 						"override footstep sound set" 3
-						"rage giving scale" 0.75
+						"rage giving scale" 0.2
 						"gesture speed increase" 0.85
 						"dmg taken increased" 1
 					}	
@@ -4869,7 +4870,7 @@ WaveSchedule
 						"damage force reduction" 0.2
 						"airblast vulnerability multiplier" 0.2
 						"override footstep sound set" 3
-						"rage giving scale" 0.75
+						"rage giving scale" 0.2
 						"gesture speed increase" 1
 						"dmg taken increased" 1
 						"stomp player damage" 2 
@@ -4891,7 +4892,7 @@ WaveSchedule
 						"damage force reduction" 0.2
 						"airblast vulnerability multiplier" 0.2
 						"override footstep sound set" 3
-						"rage giving scale" 0.75
+						"rage giving scale" 0.2
 						"gesture speed increase" 1
 						"dmg taken increased" 1
 					}	

@@ -5421,7 +5421,7 @@ WaveSchedule
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
                 "override footstep sound set" 2						
-                "rage giving scale" 0.1
+                "rage giving scale" 0.2
             }
             ChangeAttributes 
             {
@@ -5467,7 +5467,7 @@ WaveSchedule
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3
                         "override footstep sound set" 2						
-                        "rage giving scale" 0.1
+                        "rage giving scale" 0.2
                     }
                 }
                 phase2
@@ -5621,7 +5621,7 @@ WaveSchedule
             
             CharacterAttributes
             {
-                "rage giving scale" 0.1
+                "rage giving scale" 0.2
                 "move speed bonus"	0.5
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
@@ -5668,7 +5668,7 @@ WaveSchedule
                 {
                     CharacterAttributes
                     {
-                        "rage giving scale" 0.1
+                        "rage giving scale" 0.2
                         "move speed bonus"	0.5
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3
@@ -5791,6 +5791,7 @@ WaveSchedule
             CharacterAttributes
             {
                 "attach particle effect" 3150
+                "rage giving scale" 0.2
             }
             ItemAttributes
             {
@@ -5902,6 +5903,7 @@ WaveSchedule
             CharacterAttributes
             {
                 "attach particle effect" 3150
+                "rage giving scale" 0.2
             }
             SpawnTemplate prop_ufo
             ChangeAttributes 
@@ -6007,6 +6009,7 @@ WaveSchedule
                 "weapon spread bonus" 0.001
                 "cloak consume rate decreased" 0.1
                 "faster reload rate" 0.4
+                "rage giving scale" 0.2
             }
 
             ChangeAttributes 
@@ -6874,6 +6877,7 @@ WaveSchedule
                 "afterburn immunity" 1
                 "crit kill will gib" 1
                 "ragdolls plasma effect" 0
+                "rage giving scale" 0.2
             }
             ChangeAttributes 
             {
@@ -7192,7 +7196,7 @@ WaveSchedule
         }	
 
         T_TFBot_Contact_Demo_Miniboss
-        { // demo boss
+        {
             SpawnTemplate bossdemo2thinguses
             SpawnTemplate prop_ufo
             Tag demoboss
@@ -7270,6 +7274,7 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.5
                 "override footstep sound set" 4
                 "always allow taunt" 1
+                "rage giving scale" 0.2
             }
             EventChangeAttributes
             {
@@ -7419,6 +7424,7 @@ WaveSchedule
                 //"engy sentry fire rate increased" 1.0
                 "engineer sentry build rate multiplier" 0.5
                 "mod wrench builds minisentry"  1
+                "rage giving scale" 0.2
             }
             Item	"the pomson 6000"
             ItemAttributes
@@ -8498,6 +8504,7 @@ WaveSchedule
                 "boots falling stomp" 1
                 "falling_impact_radius_pushback" 1
                 "move speed bonus" 0.8
+                "rage giving scale" 0.2
                     "dmg taken mult from special damage type 1" 0.7754
                     "dmg taken mult from special damage type 2" 0.6449
                     "dmg taken mult from special damage type 3" 2

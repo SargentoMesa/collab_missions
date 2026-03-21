@@ -461,7 +461,7 @@ WaveSchedule
 				"damage force reduction" 0
 				"airblast vulnerability multiplier" 0
 				"override footstep sound set" 7
-				"rage giving scale" 0.00001
+				"rage giving scale" 0.2
 				"voice pitch scale" 0
 				"displace touched enemies" 1
 			}
@@ -550,6 +550,7 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"voice pitch scale" 0
+						"rage giving scale" 0.2
 						"move speed bonus"	0.4
 						"gesture speed increase" 1.33 // sync attack animation better
 						"damage force reduction" 0
@@ -591,6 +592,7 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"voice pitch scale" 0
+						"rage giving scale" 0.2
 						"move speed bonus"	0.8
 						"attach particle effect" 2
 						"no_jump" 1
@@ -714,7 +716,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"always allow taunt" 1  
-				"rage giving scale"	0
+				"rage giving scale"	0.2
 				"voice pitch scale" 0
 				"damage causes airblast" 1
 				"stomp player force" 320
@@ -779,6 +781,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
+				"rage giving scale" 0.2
 				"damage force reduction" 0
 				"airblast vulnerability multiplier" 0
 				"voice pitch scale" 0
@@ -921,6 +924,7 @@ WaveSchedule
 			{
 				"voice pitch scale" 1
 				"cancel falling damage" 1
+				"rage giving scale" 0.2
 				"override footstep sound set" 0
 				"damage force reduction" 0
 				"airblast vulnerability multiplier" 0
