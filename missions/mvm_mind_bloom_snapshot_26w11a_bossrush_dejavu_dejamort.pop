@@ -22,7 +22,7 @@
 
 WaveSchedule
 {
-    StartingCurrency 1000
+    StartingCurrency 3000
     RespawnWaveTime 3
     FixedRespawnWaveTime Yes
     AddSentryBusterWhenDamageDealtExceeds 3000
@@ -3635,21 +3635,6 @@ WaveSchedule
             Name "Wave9_MagicianLord"
             StartDisabled 1
         }
-        WaveSpawn
-        {
-            Name "Wave9_MagicianLordSetup"
-            WaitForAllSpawned "Wave9_MagicianLord"
-            WaitBeforeStarting 5
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`spawnbot_boss_teleporter`, `AddOutput`, `target spawnbot_boss_target_shank_new`)
-                      "
-            }
-        }
         WaveSpawn // Boss
         {
             Name "Wave9_Boss-MagicianLord"
@@ -3690,6 +3675,8 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave9_Support-StickyDemos`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave9_Support-StickyDemos`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -5920,7 +5907,7 @@ WaveSchedule
             }
         }
     }
-    Wave // Main Boss - Iron Star (Currently WIP)
+    Wave // Main Boss - Iron Star
     {
         InitWaveOutput
         {
@@ -7026,20 +7013,6 @@ WaveSchedule
             Name "Wave17_RedstoneGauntlet"
             StartDisabled 1
         }
-        WaveSpawn
-        {
-            Name "Wave17_Redstonehotfix"
-            WaitForAllSpawned "Wave17_RedstoneGauntlet"
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_teleporter`, `AddOutput`, `target portal_target_redstone_new`)
-                      "
-            }
-        }
 
         WaveSpawn // Boss 1 - Colonel Crackle
         {
@@ -7897,8 +7870,7 @@ WaveSchedule
 		CustomWaveNumber 18
 		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
-		
-		SpawnTemplate ObsolescenceTriggerHurt
+
 		SpawnTemplate MainBoss_TripleTrolldierArena
 
         WaveSpawn
