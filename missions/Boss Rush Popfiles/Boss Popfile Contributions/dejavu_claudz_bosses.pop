@@ -899,6 +899,8 @@ WaveSchedule
                 Param  "
                     self.AddCondEx(64,4.0,self)
                     self.SetGravity(0.3)
+                    EntFireByHandle(bot, `DisableDamageForces`, null, 0.0, null, null)
+                    EntFireByHandle(bot, `EnableDamageForces`, null, 5, null, null)
                 "
                 Delay  0.1
             }
@@ -908,6 +910,7 @@ WaveSchedule
                 Action "RunScriptCode"
                 Param  "
                     self.SetAbsOrigin(self.GetOrigin()+Vector(0,0,650))
+                    self.AddCondEx(Constants.ETFCond.TF_COND_TELEPORTED, 0.5, bot)
                 "
                 Delay  4
             }
@@ -928,6 +931,7 @@ WaveSchedule
             logic_relay
             {
                 "targetname" "w6sky"
+                "OnTrigger"  "clouds_rotate,enable,,0,-1"
                 "OnTrigger" "clouds,$SetKey$renderfx,7,0.0"
                 "OnTrigger" "clouds,$SetKey$renderfx,0,3.0"
                 "OnTrigger" "clouds,$SetKey$renderamt,150,3"
@@ -943,6 +947,7 @@ WaveSchedule
                 "dmg" "0"
                 "fanfriction" "100"
                 "volume" "3"
+                "StartDisabled" "1"
             }
             prop_dynamic
             {
@@ -965,6 +970,11 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,$StopVO,#xtermination.mp3,0,-1"
                 "OnTrigger"  "xtermination,StopSound,0,0,-1"
                 "OnTrigger"	"w7loop,StopSound,,0.1,-1"
+                "OnTrigger"	"engitheme1*,StopSound,,0.1,-1"
+                "OnTrigger"	"engitheme2*,StopSound,,0.1,-1"
+                "OnTrigger"  "engi_theme2,cancelpending,,0,-1"
+                "OnTrigger" "clouds,$SetKey$renderfx,6,0.0"
+
             }
             
             logic_relay
@@ -1024,8 +1034,25 @@ WaveSchedule
                 "OnTrigger" "mothership_rotate,enable,,0.2,-1"
                 "OnTrigger" "motherglow,$SetKey$renderfx,5,2.0,-1"
                 "OnTrigger" "mothership,$SetKey$renderfx,5,2.0,-1"
+                "OnTrigger" "ufocc,Disable,,2.5,-1"
 
-            } //!ent_fire killmothership trigger
+            }
+            logic_relay
+            {
+                "targetname" "killmothershipinstant"
+                "OnTrigger" "motherskysparkley,Stop,,0,-1"
+                "OnTrigger" "mothereye,$SetKey$renderamt,0,0.0"
+                "OnTrigger" "arch*,$SetKey$renderamt,0,0.0,-1"
+                "OnTrigger" "orbitalcore_*,Kill,,0,-1"
+                "OnTrigger" "sparker_*,Kill,,0,-1"
+				"OnTrigger" "orbshoot*,Kill,,0,-1"
+				"OnTrigger" "orbital_maker*,Kill,,0,-1"
+                "OnTrigger" "mothership_rotate,disable,,0,-1"
+                "OnTrigger" "mothership_rotate,enable,,0.1,-1"
+                "OnTrigger" "motherglow,$SetKey$renderamt,0,0,-1"
+                "OnTrigger" "mothership,$SetKey$renderamt,0,0,-1"
+                "OnTrigger" "ufocc,Disable,,0,-1"
+            }
             env_shake
             {
                 "spawnflags" "29" 
@@ -1693,6 +1720,13 @@ WaveSchedule
 		}
         droneBot
         {
+            OnSpawnOutput
+            {
+                Target "!activator"
+                Action "RunScriptCode"
+                Param  "Contact.SetupDrone(self)"
+                Delay  0.1
+            }
             env_entity_maker
 			{   
 				"targetname" "droneBotGib_maker2"
@@ -3403,6 +3437,13 @@ WaveSchedule
                 Action "Trigger"
                 Delay 0.1
             }
+            OnSpawnOutput
+            {
+                Target "!activator"
+                Action "RunScriptCode"
+                Param  "Contact.engiufotankSetup(self)"
+                Delay  0.1
+            }
             // OnSpawnOutput
             // {
             // 	Target "laser_firer1_engi"
@@ -4759,6 +4800,7 @@ WaveSchedule
 				Param "swansong"
 				Delay 0.00
 			}
+
 			OnParentKilledOutput //kill players after the carrier was dead
 			{
 				Target "enraged_engi"
@@ -4950,7 +4992,7 @@ WaveSchedule
 				"damage" "25"
 				"StartDisabled" "1"
 				"spawnflags" "64"
-				"filtername" "filter_is_red"
+				"filtername" "filter_is_red_not_uber"
                 "damagemodel" "1"
                 "damagecap" "100"
 			}
@@ -5421,7 +5463,7 @@ WaveSchedule
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
                 "override footstep sound set" 2						
-                "rage giving scale" 0.2
+                "rage giving scale" 0.1
             }
             ChangeAttributes 
             {
@@ -5453,7 +5495,7 @@ WaveSchedule
                     }
                     ChangeAttributes 
                     {
-                        Delay 5.5 //Time before the first bot attribute change (Default: 10)
+                        Delay 6.5 //Time before the first bot attribute change (Default: 10)
                         Cooldown 9 //Time between each bot attribute change (Default: 10)
                         Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
                         Name "contactNormal" // Name of the bot attributes listed in EventChangeAttributes
@@ -5467,7 +5509,7 @@ WaveSchedule
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3
                         "override footstep sound set" 2						
-                        "rage giving scale" 0.2
+                        "rage giving scale" 0.1
                     }
                 }
                 phase2
@@ -5621,7 +5663,7 @@ WaveSchedule
             
             CharacterAttributes
             {
-                "rage giving scale" 0.2
+                "rage giving scale" 0.1
                 "move speed bonus"	0.5
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
@@ -5658,7 +5700,7 @@ WaveSchedule
                     }
                     ChangeAttributes 
                     {
-                        Delay 5.5 //Time before the first bot attribute change (Default: 10)
+                        Delay 6.5 //Time before the first bot attribute change (Default: 10)
                         Cooldown 9 //Time between each bot attribute change (Default: 10)
                         Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
                         Name "contactNormal" // Name of the bot attributes listed in EventChangeAttributes
@@ -5668,7 +5710,7 @@ WaveSchedule
                 {
                     CharacterAttributes
                     {
-                        "rage giving scale" 0.2
+                        "rage giving scale" 0.1
                         "move speed bonus"	0.5
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3
@@ -5763,7 +5805,6 @@ WaveSchedule
             Item "The Loch-n-Load"
             Item "Upgradeable TF_WEAPON_PIPEBOMBLAUNCHER"
             WeaponRestrictions SecondaryOnly
-            UseMeleeThreatPrioritization 1
             CustomEyeGlowColor "13 229 229" 
             Attributes SuppressFire
             Action Mobber
@@ -5791,7 +5832,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "attach particle effect" 3150
-                "rage giving scale" 0.2
             }
             ItemAttributes
             {
@@ -5854,7 +5894,7 @@ WaveSchedule
                     }
                     ChangeAttributes 
                     {
-                        Delay 5.5 //Time before the first bot attribute change (Default: 10)
+                        Delay 6.5 //Time before the first bot attribute change (Default: 10)
                         Cooldown 9 //Time between each bot attribute change (Default: 10)
                         Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
                         Name "contactNormal" // Name of the bot attributes listed in EventChangeAttributes
@@ -5879,7 +5919,6 @@ WaveSchedule
             Health 18000
             Action Mobber
             Attributes UseBossHealthBar
-            UseMeleeThreatPrioritization 1
             Name "Otherworldly Barrage"
             AddCond
             {
@@ -5903,7 +5942,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "attach particle effect" 3150
-                "rage giving scale" 0.2
             }
             SpawnTemplate prop_ufo
             ChangeAttributes 
@@ -5935,7 +5973,7 @@ WaveSchedule
                     }
                     ChangeAttributes 
                     {
-                        Delay 5.5 //Time before the first bot attribute change (Default: 10)
+                        Delay 6.5 //Time before the first bot attribute change (Default: 10)
                         Cooldown 9 //Time between each bot attribute change (Default: 10)
                         Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
                         Name "contactNormal" // Name of the bot attributes listed in EventChangeAttributes
@@ -6009,7 +6047,6 @@ WaveSchedule
                 "weapon spread bonus" 0.001
                 "cloak consume rate decreased" 0.1
                 "faster reload rate" 0.4
-                "rage giving scale" 0.2
             }
 
             ChangeAttributes 
@@ -6854,7 +6891,6 @@ WaveSchedule
             MaxVisionRange 2000
             Action Mobber
             UseHumanModel 1
-            UseMeleeThreatPrioritization 1
             Item "Breadcrab"
             Item "Emerald Jarate"
             Item "Herzensbrecher"
@@ -6877,7 +6913,6 @@ WaveSchedule
                 "afterburn immunity" 1
                 "crit kill will gib" 1
                 "ragdolls plasma effect" 0
-                "rage giving scale" 0.2
             }
             ChangeAttributes 
             {
@@ -7196,7 +7231,7 @@ WaveSchedule
         }	
 
         T_TFBot_Contact_Demo_Miniboss
-        {
+        { // demo boss
             SpawnTemplate bossdemo2thinguses
             SpawnTemplate prop_ufo
             Tag demoboss
@@ -7213,7 +7248,6 @@ WaveSchedule
             Attributes MiniBoss
             Action Mobber
             UseHumanModel 1
-            UseMeleeThreatPrioritization 1
             Item "The Buccaneer's Bicorne"
             Item "The Alien Cranium"
             Item "The Biomech Backpack"
@@ -7274,7 +7308,6 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.5
                 "override footstep sound set" 4
                 "always allow taunt" 1
-                "rage giving scale" 0.2
             }
             EventChangeAttributes
             {
@@ -7397,7 +7430,6 @@ WaveSchedule
             NoBombUpgrades 1
             CustomEyeGlowColor "0 0 0"
             CustomEyeParticle ""
-            UseMeleeThreatPrioritization 1
             Action Mobber
             Attributes MiniBoss
 
@@ -7424,7 +7456,6 @@ WaveSchedule
                 //"engy sentry fire rate increased" 1.0
                 "engineer sentry build rate multiplier" 0.5
                 "mod wrench builds minisentry"  1
-                "rage giving scale" 0.2
             }
             Item	"the pomson 6000"
             ItemAttributes
@@ -8259,6 +8290,15 @@ WaveSchedule
                         Cooldown 0.13
                     }
                     FireInput
+                    { // this makes the bot move forward in the air
+                        Target "!self"
+                        Action "RunScriptCode"
+                        Param "self.ApplyAbsVelocityImpulse(Vector(0,0,400))"
+                        Delay 3.4
+                        Repeats 3
+                        Cooldown 0.5
+                    }
+                    FireInput
                     {
                         Target "engi_ship_train"
                         Action "PlaySound"
@@ -8467,7 +8507,6 @@ WaveSchedule
             Tag engiboss
             UseHumanAnimations 1
             UseHumanModel 1
-            UseMeleeThreatPrioritization 1
             Health 75000
             MaxVisionRange 2000
 
@@ -8477,6 +8516,7 @@ WaveSchedule
             Item "Dustbowl Devil"
             Item	"prairie heel biters"
             Item	"Iron Fist"
+            Item "Support Spurs"
             //Item "Frontier Flyboy"
 
             Item "the gunslinger"
@@ -8504,7 +8544,6 @@ WaveSchedule
                 "boots falling stomp" 1
                 "falling_impact_radius_pushback" 1
                 "move speed bonus" 0.8
-                "rage giving scale" 0.2
                     "dmg taken mult from special damage type 1" 0.7754
                     "dmg taken mult from special damage type 2" 0.6449
                     "dmg taken mult from special damage type 3" 2
@@ -9005,15 +9044,15 @@ WaveSchedule
                         Delay 11
                         Repeats 1
                     }
-                    FireInput
-                    {
-                        Target "!self"
-                        Action "RunScriptCode"
-                        Param "Contact.cannonPuppet.SetHealth(Contact.cannonPuppet.GetHealth() - 150)"
-                        Delay 3
-                        Repeats 20
-                        Cooldown 0.5
-                    }
+                    // FireInput
+                    // {
+                    //     Target "!self"
+                    //     Action "RunScriptCode"
+                    //     Param "Contact.cannonPuppet.SetHealth(Contact.cannonPuppet.GetHealth() - 150)"
+                    //     Delay 3
+                    //     Repeats 20
+                    //     Cooldown 0.5
+                    // }
                     FireInput
                     {
                         Target "!self"
