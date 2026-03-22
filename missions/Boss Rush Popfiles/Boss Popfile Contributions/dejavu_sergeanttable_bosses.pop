@@ -3029,7 +3029,7 @@ WaveSchedule
 				"OnTrigger"	"warning,start,0,4.5,-1"
 				"OnTrigger"	"warning,stop,0,9,-1"
                 "OnTrigger"  "!activator,$TauntFromItem,The Ullapool Caber,0,-1"
-                "OnTrigger"  "nukingsomebitches,FireOnce,,8.8,-1"
+                "OnTrigger"  "timed_disaster_nuke,FireOnce,,8.8,-1"
                 "OnTrigger"  "tf_gamerules,playvo,megabuster_explode.mp3,0,-1"
                 "OnTrigger"  "timetokill,turnon,,1,-1"
                 "OnTrigger"  "timetokill2,turnon,,3.5,-1"
@@ -3082,7 +3082,7 @@ WaveSchedule
 				"OnTrigger"	"warning,start,0,1.5,-1"
 				"OnTrigger"	"warning,stop,0,4.4,-1"
                 "OnTrigger"  "!activator,$TauntFromItem,The Ullapool Caber,0,-1"
-                "OnTrigger"  "nukingsomebitches,FireOnce,,4.4,-1"
+                "OnTrigger"  "timed_disaster_nuke,FireOnce,,4.4,-1"
                 "OnTrigger"  "tf_gamerules,playvo,megabuster_faster.mp3,0,-1"
 
 				
@@ -3099,7 +3099,7 @@ WaveSchedule
             }
             tf_point_weapon_mimic
 			{
-				"targetname" "nukingsomebitches"
+				"targetname" "timed_disaster_nuke"
 
 				"spawnflags" "1"
 				"angles" "0 0 0"
@@ -4067,6 +4067,29 @@ WaveSchedule
         }
 
         //// THE LONE SWORDSMAN ////
+        SwordsmanArena
+        {
+            info_target
+            {
+                "targetname" "swordmantp1"
+                "origin"     "13604 -2526 -550"
+            }
+            info_target
+            {
+                "targetname" "swordmantp2"
+                "origin"     "13484 -4110 -550"
+            }
+            info_target
+            {
+                "targetname" "swordmantp3"
+                "origin"     "12300 -3892 -550"
+            }
+            info_target
+            {
+                "targetname" "swordmantp4"
+                "origin"     "12219 -2185 -550"
+            }
+        }
         SwordsmanLogic
         {
             logic_relay
@@ -4462,8 +4485,19 @@ WaveSchedule
                 "OnTrigger"  "!activator,$TauntFromItem,Taunt: True Scotsman's Call,0,-1"
                 "OnTrigger"  "beam_spinner_1,start,,3.5,-1"
                 "OnTrigger"  "beam_spinner_2,start,,3.5,-1"
-                "OnTrigger"  "beam_spinner_1,stop,,13.5,-1"
-                "OnTrigger"  "beam_spinner_2,stop,,13.5,-1"
+                "OnTrigger"  "beam_spinner_1,stop,,13.0,-1"
+                "OnTrigger"  "beam_spinner_2,stop,,13.0,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,1,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,1.3,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,1.4,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,1.9,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,2,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,2.4,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,2.5,-1"
+                "OnTrigger"  "player*,$playsoundtoself,=50|start_beam_whatever.mp3,2.6,-1"
+                "OnTrigger"  "player,$playsoundtoself,=45|laser_related_attack.mp3,2,-1"
+                "OnTrigger"  "player,$playsoundtoself,=45|laser_related_attack.mp3,5.8,-1"
+                "OnTrigger"  "player,$playsoundtoself,=45|laser_related_attack.mp3,9.6,-1"
                 "OnTrigger"  "weregonnatouchu,strikeonce,,1,-1"
                 "OnTrigger"  "weregonnatouchu1,strikeonce,,1.3,-1"
                 "OnTrigger"  "weregonnatouchu2,strikeonce,,1.4,-1"
@@ -4475,12 +4509,12 @@ WaveSchedule
                 "OnTrigger"  "weregonnatouchu8,strikeonce,,2.6,-1"
                 "OnTrigger"  "weregonnatouchu9,strikeonce,,2.6,-1"
                 "OnTrigger"  "beamdmg*,$startfiring,,3.5,-1"
-                "OnTrigger"  "beamdmg*,$stopfiring,,14.5,-1"
+                "OnTrigger"  "beamdmg*,$stopfiring,,14.2,-1"
             }
             func_rotating
             {
                 "targetname" "beam_spinner_1"
-                "maxspeed"   "40"
+                "maxspeed"   "50"
                 "origin"     "0 0 0"
                 "angles" "0 0 0"
                 "spawnflags" "82"
@@ -4489,7 +4523,7 @@ WaveSchedule
             func_rotating
             {
                 "targetname" "beam_spinner_2"
-                "maxspeed"   "50"
+                "maxspeed"   "55"
                 "origin"     "0 0 0"
                 "spawnflags" "80"
                 "fanfriction" "100"
@@ -4704,7 +4738,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "150 0 30"
+                "origin"           "150 0 80"
                 "parentname" "beam_spinner_2"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4724,7 +4758,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "350 0 30"
+                "origin"           "350 0 80"
                 "parentname" "beam_spinner1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4744,7 +4778,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "650 0 30"
+                "origin"           "650 0 80"
                 "parentname" "beam_spinner_2"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4764,7 +4798,7 @@ WaveSchedule
             tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "950 0 30"
+                "origin"           "950 0 80"
                 "parentname" "beam_spinner_1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4784,7 +4818,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "1250 0 30"
+                "origin"           "1250 0 80"
                 "parentname" "beam_spinner_2"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4804,7 +4838,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-50 0 30"
+                "origin"           "-50 0 80"
                 "parentname" "beam_spinner_1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4824,7 +4858,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-200 0 30"
+                "origin"           "-200 0 80"
                 "parentname" "beam_spinner_2"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4844,7 +4878,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-500 0 30"
+                "origin"           "-500 0 80"
                 "parentname" "beam_spinner_1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4864,7 +4898,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-800 0 30"
+                "origin"           "-800 0 80"
                 "parentname" "beam_spinner_2"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4884,7 +4918,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-1100 0 30"
+                "origin"           "-1100 0 80"
                 "parentname" "beam_spinner_1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -4904,7 +4938,7 @@ WaveSchedule
              tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
-                "origin"           "-1400 0 30"
+                "origin"           "-1400 0 80"
                 "parentname" "beam_spinner_1"
                 "angles"           "-270 0 0"
                 "teamnum"          "3"
@@ -5107,7 +5141,7 @@ WaveSchedule
 			{
                 "targetname" "Swordsman_GroundSwordShake1"
                 "spawnflags" "4"
-				"amplitude" "3000"
+				"amplitude" "5"
 				"duration" "3"
 				"frequency" "100"
 			}
@@ -5181,7 +5215,7 @@ WaveSchedule
 			{
                 "targetname" "Swordsman_GroundSwordShake2"
                 "spawnflags" "4"
-				"amplitude" "3000"
+				"amplitude" "5"
 				"duration" "3"
 				"frequency" "100"
 			}
@@ -5254,7 +5288,7 @@ WaveSchedule
 			{
                 "targetname" "Swordsman_GroundSwordShake3"
                 "spawnflags" "4"
-				"amplitude" "3000"
+				"amplitude" "5"
 				"duration" "3"
 				"frequency" "100"
 			}
@@ -5328,7 +5362,7 @@ WaveSchedule
 			{
                 "targetname" "Swordsman_GroundSwordShake4"
                 "spawnflags" "4"
-				"amplitude" "3000"
+				"amplitude" "5"
 				"duration" "3"
 				"frequency" "100"
 			}
@@ -5402,7 +5436,7 @@ WaveSchedule
 			{
                 "targetname" "Swordsman_GroundSwordShake5"
                 "spawnflags" "4"
-				"amplitude" "3000"
+				"amplitude" "5"
 				"duration" "3"
 				"frequency" "100"
 			}
@@ -9912,7 +9946,7 @@ WaveSchedule
                 Target tf_gamerules
                 Action PlayVO
                 Param vo/mvm/mght/taunts/demoman_mvm_m_taunts14.mp3
-                Delay 3
+                Delay 4
                 Repeats 1
                 Cooldown -1
                 IfHealthBelow 70001
@@ -9922,7 +9956,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);"
-                Delay 3
+                Delay 4
                 Repeats 1
                 Cooldown -1
                 IfHealthBelow 70001
@@ -9966,6 +10000,7 @@ WaveSchedule
                     {
                         "no_jump" 0
                         "no_attack" 0
+                        "gesture speed increase" 1
                         "move speed penalty" 0.5
                         "damage force reduction" 0.5
                         "airblast vulnerability multiplier" 0.5
@@ -10254,6 +10289,7 @@ WaveSchedule
                     {
                         "move speed penalty" 0.01
                         "no_jump" 1
+                        "gesture speed increase" 0.75
                         "damage force reduction" 0.5
                         "airblast vulnerability multiplier" 0.5
                         "override footstep sound set" 4

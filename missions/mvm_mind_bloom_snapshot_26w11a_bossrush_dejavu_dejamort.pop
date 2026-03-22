@@ -77,6 +77,9 @@ WaveSchedule
     PrecacheSound "tmc_fat_boss_intro.mp3"
     PrecacheSound "tmc_fat_boss_loop.mp3"
 
+    PrecacheSound "start_beam_whatever.mp3"
+    PrecacheSound "laser_related_attack.mp3"
+
     //// POINT TEMPLATES ////
 
     PointTemplates 
@@ -91,29 +94,6 @@ WaveSchedule
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
             }
-
-            info_teleport_destination // Fix for Skeleheat
-            {
-                "targetname" "portal_target_skeleheat"
-                "origin" "-8744 -552 -1160"
-            }
-            info_teleport_destination // Fix for Redstone Ridge
-            {
-                "targetname" "portal_target_redstone_new"
-                "origin" "2376 934 -892"
-            }
-            info_teleport_destination // Fix for Shank
-            {
-                "targetname" "spawnbot_boss_target_shank_new"
-                "origin" "11397 10263 -926"
-            }
-
-            logic_timer // Ragdoll Remover
-			{
-				"targetname"    "ragdollremover"
-				"RefireTime"    "7"
-				"OnTimer"       "tf_ragdoll*,kill,,0,-1"
-			}
 
             // Universal Filters
             filter_activator_class // Is a Player
@@ -456,21 +436,6 @@ WaveSchedule
 				rendermode 10
 				solid 0
 				targetname rider_soundsource
-			}
-		}
-
-		// Obsolescence Extra Trigger Hurt
-		ObsolescenceTriggerHurt
-		{
-			trigger_hurt
-			{
-				"targetname" "pit_hurt_player_waterfall"
-				"origin" "8384 -5184 -1096"
-				"mins" "-1800 -1800 -168"
-				"maxs" "1800 1800 168"
-				"filtername" "filter_redteam"
-				"damage" "999999"
-				"damagetype" "32"
 			}
 		}
     }
@@ -2645,29 +2610,78 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-                    }
-                    if(!(`contact_logic_bossrush` in getroottable()))
-                    {
-                        IncludeScript(`contact_logic_bossrush`, getroottable())
-                    }
-                    if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
+					Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+					if (!(`alternatewaves` in getroottable()))
+					{
+						IncludeScript(`alternatewaves`, getroottable());
+					}
+					if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
+					{
+						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
+					}
+					if(!(`contact_logic_bossrush` in getroottable()))
+					{
+						IncludeScript(`contact_logic_bossrush`, getroottable())
+					}
+					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
+					EntFire(`nomoremusiccauseimlazy`, `Trigger`, null, 0.5)
 
-                    IncludeScript(`mvm_mind_bloom_wave8_hotfix`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet1`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave8_IndustrialGauntlet2`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_rancher_relay`, `Wave8_RancherGauntlet`);
+					MindBloomRNG.InitRNGArena();
+
+					AlternateWaves.bTrackIcons = false;
+					AlternateWaves.ClearWaveIcons();
+
+					switch (MindBloomRNG.GlobalIndex)
+					{
+						case 0:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_sunstick_swordstone`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+
+						case 1:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`demo_burst_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`pyro_dragon_crown`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demoknight_headtaker_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`pyro_jug_axtinguisher`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`demo_burst`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+
+						case 2:
+						{
+							AlternateWaves.AddWaveIcons([
+								[`heavy_shotgun_explode`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`heavy_fists_electro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_barrage_mangler`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demo_sticky_nuke_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_blackbox`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_batsaber_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
+							])
+							break;
+						}
+					}
                   "
         }
         StartWaveOutput
@@ -5697,6 +5711,7 @@ WaveSchedule
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-LilUFOs`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave12_Support-SubspaceAgents`)
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave12_Support-SubspaceAgents`)
+                        EntFire(`killmothershipinstant`, `Trigger`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
@@ -5937,8 +5952,6 @@ WaveSchedule
                     EntFire(`makesureeverythingisonjustincase`, `Trigger`, null, 0.2)
                     EntFire(`w6sky`, `Trigger`, null, 0.2)
 
-                    EntFire(`engi_intro`, `Trigger`, null, 0.4)
-
                     Contact.SetLowGravity(true)
                   "
         }
@@ -6092,6 +6105,23 @@ WaveSchedule
                 // when tank dies, spawn ufo gibs
             }
         }
+
+        WaveSpawn
+        {
+            WaitForAllDead "Wave14_Boss-IronstarPhase1Ship"
+            FirstSpawnOutput
+            {
+                Target "tf_gamerules"
+                Action "RunScriptCode"
+                Param "
+                Contact.KillEngiDrone()
+                EntFire(`tf_gamerules`,`runscriptcode`,`Contact.KillEngiDrone()`,0.2)
+                EntFire(`tf_gamerules`,`runscriptcode`,`Contact.KillEngiDrone()`,0.5)
+                EntFire(`tf_gamerules`,`runscriptcode`,`Contact.KillEngiDrone()`,0.7)
+                "
+                Delay 0.1
+            }
+        }
         
         WaveSpawn // Ironstar Phase 2
         {
@@ -6111,11 +6141,23 @@ WaveSchedule
             {
                 Template T_TFBot_Contact_Ironstar_Phase2
             }
+            DoneOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`engishake`, `StartShake`)
+                        EntFire(`killmothership`, `Trigger`)
+                        EntFire(`nomoremusiccauseimlazy`, `Trigger`)
+                        ClientPrint(null, 3, `Till next time fellas...`);
+                      "
+            }
         }
 
 		WaveSpawn
         {
             WaitForAllDead "Wave14_Boss-IronstarPhase2"
+            WaitBeforeStarting 0
             FirstSpawnOutput
             {
                 Target "tf_gamerules"
@@ -6124,6 +6166,7 @@ WaveSchedule
                 ClientPrint(null,3,`Till next time fellas...`);
                 EntFire(`engishake`,`startshake`,0.1)
                 EntFire(`killmothership`,`trigger`,0.1)
+                EntFire(`nomoremusiccauseimlazy`,`trigger`,1)
                 "
                 Delay 0.0
             }
@@ -8458,6 +8501,8 @@ WaveSchedule
 		CustomWaveNumber 20
 		CustomMaxWaveNumber 0
 		RedTeamWipeCausesWaveLoss 1
+
+        SpawnTemplate SwordsmanArena
 
         WaveSpawn
 		{
