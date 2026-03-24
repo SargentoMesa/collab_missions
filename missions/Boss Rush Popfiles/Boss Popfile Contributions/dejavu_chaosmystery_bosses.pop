@@ -273,7 +273,7 @@ WaveSchedule
 				"spawnflags" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,6,0,-1"
 				"$killicon" "firedeath"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 			}
 			info_particle_system
 			{
@@ -771,7 +771,7 @@ WaveSchedule
                 "maxs" "50 50 80"
                 "damage" "350"
                 "damagetype" "2"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
                 "StartDisabled" "1"
                 "spawnflags" "64"
             }
@@ -874,7 +874,7 @@ WaveSchedule
                 "damage" "300"
                 "startdisabled" "1"
                 "spawnflags" "64"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
             }
             env_beam
             {
@@ -1060,7 +1060,7 @@ WaveSchedule
                 "maxs" "60 60 700"
                 "damage" "300"
                 "damagetype" "2"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
                 "spawnflags" "64"
             }
             info_particle_system

@@ -554,7 +554,7 @@ WaveSchedule
 				"spawnflags" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,5,0,-1"
 				"$killicon" "firedeath"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 			}
         }
         teleforbossafterdeath
@@ -1862,7 +1862,7 @@ WaveSchedule
 			trigger_hurt
 			{
 				"targetname" "jumpcatapult"
-				"filtername" "filter_is_red_not_ubered"
+				"filtername" "filter_redteam_nouber"
 				"StartDisabled" "1"
 				"mins" "-320 -320 -320"
 				"maxs" "320 320 320"
