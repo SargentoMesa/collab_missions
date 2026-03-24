@@ -4145,6 +4145,13 @@ WaveSchedule
         }
         SwordsmanLogic
         {
+			OnSpawnOutput
+            {
+                Target boss_target
+				Action SetParent
+				Param "!activator"
+				Delay 0.05
+            }
             info_target
             {
                 "targetname" "boss_target"
@@ -4205,7 +4212,7 @@ WaveSchedule
                 "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_SpinningBeamsInit,0,-1"
-                "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_TeleportHell,0,-1"
             }
 
             //// Phase 1 Attacks ////
@@ -5133,19 +5140,20 @@ WaveSchedule
             {
                 "targetname" "SwordsmanPortalAttack"
                 "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_lightning_ball_cast.wav,0,-1"
-                "OnTrigger" "swordmantpportal1,Enable,,0,-1"
-                "OnTrigger" "swordmantpportal2,Enable,,0,-1"
-                "OnTrigger" "swordmantpportal3,Enable,,0,-1"
-                "OnTrigger" "swordmantpportal4,Enable,,0,-1"
+                "OnTrigger" "swordmantpportal1,Start,,0,-1"
+                "OnTrigger" "swordmantpportal2,Start,,0,-1"
+                "OnTrigger" "swordmantpportal3,Start,,0,-1"
+                "OnTrigger" "swordmantpportal4,Start,,0,-1"
                 "OnTrigger" "SwordsmanTeleport,Enable,,0,-1"
+                "OnTrigger" "SwordsmanTeleport,Trigger,0.1,-1"
                 "OnTrigger" "SwordsmanDetector,Enable,,0,-1"
                 "OnTrigger" "SwordsmanTeleport,CancelPending,,10,-1"
                 "OnTrigger" "SwordsmanTeleport,Disable,,10,-1"
                 "OnTrigger" "SwordsmanDetector,Disable,,10,-1"
-                "OnTrigger" "swordmantpportal1,Disable,,0,-1"
-                "OnTrigger" "swordmantpportal2,Disable,,0,-1"
-                "OnTrigger" "swordmantpportal3,Disable,,0,-1"
-                "OnTrigger" "swordmantpportal4,Disable,,0,-1"
+                "OnTrigger" "swordmantpportal1,Stop,,10,-1"
+                "OnTrigger" "swordmantpportal2,Stop,,10,-1"
+                "OnTrigger" "swordmantpportal3,Stop,,10,-1"
+                "OnTrigger" "swordmantpportal4,Stop,,10,-1"
             }
 
             logic_relay
@@ -5154,8 +5162,8 @@ WaveSchedule
                 "spawnflags" "2"
                 "startdisabled" "1"
 
-                "OnTrigger" "SwordsmanTeleportCase,PickRandomShuffle,,1,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,0,-1"
+                "OnTrigger" "SwordsmanTeleportCase,PickRandomShuffle,,0.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,0.5,-1"
             }
 
             logic_case
@@ -5163,13 +5171,13 @@ WaveSchedule
                 "targetname" "SwordsmanTeleportCase"
 
                 "OnCase01" "@p@boss_target,$TeleportToEntity,swordmantp1,0,-1"
-                "OnCase01" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase01" "@p@boss_target,$setprop$m_flChargeMeter,100,0,-1"
                 "OnCase02" "@p@boss_target,$TeleportToEntity,swordmantp2,0,-1"
-                "OnCase02" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase02" "@p@boss_target,$setprop$m_flChargeMeter,100,0,-1"
                 "OnCase03" "@p@boss_target,$TeleportToEntity,swordmantp3,0,-1"
-                "OnCase03" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase03" "@p@boss_target,$setprop$m_flChargeMeter,100,0,-1"
                 "OnCase04" "@p@boss_target,$TeleportToEntity,swordmantp4,0,-1"
-                "OnCase04" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase04" "@p@boss_target,$setprop$m_flChargeMeter,100,0,-1"
             }
         }
 
@@ -10137,50 +10145,13 @@ WaveSchedule
                 Repeats 1
                 Cooldown -1
             }
+
             FireInput
             {
-                Target "SwordsmanPhase1AttackPoolRelay"
-                Action Disable
+                Target !self
+                Action $ChangeAttributes
+                Param Swordsman_Phase2Interlude
                 Delay 0
-                Repeats 1
-                Cooldown -1
-                IfHealthBelow 70001
-            }
-            FireInput
-            {
-                Target "SwordsmanPhase2AttackPoolRelay"
-                Action Enable
-                Delay 0
-                Repeats 1
-                Cooldown -1
-                IfHealthBelow 70001
-            }
-            FireInput
-            {
-                Target tf_gamerules
-                Action PlayVO
-                Param vo/mvm/mght/demoman_mvm_m_dominationsniper04.mp3
-                Delay 0
-                Repeats 1
-                Cooldown -1
-                IfHealthBelow 70001
-            }
-            FireInput
-            {
-                Target tf_gamerules
-                Action PlayVO
-                Param vo/mvm/mght/taunts/demoman_mvm_m_taunts14.mp3
-                Delay 3.5
-                Repeats 1
-                Cooldown -1
-                IfHealthBelow 70001
-            }
-            FireInput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);"
-                Delay 3.5
                 Repeats 1
                 Cooldown -1
                 IfHealthBelow 70001
@@ -10244,6 +10215,7 @@ WaveSchedule
                         "override footstep sound set" 4
                         "cancel falling damage" 1
                         "displace touched enemies" 1
+						"mult charging move speed" 1
                     }
 
                     ItemAttributes
@@ -10252,7 +10224,6 @@ WaveSchedule
                         "dmg taken from blast reduced" 1
                         "dmg taken from fire reduced" 1
                         "attack not cancel charge" 1
-                        "mult charging move speed" 1
                     }
 
                     ItemAttributes
@@ -10267,6 +10238,87 @@ WaveSchedule
                     {
                         Target "SwordsmanAttackInit"
                         Action Trigger
+                        Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                Swordsman_Phase2Interlude
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Half-Zatoichi"
+                    Item "Prince Tavish's Crown"
+                    Item "The King of Scotland Cape"
+                    Item "Forgotten King's Pauldrons"
+                    Item "Taunt: Unleashed Rage"
+                    WeaponRestrictions MeleeOnly
+                    
+                    Addcond
+                    {
+                        Index 51
+                        Duration 5
+                    }
+
+                    FireInput
+                    {
+                        Target !self
+                        Action $TauntFromItem
+                        Param "Taunt: Unleashed Rage"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "SwordsmanPhase1AttackPoolRelay"
+                        Action Disable
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "SwordsmanPhase2AttackPoolRelay"
+                        Action Enable
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target tf_gamerules
+                        Action PlayVO
+                        Param vo/mvm/mght/demoman_mvm_m_dominationsniper04.mp3
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target tf_gamerules
+                        Action PlayVO
+                        Param vo/mvm/mght/taunts/demoman_mvm_m_taunts14.mp3
+                        Delay 3.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target BigNet
+                        Action RunScriptCode
+                        Param "MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);"
+                        Delay 3.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_SpinningBeamsInit
                         Delay 5
                         Repeats 1
                         Cooldown -1
@@ -10676,6 +10728,7 @@ WaveSchedule
                         "override footstep sound set" 4
                         "cancel falling damage" 1
                         "displace touched enemies" 1
+						"mult charging move speed" 1.5
                     }
 
                     ItemAttributes
@@ -10684,7 +10737,6 @@ WaveSchedule
                         "dmg taken from blast reduced" 1
                         "dmg taken from fire reduced" 1
                         "attack not cancel charge" 1
-                        "mult charging move speed" "1.5"
                     }
 
                     ItemAttributes
