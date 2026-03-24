@@ -4089,6 +4089,38 @@ WaveSchedule
                 "targetname" "swordmantp4"
                 "origin"     "12219 -2185 -550"
             }
+            info_particle_system
+            {
+                "targetname" "swordmantpportal1"
+                "origin" "13604 -2526 -550"
+
+                "effect_name" "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname" "swordmantpportal2"
+                "origin" "13484 -4110 -550"
+
+                "effect_name" "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname" "swordmantpportal3"
+                "origin" "12300 -3892 -550"
+
+                "effect_name" "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname" "swordmantpportal4"
+                "origin" "12219 -2185 -550"
+
+                "effect_name" "eyeboss_tp_vortex"
+                "start_active" "0"
+            }
 
             trigger_multiple
             {
@@ -4103,6 +4135,7 @@ WaveSchedule
                 "startdisabled" "1"
 
                 "OnStartTouch" "SwordsmanStomp,Trigger,,0,-1"
+                "OnStartTouch" "SwordsmanTeleport,Trigger,,0,-1"
             }
             filter_tf_bot_has_tag
 			{
@@ -4112,6 +4145,11 @@ WaveSchedule
         }
         SwordsmanLogic
         {
+            info_target
+            {
+                "targetname" "boss_target"
+                "origin" "0 0 0"
+            }
             logic_relay
             {
                 "targetname" "SwordsmanIntroRelay"
@@ -4453,10 +4491,12 @@ WaveSchedule
                 "OnTrigger"  "!activator,$RemoveItem,The King of Scotland Cape,0,-1"
                 "OnTrigger"  "boss_is_spinning_that_shit,start,,0,-1"
                 "OnTrigger"  "SwordsmanDetector,Enable,,1,-1"
+                "OnTrigger"  "SwordsmanStomp,Enable,,1,-1"
                 "OnTrigger"  "boss_spinne,enable,,0,-1"
                 "OnTrigger"  "boss_is_spinning_that_shit,stop,,10,-1"
                 "OnTrigger"  "boss_spinne,disable,,10,-1"
                 "OnTrigger"  "SwordsmanDetector,Disable,,10,-1"
+                "OnTrigger"  "SwordsmanStomp,Disable,,10,-1"
                 "OnTrigger"  "!activator,SetCustomModel,models/bots/demo_boss/bot_demo_boss.mdl,10,-1"
                 "OnTrigger"  "SlashingDmg,enable,,0,-1"
                 "OnTrigger"  "SlashingDmg,disable,,10,-1"
@@ -4512,6 +4552,7 @@ WaveSchedule
             {
                 "targetname" "SwordsmanStomp"
                 "spawnflags" "2"
+                "startdisabled" "1"
 
                 "OnTrigger" "SwordsmanStompParticle,Start,,0.25,-1"
                 "OnTrigger" "SwordsmanStompParticle,Stop,,0.5,-1"
@@ -5085,6 +5126,50 @@ WaveSchedule
                 "$weaponname"    "BeamDamage"
                 "$firetime"      "0.3"
                 "$weaponnosound" "1"
+            }
+
+            // Teleport Hell Attack
+            logic_relay
+            {
+                "targetname" "SwordsmanPortalAttack"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_lightning_ball_cast.wav,0,-1"
+                "OnTrigger" "swordmantpportal1,Enable,,0,-1"
+                "OnTrigger" "swordmantpportal2,Enable,,0,-1"
+                "OnTrigger" "swordmantpportal3,Enable,,0,-1"
+                "OnTrigger" "swordmantpportal4,Enable,,0,-1"
+                "OnTrigger" "SwordsmanTeleport,Enable,,0,-1"
+                "OnTrigger" "SwordsmanDetector,Enable,,0,-1"
+                "OnTrigger" "SwordsmanTeleport,CancelPending,,10,-1"
+                "OnTrigger" "SwordsmanTeleport,Disable,,10,-1"
+                "OnTrigger" "SwordsmanDetector,Disable,,10,-1"
+                "OnTrigger" "swordmantpportal1,Disable,,0,-1"
+                "OnTrigger" "swordmantpportal2,Disable,,0,-1"
+                "OnTrigger" "swordmantpportal3,Disable,,0,-1"
+                "OnTrigger" "swordmantpportal4,Disable,,0,-1"
+            }
+
+            logic_relay
+            {
+                "targetname" "SwordsmanTeleport"
+                "spawnflags" "2"
+                "startdisabled" "1"
+
+                "OnTrigger" "SwordsmanTeleportCase,PickRandomShuffle,,1,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,0,-1"
+            }
+
+            logic_case
+            {
+                "targetname" "SwordsmanTeleportCase"
+
+                "OnCase01" "@p@boss_target,$TeleportToEntity,swordmantp1,0,-1"
+                "OnCase01" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase02" "@p@boss_target,$TeleportToEntity,swordmantp2,0,-1"
+                "OnCase02" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase03" "@p@boss_target,$TeleportToEntity,swordmantp3,0,-1"
+                "OnCase03" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
+                "OnCase04" "@p@boss_target,$TeleportToEntity,swordmantp4,0,-1"
+                "OnCase04" "@p@boss_target,$setprop$m_flChargeMeter,1,0,-1"
             }
         }
 
@@ -10167,6 +10252,7 @@ WaveSchedule
                         "dmg taken from blast reduced" 1
                         "dmg taken from fire reduced" 1
                         "attack not cancel charge" 1
+                        "mult charging move speed" 1
                     }
 
                     ItemAttributes
@@ -10564,6 +10650,65 @@ WaveSchedule
                         Action $ChangeAttributes
                         Param Swordsman_Default
                         Delay 5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                Swordsman_TeleportHell
+                {
+                    Item "Ali Baba's Wee Booties"
+                    Item "The Chargin' Targe"
+                    Item "The Half-Zatoichi"
+                    Item "Prince Tavish's Crown"
+                    Item "The King of Scotland Cape"
+                    Item "Forgotten King's Pauldrons"
+                    WeaponRestrictions MeleeOnly
+
+                    CharacterAttributes
+                    {
+                        "no_jump" 0
+                        "no_attack" 0
+                        "gesture speed increase" 1
+                        "move speed penalty" 0.5
+                        "damage force reduction" 0.5
+                        "airblast vulnerability multiplier" 0.5
+                        "override footstep sound set" 4
+                        "cancel falling damage" 1
+                        "displace touched enemies" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Chargin' Targe"
+                        "dmg taken from blast reduced" 1
+                        "dmg taken from fire reduced" 1
+                        "attack not cancel charge" 1
+                        "mult charging move speed" "1.5"
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "The Half-Zatoichi"
+                        "critboost on kill" 10
+                        "damage bonus" 2
+                        "restore health on kill" 0
+                    }
+
+                    FireInput
+                    {
+                        Target SwordsmanPortalAttack
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target !self
+                        Action $ChangeAttributes
+                        Param Swordsman_Default
+                        Delay 10.1
                         Repeats 1
                         Cooldown -1
                     }
