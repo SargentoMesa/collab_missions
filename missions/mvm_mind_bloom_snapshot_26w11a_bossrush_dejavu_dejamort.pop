@@ -62,8 +62,6 @@ WaveSchedule
 	PrecacheSound "launch_sequence_v2.mp3"
     PrecacheSound "triple_threat_trolldier_boss_theme.mp3"
 
-	PrecacheSound "combattankphasestart.mp3"
-
     PrecacheSound "mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/internal_struggle.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav"
@@ -73,12 +71,16 @@ WaveSchedule
 	PrecacheSound "mentrillum/mvm/music/bossrush/the_arena_rest_area.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/true_arena_showdown.wav"
 	PrecacheSound "mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav"
+    PrecacheSound "mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav"
+    PrecacheSound "mentrillum/mvm/music/bossrush/hallway_back_to_the_origin.wav"
 
     PrecacheSound "tmc_fat_boss_intro.mp3"
     PrecacheSound "tmc_fat_boss_loop.mp3"
 
+    PrecacheSound "combattankphasestart.mp3"
     PrecacheSound "start_beam_whatever.mp3"
     PrecacheSound "laser_related_attack.mp3"
+    PrecacheSound "swordsman_spin_attack.wav"
 
     //// POINT TEMPLATES ////
 
@@ -506,6 +508,8 @@ WaveSchedule
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/hallway_back_to_the_origin.wav`);
                     MusicSystemMent.ResetAll();
                     MusicSystemMent.HookByName(`bignet`);
                   "
@@ -7545,7 +7549,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/boss_blitz_galaxy.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -7783,7 +7787,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`, 2.0, 2.0, 0.75);
 
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_TrolldierTrio`);
                     MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave19_PlannedObsolescence`);
@@ -8273,7 +8277,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -8449,7 +8453,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`, 2.0, 2.0, 0.75);
 				  "
 		}
 		StartWaveOutput
@@ -8536,7 +8540,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/internal_struggle.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/hallway_back_to_the_origin.wav`, 2.0, 2.0, 0.75);
 				  "
 		}
 		StartWaveOutput

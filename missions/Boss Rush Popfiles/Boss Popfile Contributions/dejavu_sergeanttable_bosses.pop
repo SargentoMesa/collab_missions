@@ -252,6 +252,7 @@ WaveSchedule
         "GroundSwordWeapon1"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "damage bonus" "0"
             "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
@@ -263,6 +264,7 @@ WaveSchedule
         "GroundSwordWeapon2"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "damage bonus" "0"
             "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
@@ -274,6 +276,7 @@ WaveSchedule
         "GroundSwordWeapon3"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "damage bonus" "0"
             "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
@@ -285,6 +288,7 @@ WaveSchedule
         "GroundSwordWeapon4"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "damage bonus" "0"
             "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
@@ -296,6 +300,7 @@ WaveSchedule
         "GroundSwordWeapon5"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "damage bonus" "0"
             "penetrate teammates" "1"
             "projectile spread angle penalty" "90"
             "projectile speed increased" "0.75"
@@ -4084,6 +4089,26 @@ WaveSchedule
                 "targetname" "swordmantp4"
                 "origin"     "12219 -2185 -550"
             }
+
+            trigger_multiple
+            {
+                "targetname" "SwordsmanDetector"
+                "origin" "12983 -3094 -1168"
+                "mins" "-1203 -1206 -96"
+                "maxs" "1203 1206 96"
+
+                "wait" "0.5"
+                "filtername" "SwordsmanFilter"
+                "spawnflags" "1"
+                "startdisabled" "1"
+
+                "OnStartTouch" "SwordsmanStomp,Trigger,,0,-1"
+            }
+            filter_tf_bot_has_tag
+			{
+				"targetname" "SwordsmanFilter"
+				"tags" "loneswordsman"
+			}
         }
         SwordsmanLogic
         {
@@ -4095,9 +4120,9 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/taunts/demoman_mvm_m_taunts11.mp3,2.5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_dominationdemoman01.mp3,5.5,-1"
 
-                "OnTrigger" "pop_interface,ChangeBotAttributes,Swordsman_Samurai,9.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,11,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,11,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,10.5,-1"
             }
 
             logic_relay
@@ -4418,23 +4443,28 @@ WaveSchedule
             }
 
             // He Spins and he Jumps and he Destroys everyone because he's so cool
-            // For this spinning attack I think we can use a human anim trick on the robot model to make it
-            // do the sword taunt-kill, and then freeze it at frame 74 so the sword stays stuck out
-            // and then rotate the model so it's spinning with the sword stuck out
-
             logic_relay
             {
                 "targetname" "SpinningSwordAttack"
+                "OnTrigger"  "!activator,$RemoveItem,Ali Baba's Wee Booties,0,-1"
+                "OnTrigger"  "!activator,$RemoveItem,The Half-Zatoichi,0,-1"
+                "OnTrigger"  "!activator,$RemoveItem,Prince Tavish's Crown,0,-1"
+                "OnTrigger"  "!activator,$RemoveItem,Forgotten King's Pauldrons,0,-1"
+                "OnTrigger"  "!activator,$RemoveItem,The King of Scotland Cape,0,-1"
                 "OnTrigger"  "boss_is_spinning_that_shit,start,,0,-1"
+                "OnTrigger"  "SwordsmanDetector,Enable,,1,-1"
                 "OnTrigger"  "boss_spinne,enable,,0,-1"
                 "OnTrigger"  "boss_is_spinning_that_shit,stop,,10,-1"
                 "OnTrigger"  "boss_spinne,disable,,10,-1"
+                "OnTrigger"  "SwordsmanDetector,Disable,,10,-1"
                 "OnTrigger"  "!activator,SetCustomModel,models/bots/demo_boss/bot_demo_boss.mdl,10,-1"
+                "OnTrigger"  "SlashingDmg,enable,,0,-1"
+                "OnTrigger"  "SlashingDmg,disable,,10,-1"
             }
             func_rotating
             {
                 "targetname" "boss_is_spinning_that_shit"
-                "maxspeed"   "300"
+                "maxspeed"   "800"
                 "origin"     "0 0 32"
                 "spawnflags" "88"
                 "fanfriction" "100"
@@ -4464,16 +4494,126 @@ WaveSchedule
             }
             trigger_hurt
             {
-                "targetname" "triggername"
+                "targetname" "SlashingDmg"
                 "parentname" "boss_is_spinning_that_shit"
                 "origin"     "0 0 40"
-                "mins"       "-100 -100 -100"
-                "maxs"       "100 100 100"
+                "mins"       "-175 -175 -250"
+                "maxs"       "175 175 250"
                 "spawnflags" "64" //1: players; 64 everything
-                "damage"     "50"
-                "damagetype" "8"
+                "damage"     "65"
+                "damagetype" "128"
                 "StartDisabled" "1"
-                "filtername" "filter_is_red_not_ubered"
+                "filtername" "filter_redteam_nouber"
+                "OnHurtPlayer" "!activator,bleedplayer,1,0,-1"
+                "OnHurtPlayer" "!activator,$PlaySoundToSelf,weapons\samurai\tf_katana_01.wav,0,-1"
+            }
+            // Spinning Stomp
+            logic_relay
+            {
+                "targetname" "SwordsmanStomp"
+                "spawnflags" "2"
+
+                "OnTrigger" "SwordsmanStompParticle,Start,,0.25,-1"
+                "OnTrigger" "SwordsmanStompParticle,Stop,,0.5,-1"
+                "OnTrigger" "SwordsmanStompSound,PlaySound,,0.25,-1"
+                "OnTrigger" "SwordsmanStompSound,StopSound,,0.5,-1"
+                "OnTrigger" "SwordsmanStompShake,StartShake,0.25,-1"
+                "OnTrigger" "SwordsmanStompDamage,Enable,,0.25,-1"
+                "OnTrigger" "SwordsmanStompDamage,Disable,,0.26,-1"
+                "OnTrigger" "SwordsmanStompFling,ApplyImpulse,,0.25,-1"
+                "OnTrigger" "SwordmanStompLunge,enable,,0.25,-1"
+            }
+            trigger_catapult
+            {
+                "targetname" "SwordmanStompLunge"
+                "playerspeed" "600"
+                "physicsSpeed" "600"
+                "mins" "-24 -24 -24"
+                "maxs" "24 42 24"
+                "origin" "0 0 72"
+                "applyAngularImpulse" "1"
+                "entryAngleTolerance" "-1.0"
+                "AirCtrlSupressionTime" "0.33"
+                "onlyVelocityCheck" "0"
+                "lowerthreshold" "0"
+                "upperthreshold" "0.75"
+                "useExactVelocity" "0"
+                "spawnflags" "1"
+                "startdisabled" "1"
+                "launchTarget" "targe_target"
+                "OnCatapulted" "!self,disable,,0,-1"
+            }
+            info_target 
+            {
+                "targetname" "targe_target"
+                "origin" "300 0 500"
+            }
+            info_particle_system
+            {
+                "targetname"   "SwordsmanStompParticle"
+                "origin"       "0 0 0"
+                "effect_name"  "hammer_impact_button"
+                "start_active" "0"
+            }
+            info_particle_system
+            {
+                "targetname"   "SwordsmanStompParticle"
+                "origin"       "0 0 0"
+                "effect_name"  "hammer_impact_button_dust2"
+                "start_active" "0"
+            }
+            ambient_generic
+            {
+                "targetname" "SwordsmanStompSound"
+                "message"    "ambient\explosions\explode_4.wav"
+                "health"     "10"
+                "pitch"      "100"
+                "radius"     "6000"
+                "spawnflags" "32"
+                "origin"     "0 0 100"
+            }
+            ambient_generic
+            {
+                "targetname" "SwordsmanStompSound"
+                "message"    "ambient\explosions\explode_4.wav"
+                "health"     "10"
+                "pitch"      "100"
+                "radius"     "6000"
+                "spawnflags" "32"
+                "origin"     "0 0 100"
+            }
+            env_shake
+			{
+				"spawnflags" "4" 
+				"amplitude" "16"
+				"duration" "3"
+                "radius" "1000"
+				"frequency" "12"
+				"targetname" "SwordsmanStompShake"
+			}
+			trigger_hurt
+			{
+				"targetname" "SwordsmanStompDamage"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"mins" "-300 -300 -300"
+				"maxs" "300 300 300"
+				"damagetype" "64"
+				"damage" "600"
+                "filtername" "filter_redteam_nouber"
+				"StartDisabled" "1"
+				"spawnflags" "64"
+			}
+			trigger_apply_impulse 
+            {
+                "targetname" "SwordsmanStompFling"
+                "origin" "0 0 0"
+                "maxs" "300 300 300"
+                "mins" "-300 -300 -300"
+                "spawnflags" "1"
+                "filtername" "filter_redteam"
+                "force" "750"
+                "impulse_dir" "262 10 0"
             }
 
             //// Phase 2 Attacks ////
@@ -4735,7 +4875,7 @@ WaveSchedule
                 "origin" "150 0 0"
                 "angles" "0 0 0"                
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "150 0 80"
@@ -4755,7 +4895,7 @@ WaveSchedule
                 "origin" "350 0 0"
                 "angles" "0 0 0"                
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "350 0 80"
@@ -4775,7 +4915,7 @@ WaveSchedule
                 "origin" "650 0 0"
                 "angles" "0 0 0"              
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "650 0 80"
@@ -4815,7 +4955,7 @@ WaveSchedule
                 "origin" "1250 0 0"
                 "angles" "0 0 0"                
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "1250 0 80"
@@ -4835,7 +4975,7 @@ WaveSchedule
                 "origin" "-50 0 0"
                 "angles" "0 0 0"            
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-50 0 80"
@@ -4855,7 +4995,7 @@ WaveSchedule
                 "origin" "-200 0 0"
                 "angles" "0 0 0"                
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-200 0 80"
@@ -4875,7 +5015,7 @@ WaveSchedule
                 "origin" "-500 0 0"
                 "angles" "0 0 0"              
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-500 0 80"
@@ -4895,7 +5035,7 @@ WaveSchedule
                 "origin" "-800 0 0"
                 "angles" "0 0 0"                
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-800 0 80"
@@ -4915,7 +5055,7 @@ WaveSchedule
                 "origin" "-1100 0 0"
                 "angles" "0 0 0"               
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-1100 0 80"
@@ -4935,7 +5075,7 @@ WaveSchedule
                 "origin" "-1400 0 0"
                 "angles" "0 0 0"               
             }
-             tf_point_weapon_mimic
+            tf_point_weapon_mimic
             {
                 "targetname"       "beamdmg"
                 "origin"           "-1400 0 80"
@@ -9865,6 +10005,8 @@ WaveSchedule
             WeaponRestrictions MeleeOnly
             Action Mobber
 
+            Tag loneswordsman
+
             UseHumanAnimations 1
             SpawnTemplate "SwordsmanLogic"
 
@@ -9910,7 +10052,6 @@ WaveSchedule
                 Repeats 1
                 Cooldown -1
             }
-
             FireInput
             {
                 Target "SwordsmanPhase1AttackPoolRelay"
@@ -9944,7 +10085,7 @@ WaveSchedule
                 Target tf_gamerules
                 Action PlayVO
                 Param vo/mvm/mght/taunts/demoman_mvm_m_taunts14.mp3
-                Delay 4
+                Delay 3.5
                 Repeats 1
                 Cooldown -1
                 IfHealthBelow 70001
@@ -9954,7 +10095,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase2.wav`);"
-                Delay 4
+                Delay 3.5
                 Repeats 1
                 Cooldown -1
                 IfHealthBelow 70001
@@ -9985,13 +10126,26 @@ WaveSchedule
                         Repeats 1
                         Cooldown -1
                     }
+                    FireInput
+                    { // this makes the bot move forward in the air
+                        Target "!self"
+                        Action "RunScriptCode"
+                        Param "self.ApplyAbsVelocityImpulse(Vector(-1000,0,600))"
+                        Delay 10.3
+                        Repeats 1
+                        Cooldown 99
+                    }
                 }
 
                 Swordsman_Default
                 {
+                    UseCustomModel "models\bots\demo_boss\bot_demo_boss.mdl"
                     Item "Ali Baba's Wee Booties"
                     Item "The Chargin' Targe"
                     Item "The Half-Zatoichi"
+                    Item "Prince Tavish's Crown"
+                    Item "The King of Scotland Cape"
+                    Item "Forgotten King's Pauldrons"
                     WeaponRestrictions MeleeOnly
 
                     CharacterAttributes
@@ -10206,15 +10360,6 @@ WaveSchedule
                     Item "Forgotten King's Pauldrons"
                     Attributes SuppressFire
                     WeaponRestrictions MeleeOnly
-
-                    FireWeapon
-                    {
-                        Delay 0
-                        Cooldown 1
-                        Repeats 999
-                        Duration 0.1
-                        Type "Jump"
-                    }
                     ItemAttributes
                     {
                         ItemName "Ali Baba's Wee Booties"
@@ -10245,6 +10390,14 @@ WaveSchedule
                         ItemName "Forgotten King's Pauldrons"
                         "custom item model" "models/empty.mdl"
                     }
+                    FireWeapon
+                    {
+                        Delay 0
+                        Cooldown 1
+                        Repeats 999
+                        Duration 0.1
+                        Type "Jump"
+                    }
                     CharacterAttributes
                     {
                         "increased jump height" 4
@@ -10254,13 +10407,6 @@ WaveSchedule
                         "cancel falling damage" 1
                         "always allow taunt" 1
                         "displace touched enemies" 1
-                    }
-                    ItemAttributes
-                    {
-                        ItemName "The Chargin' Targe"
-                        "dmg taken from blast reduced" 1
-                        "dmg taken from fire reduced" 1
-                        "attack not cancel charge" 1
                     }
                     FireInput
                     {
@@ -10275,7 +10421,7 @@ WaveSchedule
                         Target !self
                         Action $ChangeAttributes
                         Param Swordsman_Default
-                        Delay 11
+                        Delay 10.1
                         Repeats 1
                         Cooldown -1
                     }
