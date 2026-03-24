@@ -23,7 +23,7 @@
 WaveSchedule
 {
     StartingCurrency 3000
-    RespawnWaveTime 3
+    RespawnWaveTime 0
     FixedRespawnWaveTime Yes
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
