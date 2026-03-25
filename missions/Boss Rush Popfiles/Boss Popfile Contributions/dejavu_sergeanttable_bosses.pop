@@ -4175,8 +4175,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_dominationdemoman01.mp3,5.5,-1"
 
                 "OnTrigger" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,10.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_paincrticialdeath04.mp3,10.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/demo_charge_windup1.wav,10.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/demoman_mvm_m_battlecry04.mp3,10.5,-1"
             }
 
             logic_relay
