@@ -249,6 +249,14 @@ WaveSchedule
             OriginalItemName "The Cow Mangler 5000"
             "damage bonus" 3
         }
+        "SwordmanSwordBeam"
+        {
+            OriginalItemName "The Pomson 6000"
+            "damage bonus" 5
+            "always crit" 1
+            "spread angle pattern" "0 0 0|0 5 0|0 10 0|0 15 0 |0 20 0|0 25 0|0 -5 0|0 -10 0|0 -15 0|0 -20 0|0 -25 0"
+            "mult projectile count" 11
+        }
         "GroundSwordWeapon1"
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
@@ -4211,16 +4219,18 @@ WaveSchedule
                 "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_Skullcutter,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
+				"OnCase05" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
             }
 
             logic_case
             {
                 "targetname" "SwordsmanPhase2AttackPool"
 
-                "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwords,0,-1"
+                "OnCase01" "pop_interface,ChangeBotAttributes,Swordsman_GroundSwordsEvolved,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,Swordsman_SpinningSword,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,Swordsman_SpinningBeamsInit,0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,Swordsman_TeleportHell,0,-1"
+				"OnCase05" "pop_interface,ChangeBotAttributes,Swordsman_SwordBeams,0,-1"
             }
 
             //// Phase 1 Attacks ////
@@ -5268,35 +5278,84 @@ WaveSchedule
 				"spawnflags" "2"
 
 				"OnTrigger" "!activator,$TauntFromItem,Taunt: Roar O'War,0,-1"
+                "OnTrigger" "GroundSwordLauncher1,$StartFiring,,0,-1"
                 "OnTrigger" "GroundSwordLauncher2,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher3,$StartFiring,,0,-1"
                 "OnTrigger" "GroundSwordLauncher4,$StartFiring,,0,-1"
-                "OnTrigger" "GroundSwordLauncher2,$StopFiring,,0.5,-1"
-                "OnTrigger" "GroundSwordLauncher4,$StopFiring,,0.5,-1"
+                "OnTrigger" "GroundSwordLauncher5,$StartFiring,,0,-1"
+                "OnTrigger" "GroundSwordLauncher1,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher2,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher3,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher4,$StopFiring,,1.5,-1"
+                "OnTrigger" "GroundSwordLauncher5,$StopFiring,,1.5,-1"
 
-				// Here would go the guaranteed circle launchers; not sure how many randomized launchers we want
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,2.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp1,Enable,,2.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust1,Start,,2.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake1,StartShake,,2.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage1,Enable,,2.5,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage1,Disable,,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp1,Kill,,5.5,-1"
 
-				"OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp2,Enable,,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust2,Start,,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake2,StartShake,,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage2,Enable,,2.6,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage2,Disable,,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp2,Kill,,5.6,-1"
 
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordProp2,Enable,,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordDust2,Start,,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake2,StartShake,,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordDamage2,Enable,,4.25,-1"
-                "OnTrigger" "Swordsman_GroundSwordDamage2,Disable,,4.35,-1"
-                "OnTrigger" "Swordsman_GroundSwordProp2,Kill,,7.25,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_02.wav,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp3,Enable,,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust3,Start,,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake3,StartShake,,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage3,Enable,,2.7,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage3,Disable,,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp3,Kill,,5.7,-1"
 
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_02.wav,4.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp4,Enable,,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust4,Start,,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake4,StartShake,,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage4,Enable,,2.8,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage4,Disable,,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp4,Kill,,5.8,-1"
 
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_03.wav,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordProp4,Enable,,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordDust4,Start,,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordShake4,StartShake,,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordDamage4,Enable,,4.75,-1"
-                "OnTrigger" "Swordsman_GroundSwordDamage4,Disable,,4.85,-1"
-                "OnTrigger" "Swordsman_GroundSwordProp4,Kill,,7.75,-1"
-
-                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/samurai/tf_katana_impact_object_01.wav,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp5,Enable,,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordDust5,Start,,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordShake5,StartShake,,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage5,Enable,,2.9,-1"
+                "OnTrigger" "Swordsman_GroundSwordDamage5,Disable,,3,-1"
+                "OnTrigger" "Swordsman_GroundSwordProp5,Kill,,5.9,-1"
 			}
+			
+            // Sword Beams Shit
+            logic_relay
+            {
+                "targetname" "fuckyougogoggadgetbeamidfk"
+                "OnTrigger"  "!activator,$Taunt,,0.11,-1"
+                "OnTrigger"  "SwordBeamMimic,fireonce,,1.5,-1"
+                "OnTrigger"  "tf_gamerules,playvo,weapons\shooting_star_shoot_crit.wav,1.5,-1"
+                "OnTrigger"  "!activator,$RemoveCond,7,2.3,-1"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname"       "SwordBeamMimic"
+                "origin"           "50 0 100"
+                "angles"           "0 0 0"
+                "teamnum"          "3"
+                "$weaponname"    "SwordmanSwordBeam"
+                "$firetime"      "1.0" //Delay between shots for $StartFiring input
+                "$weaponnosound" "1"
+            }
+            OnSpawnOutput
+            {
+                Target "SwordBeamMimic"
+                Action "$SetOwner"
+                Param  "!activator"
+                Delay  0
+            }
         }
 
         // Swordsman Ground Sword Attack
@@ -5804,6 +5863,83 @@ WaveSchedule
                 "filtername" "filter_redteam_nouber"
             }
         }
+
+		//// FALLEN SHOCKS (FINAL BOSS) ////
+
+		FallenShocksLogic
+		{
+			OnSpawnOutput
+            {
+                Target boss_target
+				Action SetParent
+				Param "!activator"
+				Delay 0.05
+            }
+            info_target
+            {
+                "targetname" "boss_target"
+                "origin" "0 0 0"
+            }
+
+			logic_relay
+			{
+				"targetname" "FallenShocksIntroRelay"
+
+
+			}
+
+			logic_relay
+			{
+				"targetname" "FallenShocksAttackInit"
+
+				"OnTrigger" "FallenShocksPhase1AttackPoolRelay,Trigger,,0,-1"
+				"OnTrigger" "FallenShocksPhase2AttackPoolRelay,Trigger,,0,-1"
+				"OnTrigger" "FallenShocksPhase3AttackPoolRelay,Trigger,,0,-1"
+			}
+
+			logic_relay
+			{
+				"targetname" "FallenShocksPhase1AttackPoolRelay"
+				"spawnflags" "2"
+
+				"OnTrigger" "FallenShocksPhase1AttackPool,PickRandomShuffle,,0,-1"
+			}
+			logic_relay
+			{
+				"targetname" "FallenShocksPhase2AttackPoolRelay"
+				"spawnflags" "2"
+				"startdisabled" "1"
+
+				"OnTrigger" "FallenShocksPhase2AttackPool,PickRandomShuffle,,0,-1"
+			}
+			logic_relay
+			{
+				"targetname" "FallenShocksPhase3AttackPoolRelay"
+				"spawnflags" "2"
+				"startdisabled" "1"
+
+				"OnTrigger" "FallenShocksPhase3AttackPool,PickRandomShuffle,,0,-1"
+			}
+
+			logic_case
+			{
+				"targetname" "FallenShocksPhase1AttackPoolRelay"
+			}
+			logic_case
+			{
+				"targetname" "FallenShocksPhase2AttackPoolRelay"
+			}
+			logic_case
+			{
+				"targetname" "FallenShocksPhase3AttackPoolRelay"
+			}
+
+			//// Phase 1 Attacks ////
+
+			//// Phase 2 Attacks ////
+
+			//// Phase 3 Attacks ////
+		}
 
         //// MINI BOSSES ////
 
@@ -6335,7 +6471,7 @@ WaveSchedule
             Action Mobber
 
             AlwaysGlow 1
-            UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks.mdl"
+            UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
 
             Item "The Direct Hit"
             Item "The Hellmet"
@@ -6354,6 +6490,42 @@ WaveSchedule
                 "displace touched enemies" 1
                 "attach particle effect" 3200
             }
+
+			EventChangeAttributes
+			{
+				FallenShocks_Intro
+				{
+
+				}
+				FallenShocks_Default
+				{
+					UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
+
+					Item "The Direct Hit"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+
+					CharacterAttributes
+					{
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+				}
+				
+				// Phase 1 Attacks
+
+				// Phase 2 Attacks
+
+				// Phase 3?
+			}
         }
 
         // Overclocked Dave
@@ -10805,6 +10977,7 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "move speed penalty" 0.3
+                        "gesture speed increase" 1.55
                         "damage force reduction" 0.5
                         "airblast vulnerability multiplier" 0.5
                         "override footstep sound set" 4
@@ -10826,16 +10999,26 @@ WaveSchedule
                         Target "GroundSwordsEvolvedAttack"
                         Action Trigger
                         Delay 0
-                        Repeats 1
-                        Cooldown -1
+                        Repeats 3
+                        Cooldown 5
                     }
+
+					FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param vo/mvm/mght/demoman_mvm_m_laughlong01.mp3
+						Delay 1.5
+						Repeats 1
+						Cooldown -1
+					}
 
                     FireInput
                     {
                         Target !self
                         Action $ChangeAttributes
                         Param Swordsman_Default
-                        Delay 6.5
+                        Delay 9
                     }
 				}
 
@@ -10848,11 +11031,11 @@ WaveSchedule
 
                     CharacterAttributes
                     {
+                        "gesture speed increase" 1.6
+                        "always allow taunt" 1
                         "move speed penalty" 0.5
                         "damage force reduction" 0.5
                         "airblast vulnerability multiplier" 0.5
-                        "increased jump height" 3
-                        "bot custom jump particle" 1
                         "override footstep sound set" 4
                         "cancel falling damage" 1
                         "displace touched enemies" 1
@@ -10871,13 +11054,20 @@ WaveSchedule
                         ItemName "Festive Eyelander"
                         "max health additive penalty" 0
                     }
-
+                    FireInput
+                    {
+                        Target "fuckyougogoggadgetbeamidfk"
+                        Action "trigger"
+                        Delay  0
+                        Cooldown 3
+                        Repeats 4
+                    }
                     FireInput
                     {
                         Target !self
                         Action $ChangeAttributes
                         Param Swordsman_Default
-                        Delay 5
+                        Delay 13
                         Repeats 1
                         Cooldown -1
                     }

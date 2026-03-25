@@ -160,146 +160,16 @@ WaveSchedule
                 "Filter05"   "filter_is_player"
             }
 
-			func_nobuild
-			{
-				"targetname" "NobuildBogland"
-				"origin" "-3350 4936 -1064"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildBonkplant"
-				"origin" "-676 7856 -576"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildCliffside"
-				"origin" "-4896 9344 -579"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildCoastrock"
-				"origin" "-8224 4880 -1056"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildDesert"
-				"origin" "-288 4528 -688"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildDoppler"
-				"origin" "-12448 8688 -448"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildElectricmine"
-				"origin" "7872 -4544 -764"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildFrostwynd"
-				"origin" "11884 -2176 -919"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildIndustrial"
-				"origin" "3760 8432 -360"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildMeltdown"
-				"origin" "7072 -196 -928"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildNebula"
-				"origin" "192 -8000 -1180"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildRancher"
-				"origin" "-12072 3984 -896"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildRedstone"
-				"origin" "2376 934 -912"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildSaxford"
-				"origin" "4700 4846 -796"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildScallops"
-				"origin" "-4608 416 -352"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildShank"
-				"origin" "12244 9416 -1024"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildSkeleheat"
-				"origin" "-8744 -552 -1188"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildSpyfactory"
-				"origin" "-7144 -6248 -478"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildTerrorlict"
-				"origin" "12480 4032 -868"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
-			func_nobuild
-			{
-				"targetname" "NobuildUnderground"
-				"origin" "-13904 592 -1224"
-				"maxs" "-32 -32 -16"
-				"mins" "32 32 16"
-			}
+            logic_relay
+            {
+                "targetname" "BossRushPlayerSpawn"
+                "spawnflags" "2"
+                "startdisabled" "1"
+
+                "OnTrigger" "!activator,$Addcond,51 6,0,-1"
+                "OnTrigger" "!activator,$Addcond,32 6,0,-1"
+                "OnTrigger" "!activator,$DisplayTextHint,You will be teleported in 5 seconds,0,-1"
+            }
         }
         BossRushSpecialSpawnLocation
         {
@@ -374,18 +244,8 @@ WaveSchedule
         {
             OnSpawnOutput
             {
-                Target "!self"
-                Action "$Addcond"
-                Param "51 5"
-                Delay -1
-                Repeats 1
-                Cooldown -1
-            }
-            OnSpawnOutput
-            {
-                Target "!self"
-                Action "$Addcond"
-                Param "32 5"
+                Target "BossRushPlayerSpawn"
+                Action "Trigger"
                 Delay -1
                 Repeats 1
                 Cooldown -1
@@ -482,6 +342,7 @@ WaveSchedule
                     NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
 
                     EntFire(`wave_init_arena_bogland_relay`, `Trigger`, null, 6)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 
                     if (!(`buddhamode` in getroottable()))
@@ -520,6 +381,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -671,6 +533,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_lostvalley_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (!(`music_system_ment` in getroottable()))
 					{
@@ -690,6 +553,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -776,6 +640,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -838,6 +703,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -1205,6 +1071,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -1224,6 +1091,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -1461,6 +1329,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -1523,6 +1392,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -1922,6 +1792,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -1937,6 +1808,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -2316,6 +2188,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -2372,6 +2245,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -2615,6 +2489,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
 					Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -2694,6 +2569,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -3383,6 +3259,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -3450,6 +3327,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -3820,6 +3698,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -3905,6 +3784,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -4433,6 +4313,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -4533,6 +4414,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -5176,6 +5058,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -5235,6 +5118,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
 				    AlternateWaves.ClearWaveIcons();
 
@@ -5716,6 +5600,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					EntFire(`wave_init_arena_meltdown_relay`, `Trigger`, null, 6)
 
                     if (!(`mvm_meltdown_red_world` in getroottable()))
@@ -5748,6 +5633,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -5920,6 +5806,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_rancher_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (!(`music_system_ment` in getroottable()))
                     {
@@ -5952,6 +5839,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -6180,6 +6068,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6195,6 +6084,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -6365,6 +6255,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
                     if (!(`claudz_logic_v3` in getroottable()))
 					{
@@ -6385,6 +6276,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -6527,6 +6419,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -6613,6 +6506,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -7542,6 +7436,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 					EntFire(`wave_init_arena_skeleheat_relay`, `Trigger`, null, 6)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
@@ -7558,6 +7453,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -7641,7 +7537,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_skeleheat5`)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_skeleheat1`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_skeleheat2`)
                       "
             }
@@ -7668,7 +7564,7 @@ WaveSchedule
                 {
                     Target !self
                     Action $TeleportToEntity
-                    Param spawnbot_target_skeleheat5
+                    Param spawnbot_target_skeleheat1
                     Delay 0.1
                     Repeats 1
                     Cooldown -1
@@ -7676,10 +7572,10 @@ WaveSchedule
 
 				InterruptAction
 				{
-					Target "-7971 -1926 -1478"
+					Target "-7435 -1471 -1501"
 					Delay 0
 					Repeats 99999
-					Distance 32
+					Distance 40
 					Duration 5
 					Cooldown 5
 				}
@@ -7724,7 +7620,7 @@ WaveSchedule
 					Target "-7391 -641 -1482"
 					Delay 0
 					Repeats 99999
-					Distance 32
+					Distance 40
 					Duration 5
 					Cooldown 5
 				}
@@ -7774,6 +7670,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
                     if (!(`alternatewaves` in getroottable()))
                     {
                         IncludeScript(`alternatewaves`, getroottable());
@@ -7828,6 +7725,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 
                     AlternateWaves.ClearWaveIcons();
 
@@ -8238,6 +8136,7 @@ WaveSchedule
             Param "
                     EntFire(`wave_init_arena_terrorlict_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
 					IncludeScript(`tankextensions_main`, getroottable())
 					IncludeScript(`tankextensions/combattank`, getroottable())
@@ -8286,6 +8185,7 @@ WaveSchedule
             Action RunScriptCode
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
                   "
         }
         DoneOutput
@@ -8447,6 +8347,7 @@ WaveSchedule
 			Param "
 					EntFire(`wave_init_arena_frostwynd_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -8462,6 +8363,7 @@ WaveSchedule
 			Action RunScriptCode
 			Param "
 					EntFire(`wave_start_relay`, `Trigger`)
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 				  "
 		}
 		DoneOutput
@@ -8506,7 +8408,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 300
 
             TFBot
             {
@@ -8534,6 +8436,7 @@ WaveSchedule
 			Param "
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
+                    EntFire(`BossRushPlayerSpawn`, `Disable`)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -8549,7 +8452,7 @@ WaveSchedule
 			Action RunScriptCode
 			Param "
 					EntFire(`wave_start_relay`, `Trigger`)
-                    MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
+                    EntFire(`BossRushPlayerSpawn`, `Enable`)
 				  "
 		}
 		DoneOutput
@@ -8591,7 +8494,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 0
 
             TFBot
             {
