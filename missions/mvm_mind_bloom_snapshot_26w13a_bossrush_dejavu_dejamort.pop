@@ -53,6 +53,9 @@ WaveSchedule
 
     //// PRECACHES ////
 
+    // Model Precaches
+    PrecacheModel "models/props_mindbloom/megalaser_beam.mdl"
+
     // Sound Precaches
 	PrecacheSound "boss_incoming.wav"
     PrecacheSound "mainbosstheme1.mp3"
@@ -166,8 +169,8 @@ WaveSchedule
                 "spawnflags" "2"
                 "startdisabled" "1"
 
-                "OnTrigger" "!activator,$Addcond,51 6,0,-1"
-                "OnTrigger" "!activator,$Addcond,32 6,0,-1"
+                "OnTrigger" "!activator,$Addcond,51 8,0,-1"
+                "OnTrigger" "!activator,$Addcond,32 8,0,-1"
                 "OnTrigger" "!activator,$DisplayTextHint,You will be teleported in 5 seconds,0,-1"
             }
         }

@@ -5865,7 +5865,9 @@ WaveSchedule
         }
 
 		//// FALLEN SHOCKS (FINAL BOSS) ////
-
+        FallenShocksArenaLogic
+        {
+        }
 		FallenShocksLogic
 		{
 			OnSpawnOutput
@@ -5884,8 +5886,6 @@ WaveSchedule
 			logic_relay
 			{
 				"targetname" "FallenShocksIntroRelay"
-
-
 			}
 
 			logic_relay
@@ -5924,6 +5924,8 @@ WaveSchedule
 			logic_case
 			{
 				"targetname" "FallenShocksPhase1AttackPoolRelay"
+
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
 			}
 			logic_case
 			{
@@ -5934,7 +5936,142 @@ WaveSchedule
 				"targetname" "FallenShocksPhase3AttackPoolRelay"
 			}
 
+            // Shocks Model for Attack Sequencing
+
+            prop_dynamic
+            {
+                "targetname" "TheShocksBehindTheSlaughter"
+                "origin" "0 0 0"
+                "model" "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
+                "modelscale" "5"
+                "solid" "0"
+                "skin" "1"
+                "disableshadows" "1"
+                "startdisabled" "1"
+            }
+			prop_dynamic_ornament
+			{
+				"targetname" "FallenShocksItem"
+				"initialowner" "TheShocksBehindTheSlaughter"
+				"model" "models/workshop/player/items/soldier/hwn2015_hellmet/hwn2015_hellmet.mdl"
+				"modelscale" "1"
+				"disableshadows" "1"
+				"startdisabled" "1"
+			}
+			prop_dynamic_ornament
+			{
+				"targetname" "FallenShocksItem"
+				"initialowner" "TheShocksBehindTheSlaughter"
+				"model" "models/player/items/heavy/big_jaw.mdl"
+				"modelscale" "1"
+				"disableshadows" "1"
+				"startdisabled" "1"
+			}
+
 			//// Phase 1 Attacks ////
+
+            // Megalaser Attack
+
+            logic_relay
+            {
+                "targetname" "FallenShocksMegaLaserAttack"
+
+                "OnTrigger" "MegaLaserChooseCase,PickRandomShuffle,,0,-1"
+            }
+
+            logic_case
+            {
+                "targetname" "MegaLaserChooseCase"
+
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserNorth,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserSouth,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserWest,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserEast,0,-1"
+            }
+
+            logic_relay
+            {
+                "targetname" "FallenShocksMegaLaserFire"
+
+				"OnTrigger" "!activator,$RemoveItem,The Direct Hit,0,-1"
+				"OnTrigger" "!activator,$RemoveItem,TF_WEAPON_SHOTGUN_SOLDIER,0,-1"
+				"OnTrigger" "!activator,$RemoveItem,TF_WEAPON_SHOVEL,0,-1"
+				"OnTrigger" "!activator,$RemoveItem,The Hellmet,0,-1"
+				"OnTrigger" "!activator,$RemoveItem,Big Steel Jaw of Summer Fun,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_start,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_idle,1,-1"
+                "OnTrigger" "FallenShocksMegaLaserCharge,TurnOn,,1,-1"
+				"OnTrigger" "FallenShocksMegaLaserChargeParticle,Start,,1,-1"
+                "OnTrigger" "FallenShocksMegaLaser,Enable,,6,-1"
+                "OnTrigger" "FallenShocksMegaLaserDamage,Enable,,6,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_shoot,6,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_idle,7,-1"
+                "OnTrigger" "FallenShocksMegaLaser,Disable,,11,-1"
+                "OnTrigger" "FallenShocksMegaLaserDamage,Disable,,11,-1"
+                "OnTrigger" "FallenShocksMegaLaserCharge,TurnOff,,11,-1"
+				"OnTrigger" "FallenShocksMegaLaserChargeParticle,Stop,,11,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_end,11.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,12.95,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
+				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13.02,-1"
+            }
+
+            prop_dynamic
+            {
+                "targetname" "FallenShocksMegaLaser"
+
+                "origin" "350 0 175"
+
+                "model" "models/props_mindbloom/megalaser_beam.mdl"
+                "modelscale" "1"
+                "solid" "0"
+
+                "disablebonefollowers" "1"
+                "disableshadows" "1"
+                "startdisabled" "1"
+            }
+            trigger_hurt
+            {
+                "targetname" "FallenShocksMegaLaserDamage"
+
+                "origin" "350 0 175"
+                
+				"mins" "0 0 0"
+                "maxs" "4000 272 272"
+
+                "damagetype" "1048576"
+                "damage" "1000"
+                "filtername" "filter_redteam_nouber"
+                "spawnflags" "64"
+                "startdisabled" "1"
+            }
+            point_tesla
+            {
+                "targetname" "FallenShocksMegaLaserCharge"
+                "origin" "350 0 175"
+                "texture" "sprites/physbeam.vmt"
+                "beamcount_min" 3
+                "beamcount_max" 3
+                "interval_min" 0.01
+                "interval_max" 0.01
+                "lifetime_min" 0.1
+                "lifetime_max" 0.1
+                "thick_min" 10
+                "thick_max" 10
+                "m_bOn" 0
+                "m_Color" "255 255 255"
+                "m_flRadius" 150
+            }
+			info_particle_system
+			{
+				"targetname" "FallenShocksMegaLaserChargeParticle"
+				"origin" "350 0 175"
+				"effect_name" "dxhr_lightningball_parent_blue"
+				"start_active" "0"
+			}
 
 			//// Phase 2 Attacks ////
 
@@ -6473,6 +6610,8 @@ WaveSchedule
             AlwaysGlow 1
             UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
 
+            SpawnTemplate "FallenShocksLogic"
+
             Item "The Direct Hit"
             Item "The Hellmet"
             Item "Big Steel Jaw of Summer Fun"
@@ -6491,22 +6630,49 @@ WaveSchedule
                 "attach particle effect" 3200
             }
 
+			FireInput
+			{
+				Target "FallenShocksItem"
+				Action Disable
+				Delay 0
+				Repeats 1
+				Cooldown -1
+			}
+
 			EventChangeAttributes
 			{
 				FallenShocks_Intro
 				{
-
+                    CharacterAttributes
+					{
+                        "no_attack" 0
+                        "no_jump" 0
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
 				}
 				FallenShocks_Default
 				{
 					UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
 
 					Item "The Direct Hit"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
 					Item "The Hellmet"
 					Item "Big Steel Jaw of Summer Fun"
 
 					CharacterAttributes
 					{
+                        "no_attack" 0
+                        "no_jump" 0
 						"move speed penalty"	0.4
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
@@ -6520,7 +6686,622 @@ WaveSchedule
 					}
 				}
 				
-				// Phase 1 Attacks
+				//// Phase 1 Attacks ////
+
+                // The Megalaser of Big Doom and Death and Despair and Shit
+                FallenShocks_MegaLaserInit
+                {
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 0
+                        "move speed penalty"	0.4
+                        "damage force reduction" 0.01
+                        "airblast vulnerability multiplier" 0.01
+                        "airblast vertical vulnerability multiplier" 0.01
+                        "override footstep sound set" 3
+                        "rage giving scale" 0.2
+                        "cancel falling damage" 1
+                        "always allow taunt" 1
+                        "displace touched enemies" 1
+                        "attach particle effect" 3200
+                    }
+
+                    FireInput
+                    {
+                        Target "FallenShocksMegaLaserAttack"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                FallenShocks_MegaLaserNorth
+                {
+                    Attributes IgnoreEnemies
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 0
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    InterruptAction
+                    {
+                        Target "192 -4416 -1160"
+                        AimTarget "192 -4416 -1160"
+                        Duration 0.1
+                        Distance 100
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "FallenShocks_MegaLaserFaceSouth"
+                    }
+                    Sequence
+                    {
+                        Name "taunt_zoomin_broom_exit"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    Sequence
+                    {
+                        Name "run_PRIMARY"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 800)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 1.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 2
+						Repeats 1
+						Cooldown -1
+					}
+
+                }
+                FallenShocks_MegaLaserSouth
+                {
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 0
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    InterruptAction
+                    {
+						Target "192 -8000 -1160"
+                        AimTarget "192 -8000 -1160"
+						Distance 100
+                        Duration 0.1
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "FallenShocks_MegaLaserFaceNorth"
+                    }
+                    Sequence
+                    {
+                        Name "taunt_zoomin_broom_exit"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    Sequence
+                    {
+                        Name "run_PRIMARY"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 800)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 1.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 2
+						Repeats 1
+						Cooldown -1
+					}
+                }
+                FallenShocks_MegaLaserWest
+                {
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 0
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    InterruptAction
+                    {
+						Target "-1600 -6208 -1160"
+                        AimTarget "-1600 -6208 -1160"
+						Distance 100
+                        Duration 0.1
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "FallenShocks_MegaLaserFaceEast"
+                    }
+                    Sequence
+                    {
+                        Name "taunt_zoomin_broom_exit"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    Sequence
+                    {
+                        Name "run_PRIMARY"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 800)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 1.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 2
+						Repeats 1
+						Cooldown -1
+					}
+                }
+                FallenShocks_MegaLaserEast
+                {
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 0
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    InterruptAction
+                    {
+						Target "1984 -6208 -1160"
+                        AimTarget "1984 -6208 -1160"
+						Distance 100
+                        Duration 0.1
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                        WaitUntilDone 0.1
+                        OnDoneChangeAttributes "FallenShocks_MegaLaserFaceWest"
+                    }
+                    Sequence
+                    {
+                        Name "taunt_zoomin_broom_exit"
+                        Delay 1.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    Sequence
+                    {
+                        Name "run_PRIMARY"
+                        Delay 2.5
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 800)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 1.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * 5000, eyes.y * 5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 2
+						Repeats 1
+						Cooldown -1
+					}
+                }
+
+                FallenShocks_MegaLaserFaceSouth
+                {
+                    Attributes IgnoreEnemies
+                    UseCustomModel "models/empty.mdl"
+                    Item "The Direct Hit"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+                    Item "The Hellmet"
+                    Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOVEL"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "The Hellmet"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "Big Steel Jaw of Summer Fun"
+                        "custom item model" "models/empty.mdl"
+                    }
+
+                    InterruptAction
+                    {
+                        Target "192 -8000 -1160"
+                        AimTarget "192 -8000 -1160"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+
+                    FireInput
+                    {
+                        Target "FallenShocksMegaLaserFire"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                FallenShocks_MegaLaserFaceNorth
+                {
+                    Attributes IgnoreEnemies
+                    UseCustomModel "models/empty.mdl"
+                    Item "The Direct Hit"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+                    Item "The Hellmet"
+                    Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOVEL"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "The Hellmet"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "Big Steel Jaw of Summer Fun"
+                        "custom item model" "models/empty.mdl"
+                    }
+					
+
+                    InterruptAction
+                    {
+                        Target "192 -4416 -1160"
+                        AimTarget "192 -4416 -1160"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksMegaLaserFire"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+
+                }
+                FallenShocks_MegaLaserFaceEast
+                {
+                    Attributes IgnoreEnemies
+                    UseCustomModel "models/empty.mdl"
+                    Item "The Direct Hit"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+                    Item "The Hellmet"
+                    Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOVEL"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "The Hellmet"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "Big Steel Jaw of Summer Fun"
+                        "custom item model" "models/empty.mdl"
+                    }
+
+                    InterruptAction
+                    {
+                        Target "1984 -6208 -1160"
+                        AimTarget "1984 -6208 -1160"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+
+                    FireInput
+                    {
+                        Target "FallenShocksMegaLaserFire"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+                FallenShocks_MegaLaserFaceWest
+                {
+                    Attributes IgnoreEnemies
+                    UseCustomModel "models/empty.mdl"
+                    Item "The Direct Hit"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+                    Item "The Hellmet"
+                    Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+					{
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+					}
+
+                    ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "The Direct Hit"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOTGUN_SOLDIER"
+                        "custom item model" "models/empty.mdl"
+                    }
+					ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_SHOVEL"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "The Hellmet"
+                        "custom item model" "models/empty.mdl"
+                    }
+                    ItemAttributes
+                    {
+                        ItemName "Big Steel Jaw of Summer Fun"
+                        "custom item model" "models/empty.mdl"
+                    }
+
+                    InterruptAction
+                    {
+                        Target "-1600 -6208 -1160"
+                        AimTarget "-1600 -6208 -1160"
+                        Delay 0
+                        Repeats 99999
+                        Distance 8
+                        Duration 4
+                        Cooldown 0.5
+                    }
+
+                    FireInput
+                    {
+                        Target "FallenShocksMegaLaserFire"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
 
 				// Phase 2 Attacks
 
