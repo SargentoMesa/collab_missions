@@ -8477,6 +8477,8 @@ WaveSchedule
 		CustomMaxWaveNumber 0
         RedTeamWipeCausesWaveLoss 1
 
+        SpawnTemplate "FallenShocksArenaLogic"
+
         WaveSpawn
         {
             Name "teleporthotfix"
