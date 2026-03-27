@@ -1120,7 +1120,7 @@ WaveSchedule
             {
                 target "roundbeamtest"
                 action "RunScriptCode"
-                param "RingRegister(self,80,ClaudzUtil.GetTracking(`ringOwnerShocks`))"
+                param "RingRegister(self,60,ClaudzUtil.GetTracking(`ringOwnerShocks`))"
                 delay 0.0
             }
             OnSpawnOutput
@@ -6036,14 +6036,15 @@ WaveSchedule
         {
             prop_dynamic
             {
-                "targetname" "squidward"
-                "model"      "models/props_lakeside_event/fog_plane03.mdl"
-                "origin"     "374 -6300 -1195"        
-                "rendercolor"      "255 0 0"
-                "angles" "0 90 0"
+                "targetname" "WholeArenaIndicatorGigaDEATH"
+                "model"      "models/props_mvm/indicator/indicator_circle.mdl"
+                "origin"     "193 -6208 -1220"
+                "angles" "0 180 0"
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
-                "modelscale" "2"
+				"startdisabled" "1"
+                "modelscale" "60"
+                "skin" "0"
             }
 
 			// Lightning Rain Launchers
@@ -6472,14 +6473,16 @@ WaveSchedule
 				"OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
 				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,0,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,0,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,0,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.5,0.02,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,4,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Disable,,4,-1"
 				"OnTrigger" "FallenShocksGroundSlamParticle,Start,,4,-1"
 				"OnTrigger" "FallenShocksGroundSlamDamage,Enable,,4,-1"
 				"OnTrigger" "FallenShocksGroundSlamDamage,Disable,,4.1,-1"
 				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4,-1"
-				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4.2,-1"
 				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4.4,-1"
-				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4.6,-1"
 				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4.8,-1"
 				"OnTrigger" "FallenShocksGroundSlamParticle,Stop,,5,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,5.45,-1"
@@ -6546,17 +6549,17 @@ WaveSchedule
 				"OnTrigger" "LightningRainLauncher2,$StopFiring,,10,-1"
 				"OnTrigger" "LightningRainLauncher3,$StopFiring,,10,-1"
 				"OnTrigger" "FallenShocksLightningGigaTesla,TurnOff,,12.25,-1"
-				"OnTrigger" "FallenShocksLightningGigaTesla,Stop,,12.25,-1"
+				"OnTrigger" "FallenShocksLightningGigaOrb,Stop,,12.25,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,12.25,-1"
 			}
 
 			point_tesla
 			{
 				"targetname" "FallenShocksLightningGigaTesla"
-				"origin" "-100 0 550"
+				"origin" "-75 0 475"
 				"texture" "sprites/physbeam.vmt"
-				"beamcount_min" 5
-				"beamcount_max" 5
+				"beamcount_min" 10
+				"beamcount_max" 10
 				"interval_min" 0.01
 				"interval_max" 0.01
 				"lifetime_min" 0.1
@@ -6570,7 +6573,7 @@ WaveSchedule
 			info_particle_system
 			{
 				"targetname" "FallenShocksLightningGigaOrb"
-				"origin" "-100 0 550"
+				"origin" "-75 0 475"
 				"effect_name" "dxhr_lightningball_parent_blue"
 				"start_active" "0"
 			}
@@ -6590,14 +6593,14 @@ WaveSchedule
 			prop_dynamic
 			{
 				"targetname" "FallenShocksLightningGigaBeamStart"
-				"origin" "-100" 0 550"
+				"origin" "-75 0 475"
 				"model" "models/empty.mdl"
 				"solid" "0"
 			}
 			prop_dynamic
 			{
 				"targetname" "FallenShocksLightningGigaBeamTarget"
-				"origin" "-100 0 3000"
+				"origin" "-75 0 3000"
 				"model" "models/empty.mdl"
 				"solid" "0"
 			}
@@ -8029,61 +8032,6 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                
-                // apocophase
-                // {
-                //     WeaponRestrictions PrimaryOnly
-                //     Item "Apoco-Fists"
-                //     Message	
-                // 	{
-                // 		Name	"{blue}Overclocked Dave Reborn {FFFFFF}has switched their gloves to the {9BBF4D}Apoco-Fists{FFFFFF}!"
-                // 		Delay	0
-                // 		Repeats	1
-                // 	}
-                //     AddAttribute
-                //     {
-                //         Item "tf_weapon_minigun"
-                //         Name "no_attack"
-                //         Value 1
-                //         Delay 0
-                //     }
-                //     AddAttribute
-                //     {
-                //         Item "tf_weapon_minigun"
-                //         Name "no_attack"
-                //         Value 0
-                //         Delay 2.5
-                //     }
-                //     ItemAttributes
-                //     {
-                //         ItemName "tf_weapon_minigun"
-                //         "override projectile type" 13
-                //         "energy weapon penetration" 1
-                //         "damage bonus" 0.7
-                //     }
-                //     ItemAttributes
-                //     {
-                //         ItemName "Apoco-Fists"
-                //         "damage bonus" 2.5
-                //         
-                //         "fire rate bonus" 0.4
-                //         "is_passive_weapon" 1
-                //     }
-                //     FireInput
-                //     {
-                //         Target "player"
-                //         Action "$PlaySoundToSelf"
-                //         Param "=35|mvm/mvm_used_powerup.wav"
-                //         Delay 0
-                //         Repeats 1
-                //     }     
-                //     ChangeAttributes
-                //     {
-                //         Name "cooldownphase"
-                //         Delay 9
-                //         Repeats 1
-                //     }
-                // }
                 noobattack
                 {
                     AddAttribute
