@@ -85,6 +85,10 @@ WaveSchedule
     PrecacheSound "laser_related_attack.mp3"
     PrecacheSound "swordsman_spin_attack.wav"
 
+    PrecacheSound "megalaser_chargeup.wav"
+    PrecacheSound "megalaser_fire.wav"
+    PrecacheSound "megalaser_fireloop.wav"
+
     //// POINT TEMPLATES ////
 
     PointTemplates 
