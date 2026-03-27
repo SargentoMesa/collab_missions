@@ -76,7 +76,7 @@ WaveSchedule
 	PrecacheSound "mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav"
     PrecacheSound "mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav"
     PrecacheSound "mentrillum/mvm/music/bossrush/hallway_back_to_the_origin.wav"
-    PrecacheSound "mentrillum/mvm/music/bossrush/hypercharged_supernova.wav"
+    PrecacheSound "mentrillum/mvm/music/bossrush/hypercharging_supernova.wav"
 
     PrecacheSound "tmc_fat_boss_intro.mp3"
     PrecacheSound "tmc_fat_boss_loop.mp3"
@@ -379,7 +379,7 @@ WaveSchedule
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/where_the_true_enemy_lies.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`);
                     PrecacheSound(`#mentrillum/mvm/music/bossrush/hallway_back_to_the_origin.wav`);
-                    PrecacheSound(`#mentrillum/mvm/music/bossrush/hypercharged_supernova.wav`);
+                    PrecacheSound(`#mentrillum/mvm/music/bossrush/hypercharging_supernova.wav`);
                     MusicSystemMent.ResetAll();
                     MusicSystemMent.HookByName(`bignet`);
                   "
@@ -8514,7 +8514,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/hypercharged_supernova.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/hypercharging_supernova.wav`);
                     "
             }
         }
