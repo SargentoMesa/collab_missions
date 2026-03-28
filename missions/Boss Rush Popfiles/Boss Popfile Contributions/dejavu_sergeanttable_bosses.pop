@@ -6235,7 +6235,7 @@ WaveSchedule
 				"targetname" "LightningAttackSound"
 				"origin" "0 0 0"
 				"message" "misc\halloween\spell_lightning_ball_impact.wav"
-				"radius" "4096"
+				"radius" "8192"
 				"health" "10"
 				"spawnflags" "16"
 			}
@@ -6324,7 +6324,6 @@ WaveSchedule
 
 				"OnTrigger" "FallenShocksPhase1AttackPoolRelay,Trigger,,0,-1"
 				"OnTrigger" "FallenShocksPhase2AttackPoolRelay,Trigger,,0,-1"
-				"OnTrigger" "FallenShocksPhase3AttackPoolRelay,Trigger,,0,-1"
 			}
 
 			logic_relay
@@ -6345,7 +6344,7 @@ WaveSchedule
 
 			logic_case
 			{
-				"targetname" "FallenShocksPhase1AttackPoolRelay"
+				"targetname" "FallenShocksPhase1AttackPool"
 
                 "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_LightningRain,0,-1"
@@ -6354,7 +6353,8 @@ WaveSchedule
 			}
 			logic_case
 			{
-				"targetname" "FallenShocksPhase2AttackPoolRelay"
+				"targetname" "FallenShocksPhase2AttackPool"
+
                 "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_Vortex,0,-1"
 			}
@@ -6436,10 +6436,10 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
 				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13,-1"
-                "OnTrigger"  "!activator,$Addcond,126,6,-1"
-                "OnTrigger"  "!activator,$Addcond,126,6.25,-1"
-                "OnTrigger"  "!activator,$Addcond,126,6.5,-1"
-                "OnTrigger"  "!activator,$Addcond,126,6.75,-1"
+                "OnTrigger" "!activator,$Addcond,126,6.01,-1"
+                "OnTrigger" "!activator,$Addcond,126,6.26,-1"
+                "OnTrigger" "!activator,$Addcond,126,6.51,-1"
+                "OnTrigger" "!activator,$Addcond,126,6.76,-1"
             }
 
             prop_dynamic
@@ -6806,11 +6806,25 @@ WaveSchedule
 				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,3.75,-1"
-                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,5.75,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1.6,5.75,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,enable,,6,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,disable,,6.1,-1"
+                "OnTrigger"  "ShocksEntireArenaLift,ApplyImpulse,,6,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,6,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,enable,,6,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,disable,,6.1,-1"
+                "OnTrigger"  "ShocksEntireArenaLift,ApplyImpulse,,6,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,6,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,enable,,8,-1"
+                "OnTrigger"  "ShocksEntireArenaHurt,disable,,8.1,-1"
+                "OnTrigger"  "ShocksEntireArenaLift,ApplyImpulse,,8,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,8,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,end,8,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.1,0.2,-1"
                 "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.5,0.02,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,1,8,-1"
             }
 		}
 		FallenShocksMegaLaserDamage
@@ -7397,7 +7411,7 @@ WaveSchedule
                 Target !self
                 Action $ChangeAttributes
                 Param "FallenShocks_Default"
-                Delay 0
+                Delay 0.1
                 Repeats 1
                 Cooldown -1
             }
