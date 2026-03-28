@@ -6342,28 +6342,21 @@ WaveSchedule
 
 				"OnTrigger" "FallenShocksPhase2AttackPool,PickRandomShuffle,,0,-1"
 			}
-			logic_relay
-			{
-				"targetname" "FallenShocksPhase3AttackPoolRelay"
-				"spawnflags" "2"
-				"startdisabled" "1"
-
-				"OnTrigger" "FallenShocksPhase3AttackPool,PickRandomShuffle,,0,-1"
-			}
 
 			logic_case
 			{
 				"targetname" "FallenShocksPhase1AttackPoolRelay"
 
                 "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_LightningRain,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_GroundSlam,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_StompCombo,0,-1"
 			}
 			logic_case
 			{
 				"targetname" "FallenShocksPhase2AttackPoolRelay"
-			}
-			logic_case
-			{
-				"targetname" "FallenShocksPhase3AttackPoolRelay"
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_Vortex,0,-1"
 			}
 
             // Shocks Model for Attack Sequencing
@@ -6405,7 +6398,7 @@ WaveSchedule
 			{
 				"targetname" "FallenShocksItemClear"
 
-				"OnTrigger" "!activator,$RemoveItem,The Direct Hit,0,-1"
+				"OnTrigger" "!activator,$RemoveItem,The Cow Mangler 5000,0,-1"
 				"OnTrigger" "!activator,$RemoveItem,TF_WEAPON_SHOTGUN_SOLDIER,0,-1"
 				"OnTrigger" "!activator,$RemoveItem,TF_WEAPON_SHOVEL,0,-1"
 				"OnTrigger" "!activator,$RemoveItem,The Hellmet,0,-1"
@@ -6527,9 +6520,6 @@ WaveSchedule
 				"OnTrigger" "FallenShocksGroundSlamParticle,Start,,4,-1"
 				"OnTrigger" "FallenShocksGroundSlamDamage,Enable,,4,-1"
 				"OnTrigger" "FallenShocksGroundSlamDamage,Disable,,4.1,-1"
-				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4,-1"
-				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,4.5,-1"
-				"OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,FallenShocksRingTarget,5,-1"
 				"OnTrigger" "FallenShocksGroundSlamParticle,Stop,,5,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,5.45,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,Disable,,5.5,-1"
@@ -6666,6 +6656,73 @@ WaveSchedule
                 "$preventshootparent" "1"
             }
 
+            // Stomp Combo Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksStompComboAttack"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,double_stomp,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,0.6,-1"
+                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageRight,0.6,-1"
+                "OnTrigger" "StompDamageRight,Enable,,0.6,-1"
+                "OnTrigger" "StompDamageRight,Disable,,0.7,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,1.6,-1"
+                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageLeft,1.6,-1"
+                "OnTrigger" "StompDamageLeft,Enable,,1.6,-1"
+                "OnTrigger" "StompDamageLeft,Disable,,1.7,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_zoomin_broom_exit,2.2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,3.1,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,3.1,-1"
+                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageBig,3.1,-1"
+                "OnTrigger" "popscript,$CreateShockwave,,3.1,-1"
+                "OnTrigger" "StompDamageBig,Enable,,3.1,-1"
+                "OnTrigger" "StompDamageBig,Disable,,3.2,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,3.4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,3.45,-1"
+				"OnTrigger" "FallenShocksItem,Disable,,3.45,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,3.45,-1"
+            }
+            trigger_hurt
+            {
+                "targetname" "StompDamageRight"
+                "origin" "-60 0 0"
+                "mins" "-64 -64 -32"
+                "maxs" "64 64 32"
+                "damagetype" "64"
+                "damage" "250"
+                "filtername" "filter_redteam_nouber"
+                "spawnflags" "1"
+                "startdisabled" "1"
+            }
+            trigger_hurt
+            {
+                "targetname" "StompDamageLeft"
+                "origin" "60 0 0"
+                "mins" "-64 -64 -32"
+                "maxs" "64 64 32"
+                "damagetype" "64"
+                "damage" "250"
+                "filtername" "filter_redteam_nouber"
+                "spawnflags" "1"
+                "startdisabled" "1"
+            }
+            trigger_hurt
+            {
+                "targetname" "StompDamageBig"
+                "origin" "0 0 0"
+                "mins" "-160 -160 -250"
+                "maxs" "160 160 250"
+                "damagetype" "64"
+                "damage" "750"
+                "filtername" "filter_redteam_nouber"
+                "spawnflags" "1"
+                "startdisabled" "1"
+            }
+
+			//// Phase 2 Attacks ////
+            
             // Vortex Attack
             logic_relay
             {
@@ -6673,18 +6730,26 @@ WaveSchedule
 
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
 				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,0,-1"
+                "OnTrigger" "FallenShocksLightningGigaTesla,TurnOn,,0,-1"
+				"OnTrigger" "FallenShocksLightningGigaOrb,Start,,0,-1"
+                "OnTrigger" "LightningRainLauncher2,$StartFiring,,0,-1"
+                "OnTrigger" "LightningRainLauncher3,$StartFiring,,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_start,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_loop,1.16,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,major_shocks_spin.mp3,1.16,-1"
                 "OnTrigger" "VortexPush,Enable,,2,-1"
                 "OnTrigger" "VortexEffect,Start,,2,-1"
+                "OnTrigger" "LightningRainLauncher2,$StopFiring,,5,-1"
+                "OnTrigger" "LightningRainLauncher3,$StopFiring,,5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/halloween/thunder_04.wav,7,-1"
+                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)7-1"
                 "OnTrigger" "VortexPush,Disable,,7,-1"
                 "OnTrigger" "VortexEffect,Stop,,7,-1"
-                "OnTrigger" "VortexLightning,Start,,7,-1"
                 "OnTrigger" "VortexDamage,Enable,,7,-1"
                 "OnTrigger" "VortexDamage,Disable,,7.1,-1"
-                "OnTrigger" "VortexLightning,Stop,,7.3,-1"
+                "OnTrigger" "FallenShocksLightningGigaTesla,TurnOff,,7,-1"
+				"OnTrigger" "FallenShocksLightningGigaOrb,Stop,,7,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_end,7,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,8.5,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,8.55,-1"
@@ -6731,38 +6796,22 @@ WaveSchedule
 				"spawnflags" "64"
 				"filtername" "filter_redteam_nouber"
 			}
-            info_particle_system
-			{
-				"targetname" "VortexLightning"
-				"origin" "0 40 0"
-				"angles" "0 0 0"
-				"effect_name" "wrenchmotron_teleport_beam"
-			}
-			info_particle_system
-			{
-				"targetname" "VortexLightning"
-				"origin" "0 -40 0"
-				"angles" "0 0 0"
-				"effect_name" "wrenchmotron_teleport_beam"
-			}
-			info_particle_system
-			{
-				"targetname" "VortexLightning"
-				"origin" "40 0 0"
-				"angles" "0 0 0"
-				"effect_name" "wrenchmotron_teleport_beam"
-			}
-			info_particle_system
-			{
-				"targetname" "VortexLightning"
-				"origin" "-40 0 0"
-				"angles" "0 0 0"
-				"effect_name" "wrenchmotron_teleport_beam"
-			}
 
-			//// Phase 2 Attacks ////
+            // Evolved Ground Slam Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksGroundSlamAttackEvolved"
 
-			//// Phase 3 Attacks ////
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
+				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,3.75,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,5.75,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,0,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,0,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.1,0.2,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.5,0.02,-1"
+            }
 		}
 		FallenShocksMegaLaserDamage
 		{
@@ -7343,6 +7392,16 @@ WaveSchedule
 				Cooldown -1
 			}
 
+            FireInput
+            {
+                Target !self
+                Action $ChangeAttributes
+                Param "FallenShocks_Default"
+                Delay 0
+                Repeats 1
+                Cooldown -1
+            }
+
 			EventChangeAttributes
 			{
 				FallenShocks_Intro
@@ -7389,6 +7448,15 @@ WaveSchedule
 						"attach particle effect" 3200
 						"voice pitch scale" "1"
 					}
+
+                    FireInput
+                    {
+                        Target FallenShocksAttackInit
+                        Action Trigger
+                        Delay 4
+                        Repeats 1
+                        Cooldown -1
+                    }
 				}
 				
 				//// Phase 1 Attacks ////
@@ -7686,6 +7754,52 @@ WaveSchedule
                     }
                 }
 
+                // Stomp Combo
+                FallenShocks_StompCombo
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+					Item "Taunt: Mourning Mercs"
+					CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                    }
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+					FireInput
+					{
+						Target "FallenShocksStompComboAttack"
+						Action "Trigger"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                }
+
+				//// Phase 2 Attacks ////
+
                 // Vortex
                 FallenShocks_Vortex
                 {
@@ -7730,9 +7844,58 @@ WaveSchedule
                     }
                 }
 
-				//// Phase 2 Attacks ////
-
-				// Phase 3?
+                // Evolved Ground Slam Attack
+                FallenShocks_GroundSlamEvolved
+				{
+					UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+					Item "Taunt: Mourning Mercs"
+					CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                    }
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+					FireInput
+					{
+						Target "FallenShocksGroundSlamAttackEvolved"
+						Action "Trigger"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 3
+						Repeats 1
+						Cooldown -1
+					}
+				}
 			}
         }
 
