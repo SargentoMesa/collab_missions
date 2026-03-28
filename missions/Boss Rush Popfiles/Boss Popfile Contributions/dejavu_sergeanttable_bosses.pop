@@ -6442,7 +6442,7 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,12.95,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
 				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
-                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13.02,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13,-1"
                 "OnTrigger"  "!activator,$Addcond,126,6,-1"
                 "OnTrigger"  "!activator,$Addcond,126,6.25,-1"
                 "OnTrigger"  "!activator,$Addcond,126,6.5,-1"
@@ -6535,7 +6535,7 @@ WaveSchedule
 				"OnTrigger" "TheShocksBehindTheSlaughter,Disable,,5.5,-1"
 				"OnTrigger" "FallenShocksItem,Disable,,5.5,-1"
 				"OnTrigger" "!activator,$Removecond,7,5.5,-1"
-				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,5.52,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,5.5,-1"
 			}
 
 			info_target
@@ -6675,9 +6675,10 @@ WaveSchedule
 				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_start,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_loop,1.16,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,major_shocks_spin.mp3,1.16,-1"
                 "OnTrigger" "VortexPush,Enable,,2,-1"
                 "OnTrigger" "VortexEffect,Start,,2,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,halloween/thunder_01.wav,7,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/halloween/thunder_04.wav,7,-1"
                 "OnTrigger" "VortexPush,Disable,,7,-1"
                 "OnTrigger" "VortexEffect,Stop,,7,-1"
                 "OnTrigger" "VortexLightning,Start,,7,-1"
@@ -6703,7 +6704,7 @@ WaveSchedule
 			point_push
 			{
 				"targetname" "VortexPush"
-				"radius" "1300"
+				"radius" "2500"
 				"magnitude" "-120"
 				"innerradius" "200"
 				"startdisabled" 1
@@ -7685,7 +7686,7 @@ WaveSchedule
                     }
                 }
 
-                // Vortex Attack
+                // Vortex
                 FallenShocks_Vortex
                 {
                     UseCustomModel "models/empty.mdl"
@@ -7694,7 +7695,6 @@ WaveSchedule
 					Item "TF_WEAPON_SHOVEL"
 					Item "The Hellmet"
 					Item "Big Steel Jaw of Summer Fun"
-                    Item "Taunt: Mourning Mercs"
                     CharacterAttributes
                     {
                         "no_attack" 1
@@ -7728,15 +7728,6 @@ WaveSchedule
                         Repeats 1
                         Cooldown -1
                     }
-                    FireInput
-					{
-						Target !self
-						Action $TauntFromItem
-						Param "Taunt: Mourning Mercs"
-						Delay 0.5
-						Repeats 1
-						Cooldown -1
-					}
                 }
 
 				//// Phase 2 Attacks ////
