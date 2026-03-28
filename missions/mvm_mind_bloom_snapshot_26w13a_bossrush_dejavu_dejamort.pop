@@ -2136,7 +2136,7 @@ WaveSchedule
 							AlternateWaves.AddWaveIcons([
 								[`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
 								[`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_barrage`, 1, MVM_CLASS_FLAG_MINIBOSS],
 								[`pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
 								[`scout_sunstick_swordstone`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
 							])
@@ -2190,7 +2190,7 @@ WaveSchedule
                             AlternateWaves.AddWaveIcons([
                                 [`soldier_bison_prismatic`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_hellmet_lite`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier_barrage`, 1, MVM_CLASS_FLAG_MINIBOSS],
                                 [`pyro`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`scout_sunstick_swordstone`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
