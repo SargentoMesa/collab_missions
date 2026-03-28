@@ -319,7 +319,7 @@ WaveSchedule
 
     //// MISSION BOTS ////
 
-    Mission
+    Mission // Sentry Buster
     {
         Objective DestroySentries
         Where spawnbot_support
