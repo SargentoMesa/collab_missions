@@ -89,6 +89,7 @@ WaveSchedule
     PrecacheSound "megalaser_chargeup.wav"
     PrecacheSound "megalaser_fire.wav"
     PrecacheSound "megalaser_fireloop.wav"
+    PrecacheSound "boss_charging_his_shit.mp3"
 
     //// POINT TEMPLATES ////
 
