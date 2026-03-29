@@ -396,9 +396,9 @@ WaveSchedule
 					MusicSystemMent.ResetAll();
 					MusicSystemMent.HookByName(`bignet`);
 
-					MindBloomRNG.AddRNGArena(`wave_init_arena_lostvalley_relay`, `Wave2_FieldGeneral`);
-					MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `Wave2_ExplosiveSurprise`);
-					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave2_FallenPatrolChiefs`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_lostvalley_relay`, `Wave1_FieldGeneral`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_coastrock_relay`, `Wave1_ExplosiveSurprise`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_spyfactory_relay`, `Wave1_FallenPatrolChiefs`);
 					MindBloomRNG.InitRNGArena();
 
 					AlternateWaves.bTrackIcons = false;
@@ -464,10 +464,9 @@ WaveSchedule
                         case 1:
                         {   
                             AlternateWaves.AddWaveIcons([
-                                [`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -475,9 +474,10 @@ WaveSchedule
                         case 2:
                         {   
                             AlternateWaves.AddWaveIcons([
-                                [`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
                             break;
                         }
@@ -521,13 +521,13 @@ WaveSchedule
 		//// Field General ////
 		WaveSpawn
 		{
-			Name "Wave2_FieldGeneral"
+			Name "Wave1_FieldGeneral"
 			StartDisabled 1
 		}
 		WaveSpawn // Boss
         {
-            Name "Wave2_Boss-FieldGeneral"
-			WaitForAllSpawned "Wave2_FieldGeneral"
+            Name "Wave1_Boss-FieldGeneral"
+			WaitForAllSpawned "Wave1_FieldGeneral"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -555,18 +555,18 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave2_Support-ShovelSoldiers`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-ShovelSoldiers`)
-						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave2_Support-ShotgunHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-ShovelSoldiers`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-ShovelSoldiers`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-ShotgunHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-ShotgunHeavies`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
         }
 		WaveSpawn // Support Shovel Soldiers
 		{
-			Name "Wave2_Support-ShovelSoldiers"
-			WaitForAllSpawned "Wave2_FieldGeneral"
+			Name "Wave1_Support-ShovelSoldiers"
+			WaitForAllSpawned "Wave1_FieldGeneral"
 			Where spawnbot_support
 			Support 1
 			TotalCount 100
@@ -583,12 +583,13 @@ WaveSchedule
 				ClassIcon soldier_shovel
 				Skill Hard
 				WeaponRestrictions MeleeOnly
+                Action Mobber
 			}
 		}
         WaveSpawn // Support Shotgun Heavies
         {
-            Name "Wave2_Support-ShotgunHeavies"
-			WaitForAllSpawned "Wave2_FieldGeneral"
+            Name "Wave1_Support-ShotgunHeavies"
+			WaitForAllSpawned "Wave1_FieldGeneral"
             Where spawnbot_support
             Support 1
             TotalCount 100
@@ -609,13 +610,13 @@ WaveSchedule
         //// Explosive Surprise ////
 		WaveSpawn
         {
-            Name "Wave2_ExplosiveSurprise"
+            Name "Wave1_ExplosiveSurprise"
             StartDisabled 1
         }
 		WaveSpawn // Boss
 		{
-			Name "Wave2_Boss-ExplosiveSurprise"
-			WaitForAllSpawned "Wave2_ExplosiveSurprise"
+			Name "Wave1_Boss-ExplosiveSurprise"
+			WaitForAllSpawned "Wave1_ExplosiveSurprise"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -643,18 +644,18 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave2_Support-BatScouts`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-BatScouts`)
-						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave2_Support-Pyros`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-Pyros`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-BatScouts`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-BatScouts`)
+						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-Pyros`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-Pyros`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
                       "
             }
 		}
 		WaveSpawn // Support Bat Scouts
 		{
-			Name "Wave2_Support-BatScouts"
-			WaitForAllSpawned "Wave2_ExplosiveSurprise"
+			Name "Wave1_Support-BatScouts"
+			WaitForAllSpawned "Wave1_ExplosiveSurprise"
 			Where spawnbot_support
             Support 1
             TotalCount 100
@@ -674,8 +675,8 @@ WaveSchedule
 		}
 		WaveSpawn // Support Pyros
 		{
-			Name "Wave2_Support-Pyros"
-			WaitForAllSpawned "Wave2_ExplosiveSurprise"
+			Name "Wave1_Support-Pyros"
+			WaitForAllSpawned "Wave1_ExplosiveSurprise"
 			Where spawnbot_support
 			Support 1
 			TotalCount 100
@@ -696,14 +697,14 @@ WaveSchedule
 		//// Fallen Patrol Chiefs ////
         WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefs"
+            Name "Wave1_FallenPatrolChiefs"
             StartDisabled 1
         }
 
 		WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefSpawns"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_FallenPatrolChiefSpawns"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             WaitBeforeStarting 5
 
             FirstSpawnOutput
@@ -717,8 +718,8 @@ WaveSchedule
         }
         WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefSpawns"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_FallenPatrolChiefSpawns"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             WaitBeforeStarting 7.5
 
             FirstSpawnOutput
@@ -735,8 +736,8 @@ WaveSchedule
 
         WaveSpawn // Heavy Patrol Chief
         {
-            Name "Wave2_Boss-HeavyPatrolChief"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_Boss-HeavyPatrolChief"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -772,8 +773,8 @@ WaveSchedule
         }
         WaveSpawn // Pyro Patrol Chief
         {
-            Name "Wave2_Boss-PyroPatrolChief"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_Boss-PyroPatrolChief"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -800,8 +801,8 @@ WaveSchedule
         }
         WaveSpawn // Demo Patrol Chief
         {
-            Name "Wave2_Boss-DemoPatrolChief"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_Boss-DemoPatrolChief"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -829,8 +830,8 @@ WaveSchedule
 
 		WaveSpawn // Support Demoknights
         {
-            Name "Wave2_Support-Demoknights"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefs"
+            Name "Wave1_Support-Demoknights"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefs"
             Where spawnbot_support
             Support 1
             TotalCount 100
@@ -849,31 +850,31 @@ WaveSchedule
 
 		WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefsCheck"
-            WaitForAllDead "Wave2_Boss-HeavyPatrolChief"
+            Name "Wave1_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave1_Boss-HeavyPatrolChief"
         }
         WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefsCheck"
-            WaitForAllDead "Wave2_Boss-PyroPatrolChief"
+            Name "Wave1_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave1_Boss-PyroPatrolChief"
         }
         WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefsCheck"
-            WaitForAllDead "Wave2_Boss-DemoPatrolChief"
+            Name "Wave1_FallenPatrolChiefsCheck"
+            WaitForAllDead "Wave1_Boss-DemoPatrolChief"
         }
         WaveSpawn
         {
-            Name "Wave2_FallenPatrolChiefsComplete"
-            WaitForAllSpawned "Wave2_FallenPatrolChiefsCheck"
+            Name "Wave1_FallenPatrolChiefsComplete"
+            WaitForAllSpawned "Wave1_FallenPatrolChiefsCheck"
 
             FirstSpawnOutput
             {
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave2_Support-Demoknights`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-Demoknights`)
+                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-Demoknights`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-Demoknights`)
                         EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 2)
                       "
             }
@@ -978,6 +979,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-GRUHeavies`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-GRUHeavies`)
+                        EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`)
+                        EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
 		}
@@ -1006,11 +1009,12 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name "Wave2_Boss2-TON618BlackHolePyro"
+            WaitForAllDead "Wave2_Boss1-BigheadedBehemoth"
 			Where spawnbot_boss
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 12.5
+			WaitBeforeStarting 7.5
 			WaitBetweenSpawns 0
 			TotalCurrency 50
 
@@ -1440,7 +1444,7 @@ WaveSchedule
             }
         }
     }
-	Wave // Main Boss - Mining Supervisor OR Field Marshal Mechanus OR Deadlock
+	Wave // Main Boss - Mining Supervisor OR Field Marshal Mechanus and Deadlock
 	{
 		InitWaveOutput
         {
@@ -1711,7 +1715,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -1737,7 +1741,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 100
+            TotalCurrency 50
 
             TFBot
             {
@@ -5658,6 +5662,10 @@ WaveSchedule
 					{
 						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
 					}
+                    if (!(`rangescript_v2` in getroottable()))
+					{
+						IncludeScript(`rangescript_v2`, getroottable());
+					}
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -6913,6 +6921,7 @@ WaveSchedule
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave15_Support-CarbineSnipers`)
 						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`)
+                        EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
 					  "
 			}
 		}
@@ -6920,7 +6929,7 @@ WaveSchedule
         WaveSpawn // Boss 3 - Heavy War Machine
         {
             Name "Wave15_Boss2-HeavyWarMachine"
-            WaitForAllDead "Wave15_TerrorlictGauntletFirstDuoComplete"
+            WaitForAllSpawned "Wave15_TerrorlictGauntletFirstDuoComplete"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
@@ -6957,7 +6966,7 @@ WaveSchedule
         WaveSpawn // Boss 3 - Pyro War Machine
         {
             Name "Wave15_Boss2-PyroWarMachine"
-            WaitForAllDead "Wave15_TerrorlictGauntletFirstDuoComplete"
+            WaitForAllSpawned "Wave15_TerrorlictGauntletFirstDuoComplete"
             Where spawnbot_boss
             TotalCount 1
             MaxActive 1
