@@ -78,7 +78,7 @@ WaveSchedule
 			UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]   //Use custom model
 			Action	Sniper [$SIGSEGV]
 			ClassIcon	sniper_machina_nys
-			Health	25000
+			Health	20000
 			Name	"Deadlock"
 			Class	Sniper
 			Skill	Expert
@@ -107,11 +107,10 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName	"TF_WEAPON_SMG"
-				"damage bonus"	5
+				"damage bonus"	2.5
 				"fire rate bonus"	0.6
 				"faster reload rate"	2
 				"minicritboost on kill"	10
-				"minicrits become crits"	1
 			}
 			CharacterAttributes
 			{
@@ -124,7 +123,7 @@ WaveSchedule
 				"displace touched enemies" 1
 			}
 			WeaponSwitch [$SIGSEGV]    //Periodically switches weapon
-             {
+            {
                  Delay 1 //Time before the first weapon switch starts (Default: 10)
                  Cooldown 1 //Time between each weapon switch (Default: 10)
                  Repeats 1 //How many times should bot switch weapons in total (Default: 0 - Infinite)
@@ -135,18 +134,18 @@ WaveSchedule
 					//Melee
 					//PDA
 					//Building
-				IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+				IfHealthBelow 10000 //When set, the task activates only when the bot health is below specified value
 				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
 			}
 			FireInput [$SIGSEGV]   
 			{
     			Target "!self"
     			Action "$BotCommand"
-    			Param "switch_action FetchFlag"
+    			Param "switch_action Mobber"
     			Delay 1
     			Cooldown 0.1
     			Repeats 1 //How many times should the input be fired
-    			IfHealthBelow 12000
+    			IfHealthBelow 10000
 			}
 			FireInput [$SIGSEGV]   
 			{
@@ -156,7 +155,7 @@ WaveSchedule
     			Delay 1
     			Cooldown 0.1
     			Repeats 1
-    			IfHealthBelow 12000
+    			IfHealthBelow 10000
 			}
 			FireInput [$SIGSEGV]
 		    {
@@ -165,7 +164,7 @@ WaveSchedule
 				Param "129 4927 -618"
 		    	Delay 0.875
 				Repeats 1
-				IfHealthBelow	12000
+				IfHealthBelow	10000
 			}
 			FireInput [$SIGSEGV]
 		    {
@@ -174,14 +173,14 @@ WaveSchedule
 				Param "-3503 4095 -938"
 		    	Delay 2.875
 				Repeats 1
-				IfHealthBelow	12000
+				IfHealthBelow	10000
 			}
             Message [$SIGSEGV]	
 			{
 				Name	"{blue}Deadlock {FFFFFF}has used their {9BBF4D}RECALL{FFFFFF} Power Up Canteen!"
 				Delay	0.875
 				Repeats	1
-				IfHealthBelow	12000
+				IfHealthBelow	10000
 			}
             FireInput [$SIGSEGV]
             {
@@ -190,7 +189,7 @@ WaveSchedule
                 Param "=40|mvm/mvm_used_powerup.wav"
                 Delay 0.875
              	Repeats 1
-				IfHealthBelow	12000
+				IfHealthBelow	10000
             }
 			FireInput [$SIGSEGV] //Enable buddha mode.
 			{
@@ -225,7 +224,7 @@ WaveSchedule
     			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
     			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
     			Name "Taunt: Unleashed Rage" //If set, uses this item taunt instead of default
-    			IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+    			IfHealthBelow 10000 //When set, the task activates only when the bot health is below specified value
 			}
 			AddCond [$SIGSEGV]   //Adds conditions to bots
 			{
@@ -233,7 +232,7 @@ WaveSchedule
     			Index 52 //Condition index can be used instead
     			Delay 0.1 // Delay before the condition activates (Default: 0)
     			Duration 1 // Duration of the condition effect (Default: -1 - infinite duration)
-    			IfHealthBelow 12000 //When set, the task activates only when the bot health is below specified value
+    			IfHealthBelow 10000 //When set, the task activates only when the bot health is below specified value
 			}
 			Taunt [$SIGSEGV]    //Taunt periodically
 			{
@@ -254,7 +253,7 @@ WaveSchedule
   				Action RunScriptCode
 				Param "self.RemoveWeaponRestriction(4); self.AddWeaponRestriction(2)"
   				//[do all the other keyvalues here of WeaponSwitch, the IfHealthBelow and Repeats 1 and whatever]
-				IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+				IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
 				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
                 Delay 1 //Time before the first weapon switch starts (Default: 10)
                 Cooldown 3 //Time between each weapon switch (Default: 10)
@@ -297,7 +296,7 @@ WaveSchedule
     			Repeats 1 //How many times the bot should taunt in total (Default: 0 - Infinite)
     			Duration 0.1 //Duration of a looping taunt (Default: 0.1)
     			Name "Taunt: Unleashed Rage" //If set, uses this item taunt instead of default
-    			IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+    			IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
 			}
 			AddCond [$SIGSEGV]   //Adds conditions to bots
 			{
@@ -305,7 +304,7 @@ WaveSchedule
     			Index 52 //Condition index can be used instead
     			Delay 0.1 // Delay before the condition activates (Default: 0)
     			Duration 2 // Duration of the condition effect (Default: -1 - infinite duration)
-    			IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+    			IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
 			}
 			Taunt [$SIGSEGV]    //Taunt periodically
 			{
@@ -316,7 +315,7 @@ WaveSchedule
     			IfHealthBelow 2 //When set, the task activates only when the bot health is below specified value
 			}
 			ClassIcon	soldier_bison_rocket_spammer
-			Health	45000
+			Health	30000
 			Name	"Field Marshal Mechanus"
 			Class	Soldier
 			Skill	Expert
@@ -382,7 +381,7 @@ WaveSchedule
 				Param "129 4927 -618"
 				Delay 1.75
 				Repeats 1
-				IfHealthBelow	25000
+				IfHealthBelow	15000
 			}
 			FireInput [$SIGSEGV]
 		    {
@@ -391,7 +390,7 @@ WaveSchedule
 				Param "-3503 4095 -938"
 		    	Delay 3.75
 				Repeats 1
-				IfHealthBelow	25000
+				IfHealthBelow	15000
 			}
             Message [$SIGSEGV]	
 			{
@@ -407,7 +406,7 @@ WaveSchedule
                 Param "=40|mvm/mvm_used_powerup.wav"
                 Delay 1.75
              	Repeats 1
-				IfHealthBelow	25000
+				IfHealthBelow	15000
             }
 			FireInput [$SIGSEGV] //Enable buddha mode.
 			{

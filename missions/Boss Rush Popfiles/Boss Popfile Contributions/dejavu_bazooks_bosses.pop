@@ -1424,7 +1424,7 @@ WaveSchedule
                     Duration 0.2 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthAbove 75000
+                    IfHealthAbove 35000
                 }
                 FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1434,7 +1434,7 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 75001
+                    IfHealthBelow 35001
                     IfHealthAbove 15000
                 }
                 FireWeapon [$SIGSEGV]  //Periodically fires weapon
@@ -1948,8 +1948,8 @@ WaveSchedule
                     Duration 0.1 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     IfSeeTarget 1
-                    IfHealthBelow 150001
-                    IfHealthAbove 75000
+                    IfHealthBelow 55001
+                    IfHealthAbove 25000
                 }
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1959,7 +1959,7 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 75001
+                    IfHealthBelow 25001
                     //IfHealthAbove 50000
                 }
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
@@ -1970,7 +1970,7 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Secondary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 75001
+                    IfHealthBelow 25001
                     //IfHealthAbove 20000
                 }
 				ShootTemplate [$SIGSEGV]  //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
