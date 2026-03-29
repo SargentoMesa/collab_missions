@@ -7644,6 +7644,11 @@ WaveSchedule
             {
                 "targetname" "ShocksDeathRelay"
                 
+                "OnTrigger" "FallenShocksMegaLaserAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksVortexAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksGroundSlamAttackEvolved,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksMultiBeamAttack,CancelPending,,0,-1"
+                
                 "OnTrigger" "ShocksDeathAnim,Enable,,0,-1"
                 "OnTrigger" "ShocksDeathItem,Enable,,0,-1"
                 "OnTrigger" "ShocksDeathAnim,SetAnimation,primary_death_burning,0,-1"

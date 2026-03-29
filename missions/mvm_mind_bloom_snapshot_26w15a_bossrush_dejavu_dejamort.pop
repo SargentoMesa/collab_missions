@@ -179,31 +179,6 @@ WaveSchedule
                 "OnTrigger" "!activator,$Addcond,32 8,0,-1"
                 "OnTrigger" "!activator,$DisplayTextHint,You will be teleported in 5 seconds,0,-1"
             }
-
-			point_worldtext
-			{
-				"origin" "477 -12484 -828"
-				"angles" "-0 90 0"
-				"color" "255 255 255 255"
-				"textsize" "24"
-				"message" "Bazooks"
-			}
-			point_worldtext
-			{
-				"origin" "420 -12484 -854"
-				"angles" "-0 90 0"
-				"color" "255 255 255 255"
-				"textsize" "20"
-				"message" "For helping to make"
-			}
-			point_worldtext
-			{
-				"origin" "420 -12484 -874"
-				"angles" "-0 90 0"
-				"color" "255 255 255 255"
-				"textsize" "20"
-				"message" "the megalaser"
-			}
         }
         BossRushSpecialSpawnLocation
         {
