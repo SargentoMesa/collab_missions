@@ -384,6 +384,39 @@ WaveSchedule
             "projectile acceleration time" "0.5"
             "projectile acceleration" "-4000"
         }
+        "DefaultFire1"
+        {
+            OriginalItemName "The Cow Mangler 5000"
+            "explosion particle"			"drg_cow_explosioncore_charged_blue"
+            "projectile trail particle"		"drg_cow_rockettrail_charged_blue"
+            "override projectile type"	2
+		    "custom projectile model"		"models/empty.mdl"
+            "projectile speed decreased"	0.4
+            "projectile no deflect"			1
+            "damage bonus"                  2
+            "custom weapon fire sound"		"npc/strider/fire.wav"
+		    "custom impact sound"			"=75|weapons/cow_mangler_explosion_charge_01.wav"
+            "projectile spread angle penalty" 9
+            "fire rate bonus" 3
+        }
+        "DefaultFire2"
+        {
+            OriginalItemName "The Cow Mangler 5000"
+            "projectile trail particle"		"eyeboss_projectile"
+            "mod projectile heat seek power" "180"
+            "mod projectile heat aim error" "99999"
+            "mod projectile heat aim time" "1"
+            "projectile acceleration start time" "0.5"
+            "damage bonus" 1.5
+        }
+        "DefaultFire3"
+        {
+            OriginalItemName "The Cow Mangler 5000"
+            "mult projectile count" 6
+            "ignores other projectiles" "1"
+            "projectile spread angle penalty" 6
+            "projectile gravity" 550
+        }
     }
 
     PointTemplates
@@ -6358,7 +6391,17 @@ WaveSchedule
                 "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_Vortex,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_GroundSlamEvolved,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_MultiBeam,0,-1"
 			}
+
+            logic_case
+            {
+                "targetname" "FallenShocksWeaponChoiceCase"
+
+                "OnCase01" "@p@boss_target,$GiveItem,DefaultFire1,0,-1"
+                "OnCase02" "@p@boss_target,$GiveItem,DefaultFire1,0,-1"
+                "OnCase03" "@p@boss_target,$GiveItem,DefaultFire1,0,-1"
+            }
 
             // Shocks Model for Attack Sequencing
 
@@ -6408,6 +6451,7 @@ WaveSchedule
             logic_relay
             {
                 "targetname" "FallenShocksMegaLaserAttack"
+
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
 				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_start,0,-1"
@@ -6428,7 +6472,7 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,$StopVO,megalaser_fireloop.wav,11.05,-1"
                 "OnTrigger" "FallenShocksMegaLaser,Disable,,11,-1"
 				"OnTrigger" "FallenShocksMegaLaserDamageDetector,$StopFiring,,11,-1"
-				"OnTrigger" "FallenShocksMegaLaserDamageTrigger,Disable,11,-1"
+				"OnTrigger" "FallenShocksMegaLaserDamageTrigger*,Disable,11,-1"
                 "OnTrigger" "FallenShocksMegaLaserCharge,TurnOff,,11,-1"
 				"OnTrigger" "FallenShocksMegaLaserChargeParticle,Stop,,11,-1"
                 "OnTrigger" "FallenShocksMegaLaserLoop,StopSound,,11,-1"
@@ -6744,7 +6788,7 @@ WaveSchedule
                 "OnTrigger" "LightningRainLauncher2,$StopFiring,,5,-1"
                 "OnTrigger" "LightningRainLauncher3,$StopFiring,,5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/halloween/thunder_04.wav,7,-1"
-                "OnTrigger"  "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)7-1"
+                "OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)7-1"
                 "OnTrigger" "VortexPush,Disable,,7,-1"
                 "OnTrigger" "VortexEffect,Stop,,7,-1"
                 "OnTrigger" "VortexDamage,Enable,,7,-1"
@@ -6853,6 +6897,335 @@ WaveSchedule
 				"OnTrigger" "!activator,$Removecond,7,16.5,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,16.5,-1"
             }
+
+            // Multi-Beam Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksMultiBeamAttack"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,Soldier_replay_taunt,0,-1"
+                "OnTrigger" "FallenShocksMultiBeamParticle,Start,,2,-1"
+                "OnTrigger" "FallenShocksMultiBeamTesla,TurnOn,,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_lightning_ball_cast.wav,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,items/powerup_pickup_supernova.wav,2,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,2.33,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,2.5,-1"
+                "OnTrigger" "MultiBeam1,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam2,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam3,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam4,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam5,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam6,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam7,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeamDamage,$StartFiring,,3.5,-1"
+                "OnTrigger" "MultiBeamRotator1,Start,,3.5,-1"
+                "OnTrigger" "MultiBeamRotator2,Start,,3.5,-1"
+                "OnTrigger" "MultiBeamRotator1,Reverse,,11,-1"
+                "OnTrigger" "MultiBeamRotator2,Reverse,,11,-1"
+                "OnTrigger" "MultiBeamRotator1,Stop,,18.5,-1"
+                "OnTrigger" "MultiBeamRotator2,Stop,,18.5,-1"
+                "OnTrigger" "MultiBeamDamage,$StopFiring,,18.5,-1"
+                "OnTrigger" "FallenShocksMultiBeamParticle,Stop,,19,-1"
+                "OnTrigger" "FallenShocksMultiBeamTesla,TurnOff,,19,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1,19,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,19.33,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,19.33,-1"
+				"OnTrigger" "FallenShocksItem,Disable,,19.33,-1"
+                "OnTrigger" "!activator,$Removecond,7,19.33,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,19.38,-1"
+            }
+            info_particle_system
+            {
+                "targetname" "FallenShocksMultiBeamParticle"
+                "origin" "250 0 500"
+				"effect_name" "dxhr_lightningball_parent_blue"
+				"start_active" "0"
+            }
+            point_tesla
+            {
+                "targetname" "FallenShocksMultiBeamTesla"
+                "origin" "250 0 500"
+                "texture" "sprites/physbeam.vmt"
+                "beamcount_min" 10
+                "beamcount_max" 10
+                "interval_min" 0.01
+                "interval_max" 0.01
+                "lifetime_min" 0.1
+                "lifetime_max" 0.1
+                "thick_min" 5
+                "thick_max" 5
+                "m_bOn" 0
+                "m_Color" "255 255 255"
+                "m_flRadius" 100
+            }
+            func_rotating
+            {
+                "targetname" "MultiBeamRotator1"
+                "maxspeed" "75"
+                "origin" "250 0 500"
+                "angles" "0 0 0"
+                "spawnflags" "82"
+                "fanfriction" "75"
+            }
+            func_rotating
+            {
+                "targetname" "MultiBeamRotator2"
+                "maxspeed" "90"
+                "origin" "250 0 500"
+                "angles" "0 0 0"
+                "spawnflags" "80"
+                "fanfriction" "75"
+            }
+
+            prop_dynamic
+            {
+                "targetname" "MultiBeamStart1"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "250 0 500"
+                "angles" "0 0 0"              
+            }
+            prop_dynamic
+            {
+                "targetname" "MultiBeamStart2"
+                "model" "models/empty.mdl"
+                "solid" "0"
+                "origin" "250 0 500"
+                "angles" "0 0 0"               
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam1"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "20"
+				"LightningStart" "MultiBeamStart1"
+				"LightningEnd" "MultiBeamTarget1"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget1"
+                "parentname" "MultiBeamRotator1"
+                "origin" "300 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator1"
+                "origin" "300 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam2"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart2"
+				"LightningEnd" "MultiBeamTarget2"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget2"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-600 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-500 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam3"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart1"
+				"LightningEnd" "MultiBeamTarget3"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget3"
+                "parentname" "MultiBeamRotator1"
+                "origin" "900 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator1"
+                "origin" "900 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam4"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart2"
+				"LightningEnd" "MultiBeamTarget4"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget4"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-1100 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-1100 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam5"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart1"
+				"LightningEnd" "MultiBeamTarget5"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget5"
+                "parentname" "MultiBeamRotator1"
+                "origin" "1500 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator1"
+                "origin" "1500 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam6"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart2"
+				"LightningEnd" "MultiBeamTarget6"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget6"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-1700 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator2"
+                "origin" "-1700 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
+
+            env_beam
+			{
+				"targetname" "MultiBeam7"
+				"origin" "0 0 0"
+				"life" "15"
+				"BoltWidth" "25"
+				"LightningStart" "MultiBeamStart1"
+				"LightningEnd" "MultiBeamTarget7"
+				"renderamt" "255"
+				"rendercolor" "128 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+			}
+            prop_dynamic
+            {
+                "targetname" "MultiBeamTarget7"
+                "parentname" "MultiBeamRotator1"
+                "origin" "2100 0 0"
+                "model" "models/empty.mdl"
+                "solid" "0"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "MultiBeamDamage"
+                "parentname" "MultiBeamRotator1"
+                "origin" "2100 0 20"
+                "angles" "-270 0 0"
+                "teamnum" "3"
+                "$weaponname"    "BeamDamage"
+                "$firetime"      "0.3"
+                "$weaponnosound" "1"
+            }
 		}
 		FallenShocksMegaLaserDamage
 		{
@@ -6871,6 +7244,146 @@ WaveSchedule
                 "spawnflags" "64"
             }
 		}
+        FallenShocksDeathAnim
+        {
+            KeepAlive 1
+            RemoveIfKilled "ShocksDeathAnim"
+
+            OnSpawnOutput
+            {
+                Target "ShocksDeathAnim"
+                Action Disable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+            }
+            OnSpawnOutput
+            {
+                Target "ShocksDeathItem"
+                Action Disable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+            }
+            OnParentKilledOutput
+            {
+                Target "ShocksDeathRelay"
+                Action Trigger
+                Delay 0
+                Repeats 1
+                Cooldown -1
+            }
+
+            prop_dynamic
+            {
+                "targetname" "ShocksDeathAnim"
+                "origin" "0 0 0"
+                "model" "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
+                "modelscale" "5"
+                "solid" "0"
+                "skin" "1"
+                "disableshadows" "1"
+                "startdisabled" "1"
+            }
+            point_tesla
+            {
+                "targetname" "ShocksDeathTesla"
+                "parentname" "ShocksDeathAnim"
+                "origin" "0 0 250"
+                "texture" "sprites/physbeam.vmt"
+				"beamcount_min" 10
+				"beamcount_max" 10
+				"interval_min" 0.01
+				"interval_max" 0.01
+				"lifetime_min" 0.1
+				"lifetime_max" 0.1
+				"thick_min" 10
+				"thick_max" 10
+				"m_bOn" 0
+				"m_Color" "255 255 255"
+				"m_flRadius" 150
+            }
+            env_beam
+            {
+                "targetname" "ShocksDeathBeam"
+                "parentname" "ShocksDeathAnim"
+				"origin" "0 0 250"
+				"life" "30"
+				"boltwidth" "25"
+				"renderamt" "255"
+                "radius" "4000"
+				"rendercolor" "160 255 255"
+				"NoiseAmplitude" "1"
+				"texture" "sprites/laserbeam.vmt"
+            }
+			prop_dynamic_ornament
+			{
+				"targetname" "ShocksDeathItem"
+				"initialowner" "ShocksDeathAnim"
+				"model" "models/workshop/player/items/soldier/hwn2015_hellmet/hwn2015_hellmet.mdl"
+				"modelscale" "1"
+				"disableshadows" "1"
+				"startdisabled" "1"
+			}
+			prop_dynamic_ornament
+			{
+				"targetname" "ShocksDeathItem"
+				"initialowner" "ShocksDeathAnim"
+				"model" "models/player/items/heavy/big_jaw.mdl"
+				"modelscale" "1"
+				"disableshadows" "1"
+				"startdisabled" "1"
+			}
+
+            logic_relay
+            {
+                "targetname" "ShocksDeathRelay"
+                
+                "OnTrigger" "ShocksDeathAnim,Enable,,0,-1"
+                "OnTrigger" "ShocksDeathItem,Enable,,0,-1"
+                "OnTrigger" "ShocksDeathAnim,SetAnimation,primary_death_burning,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsevere01.mp3,0,-1"
+                "OnTrigger" "ShocksDeathAnim,SetAnimation,kneel,1.33,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_negativevocalization01.mp3,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_hatoverhearttaunt06.mp3,5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,9,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsharp02.mp3,9,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_hatoverhearttaunt06.mp3,11,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/levels/citadel/zapper_loop2.wav,14,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/force_field_loop1.wav,15,-1"
+
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,18,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,18,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,19,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,19,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,20,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,20,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,20.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,20.5,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,21,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,21,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,21.25,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,21.25,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,21.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,21.5,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,21.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,21.5,-1"
+                "OnTrigger" "ShocksDeathBeam,StrikeOnce,,21.75,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,21.75,-1"
+
+                "OnTrigger" "tf_gamerules,$StopVO,ambient/energy/force_field_loop1.wav,22,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22.02,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22.04,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22.06,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22.08,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/medieval_thunder02.wav,22,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/physcannon/energy_sing_explosion2.wav,22,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,weapons/physcannon/energy_disintegrate4.wav,22,-1"
+                "OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)22-1"
+                "OnTrigger" "ShocksDeathAnim,Kill,22.1,-1"
+            }
+        }
 
         //// MINI BOSSES ////
 
@@ -7389,7 +7902,7 @@ WaveSchedule
             Name "Fallen Shocks"
             Class Soldier
             ClassIcon soldier_shocks_lite
-            Health 500000
+            Health 175000
             Scale 5
             Attributes MiniBoss
             Attributes UseBossHealthBar
@@ -7405,6 +7918,7 @@ WaveSchedule
 
             SpawnTemplate "FallenShocksLogic"
 			SpawnTemplate "ringOwnerShocks"
+            SpawnTemplate "FallenShocksDeathAnim"
 
             Item "The Cow Mangler 5000"
             Item "The Hellmet"
@@ -7443,26 +7957,38 @@ WaveSchedule
                 Cooldown -1
             }
 
+            // Basic ahh phase 2
+            FireInput
+            {
+                Target FallenShocksPhase1AttackPoolRelay
+                Action Disable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 87501
+            }
+            FireInput
+            {
+                Target FallenShocksPhase2AttackPoolRelay
+                Action Enable
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 87501
+            }
+            FireInput
+            {
+                Target tf_gamerules
+                Action PlayVO
+                Param "vo/mvm/mght/taunts/soldier_mvm_m_taunts04.mp3"
+                Delay 0
+                Repeats 1
+                Cooldown -1
+                IfHealthBelow 87501
+            }
+
 			EventChangeAttributes
 			{
-				FallenShocks_Intro
-				{
-                    CharacterAttributes
-					{
-                        "no_attack" 0
-                        "no_jump" 0
-						"move speed penalty"	0.01
-						"damage force reduction" 0.01
-						"airblast vulnerability multiplier" 0.01
-						"airblast vertical vulnerability multiplier" 0.01
-						"override footstep sound set" 3
-						"rage giving scale" 0.2
-						"cancel falling damage" 1
-						"always allow taunt" 1
-						"displace touched enemies" 1
-						"attach particle effect" 3200
-					}
-				}
 				FallenShocks_Default
 				{
 					UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
@@ -7489,6 +8015,15 @@ WaveSchedule
 						"attach particle effect" 3200
 						"voice pitch scale" "1"
 					}
+
+                    FireInput
+                    {
+                        Target "FallenShocksWeaponChoiceCase"
+                        Action "PickRandomShuffle"
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
 
                     FireInput
                     {
@@ -7885,7 +8420,7 @@ WaveSchedule
                     }
                 }
 
-                // Evolved Ground Slam Attack
+                // Evolved Ground Slam
                 FallenShocks_GroundSlamEvolved
 				{
 					UseCustomModel "models/empty.mdl"
@@ -7937,6 +8472,61 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
+
+                // Multi-Beam
+                FallenShocks_MultiBeam
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    Item "Taunt: Mourning Mercs"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"rage giving scale" 0.2
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                        "gesture speed increase" 0.2
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksMultiBeamAttack"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                }
 			}
         }
 

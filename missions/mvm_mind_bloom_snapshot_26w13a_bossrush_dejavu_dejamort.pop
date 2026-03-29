@@ -8468,5 +8468,12 @@ WaveSchedule
                     "
             }
         }
+
+        WaveSpawn
+        {
+            Name "FinalWave_ShocksDeath"
+            WaitForAllDead "FinalWave_Boss-FallenShocks"
+            WaitBeforeStarting 25
+        }
     }
 }
