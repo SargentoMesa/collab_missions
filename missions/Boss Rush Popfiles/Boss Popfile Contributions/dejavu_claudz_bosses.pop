@@ -3771,7 +3771,7 @@ WaveSchedule
             {
                 target "roundbeamtest"
                 action "RunScriptCode"
-                param "ringRegister(self)"
+                param "contactRingRegister(self)"
                 delay 0.0
             }
             OnSpawnOutput
@@ -3815,9 +3815,6 @@ WaveSchedule
                 "life" "4"
                 "spawnflags" "8" //8
                 "TouchType" "1"
-                //"OnUser1" "!self,RunScriptCode,ringRegister(self),0,-1"
-                //"filtername" "filter_is_red_not_uber"
-                //"OnTouchedByEntity" "!activator,RunScriptCode,ClientPrint(null,4,self.tostring()),0,-1"
             }
         }
         pizzashotattack

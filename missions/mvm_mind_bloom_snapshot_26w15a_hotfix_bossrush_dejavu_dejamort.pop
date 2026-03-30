@@ -147,6 +147,9 @@ WaveSchedule
                 "OnTrigger" "@f@filter_red@player,$TeleportToEntity,skybox_sun_target,0,-1"
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
+                "OnTrigger" "obj_sentrygun*,RemoveHealth,10000,0,-1"
+                "OnTrigger" "obj_dispenser*,RemoveHealth,10000,0,-1"
+                "OnTrigger" "obj_teleporter*,RemoveHealth,10000,0,-1"
             }
 
             // Universal Filters
@@ -407,6 +410,9 @@ WaveSchedule
 					Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`17`, 0.5)
+
+                    IncludeScript(`claudz_logic_v3`)
+
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -414,10 +420,6 @@ WaveSchedule
 					if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
 					{
 						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-					}
-					if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
 					}
 					if (!(`music_system_ment` in getroottable()))
 					{
@@ -943,10 +945,9 @@ WaveSchedule
                     {
                         IncludeScript(`music_system_ment`, getroottable())
                     }
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
+
+                    IncludeScript(`claudz_logic_v3`)
+
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -1911,10 +1912,9 @@ WaveSchedule
 					{
 						IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
 					}
-					if(!(`contact_logic_bossrush` in getroottable()))
-					{
-						IncludeScript(`contact_logic_bossrush`, getroottable())
-					}
+
+					IncludeScript(`contact_logic_bossrush`)
+
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -4504,10 +4504,9 @@ WaveSchedule
                     {
                         IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
                     }
-                    if(!(`contact_logic_bossrush` in getroottable()))
-                    {
-                        IncludeScript(`contact_logic_bossrush`, getroottable())
-                    }
+
+                    IncludeScript(`contact_logic_bossrush`)
+
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -5256,10 +5255,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-                    if(!(`contact_logic_bossrush` in getroottable()))
-                    {
-                        IncludeScript(`contact_logic_bossrush`, getroottable())
-                    }
+                    IncludeScript(`contact_logic_bossrush`)
 
                     CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
                     ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
@@ -5716,10 +5712,9 @@ WaveSchedule
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`6`, 0.5)
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
+
+                    IncludeScript(`claudz_logic_v3`)
+
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -7474,10 +7469,7 @@ WaveSchedule
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`3?`, 0.5)
 
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
+                    IncludeScript(`claudz_logic_v3`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -7503,8 +7495,6 @@ WaveSchedule
             Param "
                     EntFire(`wave_finished_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
-
-                    AlternateWaves.bTrackIcons = true;
                   "
         }
         
@@ -7716,10 +7706,7 @@ WaveSchedule
                         COMBATTANK_MAX_RANGE = 2000            // default: 1400
                     })
 
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
+                    IncludeScript(`claudz_logic_v3`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -7990,10 +7977,7 @@ WaveSchedule
                     EntFire(`howmanyofthemleft`,`SetText`,`Good Luck :)`, 0.5)
                     EntFire(`howmanyofthemleft`,`SetTextSize`,`5`, 0.5)
 
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
+                    IncludeScript(`claudz_logic_v3`)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
