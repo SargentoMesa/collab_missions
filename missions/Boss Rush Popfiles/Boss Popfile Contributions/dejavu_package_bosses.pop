@@ -362,7 +362,7 @@ WaveSchedule
 			EventChangeAttributes
 			{
 			    // phase 1
-				LongRange_FOS
+				LongRange_FOS [$SIGSEGV]
 				{
 					WeaponRestrictions MeleeOnly
 					Skill Expert
@@ -382,7 +382,7 @@ WaveSchedule
 						"displace touched enemies" 1
                     }
 				}
-				ShortRange_Pyro
+				ShortRange_Pyro [$SIGSEGV]
 				{
 					WeaponRestrictions PrimaryOnly
 					Skill Expert
@@ -403,7 +403,7 @@ WaveSchedule
 					}
 				}
 				// phase 2
-				LongRange_DeflectorHeavy
+				LongRange_DeflectorHeavy [$SIGSEGV]
 				{
 					WeaponRestrictions PrimaryOnly
 					Skill Expert
@@ -420,7 +420,7 @@ WaveSchedule
 						"cancel falling damage" 1
 					}
 				}
-				ShortRange_Soldier
+				ShortRange_Soldier [$SIGSEGV]
 				{
 					WeaponRestrictions PrimaryOnly
 					Skill Expert
@@ -441,7 +441,7 @@ WaveSchedule
 					}
 				}
 				// phase 3
-				ConchSoldier
+				ConchSoldier [$SIGSEGV]
 				{
 					WeaponRestrictions PrimaryOnly
 					Attributes HoldFireUntilFullReload
@@ -605,7 +605,7 @@ WaveSchedule
 			}
 			EventChangeAttributes
 			{
-				Hand_Death
+				Hand_Death [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -684,7 +684,7 @@ WaveSchedule
 			}
 			EventChangeAttributes
 			{
-				Hand_Death
+				Hand_Death [$SIGSEGV]
 				{
 					FireInput
 					{
