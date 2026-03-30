@@ -524,7 +524,7 @@ WaveSchedule
 						"displace touched enemies" 1
 					}
 				}
-				Soldier_Boss_Phase_2	// Burst Fire Shotgun Soldier
+				Soldier_Boss_Phase_2 [$SIGSEGV]	// Burst Fire Shotgun Soldier
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
@@ -554,7 +554,7 @@ WaveSchedule
 						"cancel falling damage"	1
 					}
 				}
-				Soldier_Boss_Phase_3	// Nuke Rocket Launcher
+				Soldier_Boss_Phase_3 [$SIGSEGV]	// Nuke Rocket Launcher
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
@@ -588,7 +588,7 @@ WaveSchedule
 						"cancel falling damage"	1
 					}
 				}
-				Soldier_Boss_Phase_4	//Rapid Fire Homing Soldier
+				Soldier_Boss_Phase_4 [$SIGSEGV]	//Rapid Fire Homing Soldier
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
@@ -635,7 +635,7 @@ WaveSchedule
 						"cancel falling damage"	1
 					}
 				}
-				Soldier_Boss_Phase_5	//Laser Wall (Oil Overflow Wave 6 Obstacle) Soldier (fixed)
+				Soldier_Boss_Phase_5 [$SIGSEGV]	//Laser Wall (Oil Overflow Wave 6 Obstacle) Soldier (fixed)
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
@@ -670,7 +670,7 @@ WaveSchedule
 						"cancel falling damage"	1
 					}
 				}
-				Soldier_Boss_Phase_6	// Barrage Spammer Soldier
+				Soldier_Boss_Phase_6 [$SIGSEGV]	// Barrage Spammer Soldier
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
@@ -701,7 +701,7 @@ WaveSchedule
 						"Projectile speed decreased"	0.4
 					}
 				}
-				Soldier_Boss_Phase_7	// For the Taunt Death
+				Soldier_Boss_Phase_7 [$SIGSEGV]	// For the Taunt Death
 				{
 					Item	"Scotch Bonnet"
 					//Item	"Veterans Attire"
