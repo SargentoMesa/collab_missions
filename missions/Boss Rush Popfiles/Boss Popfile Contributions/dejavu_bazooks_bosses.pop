@@ -1399,7 +1399,7 @@ WaveSchedule
                 Class Heavyweapons
                 Name "Captain Punch the MDXXVIII"
                 ClassIcon heavy_chief
-                Health 80000
+                Health 60000
                 Scale 1.9
                 AlwaysGlow 1 [$SIGSEGV]
                 UseMeleeThreatPrioritization 1 [$SIGSEGV]
@@ -1424,7 +1424,7 @@ WaveSchedule
                     Duration 0.2 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthAbove 35000
+                    IfHealthAbove 20000
                 }
                 FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1434,8 +1434,8 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 35001
-                    IfHealthAbove 15000
+                    IfHealthBelow 20001
+                    IfHealthAbove 10000
                 }
                 FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1445,7 +1445,7 @@ WaveSchedule
                     Duration 0.2 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 15001
+                    IfHealthBelow 10001
                 }
                 FireInput [$SIGSEGV] 
 				{
@@ -1455,7 +1455,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 55000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 35000 //When set, the task activates only when the bot health is below specified value
 				}
                 FireInput [$SIGSEGV] 
 				{
@@ -1465,7 +1465,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 35000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 20000 //When set, the task activates only when the bot health is below specified value
 				}
                 FireInput [$SIGSEGV] 
 				{
@@ -1475,7 +1475,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 10000 //When set, the task activates only when the bot health is below specified value
 				}
                 WeaponResist [$SIGSEGV] //Multiplies damage received from weapons listed below
                 {
@@ -1517,7 +1517,7 @@ WaveSchedule
                         ItemAttributes
                         {
                             ItemName "The Direct Hit"
-                            "damage bonus" 12
+                            "damage bonus" 8
                             "clip size bonus" 999
                             "explosion particle" "purplefist_explosion"
                             "faster reload rate" -0.8
@@ -1542,7 +1542,7 @@ WaveSchedule
                         {
                             ItemName "TF_WEAPON_FISTS"
                             "fire rate bonus" 2
-                            "damage bonus" 10
+                            "damage bonus" 5
                             "dmg from ranged reduced" 1
                             "dmg from melee increased" 1
                             "is_passive_weapon" 1
@@ -1596,7 +1596,7 @@ WaveSchedule
                         {
                             ItemName "TF_WEAPON_FISTS"
                             "fire rate bonus" 2
-                            "damage bonus" 10
+                            "damage bonus" 5
                             "dmg from ranged reduced" 1
                             "dmg from melee increased" 1
                             "is_passive_weapon" 1
@@ -1637,7 +1637,7 @@ WaveSchedule
                         ItemAttributes
                         {
                             ItemName "The Loch-n-Load"
-                            "damage bonus" 1.8
+                            "damage bonus" 1.5
                             "clip size penalty" 0.75
                             "grenade no drag" 1
                             "grenade explode on impact" 1
@@ -1663,7 +1663,7 @@ WaveSchedule
                         {
                             ItemName "TF_WEAPON_FISTS"
                             "fire rate bonus" 2
-                            "damage bonus" 10
+                            "damage bonus" 5
                             "dmg from ranged reduced" 1
                             "dmg from melee increased" 1
                             "is_passive_weapon" 1
@@ -1701,7 +1701,7 @@ WaveSchedule
                         ItemAttributes
                         {
                             ItemName "The Direct Hit"
-                            "damage bonus" 5
+                            "damage bonus" 2.5
                             "clip size bonus" 999
                             "no self blast dmg" 2
                             "faster reload rate" -0.8
@@ -1728,7 +1728,7 @@ WaveSchedule
                         {
                             ItemName "TF_WEAPON_FISTS"
                             "fire rate bonus" 2
-                            "damage bonus" 10
+                            "damage bonus" 5
                             "dmg from ranged reduced" 1
                             "dmg from melee increased" 1
                             "is_passive_weapon" 1
@@ -1867,7 +1867,7 @@ WaveSchedule
             	Class Demoman
 				Name "Major Catastrophe"
 				ClassIcon demo_bomber
-				Health 80000
+				Health 60000
 				Scale 2.1
 				Tag forcefollowbombpath
 				Tag nostupidtopsidedoorway
@@ -1928,7 +1928,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 55000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 35000 //When set, the task activates only when the bot health is below specified value
 				}
 				FireInput [$SIGSEGV] 
 				{
@@ -1938,7 +1938,7 @@ WaveSchedule
 					Delay 0 //Delay before firing the input
 					Cooldown 1 //Cooldown between firing the input
 					Repeats 1 //How many times should the input be fired
-					IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+					IfHealthBelow 20000 //When set, the task activates only when the bot health is below specified value
 				}
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1948,8 +1948,8 @@ WaveSchedule
                     Duration 0.1 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     IfSeeTarget 1
-                    IfHealthBelow 55001
-                    IfHealthAbove 25000
+                    IfHealthBelow 35001
+                    IfHealthAbove 20000
                 }
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
@@ -1959,7 +1959,7 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Primary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 25001
+                    IfHealthBelow 20001
                     //IfHealthAbove 50000
                 }
 				FireWeapon [$SIGSEGV]  //Periodically fires weapon
@@ -1970,7 +1970,7 @@ WaveSchedule
                     Duration 0.4 //How long should the button be pressed (Default: 0.1)
                     Type "Secondary" 
                     //IfSeeTarget 1
-                    IfHealthBelow 25001
+                    IfHealthBelow 20001
                     //IfHealthAbove 20000
                 }
 				ShootTemplate [$SIGSEGV]  //Shoot defined point template. Template is spawned at bot position in looking direction, forward velocity being applied to spawned entities
@@ -2014,7 +2014,7 @@ WaveSchedule
 							"custom projectile model" "models/props_skangus_event\w_grenade_toxic.mdl"
 							"explosion particle" "greenfist_explosion"
 							"projectile trail particle" "pipebombtrail_green"
-							"damage bonus" 4.5
+							"damage bonus" 1.5
 							"clip size bonus" 4
 							"projectile spread angle penalty" 5
 							"faster reload rate" 0.001
@@ -2061,7 +2061,7 @@ WaveSchedule
 							"set_item_texture_wear"    0.2
 							"faster reload rate" 1.5
 							"fire rate bonus" 1.5
-							"damage bonus" 5
+							"damage bonus" 3
 							"set damagetype ignite" 1
 							"clip size penalty" 0.25
 							"blast radius increased" 1.2
@@ -2115,7 +2115,7 @@ WaveSchedule
 							"set_item_texture_wear"    0.2
 							"faster reload rate" 0.1
 							"clip size penalty" 0.125
-							"damage bonus" 40
+							"damage bonus" 20
 							"blast radius increased" 15
 							//"grenade launcher mortar mode" 0
 							"explosion particle" "nukeexplosion"

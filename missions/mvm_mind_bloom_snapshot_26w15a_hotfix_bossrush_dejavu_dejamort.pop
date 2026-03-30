@@ -5380,7 +5380,7 @@ WaveSchedule
                 Name "engiufotank"
                 ClassIcon 		saucer_lite
                 StartingPathTrackNode "engiship_spot_1"
-                Health 35000
+                Health 28000
                 Speed 0
                 Skin 0
                 Scale 1.0

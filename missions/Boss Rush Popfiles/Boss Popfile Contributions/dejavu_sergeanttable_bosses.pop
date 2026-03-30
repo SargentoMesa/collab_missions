@@ -252,7 +252,7 @@ WaveSchedule
         "SwordmanSwordBeam"
         {
             OriginalItemName "The Pomson 6000"
-            "damage bonus" 5
+            "damage bonus" 10
             "always crit" 1
             "spread angle pattern" "0 0 0|0 5 0|0 10 0|0 15 0 |0 20 0|0 25 0|0 -5 0|0 -10 0|0 -15 0|0 -20 0|0 -25 0"
             "mult projectile count" 11
@@ -1469,7 +1469,7 @@ WaveSchedule
             {
                 "targetname" "carreroblancoreferencia"
                 "origin"     "0 0 0"
-                "angles"     "-180 0 0"
+                "angles"     "-90 0 0"
                 "teamnum"    "3"
                 "$weaponname" "drop_the_car"
             }
@@ -5305,6 +5305,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "0 0 800"
                 "angles" "0 0 0"              
             }
@@ -5314,6 +5315,7 @@ WaveSchedule
                 "model" "models/empty.mdl"
                 "parentname" "beam_spinner_2"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "0 0 800"
                 "angles" "0 0 0"               
             }
@@ -5503,6 +5505,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "150 0 0"
                 "angles" "0 0 0"                
             }
@@ -5523,6 +5526,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "350 0 0"
                 "angles" "0 0 0"                
             }
@@ -5543,6 +5547,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "650 0 0"
                 "angles" "0 0 0"              
             }
@@ -5563,6 +5568,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "950 0 0"
                 "angles" "0 0 0"              
             }
@@ -5583,6 +5589,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "1250 0 0"
                 "angles" "0 0 0"                
             }
@@ -5603,6 +5610,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-50 0 0"
                 "angles" "0 0 0"            
             }
@@ -5623,6 +5631,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-200 0 0"
                 "angles" "0 0 0"                
             }
@@ -5643,6 +5652,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-500 0 0"
                 "angles" "0 0 0"              
             }
@@ -5663,6 +5673,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-800 0 0"
                 "angles" "0 0 0"                
             }
@@ -5683,6 +5694,7 @@ WaveSchedule
                 "parentname" "beam_spinner_1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-1100 0 0"
                 "angles" "0 0 0"               
             }
@@ -5703,6 +5715,7 @@ WaveSchedule
                 "parentname" "beam_spinner_2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "-1400 0 0"
                 "angles" "0 0 0"               
             }
@@ -5841,7 +5854,7 @@ WaveSchedule
                 "OnTrigger"  "!activator,$Taunt,,0.11,-1"
                 "OnTrigger"  "SwordBeamMimic,fireonce,,1.5,-1"
                 "OnTrigger"  "tf_gamerules,playvo,weapons\shooting_star_shoot_crit.wav,1.5,-1"
-                "OnTrigger"  "!activator,$RemoveCond,7,2.3,-1"
+                "OnTrigger"  "!activator,$RemoveCond,7,1.6,-1"
             }
             tf_point_weapon_mimic
             {
@@ -6493,6 +6506,7 @@ WaveSchedule
 				"origin" "192 -6208 -972"
                 "modelscale" "1.75"
                 "startdisabled" "1"
+                "disableshadows" "1"
 			}
             prop_dynamic
             {
@@ -6508,6 +6522,7 @@ WaveSchedule
                 "onanimationbegun" "!self,setplaybackrate,0.001,0.01,-1"
                 "OnAnimationBegun" "!selfRunScriptCodeNetProps.SetPropBool(self, `m_bClientSideAnimation`, false); self.SetCycle(0.7)0.1-1"
                 "skin" "1"
+                "disableshadows" "1"
             }
             prop_dynamic_ornament
             {
@@ -6538,6 +6553,7 @@ WaveSchedule
                 "origin" "219 -6158 -926"
                 "solid" "0"
                 "parentname" "the_funny_man_3"
+                "disableshadows" "1"
             }
             prop_dynamic
             {
@@ -6548,6 +6564,7 @@ WaveSchedule
                 "origin" "233 -6197 -926"
                 "solid" "0"
                 "parentname" "the_funny_man_3"
+                "disableshadows" "1"
             }
             info_particle_system
             {
@@ -7452,6 +7469,7 @@ WaveSchedule
 				"origin" "-75 0 475"
 				"model" "models/empty.mdl"
 				"solid" "0"
+                "disableshadows" "1"
 			}
 			prop_dynamic
 			{
@@ -7459,6 +7477,7 @@ WaveSchedule
 				"origin" "-75 0 3000"
 				"model" "models/empty.mdl"
 				"solid" "0"
+                "disableshadows" "1"
 			}
 
             // Homing Mines Attack
@@ -7778,6 +7797,7 @@ WaveSchedule
                 "targetname" "MultiBeamStart1"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "250 0 500"
                 "angles" "0 0 0"              
             }
@@ -7786,6 +7806,7 @@ WaveSchedule
                 "targetname" "MultiBeamStart2"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
                 "origin" "250 0 500"
                 "angles" "0 0 0"               
             }
@@ -7810,6 +7831,7 @@ WaveSchedule
                 "origin" "300 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -7843,6 +7865,7 @@ WaveSchedule
                 "origin" "-600 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -7876,6 +7899,7 @@ WaveSchedule
                 "origin" "900 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -7909,6 +7933,7 @@ WaveSchedule
                 "origin" "-1100 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -7942,6 +7967,7 @@ WaveSchedule
                 "origin" "1500 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -7975,6 +8001,7 @@ WaveSchedule
                 "origin" "-1700 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -8008,6 +8035,7 @@ WaveSchedule
                 "origin" "2100 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -8040,6 +8068,7 @@ WaveSchedule
                 "origin" "175 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -8072,6 +8101,7 @@ WaveSchedule
                 "origin" "-175 0 0"
                 "model" "models/empty.mdl"
                 "solid" "0"
+                "disableshadows" "1"
             }
             tf_point_weapon_mimic
             {
@@ -13271,7 +13301,7 @@ WaveSchedule
             Class Demoman
             ClassIcon demoknight_boss_tavish
             Skill Expert
-            Health 139975
+            Health 119975
             Scale 1.5
             Attributes MiniBoss
             Attributes UseBossHealthBar
@@ -13339,7 +13369,7 @@ WaveSchedule
                 Delay 0
                 Repeats 1
                 Cooldown -1
-                IfHealthBelow 70001
+                IfHealthBelow 60001
             }
 
             EventChangeAttributes
@@ -13952,15 +13982,15 @@ WaveSchedule
                         Target "fuckyougogoggadgetbeamidfk"
                         Action "trigger"
                         Delay  0
-                        Cooldown 3
-                        Repeats 4
+                        Cooldown 2
+                        Repeats 5
                     }
                     FireInput
                     {
                         Target !self
                         Action $ChangeAttributes
                         Param Swordsman_Default
-                        Delay 13
+                        Delay 10
                         Repeats 1
                         Cooldown -1
                     }

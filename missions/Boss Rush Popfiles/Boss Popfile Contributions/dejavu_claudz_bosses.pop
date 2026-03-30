@@ -8507,7 +8507,7 @@ WaveSchedule
             Tag engiboss
             UseHumanAnimations 1
             UseHumanModel 1
-            Health 75000
+            Health 60000
             MaxVisionRange 2000
 
             Item "The Texas Half-Pants"
@@ -8618,7 +8618,7 @@ WaveSchedule
                 Delay 0.0
                 Repeats 1
                 Cooldown 9999
-                IfHealthBelow 63000
+                IfHealthBelow 57000
             }
             ChangeAttributes
             {
@@ -8626,7 +8626,7 @@ WaveSchedule
                 Delay 0.0
                 Repeats 1
                 Cooldown 9999
-                IfHealthBelow 33000
+                IfHealthBelow 37000
             }
 
             FireInput
@@ -8675,7 +8675,7 @@ WaveSchedule
                 Action "start"
                 Delay 0.1
                 repeats 1
-                IfHealthBelow 33000
+                IfHealthBelow 37000
                 cooldown 99999
             }
             FireInput
@@ -8686,7 +8686,7 @@ WaveSchedule
                 Delay 0.2
                 Repeats 1
                 cooldown 99999
-                IfHealthBelow 33000
+                IfHealthBelow 37000
             }
 
 
@@ -8724,7 +8724,7 @@ WaveSchedule
                         action "Trigger"
                         delay 3
                         Repeats 1
-                        IfHealthAbove 33000
+                        IfHealthAbove 37000
                     }
                     FireInput
                     {
@@ -8732,7 +8732,7 @@ WaveSchedule
                         action "Trigger"
                         delay 2
                         Repeats 1
-                        IfHealthBelow 33000
+                        IfHealthBelow 37000
                     }
                     FireInput
                     {
@@ -8741,14 +8741,14 @@ WaveSchedule
                         param "items\powerup_pickup_haste.wav"
                         Delay 0.0
                         Repeats 1
-                        IfHealthBelow 33000
+                        IfHealthBelow 37000
                     }
                     AddCond
                     {
                         Name "TF_COND_RUNE_HASTE"
                         Delay 0.1
                         Duration 7
-                        IfHealthBelow 33000
+                        IfHealthBelow 37000
                     }
                 }
                 standardA
