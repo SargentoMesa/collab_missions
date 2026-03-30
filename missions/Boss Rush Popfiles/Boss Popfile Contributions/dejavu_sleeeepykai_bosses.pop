@@ -68,7 +68,7 @@ WaveSchedule
             logic_relay // Rocket Tank
             {
                 "targetname" "MasterMechanic_RocketTankPhase"
-                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-RocketTank,0,-1"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave9_Boss-RocketTank,0,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
                 "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
@@ -78,7 +78,7 @@ WaveSchedule
             logic_relay // Minigun Tank
             {
                 "targetname" "MasterMechanic_MinigunTankPhase"
-                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-MinigunTank,0,-1"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave9_Boss-MinigunTank,0,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
                 "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
@@ -88,7 +88,7 @@ WaveSchedule
             logic_relay // Railgun Tank
             {
                 "targetname" "MasterMechanic_RailgunTankPhase"
-                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave11_Boss-RailgunTank,0,-1"
+                "OnTrigger" "pop_interface,$ResumeWaveSpawn,Wave9_Boss-RailgunTank,0,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,MasterMechanic_TankPowered,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,mvm/mvm_tele_deliver.wav,0,-1"
                 "OnTrigger" "MasterMechanic_TankSummonFade,Fade,,0,-1"
@@ -475,7 +475,7 @@ WaveSchedule
                         Delay 0.5
                         Repeats 1
                         Cooldown -1
-                        Distance 64
+                        Distance 100
                         Duration 0.1
                         WaitUntilDone 0.1
                         OnDoneChangeAttributes "MasterMechanic_RocketTankSummonReal"
@@ -530,7 +530,7 @@ WaveSchedule
                         Delay 0.5
                         Repeats 1
                         Cooldown -1
-                        Distance 64
+                        Distance 100
                         Duration 0.1
                         WaitUntilDone 0.1
                         OnDoneChangeAttributes "MasterMechanic_MinigunTankSummonReal"
@@ -585,7 +585,7 @@ WaveSchedule
                         Delay 0.5
                         Repeats 1
                         Cooldown -1
-                        Distance 64
+                        Distance 100
                         Duration 0.1
                         WaitUntilDone 0.1
                         OnDoneChangeAttributes "MasterMechanic_RailgunTankSummonReal"

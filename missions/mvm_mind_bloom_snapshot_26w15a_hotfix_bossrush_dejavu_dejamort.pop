@@ -79,6 +79,7 @@ WaveSchedule
 
     PrecacheSound "tmc_fat_boss_intro.mp3"
     PrecacheSound "tmc_fat_boss_loop.mp3"
+    PrecacheSound "burnedatthestake.mp3"
 
     PrecacheSound "combattankphasestart.mp3"
     PrecacheSound "start_beam_whatever.mp3"
@@ -366,6 +367,10 @@ WaveSchedule
         Pyro
         {
             "damage bonus" 1.5
+        }
+        Heavyweapons
+        {
+            "damage bonus" 0.8
         }
     }
 
@@ -1020,8 +1025,8 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave1_Support-GRUHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave1_Support-GRUHeavies`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave2_Support-GRUHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-GRUHeavies`)
                         EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`)
                         EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
@@ -1067,6 +1072,15 @@ WaveSchedule
                 Action Mobber
             }
 
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave2_Support-GRUHeavies`, 5)
+                      "
+            }
+
 			DoneOutput
             {
                 Target BigNet
@@ -1074,6 +1088,8 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-Pyros`)
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave2_Support-Pyros`)
+                        EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave2_Support-GRUHeavies`)
+                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-GRUHeavies`)
                         
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant2`, 2.5)
                         EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_bonkplant3`, 2.5)
@@ -1138,7 +1154,8 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave3_Support-Pyros`, 5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave2_Support-Pyros`, 5)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave2_Support-GRUHeavies`, 5)
                       "
             }
         }
@@ -4797,7 +4814,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave10_Support-MiniBones`)
-                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave10_Support-MiniBones`)
+                        EntFire(`pop_interface`, `$ResumeWaveSpawn`, `Wave10_Support-Demomen`)
                       "
             }
             DoneOutput
@@ -5160,7 +5177,7 @@ WaveSchedule
             TotalCount 75
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 17.5
+            WaitBeforeStarting 25
             WaitBetweenSpawns 4
             TotalCurrency 75
 
@@ -5179,7 +5196,7 @@ WaveSchedule
             TotalCount 50
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 20
+            WaitBeforeStarting 27.5
             WaitBetweenSpawns 6
             TotalCurrency 50
 
@@ -5202,7 +5219,7 @@ WaveSchedule
             TotalCount 75
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 20
+            WaitBeforeStarting 28
             WaitBetweenSpawns 4
             TotalCurrency 75
 
@@ -6184,7 +6201,7 @@ WaveSchedule
 								[`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
 								[`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
 								[`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-								[`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+								[`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
 							])
 							break;
 						}
@@ -6250,7 +6267,7 @@ WaveSchedule
                                 [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
                                 [`soldier_burstfire`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
                                 [`heavy_steelfist_giant`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_SUPPORT],
-                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+                                [`heavy_champ_conch2`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT]
                             ])
                             break;
                         }
@@ -7445,62 +7462,29 @@ WaveSchedule
             }
         }
     }
-	Wave // Main Boss - The Three Trolldiers OR Planned Obsolescence
+	Wave // Main Boss - The Three Trolldiers
     {
         InitWaveOutput
         {
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`wave_init_arena_electricmine_relay`, `Trigger`)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`3?`, 0.5)
-                    if (!(`alternatewaves` in getroottable()))
-                    {
-                        IncludeScript(`alternatewaves`, getroottable());
-                    }
-                    if (!(`mvm_mind_bloom_arena_rng` in getroottable()))
-                    {
-                        IncludeScript(`mvm_mind_bloom_arena_rng`, getroottable());
-                    }
+
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
+
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/apocalyptic_reboot.wav`, 2.0, 2.0, 0.75);
-
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave17_TrolldierTrio`);
-                    MindBloomRNG.AddRNGArena(`wave_init_arena_electricmine_relay`, `Wave17_PlannedObsolescence`);
-                    MindBloomRNG.InitRNGArena();
-
-                    AlternateWaves.bTrackIcons = false;
-				    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_front_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
                   "
         }
         StartWaveOutput
@@ -7510,35 +7494,6 @@ WaveSchedule
             Param "
                     EntFire(`wave_start_relay`, `Trigger`)
                     EntFire(`BossRushPlayerSpawn`, `Enable`)
-
-                    AlternateWaves.ClearWaveIcons();
-
-                    switch (MindBloomRNG.GlobalIndex)
-                    {
-                        case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_gib_jumper_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_front_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-								  [`soldier_gib_jumper_flipped_lite`, 1, MVM_CLASS_FLAG_NORMAL],
-                            ])
-                            break;
-                        }
-
-                        case 1:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_gib_lite_giant`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_homewrecker_lite_armored`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`soldier_conch`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`pyro_neon`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-                    }
-
-                    MindBloomRNG.StartRNGArena();
                   "
         }
         DoneOutput
@@ -7576,16 +7531,9 @@ WaveSchedule
             }
         }
 
-        //// The Three Trolldiers ////
-		WaveSpawn
-		{
-			Name "Wave17_TrolldierTrio"
-			StartDisabled 1
-		}
 		WaveSpawn
 		{
 			Name "Wave17_TrolldierTrioSetup"
-			WaitForAllSpawned "Wave17_TrolldierTrio"
 			WaitBeforeStarting 5
 
 			FirstSpawnOutput
@@ -7600,7 +7548,6 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name "Wave17_TrolldierTrioSetup2"
-			WaitForAllSpawned "Wave17_TrolldierTrio"
 			WaitBeforeStarting 7.5
 
 			FirstSpawnOutput
@@ -7618,7 +7565,6 @@ WaveSchedule
 		WaveSpawn // Boss - Barry
 		{
 			Name "Wave17_Boss-Barry"
-			WaitForAllSpawned "Wave17_TrolldierTrio"
 			Where spawnbot_boss
 			TotalCount 1
 			MaxActive 1
@@ -7653,7 +7599,6 @@ WaveSchedule
 		WaveSpawn // Boss - Larry
 		{
 			Name "Wave17_Boss-Larry"
-			WaitForAllSpawned "Wave17_TrolldierTrio"
 			Where spawnbot_boss
 			TotalCount 1
 			MaxActive 1
@@ -7696,7 +7641,6 @@ WaveSchedule
 		WaveSpawn // Boss - Harry
 		{
 			Name "Wave17_Boss-Harry"
-			WaitForAllSpawned "Wave17_TrolldierTrio"
 			Where spawnbot_boss
 			TotalCount 1
 			MaxActive 1
@@ -7727,189 +7671,6 @@ WaveSchedule
                       "
             }
 		}
-
-        WaveSpawn
-        {
-            Name "Wave17_TrolldierCheck"
-            WaitForAllDead "Wave17_Boss-Barry"
-        }
-        WaveSpawn
-        {
-            Name "Wave17_TrolldierCheck"
-            WaitForAllDead "Wave17_Boss-Larry"
-        }
-        WaveSpawn
-        {
-            Name "Wave17_TrolldierCheck"
-            WaitForAllDead "Wave17_Boss-Harry"
-        }
-
-        WaveSpawn
-        {
-            Name "Wave17_TrolldierComplete"
-            WaitForAllSpawned "Wave17_TrolldierCheck"
-
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`)
-                      "
-            }
-        }
-
-        //// Planned Obsolescence ////
-        WaveSpawn
-        {
-            Name "Wave17_PlannedObsolescence"
-            StartDisabled 1
-        }
-        WaveSpawn
-        {
-            Name "Wave17_PlannedObsolescenceSetup"
-            WaitForAllSpawned "Wave17_PlannedObsolescence"
-            
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`bosswavelogic`, `ForceSpawn`)
-                      "
-            }
-        }
-        WaveSpawn // Boss
-        {
-            Name "Wave17_Boss-PlannedObsolescence"
-            WaitForAllSpawned "Wave17_PlannedObsolescence"
-            Where spawnbot_boss
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 12.5
-            WaitBetweenSpawns 0
-            TotalCurrency 100
-
-            TFBot
-            {
-                Template BigFunnyBossMan
-                Action Mobber
-            }
-            FirstSpawnOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
-                      "
-            }
-            DoneOutput
-            {
-                Target BigNet
-                Action RunScriptCode
-                Param "
-                        EntFire(`arena_electricmine_barrier`, `Close`)
-                        EntFire(`backupteleporting`, `Kill`)
-                        EntFire(`player`, `SetScriptOverlayMaterial`, null, 5)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave17_TheHeavies`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `disableformidboss`)
-                        EntFire(`pop_interface`, `$KillWaveSpawn`, `forthesplashattack`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave17_TheHeavies`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `disableformidboss`)
-                        EntFire(`pop_interface`, `$FinishWaveSpawn`, `forthesplashattack`)
-                        EntFire(`tf_gamerules`, `$FinishWaveNoUnspawnedMoney`, null, 10)
-                      "
-            }
-        }
-
-        WaveSpawn // Support Heavies
-        {
-            Name "Wave17_TheHeavies"
-            WaitForAllSpawned "Wave17_PlannedObsolescence"
-            Where spawnbot_support
-            Support 1
-            TotalCount 100
-            MaxActive 2
-            SpawnCount 1
-            WaitBeforeStarting 20
-            WaitBetweenSpawns 5
-            TotalCurrency 100
-
-            TFBot
-            {
-                Class Heavy
-                Skill Hard
-                Action Mobber
-            }
-        }
-
-        WaveSpawn // Support Conch Soldiers and Homewrecker Demos
-        {
-            Name "disableformidboss"
-            WaitForAllDead ""
-            Where spawnbot_support
-            TotalCount 50
-            MaxActive 10
-            SpawnCount 1
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-            Support 1
-            TotalCurrency 50
-            StartDisabled 1
-
-            RandomChoice
-            {
-                TFBot
-                { 
-                    Template T_TFBot_Soldier_Extended_Concheror
-                    Action Mobber
-                }
-                TFBot
-                {
-                    Template T_TFBot_Demoman_Knight
-                    ClassIcon    pyro_homewrecker_lite_armored
-                    Name    "Chargin' Mace"
-                    Item    "The Homewrecker"
-                    Item    "The Tide Turner"
-                    Health 300
-                    Scale 1.3
-                    Action Mobber
-                    CharacterAttributes
-                    {
-                        "dmg pierces resists absorbs"    1
-                        "charge time increased" 2
-                    }
-                }
-            }
-        }
-
-        WaveSpawn // Support Neon Annihilator Pyros
-        {
-            Name "forthesplashattack"
-            WaitForAllDead ""
-            Where spawnbot_support
-            TotalCount 50
-            MaxActive 12
-            SpawnCount 4
-            WaitBeforeStarting 0
-            WaitBetweenSpawns 0
-            Support 1
-            TotalCurrency 50
-            StartDisabled 1
-
-            TFBot
-            { 
-                Class Pyro
-                Name "Armored Neon Annihilator"
-                WeaponRestrictions MeleeOnly
-                Health 300
-                Scale 1.3
-                Item "The Neon Annihilator"
-                ClassIcon pyro_neon
-                Action Mobber
-            }
-        }
     }
 	Wave // Main Boss - Overclocked Dave Reborn
     {
@@ -7954,6 +7715,11 @@ WaveSchedule
                         COMBATTANK_ROTATE_SPEED_DEFAULT = 1.4   // default: 0.8
                         COMBATTANK_MAX_RANGE = 2000            // default: 1400
                     })
+
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -8223,6 +7989,12 @@ WaveSchedule
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`Good Luck :)`, 0.5)
                     EntFire(`howmanyofthemleft`,`SetTextSize`,`5`, 0.5)
+
+                    if (!(`claudz_logic_v3` in getroottable()))
+					{
+						IncludeScript(`claudz_logic_v3`, getroottable());
+					}
+
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();

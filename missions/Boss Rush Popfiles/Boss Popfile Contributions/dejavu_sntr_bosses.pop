@@ -474,7 +474,7 @@ WaveSchedule
 			Name "Giant Treadonator"
 			Skill Hard
 			Attributes MiniBoss
-			Health 70000
+			Health 60000
 			StripItem "Zombie Pyro"
 			Action Mobber
 			MaxVisionRange 1500 // used for turret
@@ -499,7 +499,7 @@ WaveSchedule
 				Delay 0
 				Cooldown 0
 				Repeats 1
-				IfHealthBelow 8000
+				IfHealthBelow 30001
 				Name "Aggressive"
 			}
 			EventChangeAttributes

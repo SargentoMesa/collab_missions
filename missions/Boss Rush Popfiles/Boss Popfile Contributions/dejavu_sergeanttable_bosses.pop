@@ -1300,14 +1300,6 @@ WaveSchedule
 				Action "Trigger"
 				Delay 0.1
 			}
-            OnSpawnOutput
-            {
-                Target "tf_gamerules"
-                Action RunScriptCode
-                Param "
-                IncludeScript(`claudz_logic_v3`)
-                "
-            }
             point_clientcommand
             {
                 "targetname" "client_commander"
@@ -1730,6 +1722,292 @@ WaveSchedule
         }
 
         //// PLANNED OBSOLESCENCE ////
+        bossdeathanimation
+		{
+			OnSpawnOutput
+			{
+				Target "tf_gamerules"
+				Action "PLayVO"
+				Param "burnedatthestake.mp3"
+				Delay 3
+			}
+			OnSpawnOutput
+			{
+				Target "deezexplosions"
+				Action "pickrandomshuffle"
+				Delay 0
+			}
+			OnSpawnOutput
+			{
+				Target "deezexplosions"
+				Action "pickrandomshuffle"
+				Delay 1
+			}
+			OnSpawnOutput
+			{
+				Target "deezexplosions"
+				Action "pickrandomshuffle"
+				Delay 2
+			}
+			OnSpawnOutput
+			{
+				Target "deezexplosions"
+				Action "pickrandomshuffle"
+				Delay 2.3
+			}
+			OnSpawnOutput
+			{
+				Target "blowthemf"
+				Action "enable"
+				Delay 3
+			}
+			OnSpawnOutput
+			{
+				Target "finalboss_defeat"
+				Action "enable"
+				Delay 0
+			}
+			OnSpawnOutput
+			{
+				Target "finalboss_defeat"
+				Action "SetPlaybackRate"
+				Param 0.0001
+				Delay 0.1
+			}
+			OnSpawnOutput
+			{
+				Target "finalboss_defeat"
+				Action "SetPlaybackRate"
+				Param 0.35
+				Delay 3
+			}
+			OnSpawnOutput
+			{
+				Target "finalboss_defeat"
+				Action "SetPlaybackRate"
+				Param 5
+				Delay 8.5
+			}
+			OnSpawnOutput
+			{
+				Target "boss_is_dead"
+				Action "Start"
+				Delay 3
+			}
+			OnSpawnOutput
+			{
+				Target "finalboss_defeat"
+				Action "SetAnimation"
+				Param "dieviolent"
+				Delay 2.9
+			}
+			// OnParentKilledOutput
+			// {
+			// 	Target "boss_about_to_blow"
+			// 	Action "start"
+			// 	Delay 3
+			// }
+			// OnParentKilledOutput
+			// {
+			// 	Target "finalboss_defeat"
+			// 	Action "SetPlaybackRate"
+			// 	Param "1.5"
+			// 	Delay 6
+			// }
+			logic_timer
+			{
+				"targetname" "blowthemf"
+				"OnTimer" "deezexplosions,pickrandomshuffle,,0,-1"
+				"RefireTime" "0.27"
+				"StartDisabled" "1"
+			}
+			logic_case
+			{
+				"targetname" "deezexplosions"
+				"OnCase01"	"generator_explosion,trigger,,0,-1"
+				"OnCase02"	"generator_explosion1,trigger,,0,-1"
+				"OnCase03"	"generator_explosion2,trigger,,0,-1"
+				"OnCase04"	"generator_explosion3,trigger,,0,-1"
+				"OnCase05"	"generator_explosion4,trigger,,0,-1"
+				"OnCase06"	"generator_explosion5,trigger,,0,-1"
+				"OnCase07"	"generator_explosion6,trigger,,0,-1"
+				"OnCase08"	"generator_explosion7,trigger,,0,-1"
+			}
+			
+
+			logic_relay
+			{
+				"targetname"	"generator_explosion"
+				"OnTrigger"		"explosion,start,,0,-1"
+				"OnTrigger"		"explosion,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|weapons\airstrike_small_explosion_01.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion1"
+				"OnTrigger"		"explosion1,start,,0,-1"
+				"OnTrigger"		"explosion1,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|weapons\airstrike_small_explosion_02.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion2"
+				"OnTrigger"		"explosion2,start,,0,-1"
+				"OnTrigger"		"explosion2,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|ambient\explosions\explode_7.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion3"
+				"OnTrigger"		"explosion3,start,,0,-1"
+				"OnTrigger"		"explosion3,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|weapons\airstrike_small_explosion_03.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion4"
+				"OnTrigger"		"explosion4,start,,0,-1"
+				"OnTrigger"		"explosion4,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|ambient\explosions\explode_3.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion5"
+				"OnTrigger"		"explosion5,start,,0,-1"
+				"OnTrigger"		"explosion5,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|weapons\airstrike_small_explosion_02.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion6"
+				"OnTrigger"		"explosion6,start,,0,-1"
+				"OnTrigger"		"explosion6,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|ambient\explosions\explode_7.wav,0,-1"
+			}
+			logic_relay
+			{
+				"targetname"	"generator_explosion7"
+				"OnTrigger"		"explosion7,start,,0,-1"
+				"OnTrigger"		"explosion7,stop,,0.1,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=50|ambient\explosions\explode_4.wav,0,-1"
+			}
+			info_particle_system
+			{
+				"targetname" "explosion"
+				"origin" "20 20 30"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "explosion1"
+				"origin" "0 0 110"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "explosion2"
+				"origin" "-30 0 70"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "explosion3"
+				"origin" "0 -20 60"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "boomexplosion"
+				"origin" "20 -20 90"
+				"angles" "0 0 0"
+				"effect_name" "hightower_explosion"
+				
+			}
+			
+			info_particle_system
+			{
+				"targetname" "explosion4"
+				"origin" "0 20 60"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "explosion5"
+				"origin" "20 0 50"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			
+
+			info_particle_system
+			{
+				"targetname" "explosion6"
+				"origin" "0 0 30"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "explosion7"
+				"origin" "0 10 50"
+				"angles" "0 0 0"
+				"effect_name" "rd_robot_explosion"
+				
+			}
+			info_particle_system
+			{
+				"targetname" "boss_is_dead"
+				"origin" "0 0 120"
+				"angles" "-90 0 0"
+				"effect_name" "charge_up"
+			}
+			KeepAlive 1
+			info_particle_system
+			{
+				"targetname" "boss_is_dead1"
+				"origin" "0 0 70"
+				"angles" "-90 0 0"
+				"effect_name" "mvm_tank_destroy"
+			}
+			info_particle_system
+			{
+				"targetname" "boss_is_dead1"
+				"origin" "0 0 120"
+				"angles" "-90 0 0"
+				"effect_name" "hammer_bell_ring_shockwave"
+			}
+			prop_dynamic
+			{
+				"targetname" "finalboss_defeat"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"color" "255 255 255"
+				"model" "models\bots\soldier_boss\bot_soldier_boss_gibby.mdl"
+				"modelscale" "1.8"
+				"defaultanim" "primary_death_burning"
+				"disablebonefollowers" "1"
+				"OnAnimationDone" "!self,SetPlaybackRate,0,-1,-1"
+				"OnAnimationDone" "bossdeath1,trigger,-1,-1"
+				"OnAnimationDone" "!self,Kill,,-1,-1"
+				"OnAnimationDone" "blowthemf,disable,,-1,-1"
+				"OnAnimationDone" "boss_is_dead1,start,,-1,-1"
+				"OnAnimationDone" "tf_gamerules,PlayVO,planned_obsolescence_death.mp3,-1,-1"
+				"startdisabled" "1"
+				"skin" "1"
+			}
+		}
         scatter_rockets_base
         {
             RemoveIfKilled "location"
@@ -3777,14 +4055,6 @@ WaveSchedule
 				Action SetAttached
 				Param !self
 			}
-			OnSpawnOutput
-            {
-                Target "tf_gamerules"
-                Action RunScriptCode
-                Param "
-                IncludeScript(`claudz_logic_v3`)
-                "
-            }
 			info_target
 			{
 				"targetname" "larry_target"
@@ -6835,14 +7105,6 @@ WaveSchedule
 		}
 		FallenShocksLogic
 		{
-			OnSpawnOutput
-            {
-                Target "tf_gamerules"
-                Action RunScriptCode
-                Param "
-                IncludeScript(`claudz_logic_v3`)
-                "
-            }
 			OnSpawnOutput
             {
                 Target boss_target
