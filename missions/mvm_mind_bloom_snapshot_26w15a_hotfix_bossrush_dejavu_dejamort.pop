@@ -99,6 +99,14 @@ WaveSchedule
         //// CORE BOSS RUSH LOGIC ////
         BossRushMapLogic
         {
+            OnSpawnOutput
+            {
+                Target tf_gamerules
+                Action Runscriptcode
+                Param "
+                    IncludeScript(`claudz_logic_v3`)
+                "
+            }
             prop_dynamic
             {
                 "targetname" "tvtime"
@@ -2695,7 +2703,7 @@ WaveSchedule
 					}
 					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
 
-					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_Treadonator`);
+					MindBloomRNG.AddRNGArena(`wave_init_arena_bonkplant_relay`, `Wave7_Treadonator`);
 					MindBloomRNG.AddRNGArena(`wave_init_arena_shank_relay`, `Wave7_MagicianLord`);
 					MindBloomRNG.AddRNGArena(`wave_init_arena_saxford_relay`, `Wave7_TimedDisaster`);
 					MindBloomRNG.AddRNGArena(`wave_init_arena_industrial_relay`, `Wave7_SlaveKnightDael`);

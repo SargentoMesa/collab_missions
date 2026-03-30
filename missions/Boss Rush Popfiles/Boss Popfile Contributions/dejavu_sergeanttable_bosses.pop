@@ -1149,50 +1149,50 @@ WaveSchedule
             }
             OnSpawnOutput
             {
-                target "ringmarkerone"
+                target "ringmarkerShocksone"
                 action "kill"
                 delay "5.5"
             }
             OnSpawnOutput
             {
-                target "ringmarkertwo"
+                target "ringmarkerShockstwo"
                 action "kill"
                 delay "5.5"
             }
             OnSpawnOutput
             {
-                target "roundbeamtest"
+                target "roundbeamtestShocks"
                 action "TurnOff"
                 delay "4.5"
             }
             OnSpawnOutput
             {
-                target "roundbeamtest"
+                target "roundbeamtestShocks"
                 action "StrikeOnce"
                 delay "0"
             }
             OnSpawnOutput
             {
-                target "roundbeamtest"
+                target "roundbeamtestShocks"
                 action "kill"
                 delay "5.0"
             }
             OnSpawnOutput
             {
-                target "ringmarkerone"
+                target "ringmarkerShocksone"
                 action "RunScriptCode"
                 param "SetMoveIgnoreSolid(self, 800)"
             }
             OnSpawnOutput
             {
-                target "roundbeamtest"
+                target "roundbeamtestShocks"
                 action "RunScriptCode"
                 param "RingRegister(self,100,CzUtil.GetTracking(`ringOwnerShocks`))"
                 delay 0.0
             }
             OnSpawnOutput
             {
-                target "ringmarkertwo"
+                target "ringmarkerShockstwo"
                 action "RunScriptCode"
                 param "SetMoveIgnoreSolid(self, 800)"
                 //delay 0.1
@@ -1200,7 +1200,7 @@ WaveSchedule
             prop_dynamic
             {
                 "parentname" ""
-                "targetname" "ringmarkerone"
+                "targetname" "ringmarkerShocksone"
                 "model" "models/empty.mdl"
                 "solid" "0"
                 "origin" "0 0 30"                
@@ -1208,7 +1208,7 @@ WaveSchedule
             prop_dynamic
             {
                 "parentname" ""
-                "targetname" "ringmarkertwo"
+                "targetname" "ringmarkerShockstwo"
                 "model" "models/empty.mdl"
                 "solid" "0"
                 "angles" "0 180 0"
@@ -1217,10 +1217,10 @@ WaveSchedule
             env_beam
             {
                 "parentname" ""
-                "targetname" "roundbeamtest"
+                "targetname" "roundbeamtestShocks"
                 "BoltWidth" "6"
-                "LightningStart" "ringmarkerone"
-                "LightningEnd" "ringmarkertwo"
+                "LightningStart" "ringmarkerShocksone"
+                "LightningEnd" "ringmarkerShockstwo"
                 "origin" "0 0 30"
                 "renderamt" "200"
                 "rendercolor" "255 255 255"
