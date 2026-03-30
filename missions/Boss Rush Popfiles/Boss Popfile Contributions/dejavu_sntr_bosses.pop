@@ -560,7 +560,7 @@ WaveSchedule
 						"dmg taken from crit reduced" 0.5
 					}
 				}
-				Aggressive
+				Aggressive [$SIGSEGV]
 				{
 					ItemAttributes
 					{
