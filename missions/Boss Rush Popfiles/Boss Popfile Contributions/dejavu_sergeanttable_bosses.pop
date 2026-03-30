@@ -1187,7 +1187,7 @@ WaveSchedule
             {
                 target "roundbeamtest"
                 action "RunScriptCode"
-                param "RingRegister(self,60,CzUtil.GetTracking(`ringOwnerShocks`))"
+                param "RingRegister(self,100,CzUtil.GetTracking(`ringOwnerShocks`))"
                 delay 0.0
             }
             OnSpawnOutput

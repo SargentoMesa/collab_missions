@@ -759,33 +759,6 @@ WaveSchedule
                 "ontrigger" "tf_gamerules,PlayVO,ambient\explosions\explode_2.wav,0,-1"
             }
         }
-        // skybox_stuff
-        // {
-        //     func_rotating
-        //     {
-        //         "targetname" "mothership_rotate"
-        //         "maxspeed" "5"
-        //         "origin" "-13136 4057 1005"
-        //         "spawnflags" "65"
-        //         "mins" "-0.1 -0.1 -0.1"
-        //         "maxs" "0.1 0.1 0.1"
-        //         "dmg" "0"
-        //         "fanfriction" "100"
-        //         "volume" "3"
-        //     }
-        //     prop_dynamic
-        //     {
-        //         "parentname" "mothership_rotate"
-        //         "TargetName" "skyboxshids"
-        //         "model" "models/props_invasion/skybox/mothership.mdl"
-        //         "rendermode" "1"
-        //         "solid" "0"
-        //         "angles" "0 0 0"
-        //         "origin" "-13136 4057 1005"
-        //         "modelscale" "1.1"
-                
-        //     }
-        // }
         prop_ufo
         { //548 -4567 1659
             OnSpawnOutput
