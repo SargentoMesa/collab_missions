@@ -793,7 +793,7 @@ WaveSchedule
 			StripItem "Zombie Heavy"
 			StripItemSlot 0
 			Name "Tank"
-			Health 8000 // only %hp increase
+			Health 6000 // only %hp increase
 			Attributes MiniBoss
 			Attributes DisableDodge
 			Attributes UseBossHealthBar
@@ -840,7 +840,7 @@ WaveSchedule
 				Cooldown 20
 				Repeats 0
 				Type "No"
-				IfHealthBelow 7500
+				IfHealthBelow 5500
 			}
 			Sequence
 			{
@@ -848,7 +848,7 @@ WaveSchedule
 				Delay 10
 				Cooldown 20
 				Repeats 0
-				IfHealthBelow 7500
+				IfHealthBelow 5500
 			}
 			WeaponSwitch
 			{
@@ -856,7 +856,7 @@ WaveSchedule
 				Cooldown 20
 				Repeats 0
 				Type "Secondary"
-				IfHealthBelow 7500
+				IfHealthBelow 5500
 			}
 			FireWeapon
 			{
@@ -864,7 +864,7 @@ WaveSchedule
 				Cooldown 20
 				Repeats 0
 				Type "Primary"
-				IfHealthBelow 7500
+				IfHealthBelow 5500
 			}
 			WeaponSwitch
 			{
@@ -872,7 +872,7 @@ WaveSchedule
 				Cooldown 20
 				Repeats 0
 				Type "Melee"
-				IfHealthBelow 7500
+				IfHealthBelow 5500
 			}
 			ItemAttributes
 			{

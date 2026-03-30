@@ -4375,7 +4375,7 @@ WaveSchedule
 			Tank
 			{
 				Name "combattank|rocketpod|rocketpod$pingsound|npc/combine_gunship/ping_search.wav"
-				Health 20000
+				Health 15000
 				Speed 0
 				ClassIcon tank_combat_rocket_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
@@ -4404,7 +4404,7 @@ WaveSchedule
 			Tank
 			{
 				Name "combattank|minigun|minigun$pingsound|npc/combine_gunship/ping_search.wav"
-				Health 20000
+				Health 15000
 				Speed 0
 				ClassIcon tank_combat_minigun_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
@@ -4433,7 +4433,7 @@ WaveSchedule
 			Tank
 			{
 				Name "combattank|railgun|railgun$pingsound|npc/combine_gunship/ping_search.wav"
-				Health 20000
+				Health 15000
 				Speed 0
 				ClassIcon tank_combat_railgun_dual_kai
 				StartingPathTrackNode "tank_mechanic_1"
@@ -7811,7 +7811,7 @@ WaveSchedule
                 StartingPathTrackNode "tank_loop_1"
                 ClassIcon 	tank_combat_railgun_homingburst
                 SpawnTemplate teleforbossafterdeath
-                Health 40000
+                Health 30000
                 Speed 75
                 Skin 0
         

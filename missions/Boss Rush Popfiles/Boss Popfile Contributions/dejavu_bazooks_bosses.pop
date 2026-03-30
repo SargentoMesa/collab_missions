@@ -1788,16 +1788,6 @@ WaveSchedule
 			Item "Fists of Steel"
             Tag bossminion
             Tag donothurtinbabyjail
-			ItemAttributes
-			{
-				ItemName "Fists of Steel"
-				//"damage causes airblast" 1
-				"damage bonus" 1.4
-			}
-            CharacterAttributes
-            {
-                "move speed bonus" 1.2
-            }
 		}
         T_TFBot_Punch_Jr  //Spawn him on random places
 		{
@@ -2222,11 +2212,6 @@ WaveSchedule
 			Health 125
 			Tag bossminion
 			Action Mobber [$SIGSEGV]
-			CharacterAttributes
-			{
-				"damage bonus" 1.6
-				"move speed bonus" 1.2
-			}
 		}
     }
 }

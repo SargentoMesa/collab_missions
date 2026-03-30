@@ -9680,17 +9680,6 @@ WaveSchedule
                         Cooldown 15.0
                         Repeats 6
                     }
-
-                    FireInput
-                    {
-                        Target "!self"
-                        Action "RunScriptCode"
-                        Param "Contact.HurtCannonOrbital()"
-                        Delay 9
-                        Repeats 9999
-                        Cooldown 0.5
-                    }
-
                 }
             }
 

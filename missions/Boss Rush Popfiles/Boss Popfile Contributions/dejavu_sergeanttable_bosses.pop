@@ -14095,7 +14095,7 @@ WaveSchedule
 			Class Soldier
 			ClassIcon soldier_gib_jumper_lite
 			Skill Expert
-			Health 25000
+			Health 22500
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
@@ -14123,7 +14123,6 @@ WaveSchedule
 				"increased jump height" 0.9
 				"cannot be backstabbed" 1
 				"always allow taunt" 1
-				
 			}
 
 			ItemAttributes
@@ -14609,7 +14608,7 @@ WaveSchedule
 			Class Soldier
 			ClassIcon soldier_gib_jumper_front_lite
 			Skill Expert
-			Health 25000
+			Health 22500
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
@@ -15036,7 +15035,7 @@ WaveSchedule
 			Class Soldier
 			ClassIcon soldier_gib_jumper_flipped_lite
 			Skill Expert
-			Health 25000
+			Health 22500
 			Attributes UseBossHealthBar
 			Attributes DisableDodge
 			ExtAttr IgnoreBuildings
