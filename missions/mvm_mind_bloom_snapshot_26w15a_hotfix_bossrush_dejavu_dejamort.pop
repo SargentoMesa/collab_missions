@@ -416,8 +416,6 @@ WaveSchedule
 					EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`17`, 0.5)
 
-                    IncludeScript(`claudz_logic_v3`)
-
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -950,8 +948,6 @@ WaveSchedule
                     {
                         IncludeScript(`music_system_ment`, getroottable())
                     }
-
-                    IncludeScript(`claudz_logic_v3`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -5716,8 +5712,6 @@ WaveSchedule
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`6`, 0.5)
 
-                    IncludeScript(`claudz_logic_v3`)
-
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
@@ -7472,8 +7466,6 @@ WaveSchedule
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`3?`, 0.5)
 
-                    IncludeScript(`claudz_logic_v3`)
-
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
 						MusicSystemMent.ResetAll();
@@ -7708,8 +7700,6 @@ WaveSchedule
                         COMBATTANK_ROTATE_SPEED_DEFAULT = 1.4   // default: 0.8
                         COMBATTANK_MAX_RANGE = 2000            // default: 1400
                     })
-
-                    IncludeScript(`claudz_logic_v3`)
 
                     if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{
@@ -7979,8 +7969,6 @@ WaveSchedule
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`Good Luck :)`, 0.5)
                     EntFire(`howmanyofthemleft`,`SetTextSize`,`5`, 0.5)
-
-                    IncludeScript(`claudz_logic_v3`)
 
 					if (MusicSystemMent.MasterEntity == null || !MusicSystemMent.MasterEntity.IsValid())
 					{

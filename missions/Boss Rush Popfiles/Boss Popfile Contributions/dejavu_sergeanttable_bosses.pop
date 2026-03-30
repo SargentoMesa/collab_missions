@@ -252,7 +252,7 @@ WaveSchedule
         "SwordmanSwordBeam"
         {
             OriginalItemName "The Pomson 6000"
-            "damage bonus" 10
+            "damage bonus" 30
             "always crit" 1
             "spread angle pattern" "0 0 0|0 5 0|0 10 0|0 15 0 |0 20 0|0 25 0|0 -5 0|0 -10 0|0 -15 0|0 -20 0|0 -25 0"
             "mult projectile count" 11
@@ -995,30 +995,30 @@ WaveSchedule
                 Delay  0
             }
         }
-        ringOwner
+        ringOwnerGeneric
         {
             NoFixUp 1
             env_entity_maker
             {   
-                "targetname" "ring_maker"
-                "entitytemplate" "ringshottest"
+                "targetname" "ring_makerGeneric"
+                "entitytemplate" "ringshottestGeneric"
             }
             OnSpawnOutput
             {
                 target "!activator"
                 action "RunScriptCode"
-                param "CzUtil.AddTracking(`ringOwner`, self)"
+                param "CzUtil.AddTracking(`ringOwnerGeneric`, self)"
                 delay 0.0
             }
             OnParentKilledOutput
             {
-                target "ring_maker"
+                target "ring_makerGeneric"
                 action "RunScriptCode"
-                param "CzUtil.RemoveTracking(`ringOwner`)"
+                param "CzUtil.RemoveTracking(`ringOwnerGeneric`)"
                 delay 0.0
             }
         }
-        ringshottest
+        ringshottestGeneric
         {
             KeepAlive 1
             OnSpawnOutput
@@ -1068,7 +1068,7 @@ WaveSchedule
             {
                 target "roundbeamtest"
                 action "RunScriptCode"
-                param "RingRegister(self,80,CzUtil.GetTracking(`ringOwner`))"
+                param "RingRegister(self,80,CzUtil.GetTracking(`ringOwnerGeneric`))"
                 delay 0.0
             }
             OnSpawnOutput
@@ -1119,7 +1119,7 @@ WaveSchedule
             NoFixUp 1
             env_entity_maker
             {   
-                "targetname" "ring_maker"
+                "targetname" "ring_makerShocks"
                 "entitytemplate" "ringshottestShocks"
             }
             OnSpawnOutput
@@ -1131,7 +1131,7 @@ WaveSchedule
             }
             OnParentKilledOutput
             {
-                target "ring_maker"
+                target "ring_makerShocks"
                 action "RunScriptCode"
                 param "CzUtil.RemoveTracking(`ringOwnerShocks`)"
                 delay 0.0
@@ -1627,11 +1627,11 @@ WaveSchedule
                 "OnTrigger"  "jumpattacksfx*,playsound,,10.7,-1"
                 "OnTrigger"  "jumpattacksfx*,stopsound,,10.8,-1"
                 "OnTrigger"  "shake_boss,startshake,,10.7,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,10.7,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,10.7,-1"
                 "OnTrigger"  "tcs_stickybomb_rain,fireonce,,10.7,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,11.3,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,11.3,-1"
                 "OnTrigger"  "tcs_stickybomb_rain,fireonce,,11.3,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,11.9,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,11.9,-1"
                 "OnTrigger"  "tcs_stickybomb_rain,fireonce,,11.9,-1"
             }
             logic_relay
@@ -1692,7 +1692,7 @@ WaveSchedule
                 "targetname" "jumpattackphase2"
                 "OnTrigger"  "!activator,$PlaySequence,taunt_zoomin_broom_exit,0,-1"
                 "OnTrigger"  "!activator,$PlaySequence,run_melee,1,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,0.8,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,0.8,-1"
                 "OnTrigger"  "jumpattackdust*,start,,0.8,-1"
                 "OnTrigger"  "jumpattackdust*,stop,,1,-1"
                 "OnTrigger"  "jumpattacksfx*,playsound,,0.8,-1"
@@ -1707,9 +1707,9 @@ WaveSchedule
                 "targetname" "jumpattackphase2_2"
                 "OnTrigger"  "!activator,$PlaySequence,taunt_zoomin_broom_exit,0,-1"
                 "OnTrigger"  "!activator,$PlaySequence,run_melee,1,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,0.8,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,0.9,-1"
-                "OnTrigger"  "ring_maker,ForceSpawn,,1,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,0.8,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,0.9,-1"
+                "OnTrigger"  "ring_makerGeneric,ForceSpawn,,1,-1"
                 "OnTrigger"  "jumpattackdust*,start,,0.8,-1"
                 "OnTrigger"  "jumpattackdust*,stop,,1,-1"
                 "OnTrigger"  "jumpattacksfx*,playsound,,0.8,-1"
@@ -3943,11 +3943,11 @@ WaveSchedule
 				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_1.wav,0.25,-1"
 				"OnTrigger" "larrybigshoelmao,Disable,,0.25,-1"
 				"OnTrigger" "barrybigshoelmao,Disable,,0.25,-1"
-				"OnTrigger" "ring_maker,Forcespawn,,0.25,-1"
-				"OnTrigger" "ring_maker,Forcespawn,,1.25,-1"
-				"OnTrigger" "ring_maker,Forcespawn,,2.25,-1"
-				"OnTrigger" "ring_maker,Forcespawn,,3.25,-1"
-				"OnTrigger" "ring_maker,Forcespawn,,4.25,-1"
+				"OnTrigger" "ring_makerGeneric,Forcespawn,,0.25,-1"
+				"OnTrigger" "ring_makerGeneric,Forcespawn,,1.25,-1"
+				"OnTrigger" "ring_makerGeneric,Forcespawn,,2.25,-1"
+				"OnTrigger" "ring_makerGeneric,Forcespawn,,3.25,-1"
+				"OnTrigger" "ring_makerGeneric,Forcespawn,,4.25,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,Barry_DefaultTrolldier,5,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,Larry_DefaultTrolldier,5,-1"
 			}
@@ -5854,7 +5854,7 @@ WaveSchedule
                 "OnTrigger"  "!activator,$Taunt,,0.11,-1"
                 "OnTrigger"  "SwordBeamMimic,fireonce,,1.5,-1"
                 "OnTrigger"  "tf_gamerules,playvo,weapons\shooting_star_shoot_crit.wav,1.5,-1"
-                "OnTrigger"  "!activator,$RemoveCond,7,1.6,-1"
+                "OnTrigger"  "!activator,$RemoveCond,7,1.7,-1"
             }
             tf_point_weapon_mimic
             {
@@ -6442,13 +6442,44 @@ WaveSchedule
                 "OnTrigger" "TheRealShocks,Enable,,17,-1"
                 "OnTrigger" "ShocksItem,Enable,,17,-1"
                 "OnTrigger" "ShocksEvilParticle*,Stop,,20,-1"
-
+                "OnTrigger"  "upper_text_shocks,display,,21,-1"
+                "OnTrigger"  "middle_text_shocks,display,,23,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_laughevil01.mp3,25,-1"
                 "OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)28-1"
                 "OnTrigger" "TheRealShocks,Disable,,28,-1"
                 "OnTrigger" "ShocksItem,Disable,,28,-1"
             }
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "upper_text_shocks"
+				"message" "THE ONE WHO STARTED IT ALL"
+				"x" "-1"
+				"y" "0.2"
+				"spawnflags" "1"
+				"effect" "2"
+				"channel" "2"
+				"color" "255 255 255"
+				"fxtime" "0.2"
+				"fadeout" "1"
+				//"fadein" "0"
+				"holdtime" "8"
+			}
 
+			game_text
+			{
+				"origin" "1984 1984 99999"
+				"targetname" "middle_text_shocks"
+				"message" "MAJOR SHOCKS"
+				"x" "-1"
+				"y" "0.25"
+				"channel" "1"
+				"spawnflags" "1"
+				"color" "255 0 0"
+				"fadein" "0.2"
+				"fadeout" "1"
+				"holdtime" "6"
+			}
             prop_dynamic
             {
                 "targetname" "TheRealShocks"
@@ -7507,23 +7538,23 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_dominationengineer03.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,double_stomp,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,0.6,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageRight,0.6,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageRight,0.6,-1"
                 "OnTrigger" "StompDamageRight,Enable,,0.6,-1"
                 "OnTrigger" "StompDamageRight,Disable,,0.7,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,1.6,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageLeft,1.6,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageLeft,1.6,-1"
                 "OnTrigger" "StompDamageLeft,Enable,,1.6,-1"
                 "OnTrigger" "StompDamageLeft,Disable,,1.7,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_zoomin_broom_exit,2.2,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,3.1,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,3.1,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageBig,3.1,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,getyofatassup,3.1,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageBig,3.1,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,getyofatassup,3.1,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_zoomin_broom_exit,3.2,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,4.1,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,4.1,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,StompDamageBig,4.1,-1"
-                "OnTrigger" "ring_maker,ForceSpawnAtEntityOrigin,getyofatassup,4.1,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageBig,4.1,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,getyofatassup,4.1,-1"
                 "OnTrigger" "popscript,$CreateShockwave,,4.1,-1"
                 "OnTrigger" "StompDamageBig,Enable,,3.1,-1"
                 "OnTrigger" "StompDamageBig,Disable,,3.2,-1"
@@ -9775,7 +9806,7 @@ WaveSchedule
             Skin 5
             ClassIcon 	heavy_statue
             SpawnTemplate boss_logic
-            SpawnTemplate ringOwner
+            SpawnTemplate ringOwnerGeneric
             SpawnTemplate boss_mimics
             SpawnTemplate { Name iguessihavetodothis Bone bip_spine_2 }
             SpawnTemplate punch_projectiles
@@ -13981,7 +14012,7 @@ WaveSchedule
                         Target "fuckyougogoggadgetbeamidfk"
                         Action "trigger"
                         Delay  0
-                        Cooldown 2
+                        Cooldown 2.1
                         Repeats 5
                     }
                     FireInput
@@ -14594,7 +14625,7 @@ WaveSchedule
 			Item "The Market Gardener"
 
 			SpawnTemplate "MainBoss_LarryLogic"
-			SpawnTemplate "ringOwner"
+			SpawnTemplate "ringOwnerGeneric"
 
 			CharacterAttributes
 			{
