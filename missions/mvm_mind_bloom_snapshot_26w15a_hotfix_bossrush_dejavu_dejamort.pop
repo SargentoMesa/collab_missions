@@ -5260,10 +5260,6 @@ WaveSchedule
                     {
                         IncludeScript(`contact_logic_bossrush`, getroottable())
                     }
-                    if (!(`claudz_logic_v3` in getroottable()))
-					{
-						IncludeScript(`claudz_logic_v3`, getroottable());
-					}
 
                     CreateGameTextUpperFast(`////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`, 2, `255 255 0`, `255 0 0`)
                     ClientPrint(null,3,`\x078ff347 ////MOTHERSHIP ANTI-GRAV FIELD DETECTED////`)
