@@ -8613,7 +8613,6 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.4
                 "override footstep sound set" 3
                 "airblast vertical vulnerability multiplier" 0.1
-                "rage giving scale" 0.2
                 "cancel falling damage" 1
                 "always allow taunt" 1
                 "displace touched enemies" 1
@@ -8889,7 +8888,6 @@ WaveSchedule
                 "airblast vulnerability multiplier" 0.01
                 "airblast vertical vulnerability multiplier" 0.01
                 "override footstep sound set" 3
-                "rage giving scale" 0.2
                 "cancel falling damage" 1
                 "always allow taunt" 1
                 "displace touched enemies" 1
@@ -8966,7 +8964,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9024,7 +9021,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9077,7 +9073,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9183,7 +9178,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9236,7 +9230,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9290,7 +9283,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9351,7 +9343,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9396,7 +9387,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9441,7 +9431,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9494,7 +9483,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.01
 						"override footstep sound set" 3
-						"rage giving scale" 0.2
 						"cancel falling damage" 1
 						"always allow taunt" 1
 						"displace touched enemies" 1
@@ -9605,7 +9593,6 @@ WaveSchedule
                 "airblast vulnerability multiplier"	0.3
                 "override footstep sound set"	2
                 "airblast vertical vulnerability multiplier"	0.1
-                "rage giving scale"	0.2
                 "always allow taunt" 1
                 "cancel falling damage" 1
                 "displace touched enemies" 1
@@ -9773,7 +9760,6 @@ WaveSchedule
                         "airblast vulnerability multiplier"	0.3
                         "override footstep sound set"	2
                         "airblast vertical vulnerability multiplier"	0.1
-                        "rage giving scale"	0.2
                         "always allow taunt" 1
                     }
                 }
@@ -9822,7 +9808,6 @@ WaveSchedule
                 "override footstep sound set" 2
                 "cancel falling damage" 1
                 "always allow taunt" 1
-                "rage giving scale" 0.2
                 "displace touched enemies" 1
             }
             WeaponResist
@@ -10855,7 +10840,6 @@ WaveSchedule
 				"damage force reduction" 0.1
 				"airblast vulnerability multiplier" 0.5
 				"airblast vertical vulnerability multiplier" 0.3
-				"rage giving scale"	0.2
 				"override footstep sound set" 2
 				"cancel falling damage" 1
                 "displace touched enemies" 1
@@ -11597,7 +11581,6 @@ WaveSchedule
 						"damage force reduction" 0.0
 						"airblast vulnerability multiplier" 0.
 						"airblast vertical vulnerability multiplier" 0.0
-						"rage giving scale"	0.2
 						"override footstep sound set" 2
 						"dmg from melee increased" 0.5
 					}
@@ -11728,7 +11711,6 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.0001
-						"rage giving scale"	0.2
 						"damage force reduction" 0.0
 						"airblast vulnerability multiplier" 0.0
 						"airblast vertical vulnerability multiplier" 0.0
@@ -11804,7 +11786,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"airblast vulnerability multiplier" 0.5
 						"airblast vertical vulnerability multiplier" 0.3
-						"rage giving scale"	0.2
 						"override footstep sound set" 2
 						"Projectile speed increased HIDDEN" 0.6
 
@@ -11850,7 +11831,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"airblast vulnerability multiplier" 0.5
 						"airblast vertical vulnerability multiplier" 0.3
-						"rage giving scale"	0.2
 						"override footstep sound set" 2
                         "damage bonus" 1.6
 						"fire rate penalty" 0.1
@@ -12282,7 +12262,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "cancel falling damage" 1
-                "rage giving scale" 0.2
                 "charge time increased" 2
                 "damage force reduction" 0.1
                 "move speed bonus" 0.5
@@ -12414,7 +12393,6 @@ WaveSchedule
                     {
                         "increased jump height" 3
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -12463,7 +12441,6 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -12555,7 +12532,6 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -12609,7 +12585,6 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -12668,7 +12643,6 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -12729,7 +12703,6 @@ WaveSchedule
                     CharacterAttributes
                     {
                         "cancel falling damage" 1
-                        "rage giving scale" 0.2
                         "charge time increased" 2
                         "damage force reduction" 252
                         "move speed bonus" 0.5
@@ -14145,6 +14118,7 @@ WaveSchedule
 				ItemName "The Market Gardener"
 				"dmg bonus vs buildings" 5
 				"deploy time decreased" 0.01
+                "damage bonus" 1.5
 			}
 
 			Addcond
@@ -14231,6 +14205,7 @@ WaveSchedule
 					{
 						ItemName "The Market Gardener"
 						"dmg bonus vs buildings" 5
+                        "damage bonus" 1.5
 						"deploy time decreased" 0.01
 					}
 
@@ -14655,6 +14630,7 @@ WaveSchedule
 			{
 				ItemName "The Market Gardener"
 				"dmg bonus vs buildings" 5
+                "damage bonus" 1.5
 				"deploy time decreased" 0.01
 			}
 
@@ -15083,6 +15059,7 @@ WaveSchedule
 				ItemName "The Market Gardener"
 				"dmg bonus vs buildings" 5
 				"deploy time decreased" 0.01
+                "damage bonus" 1.5
 			}
 
 			Addcond
@@ -15171,6 +15148,7 @@ WaveSchedule
 						ItemName "The Market Gardener"
 						"dmg bonus vs buildings" 5
 						"deploy time decreased" 0.01
+                        "damage bonus" 1.5
 					}
 
 					WeaponSwitch
@@ -15471,6 +15449,7 @@ WaveSchedule
                 Itemname "the market gardener"
                 "deploy time decreased" 0.01
                 "dmg bonus vs buildings" 5
+                "damage bonus" 1.5
             }
             ItemAttributes
             {
@@ -15561,7 +15540,6 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.5
-						"rage giving scale" 0.2
                         "displace touched enemies" 1
 					}
 				}
@@ -15577,7 +15555,6 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.325
-						"rage giving scale" 0.2
 					}
 					FireInput
 					{
@@ -15614,7 +15591,6 @@ WaveSchedule
 					CharacterAttributes
 					{
 						"move speed bonus"	0.25
-						"rage giving scale" 0.2
 					}
 				}
 			}
@@ -15641,7 +15617,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"airblast vertical vulnerability multiplier" 0.1
@@ -15701,7 +15676,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 4
@@ -15739,7 +15713,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.3
 				"airblast vulnerability multiplier" 0.3
 				"override footstep sound set" 2
@@ -15775,7 +15748,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
 				"override footstep sound set" 6
@@ -15810,7 +15782,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed bonus"	0.6
-                "rage giving scale" 0.2
                 "head scale" 0.65
                 "damage force reduction" 0.6
                 "airblast vulnerability multiplier" 0.6
@@ -15850,7 +15821,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed bonus"	0.5
-                "rage giving scale" 0.2
                 "damage force reduction"	0.5
                 "airblast vulnerability multiplier"	0.5
                 "override footstep sound set"	4
@@ -15917,7 +15887,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed bonus"	0.5
-                "rage giving scale" 0.2
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
                 "override footstep sound set" 2
@@ -16010,7 +15979,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed bonus"	0.5
-                "rage giving scale" 0.2
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
                 "override footstep sound set" 6

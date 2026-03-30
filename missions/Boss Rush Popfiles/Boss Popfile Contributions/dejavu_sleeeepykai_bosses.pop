@@ -343,7 +343,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.4
-                "rage giving scale" 0.2
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0
@@ -956,7 +955,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0
@@ -1371,7 +1369,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.1
 				"airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0
@@ -1427,7 +1424,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
 				"damage force reduction" 0.1
 				"airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0
@@ -1481,7 +1477,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
                 "deploy time decreased" 0.75
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
@@ -1586,7 +1581,6 @@ WaveSchedule
             CharacterAttributes
             {
                 "move speed penalty" 0.5
-                "rage giving scale" 0.2
                 "damage force reduction" 0.1
                 "airblast vulnerability multiplier" 0.1
                 "voice pitch scale" 0

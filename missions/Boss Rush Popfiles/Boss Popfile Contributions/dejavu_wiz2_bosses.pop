@@ -144,7 +144,6 @@ WaveSchedule
                         "airblast vulnerability multiplier" 0.4
                         "override footstep sound set" 3
                         "airblast vertical vulnerability multiplier" 0.1
-                        "rage giving scale" 0.2
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
                         "displace touched enemies" 1
@@ -182,7 +181,6 @@ WaveSchedule
                         "airblast vulnerability multiplier" 0.4
                         "override footstep sound set" 3
                         "airblast vertical vulnerability multiplier" 0.1
-                        "rage giving scale" 0.2
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
                     }
@@ -221,7 +219,6 @@ WaveSchedule
                         "airblast vulnerability multiplier" 0.4
                         "override footstep sound set" 3
                         "airblast vertical vulnerability multiplier" 0.1
-                        "rage giving scale" 0.2
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
                     }
@@ -255,7 +252,6 @@ WaveSchedule
                         "airblast vulnerability multiplier" 0.4
                         "override footstep sound set" 3
                         "airblast vertical vulnerability multiplier" 0.1
-                        "rage giving scale" 0.2
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
                     }
@@ -277,7 +273,6 @@ WaveSchedule
                         "airblast vulnerability multiplier" 0.4
                         "override footstep sound set" 3
                         "airblast vertical vulnerability multiplier" 0.1
-                        "rage giving scale" 0.2
                         "increased jump height" 1.65
                         "mult debuff duration" 0.5
                     }
@@ -324,7 +319,6 @@ WaveSchedule
 				"health regen" 5
 				"override footstep sound set" 4
 				"airblast vertical vulnerability multiplier" 0.1
-				"rage giving scale" 0.2
 				"increase buff duration"	50
                 "displace touched enemies" 1
 			}

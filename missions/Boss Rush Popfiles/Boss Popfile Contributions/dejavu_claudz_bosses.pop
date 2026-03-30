@@ -5433,7 +5433,6 @@ WaveSchedule
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
                 "override footstep sound set" 2						
-                "rage giving scale" 0.1
             }
             ChangeAttributes 
             {
@@ -5479,7 +5478,6 @@ WaveSchedule
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3
                         "override footstep sound set" 2						
-                        "rage giving scale" 0.1
                     }
                 }
                 phase2
@@ -5633,7 +5631,6 @@ WaveSchedule
             
             CharacterAttributes
             {
-                "rage giving scale" 0.1
                 "move speed bonus"	0.5
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
@@ -5680,7 +5677,6 @@ WaveSchedule
                 {
                     CharacterAttributes
                     {
-                        "rage giving scale" 0.1
                         "move speed bonus"	0.5
                         "damage force reduction" 0.3
                         "airblast vulnerability multiplier" 0.3

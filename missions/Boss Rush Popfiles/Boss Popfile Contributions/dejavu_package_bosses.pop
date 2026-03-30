@@ -376,7 +376,6 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 						"Health regen" 150
@@ -397,7 +396,6 @@ WaveSchedule
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
 						"airblast disabled" 1
-						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 2
 						"cancel falling damage" 1
@@ -418,7 +416,6 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 					}
@@ -437,7 +434,6 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 2
 						"cancel falling damage" 1
@@ -470,7 +466,6 @@ WaveSchedule
 						"damage force reduction" 0.01
 						"airblast vulnerability multiplier" 0.01
 						"airblast vertical vulnerability multiplier" 0.1
-						"rage giving scale" 0.2
 						"health from healers reduced" 2
 						"increased jump height" 1.5
 						"cancel falling damage" 1
@@ -540,7 +535,6 @@ WaveSchedule
 				"ragdolls become ash" 1
 				"dmg taken from fire increased" 1.2
 				"dmg taken from crit reduced" 0.75
-				"rage giving scale" 0.2
 			    "no self blast dmg" 1
 			    "cancel falling damage" 1
 				"gesture speed increase" 0.20
@@ -599,7 +593,6 @@ WaveSchedule
 			}
 			CharacterAttributes
 			{
-				"rage giving scale" 0.2
 				"ragdolls become ash" 1
 				"bombinomicon effect on death" 1
 				"hand scale" 2.5
@@ -679,7 +672,6 @@ WaveSchedule
 			}
 			CharacterAttributes
 			{
-				"rage giving scale" 0.2
 				"ragdolls become ash" 1
 				"bombinomicon effect on death" 1
 				"hand scale" 2.5
@@ -723,9 +715,8 @@ WaveSchedule
 			Scale 1.8
 			CharacterAttributes
 			{
-				"Damage Bonus" 4
+				"damage bonus" 4
 				"move speed bonus"	0.5
-				"rage giving scale" 0.2
 				"damage force reduction" 0.001
 				"airblast vulnerability multiplier" 0.001
 				"override footstep sound set" 5
@@ -765,7 +756,6 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
-				"rage giving scale" 0.2
 				"damage force reduction"	0.001
 				"airblast vulnerability multiplier"	0.001
 				"override footstep sound set"	3

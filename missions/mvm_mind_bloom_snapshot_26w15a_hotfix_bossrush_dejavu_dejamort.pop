@@ -376,6 +376,11 @@ WaveSchedule
             "damage bonus" 0.8
         }
     }
+    ItemAttributes
+    {
+        ItemName "The Ubersaw"
+        "add uber charge on hit" 0.095
+    }
 
     //// MISSION BOTS ////
 
@@ -466,13 +471,12 @@ WaveSchedule
 							break;
 						}
 
-						case 1:
+                        case 1:
 						{   
 							AlternateWaves.AddWaveIcons([
-								[`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+								[`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
 							])
 							break;
 						}
@@ -480,9 +484,10 @@ WaveSchedule
 						case 2:
 						{   
 							AlternateWaves.AddWaveIcons([
-								[`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-								[`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+								[`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
 							])
 							break;
 						}
@@ -502,35 +507,35 @@ WaveSchedule
                     switch (MindBloomRNG.GlobalIndex)
                     {
                         case 0:
-                        {
-                            AlternateWaves.AddWaveIcons([
-                                [`soldier_burstfire_conch`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_shovel`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+						{
+							AlternateWaves.AddWaveIcons([
+								[`soldier_burstfire_conch`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier_shovel`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
 								[`heavy_shotgun`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+							])
+							break;
+						}
 
                         case 1:
-                        {   
-                            AlternateWaves.AddWaveIcons([
-                                [`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
-                                [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
-
-                        case 2:
-                        {   
-                            AlternateWaves.AddWaveIcons([
-                                [`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
-                            ])
-                            break;
-                        }
+						{   
+							AlternateWaves.AddWaveIcons([
+								[`demoman_sandman_chief`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`soldier`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT],
+								[`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
+                        
+						case 2:
+						{   
+							AlternateWaves.AddWaveIcons([
+								[`heavy_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demo_robot_nys`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`boss_death_pyro`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`demoknight`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
+							])
+							break;
+						}
                     }
 
                     MindBloomRNG.StartRNGArena();
@@ -5282,8 +5287,6 @@ WaveSchedule
             Param "
                     EntFire(`wave_finished_relay`, `Trigger`)
                     EntFire(`boss_rush_spawn_teleport_relay`, `Trigger`, null, 5)
-
-                    AlternateWaves.bTrackIcons = true;
                   "
         }
 

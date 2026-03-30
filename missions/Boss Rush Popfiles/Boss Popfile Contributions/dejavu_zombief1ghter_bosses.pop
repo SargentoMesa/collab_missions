@@ -116,7 +116,6 @@ WaveSchedule
 			{
 				//"health regen"	50
 				"move speed bonus"	0.5
-				"rage giving scale" 0.2
 				"damage force reduction"	0.3
 				"airblast vulnerability multiplier"	0.3
 				"override footstep sound set"	2
@@ -371,7 +370,6 @@ WaveSchedule
 				"cannot pick up intelligence"	1
 				"always allow taunt" 1
 				"use robot voice" 1
-				"rage giving scale" 0.2
 				"displace touched enemies" 1
 			}
 			FireInput [$SIGSEGV]
@@ -521,7 +519,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 						"displace touched enemies" 1
@@ -553,7 +550,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 					}
@@ -588,7 +584,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 					}
@@ -636,7 +631,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 					}
@@ -672,7 +666,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 					}
@@ -703,7 +696,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 						"Projectile speed decreased"	0.4
@@ -736,7 +728,6 @@ WaveSchedule
 						"airblast vulnerability multiplier"	0.2
 						"override footstep sound set"		3
 						"airblast vertical vulnerability multiplier"	0.1
-						"rage giving scale"	0.2
 						"cannot pick up intelligence"	1
 						"cancel falling damage"	1
 						"Projectile speed decreased"	0.4
@@ -1060,7 +1051,6 @@ WaveSchedule
 				"airblast vulnerability multiplier"	0.3
 				"override footstep sound set"	4
 				"airblast vertical vulnerability multiplier"	0.1
-				"rage giving scale"	0.2
 				"displace touched enemies" 1
 			}
 		}
@@ -1098,7 +1088,6 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.3
 				"override footstep sound set" 4
 				"airblast vertical vulnerability multiplier" 0.1
-				"rage giving scale" 0.2
 				"displace touched enemies" 1
 			}
 		}
@@ -1134,7 +1123,6 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
-				"rage giving scale" 0.2
 				"airblast vulnerability multiplier"	0.4
 				"damage force reduction"	0.4
 				"override footstep sound set"	3
@@ -1171,7 +1159,6 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
-				"rage giving scale" 0.2
 				"airblast vulnerability multiplier"	0.4
 				"damage force reduction"	0.4
 				"override footstep sound set"	3
