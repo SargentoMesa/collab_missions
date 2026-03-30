@@ -1483,7 +1483,7 @@ WaveSchedule
 			}
 			EventChangeAttributes
 			{
-				FurySpammer
+				FurySpammer [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1510,7 +1510,7 @@ WaveSchedule
 						Repeats 1
 					}
 				}
-				Barrage
+				Barrage [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1545,7 +1545,7 @@ WaveSchedule
 						Repeats 1
 					}
 				}
-				BurstShotgun
+				BurstShotgun [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1577,7 +1577,7 @@ WaveSchedule
 						Repeats 1
 					}
 				}
-				HomingFlare
+				HomingFlare [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1615,7 +1615,7 @@ WaveSchedule
 						Repeats 1
 					}
 				}
-				HellRain
+				HellRain [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1640,7 +1640,7 @@ WaveSchedule
 						Delay 4.1
 					}
 				}
-				FireRing
+				FireRing [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1674,7 +1674,7 @@ WaveSchedule
 						Repeats 1
 					}
 				}
-				FlameSummon
+				FlameSummon [$SIGSEGV]
 				{
 					FireInput
 					{
@@ -1759,7 +1759,7 @@ WaveSchedule
             }
             EventChangeAttributes
             {
-                BurstFrontier
+                BurstFrontier [$SIGSEGV]
                 {
                     FireInput
                     {
@@ -1801,7 +1801,7 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                RapidMaker
+                RapidMaker [$SIGSEGV]
                 {
                     FireInput
                     {
@@ -1828,7 +1828,7 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                HomingSpread
+                HomingSpread [$SIGSEGV]
                 {
                     FireInput
                     {
@@ -1870,7 +1870,7 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                RescueBounce
+                RescueBounce [$SIGSEGV]
                 {
                    FireInput
                     {
@@ -1911,7 +1911,7 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                SlugRound
+                SlugRound [$SIGSEGV]
                 {
                     FireInput
                     {
@@ -1941,7 +1941,7 @@ WaveSchedule
                         Repeats 1
                     }
                 }
-                LightningTaunt
+                LightningTaunt [$SIGSEGV]
                 {
                     Item "The Eureka Effect"
                     WeaponRestrictions MeleeOnly
@@ -1968,7 +1968,7 @@ WaveSchedule
                         Delay 2.8
                     }
                 }
-                OrbitalSpawn
+                OrbitalSpawn [$SIGSEGV]
                 {
                     WeaponRestrictions PrimaryOnly
                     FireInput
@@ -1994,7 +1994,7 @@ WaveSchedule
                         Delay 4
                     }
                 }
-                SpamAttack
+                SpamAttack [$SIGSEGV]
                 {
                     FireInput
                     {
@@ -2038,7 +2038,7 @@ WaveSchedule
                         Delay 11
                     }
                 }
-                FireBombing
+                FireBombing [$SIGSEGV]
                 {
                     FireInput
                     {
