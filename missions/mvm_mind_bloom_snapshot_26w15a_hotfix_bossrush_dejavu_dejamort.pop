@@ -3582,6 +3582,7 @@ WaveSchedule
                 ClassIcon heavy_deflector
                 Skill Easy
                 WeaponRestrictions PrimaryOnly
+                Action Mobber
 
                 Item "Deflector"
 
@@ -3616,6 +3617,7 @@ WaveSchedule
                 Skill Easy
                 Attributes HoldFireUntilFullReload
                 WeaponRestrictions PrimaryOnly
+                Action Mobber
 
                 Item "The Beggar's Bazooka"
 
