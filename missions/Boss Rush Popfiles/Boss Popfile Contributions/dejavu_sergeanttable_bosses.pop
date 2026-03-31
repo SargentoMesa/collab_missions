@@ -1149,50 +1149,50 @@ WaveSchedule
             }
             OnSpawnOutput
             {
-                target "ringmarkerShocksone"
+                target "ringmarkerone"
                 action "kill"
                 delay "5.5"
             }
             OnSpawnOutput
             {
-                target "ringmarkerShockstwo"
+                target "ringmarkertwo"
                 action "kill"
                 delay "5.5"
             }
             OnSpawnOutput
             {
-                target "roundbeamtestShocks"
+                target "roundbeamtest"
                 action "TurnOff"
                 delay "4.5"
             }
             OnSpawnOutput
             {
-                target "roundbeamtestShocks"
+                target "roundbeamtest"
                 action "StrikeOnce"
                 delay "0"
             }
             OnSpawnOutput
             {
-                target "roundbeamtestShocks"
+                target "roundbeamtest"
                 action "kill"
                 delay "5.0"
             }
             OnSpawnOutput
             {
-                target "ringmarkerShocksone"
+                target "ringmarkerone"
                 action "RunScriptCode"
                 param "SetMoveIgnoreSolid(self, 800)"
             }
             OnSpawnOutput
             {
-                target "roundbeamtestShocks"
+                target "roundbeamtest"
                 action "RunScriptCode"
                 param "RingRegister(self,100,CzUtil.GetTracking(`ringOwnerShocks`))"
                 delay 0.0
             }
             OnSpawnOutput
             {
-                target "ringmarkerShockstwo"
+                target "ringmarkertwo"
                 action "RunScriptCode"
                 param "SetMoveIgnoreSolid(self, 800)"
                 //delay 0.1
@@ -1200,7 +1200,7 @@ WaveSchedule
             prop_dynamic
             {
                 "parentname" ""
-                "targetname" "ringmarkerShocksone"
+                "targetname" "ringmarkerone"
                 "model" "models/empty.mdl"
                 "solid" "0"
                 "origin" "0 0 30"                
@@ -1208,7 +1208,7 @@ WaveSchedule
             prop_dynamic
             {
                 "parentname" ""
-                "targetname" "ringmarkerShockstwo"
+                "targetname" "ringmarkertwo"
                 "model" "models/empty.mdl"
                 "solid" "0"
                 "angles" "0 180 0"
@@ -1217,10 +1217,10 @@ WaveSchedule
             env_beam
             {
                 "parentname" ""
-                "targetname" "roundbeamtestShocks"
+                "targetname" "roundbeamtest"
                 "BoltWidth" "6"
-                "LightningStart" "ringmarkerShocksone"
-                "LightningEnd" "ringmarkerShockstwo"
+                "LightningStart" "ringmarkerone"
+                "LightningEnd" "ringmarkertwo"
                 "origin" "0 0 30"
                 "renderamt" "200"
                 "rendercolor" "255 255 255"
@@ -2007,7 +2007,7 @@ WaveSchedule
 				"startdisabled" "1"
 				"skin" "1"
 			}
-		}
+		} 
         scatter_rockets_base
         {
             RemoveIfKilled "location"
@@ -7301,12 +7301,12 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
 				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,6,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,6.25,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,6.5,-1"
                 "OnTrigger" "!activator,$Addcond,126 1,6.75,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,7.0,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,7,-1"
                 "OnTrigger" "!activator,$Addcond,126 1,7.25,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,7.5,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,7.75,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,8,-1"
             }
 
             trigger_catapult
@@ -9203,11 +9203,47 @@ WaveSchedule
 							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
 							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
 							  "
-						Delay 1
+						Delay 0.25
 						Repeats 1
 						Cooldown -1
 					}
 					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 0.5
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 0.75
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
+					{
+						Target !self
+						Action RunScriptCode
+						Param "local eyes = self.EyeAngles().Forward()
+							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
+							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
+							  "
+						Delay 1
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
 					{
 						Target !self
 						Action RunScriptCode
@@ -9216,42 +9252,6 @@ WaveSchedule
 							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
 							  "
 						Delay 1.25
-						Repeats 1
-						Cooldown -1
-					}
-					FireInput
-					{
-						Target !self
-						Action RunScriptCode
-						Param "local eyes = self.EyeAngles().Forward()
-							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
-							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
-							  "
-						Delay 1.5
-						Repeats 1
-						Cooldown -1
-					}
-                    FireInput
-					{
-						Target !self
-						Action RunScriptCode
-						Param "local eyes = self.EyeAngles().Forward()
-							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
-							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
-							  "
-						Delay 1.75
-						Repeats 1
-						Cooldown -1
-					}
-                    FireInput
-					{
-						Target !self
-						Action RunScriptCode
-						Param "local eyes = self.EyeAngles().Forward()
-							   local velocity = Vector(eyes.x * -5000, eyes.y * -5000, 0)
-							   self.SetAbsVelocity(velocity + self.GetAbsVelocity())
-							  "
-						Delay 2
 						Repeats 1
 						Cooldown -1
 					}
