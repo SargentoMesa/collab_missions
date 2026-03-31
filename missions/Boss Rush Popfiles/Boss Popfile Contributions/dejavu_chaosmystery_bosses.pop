@@ -352,6 +352,18 @@ WaveSchedule
         chaos_logic
 		{
 			NoFixUp 1
+            env_entity_maker
+            {
+                "targetname" "flame_spawner"
+                "entitytemplate" "flame_indicator"
+                "$autoparent" "1"
+            }
+            env_entity_maker
+            {
+                "targetname" "rain_spawner"
+                "entitytemplate" "rain_indicator"
+                "$autoparent" "1"
+            }
 			tf_point_weapon_mimic
 			{
 				"targetname" "fireballs"
@@ -372,24 +384,30 @@ WaveSchedule
 				"$weaponnosound" "1"
 				"$weaponname" "csurge_firering_launcher"
 			}
-			tf_point_weapon_mimic
-			{
-				"targetname" "flame_summon_setup"
-				"origin" "0 0 50"
-				"angles" "-90 0 0"
-				"teamnum" "3"
-				"$weaponnosound" "1"
-				"$weaponname" "CSurge_indicatorlauncher"
-			}
-			tf_point_weapon_mimic
-			{
-				"targetname" "hell_rain_setup"
-				"origin" "0 0 80"
-				"angles" "-10 0 0"
-				"teamnum" "3"
-				"$weaponnosound" "1"
-				"$weaponname" "CSurge_indicatorlauncher2"
-			}
+            tf_point_weapon_mimic
+            {
+                "targetname" "flame_summon_setup"
+                "origin" "0 0 50"
+                "angles" "-90 0 0"
+                "teamnum" "3"
+                "$weaponnosound" "1"
+                "$weaponname" "CSurge_indicatorlauncher"
+                "$preventshootparent" "1"
+                "$OnFire" "flame_spawner,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
+
+
+            tf_point_weapon_mimic
+            {
+                "targetname" "hell_rain_setup"
+                "origin" "0 0 80"
+                "angles" "-10 0 0"
+                "teamnum" "3"
+                "$weaponnosound" "1"
+                "$weaponname" "CSurge_indicatorlauncher2"
+                "$preventshootparent" "1"
+                "$OnFire" "rain_spawner,ForceSpawnAtEntityOrigin,!activator,0,-1"
+            }
 			func_rotating
 			{
 				"targetname" "firerotation"
@@ -488,12 +506,12 @@ WaveSchedule
 				"OnTrigger" "fireball_timer,enable,,0.5,-1"
 				"OnTrigger" "fireball_timer,Disable,,4.5,-1"
 			}
-			logic_relay
-			{
-				"targetname" "hell_rain_relay"
-				"OnTrigger" "!activator,$TauntFromItem,replay taunt,0.1,-1"
-				"OnTrigger" "hell_rain_setup,FireOnce,,0.2,-1"
-			}
+            logic_relay
+            {
+                "targetname" "hell_rain_relay"
+                "OnTrigger" "!activator,$TauntFromItem,replay taunt,0.1,-1"
+                "OnTrigger" "hell_rain_setup,FireMultiple,8,0.2,-1"
+            }
 			logic_case
 			{
 				"targetname" "surge_weapons_only"
@@ -513,12 +531,12 @@ WaveSchedule
 				"OnCase06" "!activator,$ChangeAttributes,FireRing,0,-1"
 				"OnCase07" "!activator,$ChangeAttributes,FlameSummon,0,-1"
 			}
-			logic_relay
-			{
-				"targetname" "flame_summon_relay"
-				"OnTrigger" "flame_summon_setup,FireOnce,,0,-1"
-				"OnTrigger" "flame_relay,Trigger,,4,-1"
-			}
+            logic_relay
+            {
+                "targetname" "flame_summon_relay"
+                "OnTrigger" "flame_summon_setup,FireMultiple,10,0,-1"
+                "OnTrigger" "flame_relay,Trigger,,4,-1"
+            }
 		}
 
         //// COLONEL CONDUIT ////
@@ -1166,6 +1184,12 @@ WaveSchedule
                 Action SetOwner
                 Param !activator
             }
+            env_entity_maker
+            {
+                "targetname" "BeamSpamer"
+                "entitytemplate" "BeamSpamSetUp"
+                "$autoparent" "1"
+            }
             tf_point_weapon_mimic
             {
                 "targetname" "beam_launcher"
@@ -1174,6 +1198,8 @@ WaveSchedule
                 "teamnum" "3"
                 "$weaponnosound" "1"
                 "$weaponname" "conduit_indicator_launcher"
+                "$preventshootparent" "1"
+                "$OnFire" "BeamSpamer,ForceSpawnAtEntityOrigin,!activator,0,-1"
             }
             tf_point_weapon_mimic
             {
@@ -1280,7 +1306,7 @@ WaveSchedule
                 "OnTrigger" "!activator,$BotCommand,interrupt_action -posent Enemy -lookposent RandomEnemy -duration 0.7,0,-1"
                 "OnTrigger" "!activator,$AddPlayerAttribute,gesture speed increase|2,0,-1"
                 "OnTrigger" "!activator,$TauntFromItem,Replay Taunt,0.7,-1"
-                "OnTrigger" "beam_launcher,FireOnce,,1,-1"
+                "OnTrigger" "beam_launcher,FireMultiple,8,1,-1"
                 "OnTrigger" "!activator,$AddPLayerAttribute,gesture speed increase|1,2,-1"
             }
             logic_relay
@@ -1351,34 +1377,32 @@ WaveSchedule
 			"self dmg push force decreased" 0
 			"no self blast dmg" 1
 		}
-		CSurge_indicatorlauncher
-		{
-			OriginalItemName "Rocket Jumper"
-			"mult projectile count" 10
-			"projectile spread angle penalty" 70
-			"damage bonus" 0
-			"no explosion particles" 1
-			"projectile speed decreased" 0.55
-			"custom projectile model" "models/empty.mdl"
-			"ignores other projectiles" 1
-			"projectile gravity" 1000
-			"self dmg push force decreased" 0
-			"projectile no deflect" 1
-		}
-		CSurge_indicatorlauncher2
-		{
-			OriginalItemName "Rocket Jumper"
-			"mult projectile count" 8
-			"projectile spread angle penalty" 40
-			"damage bonus" 0
-			"no explosion particles" 1
-			"projectile speed decreased" 0.75
-			"custom projectile model" "models/empty.mdl"
-			"projectile gravity" 1000
-			"ignores other projectiles" 1
-			"self dmg push force decreased" 0
-			"projectile no deflect" 1
-		}
+        CSurge_indicatorlauncher
+        {
+            OriginalItemName "Rocket Jumper"
+            "projectile spread angle penalty" 70
+            "damage bonus" 0
+            "no explosion particles" 1
+            "projectile speed decreased" 0.55
+            "custom projectile model" "models/empty.mdl"
+            "ignores other projectiles" 1
+            "projectile gravity" 1000
+            "self dmg push force decreased" 0
+            "projectile no deflect" 1
+        }
+        CSurge_indicatorlauncher2
+        {
+            OriginalItemName "Rocket Jumper"
+            "projectile spread angle penalty" 40
+            "damage bonus" 0
+            "no explosion particles" 1
+            "projectile speed decreased" 0.75
+            "custom projectile model" "models/empty.mdl"
+            "projectile gravity" 1000
+            "ignores other projectiles" 1
+            "self dmg push force decreased" 0
+            "projectile no deflect" 1
+        }
 		CSurge_hellfire
 		{
 			OriginalItemName "tf_weapon_rocketlauncher"
@@ -1399,16 +1423,15 @@ WaveSchedule
         conduit_indicator_launcher
         {
             OriginalItemName "Rocket Jumper"
-			"projectile spread angle penalty" 40
-			"damage bonus" 0
-            "mult projectile count" 8
-			"no explosion particles" 1
-			"projectile speed decreased" 0.55
-			"custom projectile model" "models/empty.mdl"
-			"projectile gravity" 700
-			"ignores other projectiles" 1
-			"self dmg push force decreased" 0
-			"projectile no deflect" 1
+            "projectile spread angle penalty" 40
+            "damage bonus" 0
+            "no explosion particles" 1
+            "projectile speed decreased" 0.55
+            "custom projectile model" "models/empty.mdl"
+            "projectile gravity" 700
+            "ignores other projectiles" 1
+            "self dmg push force decreased" 0
+            "projectile no deflect" 1
         }
         conduit_energy_launcher
         {
@@ -1452,18 +1475,6 @@ WaveSchedule
 				"tf_weapon_minigun" 0.8
 			}
 			AlwaysGlow 1
-			ShootTemplate
-			{
-				Name flame_indicator
-				AttachToProjectile 1
-				ItemName "CSurge_indicatorlauncher"
-			}
-			ShootTemplate
-			{
-				Name rain_indicator
-				AttachToProjectile 1
-				ItemName "CSurge_indicatorlauncher2"
-			}
 			ChangeAttributes
 			{
 				Name FurySpammer
@@ -1738,12 +1749,6 @@ WaveSchedule
                 Name BurstFrontier
                 Repeats 1
                 Delay 0.1
-            }
-            ShootTemplate
-            {
-                Name BeamSpamSetup
-                AttachtoProjectile 1
-                ItemName "conduit_indicator_launcher"
             }
             WeaponResist
             {
