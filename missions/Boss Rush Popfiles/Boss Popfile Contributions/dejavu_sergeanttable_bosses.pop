@@ -7194,7 +7194,7 @@ WaveSchedule
 			{
 				"targetname" "FallenShocksPhase1AttackPool"
 
-                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserLongJump,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_LightningRain,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_GroundSlam,0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_StompCombo,0,-1"
@@ -7203,7 +7203,7 @@ WaveSchedule
 			{
 				"targetname" "FallenShocksPhase2AttackPool"
 
-                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserInit,0,-1"
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_MegaLaserLongJump,0,-1"
                 "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_Vortex,0,-1"
                 "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_GroundSlamEvolved,0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_MultiBeam,0,-1"
@@ -7301,12 +7301,12 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
 				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,6.02,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,6.27,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,6.52,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,6.77,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,7.02,-1"
-                "OnTrigger" "!activator,$Addcond,126 1,7.27,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,6.75,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,7.0,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,7.25,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,7.5,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,7.75,-1"
+                "OnTrigger" "!activator,$Addcond,126 1,8,-1"
             }
 
             trigger_catapult
@@ -7332,7 +7332,7 @@ WaveSchedule
             info_target
             {
                 "targetname" "longjump_target"
-                "origin" "-250 0 300"
+                "origin" "-250 0 280"
             }
             prop_dynamic
             {
@@ -9060,6 +9060,57 @@ WaveSchedule
 				//// Phase 1 Attacks ////
 
                 // The Megalaser of Big Doom and Death and Despair and Shit
+                FallenShocks_MegaLaserLongJump [$SIGSEGV]
+                {
+                    Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+                        "no_duck" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                    }
+
+                    FireInput
+                    {
+                        Target "FallenShocksLongJump"
+                        Action "Enable"
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param misc/halloween/spell_blast_jump.wav
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param FallenShocks_MegaLaserInit
+						Delay 2.25
+						Repeats 1
+						Cooldown -1
+					}
+                }
                 FallenShocks_MegaLaserInit [$SIGSEGV]
                 {
 					UseCustomModel "models/empty.mdl"
@@ -9094,17 +9145,9 @@ WaveSchedule
                     }
                     FireInput
                     {
-                        Target "FallenShocksLongJump"
-                        Action "Enable"
-                        Delay 0
-                        Repeats 1
-                        Cooldown -1
-                    }
-                    FireInput
-                    {
                         Target "FallenShocksMegaLaserAttack"
                         Action "Trigger"
-                        Delay 3
+                        Delay 0
                         Repeats 1
                         Cooldown -1
                     }
@@ -9114,7 +9157,7 @@ WaveSchedule
 						Target !self
 						Action $ChangeAttributes
 						Param FallenShocks_MegaLaserLock
-						Delay 8.8
+						Delay 5.75
 						Repeats 1
 						Cooldown -1
 					}
