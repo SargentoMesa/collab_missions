@@ -397,7 +397,7 @@ WaveSchedule
         Objective DestroySentries
         Where spawnbot_support
         BeginAtWave 1
-		RunForThisManyWaves 100
+		RunForThisManyWaves 18
 		InitialCooldown 30
 		CooldownTime 30
 		DesiredCount 1
@@ -1037,7 +1037,7 @@ WaveSchedule
                 Param "
                         EntFire(`pop_interface`, `$PauseWaveSpawn`, `Wave2_Support-GRUHeavies`)
                         EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave2_Support-GRUHeavies`)
-                        EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`)
+                        EntFire(`arena_bonkplant_boss_spawn_relay`, `Trigger`, 2.5)
                         EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
                       "
             }
@@ -6894,6 +6894,15 @@ WaveSchedule
                     Repeats 1
                     Cooldown -1
                 }
+                InterruptAction
+				{
+					Target "12730 5195 -1210"
+					Delay 0
+					Repeats 1
+					Distance 80
+					Duration 5
+					Cooldown -1
+				}
             }
             FirstSpawnOutput
             {
@@ -6988,8 +6997,8 @@ WaveSchedule
 				Param "
 						EntFire(`pop_interface`, `$KillWaveSpawn`, `Wave15_Support-CarbineSnipers`)
 						EntFire(`pop_interface`, `$FinishWaveSpawn`, `Wave15_Support-CarbineSnipers`)
-						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`)
-                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`)
+						EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict1`, 2.5)
+                        EntFire(`bossrushspecialspawnlocation`, `ForceSpawnAtEntityOrigin`, `spawnbot_target_terrorlict2`, 2.5)
                         EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 2.5)
 					  "
 			}
@@ -7874,6 +7883,7 @@ WaveSchedule
                 ClassIcon scout_bat_nys_armored
                 Scale 1.4
                 Health 900
+                Attributes DisableDodge
                 Action Mobber
             }
         }
