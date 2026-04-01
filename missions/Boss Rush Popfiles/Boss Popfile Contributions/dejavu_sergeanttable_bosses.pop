@@ -4007,6 +4007,19 @@ WaveSchedule
 				"targetname" "TheHarryFilter"
 				"tags" "itsharry"
 			}
+
+			// Crashout Phase
+			logic_relay
+			{
+				"targetname" "TripleTrolldierCrashoutRelay"
+
+				"OnTrigger" "pop_interface,ChangeBotAttributes,BarryCrashout,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,LarryCrashout,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,HarryCrashout,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
+				"OnTrigger" "!self,Disable,,0.1,-1"
+			}
 		}
 		MainBoss_BarryLogic
 		{
@@ -14668,6 +14681,130 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
+
+				BarryCrashout [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+					Item "Taunt: Unleashed Rage"
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 1
+						"voice pitch scale" 0
+						"attach particle effect" 3044
+					}
+
+					Addcond
+					{
+						Index 51
+						Duration 5.5
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Unleashed Rage"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param "Barry_DefaultRageTrolldier"
+						Delay 5.5
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
+				Barry_DefaultRageTrolldier [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"voice pitch scale" 1
+						"hand scale" 1
+						"attach particle effect" 3044
+					}
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"fire rate bonus" 1.2
+						"faster reload rate" 0.001
+						"clip size bonus" 5
+						"projectile speed increased HIDDEN" 2
+						"projectile no deflect" 1
+						"override projectile type" 3
+						"fuse bonus" 0.295
+						"apply look velocity on damage" 1300
+						"apply z velocity on damage" 250
+					}
+					ItemAttributes
+					{
+						ItemName "The Mantreads"
+						"increased air control" 4
+					}
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"dmg bonus vs buildings" 5
+                        "damage bonus" 1.5
+						"deploy time decreased" 0.01
+					}
+
+					WeaponSwitch
+					{
+						Type "Melee"
+						MaxTargetRange 200
+						MinTargetRange 1
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+					WeaponSwitch
+					{
+						Type "Primary"
+						MaxTargetRange 9999
+						MinTargetRange 301
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
+					}
+				}
 			}
 		}
 		MainBoss_Larry
@@ -15090,6 +15227,129 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
+
+				LarryCrashout [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+					Item "Taunt: Unleashed Rage"
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 1
+						"voice pitch scale" 0
+						"attach particle effect" 3044
+					}
+
+					Addcond
+					{
+						Index 51
+						Duration 5.5
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Unleashed Rage"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param "Larry_DefaultRageTrolldier"
+						Delay 5.5
+						Repeats 1
+						Cooldown -1
+					}
+				}
+				Larry_DefaultRageTrolldier [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"hand scale" 1
+						"voice pitch scale" 1
+						"attach particle effect" 3044
+					}
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"fire rate bonus" 1.2
+						"faster reload rate" 0.001
+						"clip size bonus" 5
+						"projectile speed increased HIDDEN" 2
+						"projectile no deflect" 1
+						"override projectile type" 3
+						"fuse bonus" 0.295
+						"apply look velocity on damage" 1300
+						"apply z velocity on damage" 250
+					}
+					ItemAttributes
+					{
+						ItemName "The Mantreads"
+						"increased air control" 4
+					}
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"dmg bonus vs buildings" 5
+                        "damage bonus" 1.5
+						"deploy time decreased" 0.01
+					}
+
+					WeaponSwitch
+					{
+						Type "Melee"
+						MaxTargetRange 200
+						MinTargetRange 1
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+					WeaponSwitch
+					{
+						Type "Primary"
+						MaxTargetRange 9999
+						MinTargetRange 301
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
+					}
+				}
 			}
 		}
 		MainBoss_Harry
@@ -15435,6 +15695,130 @@ WaveSchedule
 						Delay 5
 						Repeats 1
 						Cooldown -1
+					}
+				}
+
+				HarryCrashout [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+					Item "Taunt: Unleashed Rage"
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_attack" 1
+						"move speed bonus" 0.1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 1
+						"voice pitch scale" 0
+						"attach particle effect" 3044
+					}
+
+					Addcond
+					{
+						Index 51
+						Duration 5.5
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Unleashed Rage"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param "Harry_DefaultRageTrolldier"
+						Delay 5.5
+						Repeats 1
+						Cooldown -1
+					}
+				}
+
+				Harry_DefaultRageTrolldier [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"hand scale" 1
+						"voice pitch scale" 1
+						"attach particle effect" 3044
+					}
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"fire rate bonus" 1.2
+						"faster reload rate" 0.001
+						"clip size bonus" 5
+						"projectile speed increased HIDDEN" 2
+						"projectile no deflect" 1
+						"override projectile type" 3
+						"fuse bonus" 0.295
+						"apply look velocity on damage" 1300
+						"apply z velocity on damage" 250
+					}
+					ItemAttributes
+					{
+						ItemName "The Mantreads"
+						"increased air control" 4
+					}
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"dmg bonus vs buildings" 5
+                        "damage bonus" 1.5
+						"deploy time decreased" 0.01
+					}
+
+					WeaponSwitch
+					{
+						Type "Melee"
+						MaxTargetRange 200
+						MinTargetRange 1
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+					WeaponSwitch
+					{
+						Type "Primary"
+						MaxTargetRange 9999
+						MinTargetRange 301
+						Delay 0.1
+						Repeats 0
+						Cooldown 0
+						IfSeeTarget 1
+					}
+
+					FireWeapon
+					{
+						Type Jump
+						Delay 1
+						Repeats 0
+						Cooldown 1
 					}
 				}
 			}

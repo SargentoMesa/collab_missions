@@ -91,6 +91,7 @@ WaveSchedule
     PrecacheSound "megalaser_fire.wav"
     PrecacheSound "megalaser_fireloop.wav"
     PrecacheSound "boss_charging_his_shit.mp3"
+    PrecacheSound "trolldier_crashout.wav"
 
     //// POINT TEMPLATES ////
 
@@ -7612,6 +7613,7 @@ WaveSchedule
                 Param "
                         EntFire(`TrolldierGigaShockwaveInit`, `Disable`)
                         EntFire(`TrolldierBigSpoonsInit`, `Disable`)
+                        EntFire(`TripleTrolldierCrashoutRelay`, `Trigger`)
                       "
             }
 		}
@@ -7654,6 +7656,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`TrolldierGigaShockwaveInit`, `Disable`)
+                        EntFire(`TripleTrolldierCrashoutRelay`, `Trigger`)
                       "
             }
 		}
@@ -7687,6 +7690,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`TrolldierBigSpoonsInit`, `Disable`)
+                        EntFire(`TripleTrolldierCrashoutRelay`, `Trigger`)
                       "
             }
 		}
