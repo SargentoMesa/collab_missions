@@ -397,7 +397,22 @@ WaveSchedule
         Objective DestroySentries
         Where spawnbot_support
         BeginAtWave 1
-		RunForThisManyWaves 18
+		RunForThisManyWaves 15
+		InitialCooldown 30
+		CooldownTime 30
+		DesiredCount 1
+		
+		TFBot
+		{
+			Template T_TFBot_SentryBuster
+		}
+    }
+    Mission // Sentry Buster
+    {
+        Objective DestroySentries
+        Where spawnbot_support
+        BeginAtWave 17
+		RunForThisManyWaves 2
 		InitialCooldown 30
 		CooldownTime 30
 		DesiredCount 1
@@ -3389,8 +3404,8 @@ WaveSchedule
 						{
 							AlternateWaves.AddWaveIcons([
 								[`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
-								[`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
+								[`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT],
+								[`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT],
 								[`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
 								[`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
 							])
@@ -3446,8 +3461,8 @@ WaveSchedule
                         {
                             AlternateWaves.AddWaveIcons([
                                 [`demo_atomic`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS],
-                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS],
+                                [`heavy_shotgun`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT],
+                                [`soldier_rocketwall`, 1, MVM_CLASS_FLAG_MINIBOSS | MVM_CLASS_FLAG_ALWAYSCRIT],
                                 [`scout_bat_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT | MVM_CLASS_FLAG_ALWAYSCRIT],
                                 [`pyro_backburner_nys`, 1, MVM_CLASS_FLAG_NORMAL | MVM_CLASS_FLAG_SUPPORT]
                             ])
