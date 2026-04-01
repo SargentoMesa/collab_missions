@@ -14197,9 +14197,12 @@ WaveSchedule
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
-				"cannot be backstabbed" 1
 				"always allow taunt" 1
 			}
+            WeaponResist
+            {
+                "TF_WEAPON_KNIFE"    0.025    // makes it so that you can't just instakill him with a backstab but still do SOMETHING as spy
+            }
 
 			ItemAttributes
 			{
@@ -14285,7 +14288,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"cannot be backstabbed" 1
 						"hand scale" 1
 					}
 
@@ -14368,8 +14370,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
-						
 					}
                     ItemAttributes
                     {
@@ -14397,8 +14397,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
-						
 					}
                     FireInput
 					{
@@ -14453,9 +14451,7 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
 						"always allow taunt" 1
-						
 					}
 
                     FireWeapon
@@ -14491,8 +14487,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 1
-						"cannot be backstabbed" 1
-						
 					}
 
 					Sequence
@@ -14571,7 +14565,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
 						"always allow taunt" 1
 					}
 
@@ -14649,7 +14642,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"cannot be backstabbed" 1
 						"hand scale" 3
 					}
 
@@ -14711,8 +14703,11 @@ WaveSchedule
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
 				"cancel falling damage" 1
-				"cannot be backstabbed" 1
 			}
+            WeaponResist
+            {
+                "TF_WEAPON_KNIFE"    0.025    // makes it so that you can't just instakill him with a backstab but still do SOMETHING as spy
+            }
 
 			ItemAttributes
 			{
@@ -14797,8 +14792,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"cannot be backstabbed" 1
-						
 					}
 
 					ItemAttributes
@@ -14883,8 +14876,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 1
-						"cannot be backstabbed" 1
-						
 					}
 
 					Sequence
@@ -14997,9 +14988,7 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
 						"always allow taunt" 1
-						
 					}
 
                     FireWeapon
@@ -15036,8 +15025,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 1
-						"cannot be backstabbed" 1
-						
 					}
 
 					Sequence
@@ -15138,9 +15125,11 @@ WaveSchedule
 				"damage force reduction" 0.1
 				"blast dmg to self increased" 0.2
 				"increased jump height" 0.9
-				"cannot be backstabbed" 1
-				
 			}
+            WeaponResist
+            {
+                "TF_WEAPON_KNIFE"    0.025    // makes it so that you can't just instakill him with a backstab but still do SOMETHING as spy
+            }
 
 			ItemAttributes
 			{
@@ -15227,8 +15216,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"cannot be backstabbed" 1
-						
 					}
 
 					ItemAttributes
@@ -15313,7 +15300,6 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"cannot be backstabbed" 1
 					}
 					
 					ItemAttributes
@@ -15368,9 +15354,7 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
 						"always allow taunt" 1
-						
 					}
 
                     FireWeapon
@@ -15405,7 +15389,6 @@ WaveSchedule
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
-						"cannot be backstabbed" 1
 						"always allow taunt" 1
 					}
 
@@ -15571,10 +15554,14 @@ WaveSchedule
                 "increased jump height" 0.9
                 "damage force reduction" 0.1
                 // "dmg from ranged reduced" 0.85
-                "cannot be backstabbed" 1
             }
             Item	"the market gardener"
             Item "The Mantreads"
+
+            WeaponResist
+            {
+                "TF_WEAPON_KNIFE"    0.025    // makes it so that you can't just instakill him with a backstab but still do SOMETHING as spy
+            }
         }
 
         // Private Mannpower
