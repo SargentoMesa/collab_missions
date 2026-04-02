@@ -15337,7 +15337,7 @@ WaveSchedule
 
 					FireInput
 					{
-						Target LightningAttackStartarryCrashoutParticle
+						Target LarryCrashoutParticle
 						Action Start
 						Delay 0
 						Repeats 1
