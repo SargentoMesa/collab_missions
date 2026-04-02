@@ -15488,6 +15488,14 @@ WaveSchedule
 					}
 					FireInput
 					{
+						Target Larry_GhostRiderFire
+						Action Enable
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
 						Target tf_gamerules
 						Action PlayVO
 						Param vo/mvm/norm/soldier_mvm_m_paincrticialdeath02.mp3
@@ -15501,6 +15509,15 @@ WaveSchedule
 						Name "move speed bonus"
 						Value 2
 						Delay 0.625
+					}
+
+					FireInput
+					{
+						Target Larry_GhostRiderFire
+						Action Disable
+						Delay 9.9
+						Repeats 1
+						Cooldown -1
 					}
 
 					FireInput
