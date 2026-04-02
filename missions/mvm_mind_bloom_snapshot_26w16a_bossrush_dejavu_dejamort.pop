@@ -7648,6 +7648,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#triple_threat_trolldier_boss_theme.mp3`);
+                        EntFire(`TripleTrolldierCrashoutRelay`, `Enable`)
                       "
             }
             DoneOutput

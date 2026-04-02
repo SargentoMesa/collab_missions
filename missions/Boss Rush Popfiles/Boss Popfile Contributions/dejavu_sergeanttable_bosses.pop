@@ -4012,10 +4012,12 @@ WaveSchedule
 			logic_relay
 			{
 				"targetname" "TripleTrolldierCrashoutRelay"
+				"startdisabled" "1"
 
 				"OnTrigger" "pop_interface,ChangeBotAttributes,BarryCrashout,0,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,LarryCrashout,0,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,HarryCrashout,0,-1"
+				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "!self,Disable,,0.1,-1"
@@ -14379,7 +14381,7 @@ WaveSchedule
 					{
 						"no_jump" 0
 						"no_attack" 0
-						"move speed bonus" 1
+						"move speed bonus" 1.5
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
@@ -14747,7 +14749,6 @@ WaveSchedule
 						"displace touched enemies" 0
 						"voice pitch scale" 1
 						"hand scale" 1
-						"attach particle effect" 3044
 					}
 
 					ItemAttributes
@@ -14803,6 +14804,16 @@ WaveSchedule
 						Delay 1
 						Repeats 0
 						Cooldown 1
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_RageRocketLauncher
+						Delay 12.5
+						Repeats 1
+						Cooldown -1
 					}
 				}
 			}
@@ -15274,6 +15285,7 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
+				
 				Larry_DefaultRageTrolldier [$SIGSEGV]
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
