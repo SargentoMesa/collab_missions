@@ -16025,6 +16025,16 @@ WaveSchedule
 						Repeats 0
 						Cooldown 1
 					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Harry_RageBoomerangSpoons
+						Delay 12.5
+						Repeats 1
+						Cooldown -1
+					}
 				}
 			}
 		}
