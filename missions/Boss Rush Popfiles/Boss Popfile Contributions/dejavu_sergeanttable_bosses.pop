@@ -222,7 +222,7 @@ WaveSchedule
 		{
 			OriginalItemName "The Rescue Ranger"
 			"projectile gravity" -1
-			"projectile speed decreased" 0.5
+			"projectile speed decreased" 0.6
 
 			"penetrate teammates" 1
 			
@@ -365,25 +365,6 @@ WaveSchedule
             "projectile trail particle" "~"
             "custom projectile model" "models/empty.mdl"
 		}
-        "HomingMineWeapon"
-        {
-            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
-            "damage bonus" "1"
-            "no damage falloff" "1"
-            "projectile speed increased" "1.8"
-            "projectile detonate time" "2.5"
-            "ignores other projectiles" "1"
-            "mult projectile count" "1"
-            "projectile spread angle penalty" "5"
-            // "spread offset pattern" "0 0 0|0 15 0|0 30 0|0 -15 0|0 -30 0"
-            "projectile trail particle" "eyeboss_projectile"
-            "mod projectile heat seek power" "360"
-            "mod projectile heat aim error" "99999"
-            "mod projectile heat aim time" "2"
-            "projectile acceleration start time" "0.5"
-            "projectile acceleration time" "0.5"
-            "projectile acceleration" "-4000"
-        }
         "DefaultFire1"
         {
             OriginalItemName "The Cow Mangler 5000"
@@ -398,6 +379,7 @@ WaveSchedule
             "projectile acceleration time" "0.5"
             "projectile acceleration" "2000"
             "custom weapon fire sound"		"npc/strider/fire.wav"
+            "custom impact sound" "Weapon_CowMangler.ExplodeCharged"
             "projectile spread angle penalty" 9
             "fire rate bonus" 1.3
         }
@@ -407,6 +389,7 @@ WaveSchedule
             "projectile trail particle"		"~eyeboss_projectile"
             "override projectile type"	2
             "custom projectile model"		"models/empty.mdl"
+            "custom impact sound" "Weapon_CowMangler.Explode"
             "mod projectile heat seek power" "180"
             "mod projectile heat aim error" "99999"
             "mod projectile heat aim time" "1.3"
@@ -425,12 +408,33 @@ WaveSchedule
             "custom item model"    "models/workshop/weapons/c_models/c_drg_cowmangler/c_drg_cowmangler.mdl"
             "custom projectile model" "models/projectiles/fos_hologram_projectile_blu_l_spin.mdl" 
             "projectile trail particle" "rockettrail_airstrike_line"
+            "custom impact sound" "Weapon_CowMangler.Explode"
             "fire rate bonus" 0.0001
             "faster reload rate" 0.2
             "ignores other projectiles" "1"
             "projectile spread angle penalty" 35
             "projectile gravity" 400
             "explosion particle" drg_cow_explosioncore_charged_blue
+        }
+        "DefaultFirePanic"
+        {
+            OriginalItemName "The Cow Mangler 5000"
+            "explosion particle"			"drg_cow_explosioncore_charged_blue"
+            "projectile trail particle"		"drg_cow_rockettrail_charged_blue"
+            "override projectile type"	2
+		    "custom projectile model"		"models/empty.mdl"
+            "projectile speed decreased"	0.4
+            "projectile no deflect"			1
+            "damage bonus"                  2
+            "projectile acceleration start time" "0.5"
+            "projectile acceleration time" "0.5"
+            "projectile acceleration" "2000"
+            "custom weapon fire sound"		"npc/strider/fire.wav"
+            "custom impact sound" "Weapon_CowMangler.ExplodeCharged"
+            "projectile spread angle penalty" 9
+            "faster reload rate" 0.8
+            "fire rate bonus" 0.01
+            "hold fire until full reload" "1"
         }
     }
 
@@ -4014,12 +4018,11 @@ WaveSchedule
 				"targetname" "TripleTrolldierCrashoutRelay"
 				"startdisabled" "1"
 
-				"OnTrigger" "pop_interface,ChangeBotAttributes,BarryCrashout,0,-1"
-				"OnTrigger" "pop_interface,ChangeBotAttributes,LarryCrashout,0,-1"
-				"OnTrigger" "pop_interface,ChangeBotAttributes,HarryCrashout,0,-1"
+				"OnTrigger" "pop_interface,ChangeBotAttributes,Crashout,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
+                "OnTrigger" "TrolldierComboTimer,Disable,,0,-1"
 				"OnTrigger" "!self,Disable,,0.1,-1"
 			}
 		}
@@ -6911,7 +6914,7 @@ WaveSchedule
 			{
 				Target locationBig
 				Action Kill
-				Delay 3.5
+				Delay 9.5
 			}
 			info_target
 			{
@@ -7050,7 +7053,7 @@ WaveSchedule
 				"mins" "-300 -300 -300"
 				"maxs" "300 300 300"
 				"damagetype" "8"
-				"damage" "30"
+				"damage" "100"
 				"startdisabled" "1"
 				"spawnflags" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,5,0,-1"
@@ -7146,9 +7149,9 @@ WaveSchedule
 			{
 				"targetname" "LightningAttackSound"
 				"origin" "0 0 0"
-				"message" "misc\halloween\spell_lightning_ball_impact.wav"
+				"message" "Halloween.spell_lightning_impact"
 				"radius" "8192"
-				"health" "10"
+				"health" "7"
 				"spawnflags" "16"
 			}
 
@@ -7223,6 +7226,7 @@ WaveSchedule
 
 				"OnTrigger" "FallenShocksPhase1AttackPoolRelay,Trigger,,0,-1"
 				"OnTrigger" "FallenShocksPhase2AttackPoolRelay,Trigger,,0,-1"
+                "OnTrigger" "FallenShocksPhase3AttackPoolRelay,Trigger,,0,-1"
 			}
 
 			logic_relay
@@ -7239,6 +7243,14 @@ WaveSchedule
 				"startdisabled" "1"
 
 				"OnTrigger" "FallenShocksPhase2AttackPool,PickRandomShuffle,,0,-1"
+			}
+            logic_relay
+			{
+				"targetname" "FallenShocksPhase3AttackPoolRelay"
+				"spawnflags" "2"
+				"startdisabled" "1"
+
+				"OnTrigger" "FallenShocksPhase3AttackPool,PickRandomShuffle,,0,-1"
 			}
 
 			logic_case
@@ -7259,6 +7271,15 @@ WaveSchedule
                 "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_GroundSlamEvolved,0,-1"
                 "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_MultiBeam,0,-1"
 			}
+            logic_case
+			{
+				"targetname" "FallenShocksPhase3AttackPool"
+
+                "OnCase01" "pop_interface,ChangeBotAttributes,FallenShocks_StompComboEvolved,0,-1"
+                "OnCase02" "pop_interface,ChangeBotAttributes,FallenShocks_TeleportMania,0,-1"
+                "OnCase03" "pop_interface,ChangeBotAttributes,FallenShocks_VortexEvolved,0,-1"
+                "OnCase04" "pop_interface,ChangeBotAttributes,FallenShocks_MultiBeamPanic,0,-1"
+			}
 
             logic_case
             {
@@ -7267,6 +7288,13 @@ WaveSchedule
                 "OnCase01" "@p@boss_target,$GiveItem,DefaultFire1,0,-1"
                 "OnCase02" "@p@boss_target,$GiveItem,DefaultFire2,0,-1"
                 "OnCase03" "@p@boss_target,$GiveItem,DefaultFire3,0,-1"
+            }
+            logic_case
+            {
+                "targetname" "FallenShocksWeaponChoiceCasePanic"
+
+                "OnCase01" "@p@boss_target,$GiveItem,DefaultFirePanic,0,-1"
+                "OnCase02" "@p@boss_target,$GiveItem,DefaultFire3,0,-1"
             }
 
             // Shocks Model for Attack Sequencing
@@ -7279,27 +7307,11 @@ WaveSchedule
                 "modelscale" "5"
                 "solid" "0"
                 "skin" "1"
+                "body" "12"
+                "rendermode" "1"
                 "disableshadows" "1"
                 "startdisabled" "1"
             }
-			prop_dynamic_ornament
-			{
-				"targetname" "FallenShocksItem"
-				"initialowner" "TheShocksBehindTheSlaughter"
-				"model" "models/workshop/player/items/soldier/hwn2015_hellmet/hwn2015_hellmet.mdl"
-				"modelscale" "1"
-				"disableshadows" "1"
-				"startdisabled" "1"
-			}
-			prop_dynamic_ornament
-			{
-				"targetname" "FallenShocksItem"
-				"initialowner" "TheShocksBehindTheSlaughter"
-				"model" "models/player/items/heavy/big_jaw.mdl"
-				"modelscale" "1"
-				"disableshadows" "1"
-				"startdisabled" "1"
-			}
 
 			//// Phase 1 Attacks ////
 
@@ -7320,7 +7332,6 @@ WaveSchedule
 
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_dominationscout10.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_start,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_idle,1,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,megalaser_chargeup.wav,1,-1"
@@ -7350,7 +7361,6 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_end,11.5,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,12.95,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,13,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,13,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,13,-1"
                 "OnTrigger" "!activator,$Addcond,126 1,6,-1"
                 "OnTrigger" "!activator,$Addcond,126 1,6.25,-1"
@@ -7450,7 +7460,6 @@ WaveSchedule
 
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/taunts/soldier_mvm_m_taunts10.mp3,0,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,0,-1"
@@ -7468,7 +7477,6 @@ WaveSchedule
 				"OnTrigger" "FallenShocksGroundSlamParticle,Stop,,5,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,5.45,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,Disable,,5.5,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,5.5,-1"
 				"OnTrigger" "!activator,$Removecond,7,5.5,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,5.5,-1"
 			}
@@ -7589,28 +7597,12 @@ WaveSchedule
                 "disableshadows" "1"
 			}
 
-            // Homing Mines Attack
-            tf_point_weapon_mimic
-            {
-                "targetname" "FallenShocksHomingMineLauncher"
-                "origin" "-75 0 400"
-                "angles" "270 0 -45"
-                "speedmin" "10"
-                "speedmax" "10"
-                "teamnum" "3"
-                "damage" "100"
-                "$weaponname" "HomingMineWeapon"
-                "$firetime" "0.1"
-                "$preventshootparent" "1"
-            }
-
             // Stomp Combo Attack
             logic_relay
             {
                 "targetname" "FallenShocksStompComboAttack"
 
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_dominationengineer03.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,double_stomp,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,0.6,-1"
@@ -7638,7 +7630,6 @@ WaveSchedule
                 "OnTrigger" "StompDamageBig,Disable,,4.2,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,4.4,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,4.45,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,4.45,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,4.45,-1"
             }
             trigger_hurt
@@ -7680,8 +7671,39 @@ WaveSchedule
             info_target
             {
                 "targetname" "getyofatassup"
-                "origin"     "0 0 15"
+                "origin"     "0 0 25"
             }
+
+            //// Phase 2 Transition ////
+
+            logic_relay
+            {
+                "targetname" "FallenShocksPhase2TransitionRelay"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "FallenShocksPhase1AttackPoolRelay,Disable,,0,-1"
+                "OnTrigger" "FallenShocksPhase2AttackPoolRelay,Enable,,0,-1"
+
+                "OnTrigger" "FallenShocksMegaLaserAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksGroundSlamAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksLightningRainAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksStompComboAttack,CancelPending,,0,-1"
+                "OnTrigger" "LightningRainLauncher1,$StopFiring,,0,-1"
+				"OnTrigger" "LightningRainLauncher2,$StopFiring,,0,-1"
+				"OnTrigger" "LightningRainLauncher3,$StopFiring,,0,-1"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,tauntcan_it,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsharp07.mp3,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_burstchester_soldier,1,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0.01,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_directhittaunt03.mp3,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/taunts/soldier_mvm_m_taunts06.mp3,3.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,4.95,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,5.1,-1"
+                "OnTrigger" "!activator,$Removecond,7,5.1,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,5.1,-1"
+            }
+            
 			//// Phase 2 Attacks ////
             
             // Vortex Attack
@@ -7691,7 +7713,6 @@ WaveSchedule
 
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_pickaxetaunt05.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,0,-1"
                 "OnTrigger" "FallenShocksLightningGigaTesla,TurnOn,,0,-1"
 				"OnTrigger" "FallenShocksLightningGigaOrb,Start,,0,-1"
@@ -7716,7 +7737,6 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_end,7,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,8.5,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,8.55,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,8.55,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,8.55,-1"
             }
             point_push
@@ -7767,7 +7787,6 @@ WaveSchedule
                 "OnTrigger"  "tf_gamerules,playvo,vo\mvm\mght\taunts\soldier_mvm_m_taunts07.mp3,0,-1"
                 "OnTrigger"  "tf_gamerules,playvo,boss_charging_his_shit.mp3,3.9,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0.1,3.45,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1.9,5.75,-1"
@@ -7803,15 +7822,13 @@ WaveSchedule
                 "OnTrigger"  "ShocksEntireArenaHurt,disable,,15.1,-1"
                 "OnTrigger"  "ShocksEntireArenaLift,ApplyImpulse,,15,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,15,-1"
-                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,end,16,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,Disable,,16,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,0,-1"
 				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.1,0.2,-1"
                 "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.5,0.02,-1"
-                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,1,16,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,16.45,-1"
 				"OnTrigger" "TheShocksBehindTheSlaughter,Disable,,16.5,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,16.5,-1"
 				"OnTrigger" "!activator,$Removecond,7,16.5,-1"
 				"OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,16.5,-1"
             }
@@ -7823,7 +7840,6 @@ WaveSchedule
 
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_dominationscout06.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
-				"OnTrigger" "FallenShocksItem,Enable,,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,Soldier_replay_taunt,0,-1"
                 "OnTrigger" "FallenShocksMultiBeamParticle,Start,,2,-1"
                 "OnTrigger" "FallenShocksMultiBeamTesla,TurnOn,,2,-1"
@@ -7854,7 +7870,6 @@ WaveSchedule
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1,19,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,19.33,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,19.33,-1"
-				"OnTrigger" "FallenShocksItem,Disable,,19.33,-1"
                 "OnTrigger" "!activator,$Removecond,7,19.33,-1"
                 "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_Default,19.38,-1"
             }
@@ -8223,6 +8238,251 @@ WaveSchedule
                 "$firetime"      "0.3"
                 "$weaponnosound" "1"
             }
+
+            //// Phase 3 Transition ////
+
+            logic_relay
+            {
+                "targetname" "FallenShocksPhase3TransitionRelay"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "FallenShocksPhase2AttackPoolRelay,Disable,,0,-1"
+                "OnTrigger" "FallenShocksPhase3AttackPoolRelay,Enable,,0,-1"
+
+                "OnTrigger" "FallenShocksMegaLaserAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksVortexAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksGroundSlamAttackEvolved,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksMultiBeamAttack,CancelPending,,0,-1"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,tauntcan_it,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsevere02.mp3,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_burstchester_soldier,1,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0.01,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_jeers10.mp3,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/taunts/soldier_mvm_m_taunts04.mp3,5.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,7.95,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,8.1,-1"
+                "OnTrigger" "!activator,$Removecond,7,8.1,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_PanicDefault,8.1,-1"
+            }
+
+            //// Phase 3 (Desperation) Attacks ////
+
+            // Stomp Combo Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksStompComboEvolvedAttack"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,double_stomp,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,0.6,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageRight,0.6,-1"
+                "OnTrigger" "StompDamageRight,Enable,,0.6,-1"
+                "OnTrigger" "StompDamageRight,Disable,,0.7,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,1.6,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageLeft,1.6,-1"
+                "OnTrigger" "StompDamageLeft,Enable,,1.6,-1"
+                "OnTrigger" "StompDamageLeft,Disable,,1.7,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,ground_slam,2.2,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1.9,2.21,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,Enable,,2.2,-1"
+				"OnTrigger" "WholeArenaIndicatorGigaDEATH,SetAnimation,start,2.2,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.1,2.4,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,SetPlaybackRate,0.5,2.42,-1"
+                "OnTrigger" "WholeArenaIndicatorGigaDEATH,Disable,,4.4,-1"
+                "OnTrigger" "ShocksEntireArenaHurt,enable,,4.4,-1"
+                "OnTrigger" "ShocksEntireArenaHurt,disable,,4.5,-1"
+                "OnTrigger" "FallenShocksGroundSlamParticle,Start,,4.4,-1"
+                "OnTrigger" "FallenShocksGroundSlamParticle,Stop,,4.4,-1"
+                "OnTrigger" "ShocksEntireArenaLift,ApplyImpulse,,4.4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_1.wav,4.4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_zoomin_broom_exit,5.4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,6.3,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,6.3,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageBig,6.3,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,getyofatassup,6.3,-1"
+                "OnTrigger" "popscript,$CreateShockwave,,6.3,-1"
+                "OnTrigger" "StompDamageBig,Enable,,6.3,-1"
+                "OnTrigger" "StompDamageBig,Disable,,6.4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_zoomin_broom_exit,6.4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_2.wav,7.3,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,7.3,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageBig,7.3,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,getyofatassup,7.3,-1"
+                "OnTrigger" "popscript,$CreateShockwave,,7.3,-1"
+                "OnTrigger" "StompDamageBig,Enable,,7.3,-1"
+                "OnTrigger" "StompDamageBig,Disable,,7.4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,double_stomp,7.4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,8,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageRight,8,-1"
+                "OnTrigger" "StompDamageRight,Enable,,8,-1"
+                "OnTrigger" "StompDamageRight,Disable,,8.1,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/explosions/explode_4.wav,9,-1"
+                "OnTrigger" "ring_makerShocks,ForceSpawnAtEntityOrigin,StompDamageLeft,9,-1"
+                "OnTrigger" "StompDamageLeft,Enable,,9,-1"
+                "OnTrigger" "StompDamageLeft,Disable,,9.1,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,9.6,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,9.65,-1"
+                "OnTrigger" "!activator,$Removecond,7,9.65,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_PanicDefault,9.65,-1"
+
+            }
+
+            // Teleporting Megalaser Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksMegaLaserTeleportManiaRelay"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_start,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,6,0.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,player/spy_cloak.wav,0.5,-1"
+                "OnTrigger" "teleporthereforgigadestruction,PickRandomShuffle,,1.75,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,1.75,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,8,1.75,-1"
+                "OnTrigger" "FallenShocksMegaLaserAttackTP,Trigger,,1.75,-1"
+
+                "OnTrigger" "!activator,$Removecond,7,9.75,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,6,9.75,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,player/spy_cloak.wav,9.75,-1"
+                "OnTrigger" "teleporthereforgigadestruction,PickRandomShuffle,,11.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,11.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,8,11.5,-1"
+                "OnTrigger" "FallenShocksMegaLaserAttackTP,Trigger,,11.5,-1"
+
+                "OnTrigger" "!activator,$Removecond,7,19.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,6,19.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,player/spy_cloak.wav,19.5,-1"
+                "OnTrigger" "teleporthereforgigadestruction,PickRandomShuffle,,21.25,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,21.25,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,8,21.25,-1"
+                "OnTrigger" "FallenShocksMegaLaserAttackTP,Trigger,,21.25,-1"
+
+                "OnTrigger" "!activator,$Removecond,7,29.25,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,6,29.25,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,player/spy_cloak.wav,29.25,-1"
+                "OnTrigger" "teleporthereforgigadestruction,PickRandomShuffle,,31,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_teleport.wav,31,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,$SetKey$renderfx,8,31,-1"
+                "OnTrigger" "FallenShocksMegaLaserAttackTP,Trigger,,31,-1"
+
+                "OnTrigger" "!activator,$Removecond,7,39,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_end,39,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,40.45,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,40.5,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_PanicDefault,40.5,-1"
+            }
+            logic_case
+            {
+                "targetname" "teleporthereforgigadestruction"
+                "OnCase01" "!activator,$SetLocalOrigin,192 -4416 -1190,0.0,-1"
+                "OnCase02" "!activator,$SetLocalOrigin,192 -8000 -1190,0.0,-1"
+                "OnCase03" "!activator,$SetLocalOrigin,-1600 -6208 -1190,0.0,-1"
+                "OnCase04" "!activator,$SetLocalOrigin,1984 -6208 -1190,0.0,-1"
+            }
+            logic_relay
+            {
+                "targetname" "FallenShocksMegaLaserAttackTP"
+
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_idle,1,-1"
+                "OnTrigger" "bignetrunscriptcodePrecacheSound(`megalaser_chargeup.wav`);EmitSoundEx({sound_name=`megalaser_chargeup.wav`, channel=6, pitch=150})1-1"
+                "OnTrigger" "FallenShocksMegaLaserCharge,TurnOn,,1,-1"
+				"OnTrigger" "FallenShocksMegaLaserChargeParticle,Start,,1,-1"
+                "OnTrigger" "!activator,$TauntFromItem,Taunt: Mourning Mercs,3.75,-1"
+				"OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)4-1"
+                "OnTrigger" "tf_gamerules,PlayVO,megalaser_fire.wav,4,-1"
+                "OnTrigger" "FallenShocksMegaLaser,Enable,,4,-1"
+				"OnTrigger" "FallenShocksMegaLaserDamageDetector,$StartFiring,,4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_shoot,4,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,mega_laser_idle,5.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,megalaser_fireloop.wav,4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,megalaser_fireloop.wav,5.4,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,megalaser_fireloop.wav,6.8,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,megalaser_fireloop.wav,7.35,-1"
+                "OnTrigger" "FallenShocksMegaLaser,Disable,,7.3,-1"
+				"OnTrigger" "FallenShocksMegaLaserDamageDetector,$StopFiring,,7.3,-1"
+				"OnTrigger" "FallenShocksMegaLaserDamageTrigger*,Disable,7.3,-1"
+                "OnTrigger" "FallenShocksMegaLaserCharge,TurnOff,,7.3,-1"
+				"OnTrigger" "FallenShocksMegaLaserChargeParticle,Stop,,7.3,-1"
+                "OnTrigger" "FallenShocksMegaLaserLoop,StopSound,,7.3,-1"
+            }
+
+            // Vortex Evolved Attack
+            logic_relay
+            {
+                "targetname" "FallenShocksVortexAttackEvolved"
+
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_pickaxetaunt05.mp3,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_spawn_boss.wav,0,-1"
+                "OnTrigger" "FallenShocksLightningGigaTesla,TurnOn,,0,-1"
+				"OnTrigger" "FallenShocksLightningGigaOrb,Start,,0,-1"
+                "OnTrigger" "LightningRainLauncher2,$StartFiring,,0,-1"
+                "OnTrigger" "LightningRainLauncher3,$StartFiring,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_start,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_loop,1.16,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,major_shocks_spin.mp3,1.16,-1"
+                "OnTrigger" "VortexPush,Enable,,2,-1"
+                "OnTrigger" "VortexEffect,Start,,2,-1"
+                "OnTrigger" "LightningLauncher2,FireMultiple,15,2,-1"
+                "OnTrigger" "LightningLauncher3,FireMultiple,15,2,-1"
+                "OnTrigger" "LightningLauncher2,FireMultiple,15,3,-1"
+                "OnTrigger" "LightningLauncher3,FireMultiple,15,3,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_kaboomalts01.mp3,7,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/halloween/thunder_04.wav,7,-1"
+                "OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)7-1"
+                "OnTrigger" "VortexPush,Disable,,7,-1"
+                "OnTrigger" "VortexEffect,Stop,,7,-1"
+                "OnTrigger" "VortexDamage,Enable,,7,-1"
+                "OnTrigger" "VortexDamage,Disable,,7.1,-1"
+                "OnTrigger" "FallenShocksLightningGigaTesla,TurnOff,,7,-1"
+				"OnTrigger" "FallenShocksLightningGigaOrb,Stop,,7,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,vortex_end,7,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,8.5,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,8.55,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_PanicDefault,8.55,-1"
+            }
+
+            // Multi-Beam Panic
+            logic_relay
+            {
+                "targetname" "FallenShocksMultiBeamAttackPanic"
+
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_dominationscout06.mp3,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Enable,,0,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,Soldier_replay_taunt,0,-1"
+                "OnTrigger" "FallenShocksMultiBeamParticle,Start,,2,-1"
+                "OnTrigger" "FallenShocksMultiBeamTesla,TurnOn,,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,misc/halloween/spell_lightning_ball_cast.wav,2,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,items/powerup_pickup_supernova.wav,2,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,0,2.33,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,ambient/energy/zap9.wav,2.5,-1"
+                "OnTrigger" "MultiBeam1,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam2,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam3,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam4,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam5,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam6,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam7,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam8,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeam9,StrikeOnce,,2.5,-1"
+                "OnTrigger" "MultiBeamDamage,$StartFiring,,3.5,-1"
+                "OnTrigger" "MultiBeamRotator1,Start,,3.5,-1"
+                "OnTrigger" "MultiBeamRotator2,Start,,3.5,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_laughevil01.mp3,10.5,-1"
+                "OnTrigger" "MultiBeamRotator1,Reverse,,10,-1"
+                "OnTrigger" "MultiBeamRotator2,Reverse,,12,-1"
+                "OnTrigger" "MultiBeamRotator1,Stop,,18.5,-1"
+                "OnTrigger" "MultiBeamRotator2,Stop,,18.5,-1"
+                "OnTrigger" "MultiBeamDamage,$StopFiring,,18.5,-1"
+                "OnTrigger" "FallenShocksMultiBeamParticle,Stop,,19,-1"
+                "OnTrigger" "FallenShocksMultiBeamTesla,TurnOff,,19,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetPlaybackRate,1,19,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,run_PRIMARY,19.33,-1"
+                "OnTrigger" "TheShocksBehindTheSlaughter,Disable,,19.33,-1"
+                "OnTrigger" "!activator,$Removecond,7,19.33,-1"
+                "OnTrigger" "pop_interface,ChangeBotAttributes,FallenShocks_PanicDefault,19.38,-1"
+            }
 		}
 		FallenShocksMegaLaserDamage
 		{
@@ -8393,10 +8653,9 @@ WaveSchedule
             {
                 "targetname" "ShocksDeathRelay"
                 
-                "OnTrigger" "FallenShocksMegaLaserAttack,CancelPending,,0,-1"
-                "OnTrigger" "FallenShocksVortexAttack,CancelPending,,0,-1"
-                "OnTrigger" "FallenShocksGroundSlamAttackEvolved,CancelPending,,0,-1"
-                "OnTrigger" "FallenShocksMultiBeamAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksStompComboEvolvedAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksMegaLaserTeleportManiaRelay,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksMegaLaserAttackTP,CancelPending,,0,-1"
                 
                 "OnTrigger" "ShocksDeathAnim,Enable,,0,-1"
                 "OnTrigger" "ShocksDeathItem,Enable,,0,-1"
@@ -9001,15 +9260,6 @@ WaveSchedule
                 "attach particle effect" 3200
             }
 
-			FireInput
-			{
-				Target "FallenShocksItem"
-				Action Disable
-				Delay 0
-				Repeats 1
-				Cooldown -1
-			}
-
             FireInput
             {
                 Target !self
@@ -9020,11 +9270,12 @@ WaveSchedule
                 Cooldown -1
             }
 
-            // Basic ahh phase 2
+            
             FireInput
             {
-                Target FallenShocksPhase1AttackPoolRelay
-                Action Disable
+                Target !self
+                Action $ChangeAttributes
+                Param "FallenShocks_Phase2Transition"
                 Delay 0
                 Repeats 1
                 Cooldown -1
@@ -9032,22 +9283,13 @@ WaveSchedule
             }
             FireInput
             {
-                Target FallenShocksPhase2AttackPoolRelay
-                Action Enable
+                Target !self
+                Action $ChangeAttributes
+                Param "FallenShocks_Phase3Transition"
                 Delay 0
                 Repeats 1
                 Cooldown -1
-                IfHealthBelow 112501
-            }
-            FireInput
-            {
-                Target tf_gamerules
-                Action PlayVO
-                Param "vo/mvm/mght/taunts/soldier_mvm_m_taunts04.mp3"
-                Delay 0
-                Repeats 1
-                Cooldown -1
-                IfHealthBelow 112501
+                IfHealthBelow 56251
             }
 
 			EventChangeAttributes
@@ -9097,6 +9339,73 @@ WaveSchedule
                         Name ShocksMimicLeftover
                         AttachToProjectile 1
                         ItemName "DefaultFire3"
+                    }
+                    ShootTemplate
+                    {
+                        Name ShocksMimicLeftoverBig
+                        AttachToProjectile 1
+                        ItemName "DefaultFirePanic"
+                    }
+                    FireInput
+                    {
+                        Target FallenShocksAttackInit
+                        Action Trigger
+                        Delay 7
+                        Repeats 1
+                        Cooldown -1
+                    }
+				}
+                FallenShocks_PanicDefault [$SIGSEGV]
+				{
+					UseCustomModel "models/bots/soldier/major_shocks/bot_major_shocks_02_attacks.mdl"
+
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+
+					CharacterAttributes
+					{
+                        "no_attack" 0
+                        "no_jump" 0
+						"move speed penalty"	0.4
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "1"
+					}
+
+                    FireInput
+                    {
+                        Target "FallenShocksWeaponChoiceCasePanic"
+                        Action "PickRandomShuffle"
+                        Delay 0.1
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    ShootTemplate
+                    {
+                        Name ShocksMimicLeftoverBig
+                        AttachToProjectile 1
+                        ItemName "DefaultFire1"
+                    }
+                    ShootTemplate
+                    {
+                        Name ShocksMimicLeftover
+                        AttachToProjectile 1
+                        ItemName "DefaultFire3"
+                    }
+                    ShootTemplate
+                    {
+                        Name ShocksMimicLeftoverBig
+                        AttachToProjectile 1
+                        ItemName "DefaultFirePanic"
                     }
                     FireInput
                     {
@@ -9423,65 +9732,6 @@ WaveSchedule
 					}
 				}
 
-                // Homing Mines
-                FallenShocks_HomingMines [$SIGSEGV]
-                {
-                    Item "TF_WEAPON_ROCKETLAUNCHER"
-					Item "TF_WEAPON_SHOTGUN_SOLDIER"
-					Item "TF_WEAPON_SHOVEL"
-					Item "The Hellmet"
-					Item "Big Steel Jaw of Summer Fun"
-
-                    CharacterAttributes
-                    {
-                        "no_attack" 0
-                        "no_jump" 0
-						"move speed penalty"	0.4
-						"damage force reduction" 0.01
-						"airblast vulnerability multiplier" 0.01
-						"airblast vertical vulnerability multiplier" 0.01
-						"override footstep sound set" 3
-						"cancel falling damage" 1
-						"always allow taunt" 1
-						"displace touched enemies" 1
-						"attach particle effect" 3200
-						"voice pitch scale" "0"
-                    }
-
-                    Taunt
-                    {  
-                        Delay 0.1
-                        Repeats 1
-                        Cooldown -1
-                    }
-
-                    FireInput
-                    {
-                        Target "FallenShocksHomingMineLauncher"
-                        Action "$StartFiring"
-                        Delay 1
-                        Repeats 1
-                        Cooldown -1
-                    }
-                    FireInput
-                    {
-                        Target "FallenShocksHomingMineLauncher"
-                        Action "$StopFiring"
-                        Delay 2.6
-                        Repeats 1
-                        Cooldown -1
-                    }
-                    FireInput
-                    {
-                        Target !self
-                        Action $ChangeAttributes
-                        Param FallenShocks_Default
-                        Delay 2.7
-                        Repeats 1
-                        Cooldown -1
-                    }
-                }
-
                 // Stomp Combo
                 FallenShocks_StompCombo [$SIGSEGV]
                 {
@@ -9523,6 +9773,65 @@ WaveSchedule
 						Repeats 1
 						Cooldown -1
 					}
+                }
+
+                //// Phase 2 Transition ////
+
+                FallenShocks_Phase2Transition [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+					Item "Taunt: Mourning Mercs"
+					CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                        "gesture speed increase" 0.1
+                    }
+                    Addcond
+                    {
+                        Index 51
+                        Duration 5.5
+                    }
+                    FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksPhase2TransitionRelay"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
                 }
 
 				//// Phase 2 Attacks ////
@@ -9660,6 +9969,262 @@ WaveSchedule
                     FireInput
                     {
                         Target "FallenShocksMultiBeamAttack"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                }
+
+                //// Phase 3 Transition ////
+
+                FallenShocks_Phase3Transition [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+					Item "Taunt: Mourning Mercs"
+					CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                        "gesture speed increase" 0.1
+                    }
+                    Addcond
+                    {
+                        Index 51
+                        Duration 8.5
+                    }
+                    FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                    FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksPhase3TransitionRelay"
+                        Action Trigger
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                //// Phase 3 Attacks ////
+
+                // Stomp Combo Evolved
+                FallenShocks_StompComboEvolved [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    Item "Taunt: Mourning Mercs"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                        "gesture speed increase" 0.2
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksStompComboEvolvedAttack"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+					{
+						Target !self
+						Action $TauntFromItem
+						Param "Taunt: Mourning Mercs"
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+                }
+
+                // Teleport Mania
+                FallenShocks_TeleportMania [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    Item "Taunt: Mourning Mercs"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksMegaLaserTeleportManiaRelay"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                // Vortex Evolved
+                FallenShocks_VortexEvolved [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksVortexAttackEvolved"
+                        Action "Trigger" 
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                }
+
+                // Multi-Beam Panic
+                FallenShocks_MultiBeamPanic [$SIGSEGV]
+                {
+                    UseCustomModel "models/empty.mdl"
+					Item "The Cow Mangler 5000"
+					Item "TF_WEAPON_SHOTGUN_SOLDIER"
+					Item "TF_WEAPON_SHOVEL"
+					Item "The Hellmet"
+					Item "Big Steel Jaw of Summer Fun"
+                    Item "Taunt: Mourning Mercs"
+                    CharacterAttributes
+                    {
+                        "no_attack" 1
+                        "no_jump" 1
+						"move speed penalty"	0.01
+						"damage force reduction" 0.01
+						"airblast vulnerability multiplier" 0.01
+						"airblast vertical vulnerability multiplier" 0.01
+						"override footstep sound set" 3
+						"cancel falling damage" 1
+						"always allow taunt" 1
+						"displace touched enemies" 1
+						"attach particle effect" 3200
+						"voice pitch scale" "0"
+                        "gesture speed increase" 0.2
+                    }
+
+					FireInput
+                    {
+                        Target "FallenShocksItemClear"
+                        Action "Trigger"
+                        Delay 0
+                        Repeats 1
+                        Cooldown -1
+                    }
+                    FireInput
+                    {
+                        Target "FallenShocksMultiBeamAttackPanic"
                         Action "Trigger"
                         Delay 0
                         Repeats 1
@@ -14718,7 +15283,7 @@ WaveSchedule
 					}
 				}
 
-				BarryCrashout [$SIGSEGV]
+				Crashout [$SIGSEGV]
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
@@ -14735,13 +15300,13 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 50
+                        "healing received bonus" 35
 					}
 
 					Addcond
 					{
 						Index 51
-						Duration 5.5
+						Duration 4
 					}
                     Addcond
 					{
@@ -15330,7 +15895,7 @@ WaveSchedule
 					}
 				}
 
-				LarryCrashout [$SIGSEGV]
+				Crashout [$SIGSEGV]
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
@@ -15347,13 +15912,13 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 50
+                        "healing received bonus" 35
 					}
 
 					Addcond
 					{
 						Index 51
-						Duration 5.5
+						Duration 4
 					}
                     Addcond
 					{
@@ -15500,7 +16065,7 @@ WaveSchedule
 					{
 						ItemName "The Equalizer"
 						"damage bonus" 1.5
-						"fire rate bonus" 0.75
+						"fire rate bonus" 0.5
 					}
 
 					FireInput
@@ -15911,7 +16476,7 @@ WaveSchedule
 					}
 				}
 
-				HarryCrashout [$SIGSEGV]
+				Crashout [$SIGSEGV]
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
@@ -15928,13 +16493,13 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 50
+                        "healing received bonus" 35
 					}
 
 					Addcond
 					{
 						Index 51
-						Duration 5.5
+						Duration 4
 					}
                     Addcond
 					{
@@ -16080,9 +16645,10 @@ WaveSchedule
 					{
 						ItemName "SpoonGun"
 
-						"projectile detonate time"	2.5
-						"projectile acceleration time"	1.5
+						"projectile lifetime"	3.5
+						"projectile acceleration time"	2
 						"projectile acceleration"		-1000
+                        "apply z velocity on damage" -2000
 					}
 					ItemAttributes
 					{
