@@ -14731,12 +14731,18 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
+                        "healing received bonus" 20
 					}
 
 					Addcond
 					{
 						Index 51
 						Duration 5.5
+					}
+                    Addcond
+					{
+						Index 73
+						Duration 5
 					}
 
 					FireInput
@@ -15333,6 +15339,7 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
+                        "healing received bonus" 20
 					}
 
 					Addcond
@@ -15340,7 +15347,11 @@ WaveSchedule
 						Index 51
 						Duration 5.5
 					}
-
+                    Addcond
+					{
+						Index 73
+						Duration 5
+					}
 					FireInput
 					{
 						Target LarryCrashoutParticle
@@ -15905,12 +15916,18 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
+                        "healing received bonus" 20
 					}
 
 					Addcond
 					{
 						Index 51
 						Duration 5.5
+					}
+                    Addcond
+					{
+						Index 73
+						Duration 5
 					}
 					FireInput
 					{
