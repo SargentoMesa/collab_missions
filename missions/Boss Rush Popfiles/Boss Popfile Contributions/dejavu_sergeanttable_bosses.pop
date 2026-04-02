@@ -4187,6 +4187,15 @@ WaveSchedule
                 "effect_name"  "dxhr_lightningball_parent_red"
                 "start_active" "0"
             }
+			trigger_ignite
+			{
+				"targetname" "Larry_GhostRiderFire"
+				"origin" "0 0 0"
+				"damage_percent_per_second" "5"
+				"filterclass" "filter_nouber"
+				"spawnflags" "1"
+				"startdisabled" "1"
+			}
 		}
 		MainBoss_HarryLogic
 		{
