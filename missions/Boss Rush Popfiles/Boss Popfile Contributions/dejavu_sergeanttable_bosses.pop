@@ -418,23 +418,23 @@ WaveSchedule
         }
         "DefaultFirePanic"
         {
-            OriginalItemName "The Cow Mangler 5000"
+            OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
+            "clip size upgrade atomic" 2
             "explosion particle"			"drg_cow_explosioncore_charged_blue"
             "projectile trail particle"		"drg_cow_rockettrail_charged_blue"
             "override projectile type"	2
 		    "custom projectile model"		"models/empty.mdl"
             "projectile speed decreased"	0.4
             "projectile no deflect"			1
-            "damage bonus"                  2
+            "damage bonus"                  3
             "projectile acceleration start time" "0.5"
             "projectile acceleration time" "0.5"
             "projectile acceleration" "2000"
             "custom weapon fire sound"		"npc/strider/fire.wav"
             "custom impact sound" "Weapon_CowMangler.ExplodeCharged"
             "projectile spread angle penalty" 9
-            "faster reload rate" 0.8
+            "faster reload rate" 1
             "fire rate bonus" 0.01
-            "hold fire until full reload" "1"
         }
     }
 
@@ -9279,7 +9279,7 @@ WaveSchedule
                 Delay 0
                 Repeats 1
                 Cooldown -1
-                IfHealthBelow 112501
+                IfHealthBelow 150001
             }
             FireInput
             {
@@ -9289,7 +9289,7 @@ WaveSchedule
                 Delay 0
                 Repeats 1
                 Cooldown -1
-                IfHealthBelow 56251
+                IfHealthBelow 75001
             }
 
 			EventChangeAttributes
