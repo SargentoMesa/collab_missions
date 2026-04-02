@@ -16038,9 +16038,11 @@ WaveSchedule
 				}
 				Harry_RageBoomerangSpoons [$SIGSEGV]
 				{
-					Item "TF_WEAPON_ROCKETLAUNCHER"
-					Item "The Mantreads"
 					Item "SpoonGun"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+					WeaponRestrictions PrimaryOnly
+					Attributes HoldFireUntilFullReload
 
 					CharacterAttributes
 					{
@@ -16052,8 +16054,37 @@ WaveSchedule
 						"increased jump height" 0.9
 						"cancel falling damage" 1
 						"displace touched enemies" 0
-						"hand scale" 1
+						"hand scale" 3
 						"voice pitch scale" 1
+					}
+					ItemAttributes
+					{
+						ItemName "SpoonGun"
+
+						"projectile detonate time"	3
+						"projectile acceleration time"	1.5
+						"projectile acceleration"		-3000
+					}
+					ItemAttributes
+					{
+						ItemName "The Market Gardener"
+						"is_passive_weapon" 1
+					}
+					ShootTemplate
+					{
+						Name Trolldier_BigSpoon
+						AttachToProjectile 1
+						ItemName "SpoonGun"
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Harry_DefaultRageTrolldier
+						Delay 10
+						Repeats 1
+						Cooldown -1
 					}
 				}
 			}
