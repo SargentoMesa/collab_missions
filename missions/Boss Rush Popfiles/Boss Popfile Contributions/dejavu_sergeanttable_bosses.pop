@@ -420,6 +420,7 @@ WaveSchedule
         {
             OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
             "clip size upgrade atomic" 2
+            "custom item model"    "models/workshop/weapons/c_models/c_drg_cowmangler/c_drg_cowmangler.mdl"
             "explosion particle"			"drg_cow_explosioncore_charged_blue"
             "projectile trail particle"		"drg_cow_rockettrail_charged_blue"
             "override projectile type"	2
@@ -432,9 +433,9 @@ WaveSchedule
             "projectile acceleration" "2000"
             "custom weapon fire sound"		"npc/strider/fire.wav"
             "custom impact sound" "Weapon_CowMangler.ExplodeCharged"
-            "projectile spread angle penalty" 9
-            "faster reload rate" 1
-            "fire rate bonus" 0.01
+            "projectile spread angle penalty" 16
+            "faster reload rate" 0.95
+            "fire rate bonus" 0.2
         }
     }
 
@@ -7688,6 +7689,8 @@ WaveSchedule
                 "OnTrigger" "FallenShocksGroundSlamAttack,CancelPending,,0,-1"
                 "OnTrigger" "FallenShocksLightningRainAttack,CancelPending,,0,-1"
                 "OnTrigger" "FallenShocksStompComboAttack,CancelPending,,0,-1"
+                "OnTrigger" "FallenShocksLightningGigaTesla,TurnOff,,0,-1"
+                "OnTrigger" "FallenShocksLightningGigaOrb,Stop,,0,-1"
                 "OnTrigger" "LightningRainLauncher1,$StopFiring,,0,-1"
 				"OnTrigger" "LightningRainLauncher2,$StopFiring,,0,-1"
 				"OnTrigger" "LightningRainLauncher3,$StopFiring,,0,-1"
@@ -8254,6 +8257,10 @@ WaveSchedule
                 "OnTrigger" "FallenShocksGroundSlamAttackEvolved,CancelPending,,0,-1"
                 "OnTrigger" "FallenShocksMultiBeamAttack,CancelPending,,0,-1"
 
+                "OnTrigger" "FallenShocksMultiBeamParticle,Stop,,0,-1"
+                "OnTrigger" "FallenShocksMultiBeamTesla,TurnOff,,0,-1"
+                "OnTrigger" "MultiBeamDamage,$StopFiring,,0,-1"
+
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,tauntcan_it,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_painsevere02.mp3,0,-1"
                 "OnTrigger" "TheShocksBehindTheSlaughter,SetAnimation,taunt_burstchester_soldier,1,-1"
@@ -8422,12 +8429,12 @@ WaveSchedule
                 "OnTrigger" "tf_gamerules,PlayVO,major_shocks_spin.mp3,1.16,-1"
                 "OnTrigger" "VortexPush,Enable,,2,-1"
                 "OnTrigger" "VortexEffect,Start,,2,-1"
-                "OnTrigger" "LightningLauncher2,FireMultiple,15,0,-1"
-                "OnTrigger" "LightningLauncher3,FireMultiple,15,0,-1"
-                "OnTrigger" "LightningLauncher2,FireMultiple,15,2,-1"
-                "OnTrigger" "LightningLauncher3,FireMultiple,15,2,-1"
-                "OnTrigger" "LightningLauncher2,FireMultiple,15,4,-1"
-                "OnTrigger" "LightningLauncher3,FireMultiple,15,4,-1"
+                "OnTrigger" "LightningRainLauncher2,FireMultiple,15,0,-1"
+                "OnTrigger" "LightningRainLauncher3,FireMultiple,15,0,-1"
+                "OnTrigger" "LightningRainLauncher2,FireMultiple,15,2,-1"
+                "OnTrigger" "LightningRainLauncher3,FireMultiple,15,2,-1"
+                "OnTrigger" "LightningRainLauncher2,FireMultiple,15,4,-1"
+                "OnTrigger" "LightningRainLauncher3,FireMultiple,15,4,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo/mvm/mght/soldier_mvm_m_kaboomalts01.mp3,7,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,ambient/halloween/thunder_04.wav,7,-1"
                 "OnTrigger" "playerrunscriptcodeScreenFade(null, 255, 255, 255, 110, 0.7, 0.1, 1)7-1"
