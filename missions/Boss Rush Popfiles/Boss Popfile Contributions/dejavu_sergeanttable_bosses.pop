@@ -4022,7 +4022,6 @@ WaveSchedule
 				"OnTrigger" "pop_interface,ChangeBotAttributes,Crashout,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
 				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
-				"OnTrigger" "tf_gamerules,PlayVO,trolldier_crashout.wav,0,-1"
                 "OnTrigger" "TrolldierComboTimer,Disable,,0,-1"
 				"OnTrigger" "!self,Disable,,0.1,-1"
 			}
