@@ -4061,6 +4061,14 @@ WaveSchedule
                 "effect_name"  "hammer_impact_button_dust2"
                 "start_active" "0"
             }
+
+			info_particle_system
+            {
+                "targetname"   "BarryCrashoutParticle"
+                "origin"       "0 0 0"
+                "effect_name"  "dxhr_lightningball_parent_red"
+                "start_active" "0"
+            }
 		}
 		MainBoss_LarryLogic
 		{
@@ -14701,13 +14709,21 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-						"attach particle effect" 3044
 					}
 
 					Addcond
 					{
 						Index 51
 						Duration 5.5
+					}
+
+					FireInput
+					{
+						Target BarryCrashoutParticle
+						Action Start
+						Delay 0
+						Repeats 1
+						Cooldown -1
 					}
 
 					FireInput
@@ -14812,6 +14828,45 @@ WaveSchedule
 						Action $ChangeAttributes
 						Param Barry_RageRocketLauncher
 						Delay 12.5
+						Repeats 1
+						Cooldown -1
+					}
+				}
+				Barry_RageRocketLauncher [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 1
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"voice pitch scale" 1
+						"hand scale" 1
+					}
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"damage bonus" 1.5
+						"fire rate bonus" 0.001
+						"faster reload rate" 0.2
+						"clip size upgrade atomic" -1
+						"spread angle pattern" "0 -5 0|0 0 0|0 5 0"
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Barry_DefaultRageTrolldier
+						Delay 10
 						Repeats 1
 						Cooldown -1
 					}
@@ -15285,7 +15340,7 @@ WaveSchedule
 						Cooldown -1
 					}
 				}
-				
+
 				Larry_DefaultRageTrolldier [$SIGSEGV]
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
