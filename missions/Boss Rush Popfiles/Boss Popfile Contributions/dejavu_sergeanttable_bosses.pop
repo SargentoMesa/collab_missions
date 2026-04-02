@@ -15440,6 +15440,16 @@ WaveSchedule
 						Repeats 0
 						Cooldown 1
 					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Larry_RageGhostRider
+						Delay 12.5
+						Repeats 1
+						Cooldown -1
+					}
 				}
 			}
 		}
