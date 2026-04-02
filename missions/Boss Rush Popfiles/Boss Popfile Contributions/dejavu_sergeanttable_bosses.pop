@@ -3726,12 +3726,12 @@ WaveSchedule
                 "parentname" "rot"
                 "model" "models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"
 				"modelscale" "3"
-                "angles" "0 0 0"
+                "angles" "-90 0 0"
             }
             func_rotating
             {
                 "targetname" "rot"
-                "spawnflags" 73 //not solid, spin on Y, start active
+                "spawnflags" 65
                 "fanfriction" 100
                 "maxspeed" 400
             }
@@ -4187,14 +4187,18 @@ WaveSchedule
                 "effect_name"  "dxhr_lightningball_parent_red"
                 "start_active" "0"
             }
-			trigger_ignite
+			trigger_hurt
 			{
 				"targetname" "Larry_GhostRiderFire"
 				"origin" "0 0 0"
-				"damage_percent_per_second" "5"
-				"filterclass" "filter_nouber"
-				"spawnflags" "1"
+				"mins" "-48 -48 -42"
+				"maxs" "48 48 42"
+				"damagetype" "8"
+				"damage" "50"
 				"startdisabled" "1"
+				"spawnflags" "64"
+				"onhurtplayer" "!activator,$igniteplayerduration,5,0,-1"
+				"filtername" "filter_nouber"
 			}
 		}
 		MainBoss_HarryLogic
@@ -14283,23 +14287,13 @@ WaveSchedule
 				Duration 2.5
 			}
 			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "taunt01"
-                Delay  0
-                Repeats 1
+			{
+				Target !self
+				Action $Taunt
+				Delay 0.1
+				Repeats 1
 				Cooldown -1
-            }
-			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "run_PRIMARY"
-                Delay  2.5
-                Repeats 1
-				Cooldown -1
-            }
+			}
 
 			FireInput
 			{
@@ -14865,6 +14859,8 @@ WaveSchedule
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
 					Item "The Market Gardener"
+					WeaponRestrictions PrimaryOnly
+					Attributes HoldFireUntilFullReload
 
 					CharacterAttributes
 					{
@@ -14884,9 +14880,13 @@ WaveSchedule
 						ItemName "TF_WEAPON_ROCKETLAUNCHER"
 						"damage bonus" 1.5
 						"fire rate bonus" 0.001
+						"override projectile type" 2
+						"Projectile speed increased HIDDEN" 1
 						"faster reload rate" 0.2
-						"clip size upgrade atomic" -1
+						"clip size bonus" 0.75
 						"spread angle pattern" "0 -5 0|0 0 0|0 5 0"
+						"apply look velocity on damage" 0
+						"apply z velocity on damage" 0
 					}
 
 					FireInput
@@ -14972,23 +14972,13 @@ WaveSchedule
 				Duration 2.5
 			}
 			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "taunt01"
-                Delay  0
-                Repeats 1
+			{
+				Target !self
+				Action $Taunt
+				Delay 0.1
+				Repeats 1
 				Cooldown -1
-            }
-			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "run_PRIMARY"
-                Delay  2.5
-                Repeats 1
-				Cooldown -1
-            }
+			}
 
 			FireInput
 			{
@@ -15471,6 +15461,7 @@ WaveSchedule
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
 					Item "The Equalizer"
+					WeaponRestrictions MeleeOnly
 
 					CharacterAttributes
 					{
@@ -15504,6 +15495,15 @@ WaveSchedule
 					}
 					FireInput
 					{
+						Target tf_gamerules
+						Action PlayVO
+						Param weapons/dragons_fury_impact_hit.wav
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
 						Target Larry_GhostRiderFire
 						Action Enable
 						Delay 0
@@ -15514,7 +15514,7 @@ WaveSchedule
 					{
 						Target tf_gamerules
 						Action PlayVO
-						Param vo/mvm/norm/soldier_mvm_m_paincrticialdeath02.mp3
+						Param vo/mvm/norm/soldier_mvm_paincrticialdeath02.mp3
 						Delay 0.625
 						Repeats 1
 						Cooldown -1
@@ -15523,7 +15523,7 @@ WaveSchedule
 					{
 						Item "player"
 						Name "move speed bonus"
-						Value 2
+						Value 2.5
 						Delay 0.625
 					}
 
@@ -15619,23 +15619,13 @@ WaveSchedule
 				Duration 2.5
 			}
 			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "taunt01"
-                Delay  0
-                Repeats 1
+			{
+				Target !self
+				Action $Taunt
+				Delay 0.1
+				Repeats 1
 				Cooldown -1
-            }
-			FireInput
-            {
-                Target "!self"
-                Action "$PlaySequence"
-                Param  "run_PRIMARY"
-                Delay  2.5
-                Repeats 1
-				Cooldown -1
-            }
+			}
 
 			FireInput
 			{
@@ -16061,9 +16051,9 @@ WaveSchedule
 					{
 						ItemName "SpoonGun"
 
-						"projectile detonate time"	3
+						"projectile detonate time"	2.5
 						"projectile acceleration time"	1.5
-						"projectile acceleration"		-3000
+						"projectile acceleration"		-1000
 					}
 					ItemAttributes
 					{
