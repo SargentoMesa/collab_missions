@@ -7151,8 +7151,8 @@ WaveSchedule
 				"targetname" "LightningAttackSound"
 				"origin" "0 0 0"
 				"message" "Halloween.spell_lightning_impact"
-				"radius" "8192"
-				"health" "7"
+				"radius" "3072"
+				"health" "10"
 				"spawnflags" "16"
 			}
 
