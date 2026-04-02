@@ -14258,20 +14258,24 @@ WaveSchedule
 				Index 51
 				Duration 2.5
 			}
-			Sequence
-			{
-				Name "taunt01"
-				Delay 0.1
-				Repeats 1
+			FireInput
+            {
+                Target "!self"
+                Action "$PlaySequence"
+                Param  "taunt01"
+                Delay  0
+                Repeats 1
 				Cooldown -1
-			}
-			Sequence
-			{
-				Name "run_PRIMARY"
-				Delay 2.5
-				Repeats 1
+            }
+			FireInput
+            {
+                Target "!self"
+                Action "$PlaySequence"
+                Param  "run_PRIMARY"
+                Delay  2.5
+                Repeats 1
 				Cooldown -1
-			}
+            }
 
 			FireInput
 			{
