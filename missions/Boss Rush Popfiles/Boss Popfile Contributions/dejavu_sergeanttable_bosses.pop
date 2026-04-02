@@ -15383,7 +15383,6 @@ WaveSchedule
 						"displace touched enemies" 0
 						"hand scale" 1
 						"voice pitch scale" 1
-						"attach particle effect" 3044
 					}
 
 					ItemAttributes
@@ -15449,6 +15448,26 @@ WaveSchedule
 						Delay 12.5
 						Repeats 1
 						Cooldown -1
+					}
+				}
+				Larry_RageGhostRider [$SIGSEGV]
+				{
+					Item "TF_WEAPON_ROCKETLAUNCHER"
+					Item "The Mantreads"
+					Item "The Market Gardener"
+
+					CharacterAttributes
+					{
+						"no_jump" 0
+						"no_attack" 0
+						"move speed bonus" 0.5
+						"damage force reduction" 0.1
+						"blast dmg to self increased" 0.2
+						"increased jump height" 0.9
+						"cancel falling damage" 1
+						"displace touched enemies" 0
+						"hand scale" 1
+						"voice pitch scale" 1
 					}
 				}
 			}
