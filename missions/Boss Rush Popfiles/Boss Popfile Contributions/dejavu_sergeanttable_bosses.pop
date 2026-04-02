@@ -15915,7 +15915,6 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-						"attach particle effect" 3044
 					}
 
 					Addcond
@@ -15923,7 +15922,14 @@ WaveSchedule
 						Index 51
 						Duration 5.5
 					}
-
+					FireInput
+					{
+						Target HarryCrashoutParticle
+						Action Start
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
 					FireInput
 					{
 						Target !self
@@ -15963,7 +15969,6 @@ WaveSchedule
 						"displace touched enemies" 0
 						"hand scale" 1
 						"voice pitch scale" 1
-						"attach particle effect" 3044
 					}
 
 					ItemAttributes
