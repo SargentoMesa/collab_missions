@@ -8700,6 +8700,7 @@ WaveSchedule
 
 				"OnTrigger" "ShocksDeathParticle,Start,,22.25,-1"
 				"OnTrigger" "tf_gamerules,$StopVO,vo/mvm/mght/soldier_mvm_m_laughlong01.mp3,22.25,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,vo/mvm/mght/soldier_mvm_m_laughlong01.mp3,22.3,-1"
 				"OnTrigger" "tf_gamerules,$StopVO,ambient/levels/citadel/zapper_loop2.wav,22.25,-1"
                 "OnTrigger" "tf_gamerules,$StopVO,ambient/energy/force_field_loop1.wav,22.25,-1"
                 "OnTrigger" "tf_gamerules,$StopVO,misc/halloween/spell_spawn_boss.wav,22.25,-1"
