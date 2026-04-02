@@ -15454,13 +15454,13 @@ WaveSchedule
 				{
 					Item "TF_WEAPON_ROCKETLAUNCHER"
 					Item "The Mantreads"
-					Item "The Market Gardener"
+					Item "The Equalizer"
 
 					CharacterAttributes
 					{
 						"no_jump" 0
 						"no_attack" 0
-						"move speed bonus" 0.5
+						"move speed bonus" 0.1
 						"damage force reduction" 0.1
 						"blast dmg to self increased" 0.2
 						"increased jump height" 0.9
@@ -15468,6 +15468,49 @@ WaveSchedule
 						"displace touched enemies" 0
 						"hand scale" 1
 						"voice pitch scale" 1
+					}
+
+					ItemAttributes
+					{
+						ItemName "The Equalizer"
+						"damage bonus" 1.5
+						"fire rate bonus" 0.75
+					}
+
+					FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param weapons/dragons_fury_impact_hit.wav
+						Delay 0
+						Repeats 1
+						Cooldown -1
+					}
+					FireInput
+					{
+						Target tf_gamerules
+						Action PlayVO
+						Param vo/mvm/norm/soldier_mvm_m_paincrticialdeath02.mp3
+						Delay 0.625
+						Repeats 1
+						Cooldown -1
+					}
+					AddAttribute
+					{
+						Item "player"
+						Name "move speed bonus"
+						Value 2
+						Delay 0.625
+					}
+
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param Larry_DefaultRageTrolldier
+						Delay 10
+						Repeats 1
+						Cooldown -1
 					}
 				}
 			}
