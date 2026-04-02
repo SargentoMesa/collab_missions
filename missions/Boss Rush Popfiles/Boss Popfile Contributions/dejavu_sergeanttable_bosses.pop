@@ -14238,7 +14238,11 @@ WaveSchedule
 			Item "The Market Gardener"
 			Item "Thousand-Yard Stare"
 
-			SpawnTemplate "MainBoss_BarryLogic"
+			SpawnTemplate
+            {
+                Name "MainBoss_BarryLogic"
+                Bone bip_spine_2
+            }
 
 			CharacterAttributes
 			{
@@ -14731,7 +14735,7 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 20
+                        "healing received bonus" 50
 					}
 
 					Addcond
@@ -14928,7 +14932,11 @@ WaveSchedule
 			Item "The Mantreads"
 			Item "The Market Gardener"
 
-			SpawnTemplate "MainBoss_LarryLogic"
+			SpawnTemplate
+            {
+                Name "MainBoss_LarryLogic"
+                Bone bip_spine_2
+            }
 			SpawnTemplate "ringOwnerGeneric"
 
 			CharacterAttributes
@@ -15339,7 +15347,7 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 20
+                        "healing received bonus" 50
 					}
 
 					Addcond
@@ -15582,7 +15590,11 @@ WaveSchedule
 
 			Item "Saxton Hat"
 
-			SpawnTemplate "MainBoss_HarryLogic"
+			SpawnTemplate
+            {
+                Name "MainBoss_HarryLogic"
+                Bone bip_spine_2
+            }
 
 			CharacterAttributes
 			{
@@ -15916,7 +15928,7 @@ WaveSchedule
 						"cancel falling damage" 1
 						"displace touched enemies" 1
 						"voice pitch scale" 0
-                        "healing received bonus" 20
+                        "healing received bonus" 50
 					}
 
 					Addcond
