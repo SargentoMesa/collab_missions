@@ -433,8 +433,8 @@ WaveSchedule
             "projectile acceleration" "2000"
             "custom weapon fire sound"		"npc/strider/fire.wav"
             "custom impact sound" "Weapon_CowMangler.ExplodeCharged"
-            "projectile spread angle penalty" 16
-            "faster reload rate" 0.95
+            "spread angle pattern" "0 -8 0|0 0 0|0 8 0"
+            "faster reload rate" 0.75
             "fire rate bonus" 0.2
         }
     }
