@@ -437,7 +437,6 @@ WaveSchedule
 			Target BigNet
 			Action RunScriptCode
 			Param "
-					NetProps.SetPropString(Entities.FindByClassname(null, `tf_objective_resource`), `m_iszMvMPopfileName`, `Deja Vu, Deja Mort (Boss Rush)`)
 					Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
 					EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`17`, 0.5)
