@@ -54,9 +54,6 @@ WaveSchedule
 
     //// PRECACHES ////
 
-    // Model Precaches
-    PrecacheModel "models/props_mindbloom/megalaser_beam.mdl"
-
     // Sound Precaches
 	PrecacheSound "boss_incoming.wav"
     PrecacheSound "mainbosstheme1.mp3"
