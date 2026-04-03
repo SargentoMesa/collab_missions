@@ -1,4 +1,5 @@
 ::MILK_NERF_MULTIPLIER <- 0.5
+::CONCH_NERF_MULTIPLIER <- 0.5 //DOES NOT AFFECT CONCH ON ITS OWN. Make sure this matches your conch modifier! Only kicks in for when conch and milk are combined
 
 ::milkNerf <- {
 
@@ -24,6 +25,7 @@
 	function OnGameEvent_player_hurt(params) {
 		local attacker = GetPlayerFromUserID(params.attacker)
 		if(attacker == null) return
+		if(!attacker.IsPlayer()) return
 		if(attacker.GetTeam() != 2) return
 
 		//Mad milk syringes do not trigger this when hitting an unmilked target, not an issue
@@ -40,7 +42,13 @@
 
 		if(healthHealedFromMilk <= 0) return
 
-		local properHealth = attacker.GetHealth() - healthHealedFromMilk + (params.damageamount * 0.6 * MILK_NERF_MULTIPLIER)
+		local extraConchHealth = 0
+
+		if(attacker.InCond(29)) {
+			extraConchHealth = params.damageamount * 0.35 * CONCH_NERF_MULTIPLIER
+		}
+
+		local properHealth = attacker.GetHealth() - healthHealedFromMilk + (params.damageamount * 0.6 * MILK_NERF_MULTIPLIER) + extraConchHealth
 		if(properHealth > attacker.GetMaxHealth()) properHealth = attacker.GetMaxHealth()
 		attacker.SetHealth(properHealth)
 	}
