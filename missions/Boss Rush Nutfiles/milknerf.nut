@@ -1,4 +1,4 @@
-::MILK_NERF_MULTIPLIER <- 0.5
+::MILK_NERF_MULTIPLIER <- 0.1
 
 ::milkNerf <- {
 
@@ -40,7 +40,8 @@
 
 		if(healthHealedFromMilk <= 0) return
 
-		local properHealth = attacker.GetHealth() - healthHealedFromMilk + (healthHealedFromMilk * MILK_NERF_MULTIPLIER)
+		local properHealth = attacker.GetHealth() - healthHealedFromMilk + (params.damageamount * 0.6 * MILK_NERF_MULTIPLIER)
+		if(properHealth > attacker.GetMaxHealth()) properHealth = attacker.GetMaxHealth()
 		attacker.SetHealth(properHealth)
 	}
 
