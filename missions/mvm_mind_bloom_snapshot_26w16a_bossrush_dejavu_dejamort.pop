@@ -34,6 +34,8 @@ WaveSchedule
     ForceRedMoney 1
     TextPrintTime 0
 
+    ConchHealthOnHit 0.175
+
     //// DISABLED SOUNDS ////
 
     DisableSound "Announcer.MVM_Wave_End"
@@ -378,7 +380,7 @@ WaveSchedule
     {
         Pyro
         {
-            "damage bonus" 1.5
+            "damage bonus" 1.25
         }
         Heavyweapons
         {
