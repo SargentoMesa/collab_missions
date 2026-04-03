@@ -1,4 +1,4 @@
-::MILK_NERF_MULTIPLIER <- 0.1
+::MILK_NERF_MULTIPLIER <- 0.5
 
 ::milkNerf <- {
 
