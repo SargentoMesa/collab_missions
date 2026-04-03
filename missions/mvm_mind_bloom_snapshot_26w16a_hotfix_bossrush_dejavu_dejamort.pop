@@ -442,6 +442,8 @@ WaveSchedule
 					EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`17`, 0.5)
 
+                    IncludeScript(`milknerf`, getroottable())
+
 					if (!(`alternatewaves` in getroottable()))
 					{
 						IncludeScript(`alternatewaves`, getroottable());
