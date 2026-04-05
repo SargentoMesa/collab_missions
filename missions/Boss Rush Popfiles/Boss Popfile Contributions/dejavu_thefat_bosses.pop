@@ -2,6 +2,13 @@ WaveSchedule
 {
     PrecacheModel "models/props_mvm/indicator/indicator_circle_long.mdl"
 
+	PrecacheGeneric "materials/hud/leaderboard_class_boom.vmt"
+	PrecacheGeneric "materials/hud/leaderboard_class_boom.vtf"
+	PrecacheGeneric "materials/hud/leaderboard_class_boolet.vmt"
+	PrecacheGeneric "materials/hud/leaderboard_class_boolet.vtf"
+	PrecacheGeneric "materials/hud/leaderboard_class_fire.vmt"
+	PrecacheGeneric "materials/hud/leaderboard_class_fire.vtf"
+
     CustomWeapon
 	{
         //// MAIN BOSSES ////

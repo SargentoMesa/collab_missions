@@ -5735,7 +5735,6 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`wave_init_arena_cliffside_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`6`, 0.5)
@@ -5857,7 +5856,6 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         EntFire(`arena_teleport_relay`, `Trigger`)
-                        EntFire(`arena_cliffside_boss_spawn_relay`, `Disable`)
                         MusicSystemMent.SetMusicTrack(``, 2.0, 2.0);
                       "
             }
@@ -5874,7 +5872,7 @@ WaveSchedule
 		{
 			Name "Wave14_Boss-MercMatterSetup"
 			WaitForAllSpawned "Wave14_MercenaryMatter"
-			WaitBeforeStarting 5
+			WaitBeforeStarting 0
 
 			FirstSpawnOutput
 			{
@@ -6089,6 +6087,22 @@ WaveSchedule
 							}
 						}
 					  "
+            }
+        }
+
+        WaveSpawn
+        {
+            Name "Wave14_NemesisMimicryBegin"
+            WaitForAllSpawned "Wave14_NemesisMimicry"
+            WaitBeforeStarting 0
+
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`tf_gamerules`, `PlayVO`, `boss_incoming.wav`, 7.5)
+                      "
             }
         }
 
