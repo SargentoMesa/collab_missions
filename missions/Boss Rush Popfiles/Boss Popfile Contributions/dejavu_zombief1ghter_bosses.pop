@@ -270,7 +270,7 @@ WaveSchedule
 				//Melee
 				//PDA
 				//Building
-				IfHealthBelow 25000 //When set, the task activates only when the bot health is below specified value
+				IfHealthBelow 15000 //When set, the task activates only when the bot health is below specified value
 				//IfHealthAbove 0 //When set, the task activates only when the bot health is above specified value
 			}
 			Taunt [$SIGSEGV]    //Taunt periodically
@@ -395,7 +395,7 @@ WaveSchedule
 				Name	"{blue}Field Marshal Mechanus {FFFFFF}has used their {9BBF4D}RECALL{FFFFFF} Power Up Canteen!"
 				Delay	1.75
 				Repeats	1
-				IfHealthBelow	25000
+				IfHealthBelow	15000
 			}
             FireInput [$SIGSEGV]
             {
