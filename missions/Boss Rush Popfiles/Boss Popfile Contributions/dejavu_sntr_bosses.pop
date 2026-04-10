@@ -1,8 +1,5 @@
 WaveSchedule
 {
-    PrecacheSound "bonegang_intro.mp3"
-	PrecacheSound "bonegang_loop.mp3"
-	PrecacheSound "bonegang_end.mp3"
     PrecacheSound "pda_w7_sntr.mp3"
     PrecacheModel "models/workshop/player/items/pyro/taunt_the_hot_wheeler/taunt_the_hot_wheeler.mdl"
     PrecacheModel "models/bots/skeleton_sniper_boss/skeleton_sniper_boss.mdl"

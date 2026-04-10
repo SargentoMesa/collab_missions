@@ -152,6 +152,8 @@ WaveSchedule
             logic_relay // Wave Finish Teleporter
             {
                 "targetname" "boss_rush_spawn_teleport_relay"
+                "spawnflags" "2"
+                
                 "OnTrigger" "@f@filter_red@player,$TeleportToEntity,skybox_sun_target,0,-1"
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
