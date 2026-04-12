@@ -22,7 +22,7 @@
 WaveSchedule
 {
     StartingCurrency 3000
-    RespawnWaveTime 0
+    RespawnWaveTime 1
     FixedRespawnWaveTime Yes
     AddSentryBusterWhenDamageDealtExceeds 3000
     AddSentryBusterWhenKillCountExceeds 10
@@ -154,7 +154,8 @@ WaveSchedule
                 "targetname" "boss_rush_spawn_teleport_relay"
                 "spawnflags" "2"
                 
-                "OnTrigger" "@f@filter_red@player,$TeleportToEntity,skybox_sun_target,0,-1"
+                "OnTrigger" "player*,$TeleportToEntity,skybox_sun_target,0,-1"
+                "OnTrigger" "player*,$TeleportToEntity,skybox_sun_target,0.1,-1"
                 "OnTrigger" "portal_teleport_fade,Fade,,0,-1"
                 "OnTrigger" "portal_teleport_sound,PlaySound,,0,-1"
                 "OnTrigger" "obj_sentrygun*,RemoveHealth,10000,0,-1"
@@ -389,7 +390,7 @@ WaveSchedule
     ItemAttributes
     {
         ItemName "The Ubersaw"
-        "add uber charge on hit" 0.095
+        "add uber charge on hit" 0.075
     }
 
     //// MISSION BOTS ////
@@ -629,6 +630,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: MINI BOSS 2 FROM KIRBY'S RETURN TO DREAMLAND///`)
                       "
             }
 			DoneOutput
@@ -718,6 +720,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: MINI BOSS 2 FROM KIRBY'S RETURN TO DREAMLAND///`)
                       "
             }
             DoneOutput
@@ -849,6 +852,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: MINI BOSS 2 FROM KIRBY'S RETURN TO DREAMLAND///`)
                       "
             }
         }
@@ -968,6 +972,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: THE ARENA: REST AREA FROM KIRBY TRIPLE DELUXE///`)
                     EntFire(`wave_init_arena_bonkplant_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
@@ -1048,6 +1053,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: TRUE ARENA SHOWDOWN FROM KIRBY TRIPLE DELUXE///`)
                       "
             }
 			DoneOutput
@@ -1228,6 +1234,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: THE ARENA: REST AREA FROM KIRBY TRIPLE DELUXE///`)
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
@@ -1237,7 +1244,7 @@ WaveSchedule
 						MusicSystemMent.ResetAll();
 						MusicSystemMent.HookByName(`bignet`);
 					}
-					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/slimy_spring_galaxy.wav`, 2.0, 2.0, 0.75);
+					MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/the_arena_rest_area.wav`, 2.0, 2.0, 0.75);
                   "
         }
         StartWaveOutput
@@ -1404,6 +1411,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: MINI BOSS 2 FROM KIRBY TRIPLE DELUXE///`)
                       "
             }
         }
@@ -1541,6 +1549,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: SLIMY SPRING GALAXY FROM SUPER MARIO GALAXY 2///`)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`14`, 0.5)
@@ -1739,6 +1748,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: DECISIVE BATTLE ULTIMATE Z FROM KIRBY AND THE FORGOTTEN LAND///`)
                       "
             }
             DoneOutput
@@ -1819,6 +1829,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mainbosstheme1.mp3`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: DECISIVE BATTLE ULTIMATE Z FROM KIRBY AND THE FORGOTTEN LAND///`)
                       "
             }
         }
@@ -5146,6 +5157,7 @@ WaveSchedule
 				Action RunScriptCode
 				Param "
 						MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/red_alert_3_hell_march_3.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: HELL MARCH FROM RED ALERT 3///`)
 					"
 			}
 		}
@@ -5553,6 +5565,7 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: BOSS BLITZ GALAXY FROM SUPER MARIO GALAXY 2///`)
                     EntFire(`wave_init_arena_spyfactory_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
@@ -5625,7 +5638,10 @@ WaveSchedule
 			{
 				Target BigNet
 				Action RunScriptCode
-				Param "MusicSystemMent.SetMusicTrack(`#first_phase_supercharged.mp3`);"
+				Param "
+                        MusicSystemMent.SetMusicTrack(`#first_phase_supercharged.mp3`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: SUPERCHARGED BY SNURPER_BOB///`)
+                      "
 			}
 		}
 
@@ -5921,6 +5937,14 @@ WaveSchedule
             {
                 Template T_TFBot_Fat_Boss_Merc_Matter
                 Action Mobber
+            }
+            FirstSpawnOutput
+            {
+                Target BigNet
+                Action RunScriptCode
+                Param "
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: VERSUS MIRACLE MATTER CLONE (FAN-MADE REMIX)///`)
+                      "
             }
             DoneOutput
             {
@@ -6718,7 +6742,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
             DoneOutput
@@ -6946,7 +6970,7 @@ WaveSchedule
                 Target BigNet
                 Action RunScriptCode
                 Param "
-                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/mini_boss_rush_2.wav`);
+                        MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/true_arena_showdown.wav`);
                       "
             }
         }
@@ -7218,6 +7242,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#expert_boss_theme.mp3`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: ULTIMATE EXTRA STARS FROM KIRBY AND THE FORGOTTEN LAND: PLUS STAR-CROSSED WORLD///`)
                       "
             }
             DoneOutput
@@ -7517,7 +7542,8 @@ WaveSchedule
             Target BigNet
             Action RunScriptCode
             Param "
-                    EntFire(`wave_init_arena_electricmine_relay`, `Trigger`)
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: APOCALYPTIC REBOOT FROM KIRBY: PLANET ROBOBOT///`)
+                    EntFire(`wave_init_arena_electricmine_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
                     EntFire(`howmanyofthemleft`,`SetText`,`3?`, 0.5)
@@ -7612,7 +7638,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.5
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 50
 
 			TFBot
 			{
@@ -7647,7 +7673,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.6
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 50
 
 			TFBot
 			{
@@ -7670,6 +7696,7 @@ WaveSchedule
                 Param "
                         MusicSystemMent.SetMusicTrack(`#triple_threat_trolldier_boss_theme.mp3`);
                         EntFire(`TripleTrolldierCrashoutRelay`, `Enable`)
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: VERSUS ROBO DEDEDE FROM KIRBY: AIR RIDERS///`)
                       "
             }
             DoneOutput
@@ -7691,7 +7718,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 12.7
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 50
 
 			TFBot
 			{
@@ -7716,6 +7743,37 @@ WaveSchedule
                       "
             }
 		}
+
+        WaveSpawn
+        {
+            Name "Wave16_ShovelSoldiers"
+            Where spawnbot_support
+            Support 1
+            TotalCount 150
+            MaxActive 6
+            SpawnCount 6
+            WaitBeforeStarting 20
+            WaitBetweenSpawns 0
+            TotalCurrency 150
+
+            TFBot
+            {
+                ClassIcon	soldier_shovel
+                Health	200
+                Name	"Digger"
+                Class	Soldier
+                Skill	Expert
+                WeaponRestrictions	MeleeOnly
+                Attributes	"AlwaysCrit"
+                CharacterAttributes
+                {
+                    "move speed bonus"	1.15
+                    "cancel falling damage" 1
+                    "torso scale" 0.5
+                }
+                Item	"the cross-comm crash helmet"
+            } 
+        }
     }
 	Wave // Main Boss - Overclocked Dave Reborn
     {
@@ -7831,6 +7889,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#launch_sequence_v2.mp3`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: LAUNCH SEQUENCE BY NONTHENINJA///`)
                       "
             }
 			DoneOutput
@@ -8012,6 +8071,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/lone_swordsman_phase1.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///REVENGE OF THE ENEMY FROM KIRBY TRIPLE DELUXE///`)
                     "
             }
         }
@@ -8026,6 +8086,7 @@ WaveSchedule
 			Target BigNet
 			Action RunScriptCode
 			Param "
+                    EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: HALLWAY BACK TO THE ORIGIN FROM KIRBY: STAR ALLIES///`)
 					EntFire(`wave_init_arena_nebula_relay`, `Trigger`, null, 6)
                     Convars.SetValue(`sig_mvm_beggar_stun_nerf`, 1)
                     EntFire(`BossRushPlayerSpawn`, `Disable`)
@@ -8122,6 +8183,7 @@ WaveSchedule
                 Action RunScriptCode
                 Param "
                         MusicSystemMent.SetMusicTrack(`#mentrillum/mvm/music/bossrush/hypercharging_supernova.wav`);
+                        EntFire(`player`, `$DisplayTextChat`, `{yellow}///NOW PLAYING: HYPERCHARGED SUPERNOVA BY SNURPER_BOB///`)
                     "
             }
             DoneOutput
