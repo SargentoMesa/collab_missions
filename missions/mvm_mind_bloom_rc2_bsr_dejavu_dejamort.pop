@@ -8128,7 +8128,7 @@ WaveSchedule
 
         PlayerAttributes
         {
-            "move speed bonus" 2
+            "move speed bonus" 1.5
         }
 
         WaveSpawn
