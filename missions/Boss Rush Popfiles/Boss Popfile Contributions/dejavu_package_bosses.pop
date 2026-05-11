@@ -419,6 +419,17 @@ WaveSchedule
 						"health from healers reduced" 2
 						"cancel falling damage" 1
 					}
+
+					FireWeapon
+					{
+						Type "Primary"
+						Delay 0.05
+						Duration 10
+						Repeats 0
+						Cooldown 0.1
+						IfSeeTarget 1
+						IfLeftSpawn 1
+					}
 				}
 				ShortRange_Soldier [$SIGSEGV]
 				{
@@ -438,6 +449,16 @@ WaveSchedule
 						"increased jump height" 2
 						"cancel falling damage" 1
 						"damage bonus" 1.25
+					}
+
+					FireWeapon
+					{
+						Type "Primary"
+						Delay 0.05
+						Repeats 0
+						Cooldown 0.1
+						IfSeeTarget 1
+						IfLeftSpawn 1
 					}
 				}
 				// phase 3
@@ -469,6 +490,23 @@ WaveSchedule
 						"health from healers reduced" 2
 						"increased jump height" 1.5
 						"cancel falling damage" 1
+					}
+
+					WeaponSwitch
+					{
+						Type "Primary"
+						Delay 3
+						Repeats 1
+						Cooldown 0
+					}
+					FireWeapon
+					{
+						Type "Primary"
+						Delay 3
+						Repeats 0
+						Cooldown 0.1
+						IfSeeTarget 1
+						IfLeftSpawn 1
 					}
 				}
 			}
