@@ -8072,7 +8072,7 @@ WaveSchedule
             SpawnCount 1
             WaitBeforeStarting 12.5
             WaitBetweenSpawns 0
-            TotalCurrency 300
+            TotalCurrency 200
 
             TFBot
             {
@@ -8087,6 +8087,26 @@ WaveSchedule
                         EntFire(`player`, `$DisplayTextChat`, `{yellow}///REVENGE OF THE ENEMY FROM KIRBY TRIPLE DELUXE///`)
                     "
             }
+        }
+
+        WaveSpawn // Support Demomen
+        {
+            Name "Wave19_Demomen"
+            Where spawnbot_support
+            Support 1
+            TotalCount 100
+            MaxActive 5
+            SpawnCount 1
+            WaitBeforeStarting 30
+            WaitBetweenSpawns 5
+            TotalCurrency 100
+
+            TFBot
+            {
+                Class Demoman
+                Skill Expert
+                Action Mobber
+            } 
         }
     }
 
